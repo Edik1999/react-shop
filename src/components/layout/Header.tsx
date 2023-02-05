@@ -5,14 +5,19 @@ import { NavLink, Link } from 'react-router-dom';
 
 function Header() {
   return (
-    <header>
-      <div className="contaoner">
-        <div className="top">
-          <p className="header__text">
-            We're open and available for takeaway & delivery.
-          </p>
-          <Link to="/order" className="header__btn">Order Now</Link>
+    <header className="header">
+
+      <div className="top">
+        <div className="container">
+          <div className="header__wrap">
+            <p className="header__text">
+              We're open and available for takeaway & delivery.
+            </p>
+            <Link to="/order" className="header__btn">Order Now</Link>
+          </div>
         </div>
+      </div>
+      <div className="container">
         <div className="bottom">
           <div className="header__logo">
             <Link to="/"><img src={logo} alt="Logo" /></Link>
