@@ -15,16 +15,20 @@ function App() {
   return (
     <>
       <Header></Header>
-      <Routes>
-        <Route path="/" element={<Home/>} />
-        <Route path="/order" element={<Order/>} />
-        <Route path="/company" element={<Company/>} />
-        <Route path="/contacts" element={<Contacts/>} />
-        <Route path="/faq" element={<FAQ/>} />
-        <Route path="/cart" element={<Cart/>} />
-        <Route path="/menu" element={<Fullmenu/>} />
-        <Route path="*" element={<Navigate to="/" replace />}/>
-      </Routes>
+      
+        <div className="container">
+          <Routes>
+          <Route path="/" element={<Home/>} />
+          <Route path="/order" element={<Order/>} />
+          <Route path="/company" element={<Company/>} />
+          <Route path="/contacts" element={<Contacts/>} />
+          <Route path="/faq" element={<FAQ/>} />
+          <Route path="/cart" element={<Cart/>} />
+          <Route path="/menu" element={<Fullmenu/>} />
+          <Route path="*" element={<Navigate to="/" replace />}/>
+          </Routes>
+        </div>       
+      
       <Footer></Footer>
     </>
   );
