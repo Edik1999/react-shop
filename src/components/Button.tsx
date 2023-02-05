@@ -1,5 +1,4 @@
 import React from 'react'
-import racon from '../img/logo.svg'
 
 function Button() {
   return (

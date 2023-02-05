@@ -1,8 +1,14 @@
 import React from 'react'
 import Button from '../components/Button'
 import logo from '../img/logo.svg'
+import { useGetGoodsQuery } from '../store/mockAPI/mockApi'
 
 function Home() {
+
+  const {isLoading, isError, data} = useGetGoodsQuery('');
+
+  console.log(data)
+
   return (
     <>
       <header>
@@ -16,10 +22,6 @@ function Home() {
           <Button></Button>
         </div>        
       </header>
-
-      <body>
-        
-      </body>
 
       <footer>
 
