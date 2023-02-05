@@ -3,11 +3,16 @@ import Button from '../components/Button'
 import logo from '../img/logo.svg'
 import cart from '../img/cart.svg'
 
+import { useGetGoodsQuery } from '../store/mockAPI/mockApi'
 
 function Home() {
+
+  const {isLoading, isError, data} = useGetGoodsQuery('');
+
+  console.log(data)
+
   return (
     <>
-      <body>
         <header>
           <div className="top">
             <p className="header__text">We're open and available for takeaway & delivery.</p>
@@ -55,7 +60,6 @@ function Home() {
 
         <section className="support">
         </section>        
-      </body>
 
       <footer>
 
