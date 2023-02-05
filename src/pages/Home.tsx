@@ -2,7 +2,8 @@ import React from "react";
 // import Button from "../components/Button";
 import Loader from "../components/Loader";
 // import {Link} from 'react-router-dom';
-
+import trustpilot from "../img/trustpilot.png";
+import orderdecorate from "../img/orderdecorate.png";
 import { useGetGoodsQuery } from "../store/mockAPI/mockApi";
 
 function Home() {
@@ -21,7 +22,8 @@ function Home() {
           <section className="order">
             <div className="order__left">
               <h1 className="section__title">
-                Beautiful food & takeaway, delivered to your door.
+                Beautiful food & takeaway,{" "}
+                <span className="text-color">delivered</span> to your door.
               </h1>
               <p className="section__text">
                 Lorem Ipsum is simply dummy text of the printing and typesetting
@@ -29,8 +31,14 @@ function Home() {
                 text ever since the 1500.
               </p>
               <button className="order__btn">Place an Order</button>
-              <img className="order__img" src="#" alt=""/>
-              <p className="order__text"></p>
+              <img className="order__img" src={trustpilot} />
+              <p className="order__text">
+                <span className="text-color">4.8 out of 5</span> based on 2000+
+                reviews
+              </p>
+            </div>
+            <div className="order__right">
+              <img src={orderdecorate} />
             </div>
           </section>
 
