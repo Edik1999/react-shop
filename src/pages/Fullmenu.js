@@ -42,6 +42,11 @@ function Fullmenu() {
       })
     }
   }
+
+  const orderByPrice = () => {
+    // console.log(content.sort((a, b) => a.price > b.price ? 1 : -1))
+    // setContent(state.setGoods.sort((a, b) => a.price > b.price ? 1 : -1))
+  }
  
   return (
     <>
@@ -55,6 +60,7 @@ function Fullmenu() {
         <Button modificator={`menu-btn ${activeSort.active !== 2 && 'menu-btn--disabled'}`} text={"Car"} onClick={(e) => sortingHandler('Car')}></Button>
         <Button modificator={`menu-btn ${activeSort.active !== 3 && 'menu-btn--disabled'}`} text={"Chicken"} onClick={(e) => sortingHandler('Chicken')}></Button>
         <Button modificator={`menu-btn ${activeSort.active !== 4 && 'menu-btn--disabled'}`} text={"Salad"} onClick={(e) => sortingHandler('Salad')}></Button>
+        <Button modificator={`menu-btn ${'menu-btn--disabled'}`} text={"Price"} onClick={(e) => orderByPrice()}></Button>
         <Search handler={searchHandler}></Search>
       </div>
       <ul className="card__wrap">
