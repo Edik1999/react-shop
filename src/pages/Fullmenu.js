@@ -9,12 +9,15 @@ import Button from '../components/Button';
 function Fullmenu() {
   const state = useSelector((state) => state);
 
-  useEffect(() => {
-    console.log(state.setGoods?.length)
-    state.setGoods.map((el) => console.log(el));
-  }, [])
-  
-  
+  const [content, setContent] = useState(state.setGoods)
+
+  const searchHandler = (filterString) => {
+    if(filterString.length > 0){
+      setContent(content.filter(el => el.title.toLowerCase().indexOf(filterString.toLowerCase()) > -1))
+    }else{
+      setContent(state.setGoods)
+    }
+  }
  
   return (
     <>
@@ -27,13 +30,14 @@ function Fullmenu() {
         <Button modificator={"menu-btn"} text={"Burgers"}></Button>
         <Button modificator={"menu-btn menu-btn--disabled"} text={"Sides"}></Button>
         <Button modificator={"menu-btn menu-btn--disabled"} text={"Drinks"}></Button>
-        <Search></Search>
+        <Search handler={searchHandler}></Search>
       </div>
       <ul className="card__wrap">
-        {state.setGoods?.length > 0 ? (
-          state.setGoods.map((el) => (
+        {content.length > 0 ? (
+          content.map((el) => (
             <Card
               key={Math.random()}
+              id={el.id}
               title={el.title}
               image={el.image}
               price={el.price}

@@ -13,8 +13,7 @@ export const goodsSlice = createSlice({
     setGoods: (state, action) => {action.payload.map((el: any) => {
       state.push(el)
       return
-    })},
-    // filterGoods: (state, action) => {return state.filter(el)}
+    })}
   },
 })
 

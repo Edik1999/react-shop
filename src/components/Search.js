@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { useDebounce } from "../hooks/debounce";
+import { RootState, useAppDispatch } from "../store";
+import { useSelector, useDispatch } from "react-redux";
 
-function Search() {
+function Search({handler}) {
 
   const [search, setSearch] = useState("");
   const debounced = useDebounce(search, 300);
-
+  const dispatch = useAppDispatch();
+  
 
   useEffect(() => {
 
-    if(debounced.length > 0) console.log(debounced)
+    handler(debounced)
 
   }, [debounced])
 

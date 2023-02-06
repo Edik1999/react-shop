@@ -1,11 +1,11 @@
 import React from 'react'
 import burger from "../img/burger.png";
 
-function Card({title, image, price, text}) {
+function Card({id, title, image, price, text}) {
     // console.log('render')
     return (
         <>
-            <div className="card">
+            <div className={`card ${id}`}>
                 <img className="card__image" src={image} alt="" />
                 <div className="card__content">
                     <div className="card__title">

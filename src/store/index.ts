@@ -6,7 +6,7 @@ import { useSelector, useDispatch } from 'react-redux';
 export const store = configureStore({
     reducer: {
         [mockAPI.reducerPath]: mockAPI.reducer,
-        setGoods: goodsSlice
+        setGoods: goodsSlice,
     },
     middleware: getDefaultMiddleware => getDefaultMiddleware().concat(mockAPI.middleware)
 })
