@@ -18,91 +18,37 @@ function Footer() {
             <ul className="company__list">
               <li className="company__item">Company</li>
               <li className="company__item">
-                <NavLink
-                  to="/"
-                  className={({ isActive }) =>
-                    isActive ? "nav-link nav-link--active" : "nav-link"
-                  }>
-                  Home
-                </NavLink>
+                <Link to="/" className={"nav-link"}>Home</Link>
               </li>
               <li className="company__item">
-                <NavLink
-                  to="/"
-                  className={({ isActive }) =>
-                    isActive ? "nav-link nav-link--active" : "nav-link"
-                  }>
-                  Order
-                </NavLink>
+                <Link to="/menu" className={"nav-link"}>Menu</Link>
               </li>
               <li className="company__item">
-                <NavLink
-                  to="/"
-                  className={({ isActive }) =>
-                    isActive ? "nav-link nav-link--active" : "nav-link"
-                  }>
-                  FAQ
-                </NavLink>
+                <Link to="/faq" className={"nav-link"}>FAQ</Link>
               </li>
               <li className="company__item">
-                <NavLink
-                  to="/"
-                  className={({ isActive }) =>
-                    isActive ? "nav-link nav-link--active" : "nav-link"
-                  }>
-                  Contact
-                </NavLink>
+                <Link to="/contacts" className={"nav-link"}>Contact</Link>
               </li>
             </ul>
             <ul className="template__list">
               <li className="template__item">Template</li>
               <li className="template__item">
-                <NavLink
-                  to="/"
-                  className={({ isActive }) =>
-                    isActive ? "nav-link nav-link--active" : "nav-link"
-                  }>
-                  Style Guide
-                </NavLink>
+                <Link to="/" className={"nav-link"}>Style Guide</Link>
               </li>
               <li className="template__item">
-                <NavLink
-                  to="/"
-                  className={({ isActive }) =>
-                    isActive ? "nav-link nav-link--active" : "nav-link"
-                  }>
-                  Changelog
-                </NavLink>
+                <Link to="/" className={"nav-link"}>Changelog</Link>
               </li>
               <li className="template__item">
-                <NavLink
-                  to="/"
-                  className={({ isActive }) =>
-                    isActive ? "nav-link nav-link--active" : "nav-link"
-                  }>
-                  Licence
-                </NavLink>
+                <Link to="/" className={"nav-link"}>Licence</Link>
               </li>
               <li className="template__item">
-                <NavLink
-                  to="/"
-                  className={({ isActive }) =>
-                    isActive ? "nav-link nav-link--active" : "nav-link"
-                  }>
-                  Webflow University
-                </NavLink>
+                <Link to="/" className={"nav-link"}>Webflow University</Link>
               </li>
             </ul>
             <ul className="flowbase__list">
               <li className="flowbase__item">Flowbase</li>
               <li className="flowbase__item">
-                <NavLink
-                  to="/"
-                  className={({ isActive }) =>
-                    isActive ? "nav-link nav-link--active" : "nav-link"
-                  }>
-                  More Cloneables
-                </NavLink>
+                <Link to="/" className={"nav-link"}>More Cloneables</Link>
               </li>
             </ul>
           </div>

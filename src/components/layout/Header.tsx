@@ -44,15 +44,6 @@ function Header() {
               </li>
               <li className="nav__item">
                 <NavLink
-                  to="/order"
-                  className={({ isActive }) =>
-                    isActive ? "nav-link nav-link--active" : "nav-link"
-                  }>
-                  Order
-                </NavLink>
-              </li>
-              <li className="nav__item">
-                <NavLink
                   to="/company"
                   className={({ isActive }) =>
                     isActive ? "nav-link nav-link--active" : "nav-link"
