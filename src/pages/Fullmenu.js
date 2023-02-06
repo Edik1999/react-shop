@@ -12,13 +12,16 @@ function Fullmenu() {
 
   const [content, setContent] = useState(state.setGoods)
 
-    const searchHandler = (filterString) => {
+  const filterContent = (filterString) => state.setGoods.filter(el => el.title.toLowerCase().indexOf(filterString.toLowerCase()) > -1)
+
+  const searchHandler = (filterString) => {
     if(filterString.length > 0){
-      setContent(content.filter(el => el.title.toLowerCase().indexOf(filterString.toLowerCase()) > -1))
+      setContent(filterContent(filterString).length > 0 ? filterContent(filterString) : [])
     }else{
       setContent(state.setGoods)
     }
   }
+
  
   return (
     <>
@@ -46,7 +49,7 @@ function Fullmenu() {
             />
           ))
         ) : (
-          <></>
+          <p>Oops, try another search</p>
         )}
       </ul>
       {/* <Link to="/"><Button modificator={"menu-btn btn-view"} text={"View Full Menu"}></Button></Link> */}
