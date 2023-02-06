@@ -16,7 +16,7 @@ function Footer() {
           </div>
           <div className="footer__nav">
             <ul className="company__list">
-              <li className="company__item">Company</li>
+              <li className="company__item company__title">Company</li>
               <li className="company__item">
                 <Link to="/" className={"nav-link"}>Home</Link>
               </li>
@@ -31,7 +31,7 @@ function Footer() {
               </li>
             </ul>
             <ul className="template__list">
-              <li className="template__item">Template</li>
+              <li className="template__item template__title">Template</li>
               <li className="template__item">
                 <Link to="/" className={"nav-link"}>Style Guide</Link>
               </li>
@@ -46,7 +46,7 @@ function Footer() {
               </li>
             </ul>
             <ul className="flowbase__list">
-              <li className="flowbase__item">Flowbase</li>
+              <li className="flowbase__item flowbase__title">Flowbase</li>
               <li className="flowbase__item">
                 <Link to="/" className={"nav-link"}>More Cloneables</Link>
               </li>
