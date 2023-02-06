@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDebounce } from "../hooks/debounce";
 import { RootState, useAppDispatch } from "../store";
 import { useSelector, useDispatch } from "react-redux";
-import '../styles/components/search.sass';
+// import '../styles/components/search.sass';
 
 function Search({handler}) {
 

@@ -20,6 +20,12 @@ function Home() {
     if (data) dispatch(setGoods(data))
   }, [data])
 
+  if(isLoading) {
+    document.querySelector('body').style.overflow = 'hidden';
+  }else{
+    document.querySelector('body').style.overflowY = 'visible';
+  }
+
   return (
     <>
       {isLoading && <Loader></Loader>}

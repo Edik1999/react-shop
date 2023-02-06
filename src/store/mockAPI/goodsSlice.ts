@@ -10,10 +10,7 @@ export const goodsSlice = createSlice({
   name: 'setGoods',
   initialState,
   reducers: {
-    setGoods: (state, action) => {action.payload.map((el: any) => {
-      state.push(el)
-      return
-    })}
+    setGoods: (state, action) => action.payload
   },
 })
 

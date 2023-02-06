@@ -54,7 +54,6 @@ function Footer() {
           </div>
         </div>
         <div className="footer__link">
-          <p className="link__descr">Built by <span className="text-color">Flowbase</span>. Powered by <span className="text-color">Webflow</span></p>
           <ul className="link__list">
             <Link to="/"><li className="link__item link-instagram"><img src={instagram} alt="Instagram" /></li></Link>
             <Link to="/"><li className="link__item link-twitter"><img src={twitter} alt="twitter" /></li></Link>

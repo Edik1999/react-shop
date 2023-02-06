@@ -11,10 +11,14 @@ function Fullmenu() {
   const state = useSelector((state) => state);
 
   const [content, setContent] = useState(state.setGoods)
+  const [activeSort, setActiveSort] = useState({
+    active: 1
+  })
 
   const filterContent = (filterString) => state.setGoods.filter(el => el.title.toLowerCase().indexOf(filterString.toLowerCase()) > -1)
 
   const searchHandler = (filterString) => {
+    setActiveSort({active: 1})
     if(filterString.length > 0){
       setContent(filterContent(filterString).length > 0 ? filterContent(filterString) : [])
     }else{
@@ -22,6 +26,22 @@ function Fullmenu() {
     }
   }
 
+  const sortingHandler = (sortingString) => {
+    setContent(state.setGoods.filter(el => el.type.toLowerCase().indexOf(sortingString.toLowerCase()) > -1))
+    if (sortingString === 'Car') {
+      setActiveSort({
+        active: 2
+      })
+    }else if(sortingString === 'Chicken'){
+      setActiveSort({
+        active: 3
+      })
+    }else{
+      setActiveSort({
+        active: 4
+      })
+    }
+  }
  
   return (
     <>
@@ -31,22 +51,16 @@ function Fullmenu() {
         pickup order. Fast and fresh food.
       </p>
       <div className="menu__btn">
-        <Link to="/"><Button modificator={"menu-btn"} text={"Burgers"}></Button></Link>
-        <Link to="/"><Button modificator={"menu-btn menu-btn--disabled"} text={"Sides"}></Button></Link>
-        <Link to="/"><Button modificator={"menu-btn menu-btn--disabled"} text={"Drinks"}></Button></Link>
+        <Button modificator={`menu-btn ${activeSort.active !== 1 && 'menu-btn--disabled'}`} text={"All"} onClick={(e) => {setContent(state.setGoods); setActiveSort({active: 1})}}></Button>
+        <Button modificator={`menu-btn ${activeSort.active !== 2 && 'menu-btn--disabled'}`} text={"Car"} onClick={(e) => sortingHandler('Car')}></Button>
+        <Button modificator={`menu-btn ${activeSort.active !== 3 && 'menu-btn--disabled'}`} text={"Chicken"} onClick={(e) => sortingHandler('Chicken')}></Button>
+        <Button modificator={`menu-btn ${activeSort.active !== 4 && 'menu-btn--disabled'}`} text={"Salad"} onClick={(e) => sortingHandler('Salad')}></Button>
         <Search handler={searchHandler}></Search>
       </div>
       <ul className="card__wrap">
         {content.length > 0 ? (
           content.map((el) => (
-            <Card
-              key={Math.random()}
-              id={el.id}
-              title={el.title}
-              image={el.image}
-              price={el.price}
-              text={el.text}
-            />
+            <Card key={Math.random()} id={el.id} title={el.title} image={el.image} price={el.price} text={el.text} type={el.type}/>
           ))
         ) : (
           <p>Oops, try another search</p>

@@ -3,11 +3,11 @@ import burger from "../img/burger.png";
 import Button from '../components/Button';
 import { Link } from 'react-router-dom';
 
-function Card({id, title, image, price, text}) {
+function Card({id, title, image, price, text, type}) {
     // console.log('render')
     return (
         <>
-            <div className={`card ${id}`}>
+            <div className={`card ${id} ${type}`}>
                 <img className="card__image" src={image} alt="" />
                 <div className="card__content">
                     <div className="card__title">

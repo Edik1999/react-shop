@@ -1,11 +1,6 @@
-import React from 'react'
-// import Button from 
-
-function Button({text, modificator}) {
+function Button({text, modificator, onClick}) {
   return (
-    <>
-    <button className={`btn ${modificator}`}>{text}</button>
-    </>
+    <button className={`btn ${modificator}`} onClick={onClick}>{text}</button>
   )
 }
 

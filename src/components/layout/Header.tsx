@@ -69,7 +69,7 @@ function Header() {
                   Contacts
                 </NavLink>
               </li>
-              <Link to="/cart" className="nav-link">
+              <Link to="/cart" className="nav-link cart">
                 <li className="nav__item">
                   <img src={cart} alt="Cart" />
                 </li>

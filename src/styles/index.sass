@@ -1,7 +1,40 @@
 @import './varibles/index'
-@import './components/button'
-@import './components/card'
+@import './layout/footer'
+@import './layout/header'
 @import './pages/Home'
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap')
+
+*,
+*::before,
+*::after 
+    box-sizing: border-box
+    font-family: 'Montserrat', sans-serif
+    margin: 0
+    padding: 0
+    outline: none
+
+a
+    color: inherit
+    text-decoration: none
+
+ul 
+    list-style: none
+
+img
+    max-width: 100%
+
+.container
+    max-width: 1440px
+    width: 100%
+    margin: 0 auto
+
+.text-color
+    color: $maincolor
+
+.section__title
+    font-size: calc( $titleFZ + 10px )
+    line-height: calc( $titleFZ + 5px )
+    margin-bottom: $gap
 
 .loader
     position: absolute
@@ -10,6 +43,7 @@
     right: 0
     left: 0
     background: #fff
+    z-index: 10
 
 .loader__body
     position: relative
