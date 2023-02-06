@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDebounce } from "../hooks/debounce";
+import '../styles/components/search.sass';
 
 function Search() {
 
@@ -15,7 +16,7 @@ function Search() {
 
 
   return (
-    <input
+    <input className="search"
       type="text"
       name="search"
       placeholder="type your search here..."
