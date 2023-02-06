@@ -1,18 +1,19 @@
 import React from 'react'
 import burger from "../img/burger.png";
 
-function Card() {
+function Card({title, image, price, text}) {
+    // console.log('render')
     return (
         <>
             <div className="card">
-                <img className="card__image" src={burger} alt="" />
+                <img className="card__image" src={image} alt="" />
                 <div className="card__content">
                     <div className="card__title">
-                        <p className="card__name">Burger</p>
-                        <p className="card__price">$ 9.20 USD</p>
+                        <p className="card__name">{title}</p>
+                        <p className="card__price">{price}</p>
                     </div>
                     <div className="card__descr">
-                        <p className="card__text">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                        <p className="card__text">{text}</p>
                         <input className="card__counter" type="text" placeholder="1" max="10" />
                         <button className="card__btn">Add to card</button>
                     </div>

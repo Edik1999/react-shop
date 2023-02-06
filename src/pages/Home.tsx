@@ -13,7 +13,6 @@ import { setGoods } from "../store/mockAPI/goodsSlice";
 function Home() {
   const { isLoading, isError, data} = useGetGoodsQuery("");
 
-  const state = useSelector((state: RootState) => state)
   const dispatch = useAppDispatch()
 
   useEffect(() => {
@@ -52,7 +51,7 @@ function Home() {
           </section>
 
           <section className="aboutus">
-            {state.setGoods.map(el => <p key={Math.random()}>{el.title}</p>)}
+            
           </section>
 
           <section className="howitworks"></section>
