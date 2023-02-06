@@ -12,7 +12,7 @@ function Fullmenu() {
 
   const [content, setContent] = useState(state.setGoods)
 
-  const searchHandler = (filterString) => {
+    const searchHandler = (filterString) => {
     if(filterString.length > 0){
       setContent(content.filter(el => el.title.toLowerCase().indexOf(filterString.toLowerCase()) > -1))
     }else{
