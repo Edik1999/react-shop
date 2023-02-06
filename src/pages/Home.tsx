@@ -30,8 +30,7 @@ function Home() {
           <section className="home">
             <div className="home__left">
               <h1 className="section__title home__title">
-                Beautiful food & takeaway,{" "}
-                <span className="text-color">delivered</span> to your door.
+                Beautiful food & takeaway, <span className="text-color">delivered</span> to your door.
               </h1>
               <p className="section__text">
                 Lorem Ipsum is simply dummy text of the printing and typesetting
