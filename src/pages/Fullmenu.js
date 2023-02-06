@@ -3,6 +3,7 @@ import { useDebounce } from '../hooks/debounce';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState, useAppDispatch } from "../store";
 import Card from '../components/Card';
+import Button from '../components/Button';
 
 function Fullmenu() {
 
@@ -18,13 +19,13 @@ function Fullmenu() {
     // }, [debounced])  
 
   return (
-    <div>
+    <div className>
         <h2 className="section__title menu__title text-color">Browse our menu</h2>
             <p className="menu__text">Use our menu to place an order online, or phone our store to place a pickup order. Fast and fresh food.</p>
             <div className="menu__btn">
-              <button className="btn__burger">Burgers</button>
-              <button className="btn__slider">Sides</button>
-              <button className="btn__drinks">Drinks</button>
+              <Button modificator={"menu-btn"} text={"Burgers"}></Button>
+              <Button modificator={"menu-btn menu-btn--disabled"} text={"Sides"}></Button>
+              <Button modificator={"menu-btn menu-btn--disabled"} text={"Drinks"}></Button>
               <input type="text" name="search" placeholder='type your search here...' value={search} onChange={e => setSearch(e.target.value)}/>
             </div>
         <ul className='card__wrap'>

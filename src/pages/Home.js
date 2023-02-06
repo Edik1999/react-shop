@@ -4,6 +4,7 @@ import Loader from "../components/Loader";
 // import {Link} from 'react-router-dom';
 import trustpilot from "../img/trustpilot.png";
 import homedecorate from "../img/homedecorate.png";
+import Button from '../components/Button';
 import { useGetGoodsQuery } from "../store/mockAPI/mockApi";
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState, useAppDispatch } from "../store";
@@ -38,7 +39,7 @@ function Home() {
                 industry. Lorem Ipsum has been the industry's standard dummy
                 text ever since the 1500.
               </p>
-              <button className="home__btn">Place an Order</button>
+              <Button modificator={"home__btn"} text={"Burgers"}></Button>
               <img className="home__img" src={trustpilot} />
               <p className="home__text">
                 <span className="text-color">4.8 out of 5</span> based on 2000+
