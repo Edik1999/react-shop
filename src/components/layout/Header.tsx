@@ -6,7 +6,7 @@ import { NavLink, Link } from 'react-router-dom';
 function Header() {
   return (
     <header>
-      <div className="contaoner">
+      <div className="container">
         <div className="top">
           <p className="header__text">
             We're open and available for takeaway & delivery.

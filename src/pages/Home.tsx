@@ -1,15 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
 // import Button from "../components/Button";
 import Loader from "../components/Loader";
 // import {Link} from 'react-router-dom';
 import trustpilot from "../img/trustpilot.png";
 import orderdecorate from "../img/orderdecorate.png";
 import { useGetGoodsQuery } from "../store/mockAPI/mockApi";
+import { useSelector, useDispatch } from 'react-redux';
+import { RootState, useAppDispatch } from "../store";
+import { setGoods } from "../store/mockAPI/goodsSlice";
+// import type { IGoods } from "../models/models";
 
 function Home() {
-  const { isLoading, isError, data } = useGetGoodsQuery("");
+  const { isLoading, isError, data} = useGetGoodsQuery("");
 
-  console.log(data);
+  const state = useSelector((state: RootState) => state)
+  const dispatch = useAppDispatch()
+
+  useEffect(() => {
+    if (data) dispatch(setGoods(data))
+  }, [data])
 
   return (
     <>
@@ -42,7 +51,9 @@ function Home() {
             </div>
           </section>
 
-          <section className="aboutus"></section>
+          <section className="aboutus">
+            {state.setGoods.map(el => <p key={Math.random()}>{el.title}</p>)}
+          </section>
 
           <section className="howitworks"></section>
 

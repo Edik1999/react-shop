@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { IGoods } from "../../models/models";
+// import { IGoods } from "../../models/models";
 
 export const mockAPI = createApi({
     reducerPath: 'mockAPI/api',
@@ -7,7 +7,7 @@ export const mockAPI = createApi({
         baseUrl: 'https://63df9b608b24964ae0f09892.mockapi.io/'
     }),
     endpoints: build => ({
-        getGoods: build.query<IGoods, String>({
+        getGoods: build.query<any, String>({
             query: (get: string) => ({
                 url: 'goods',
                 params: {}

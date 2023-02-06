@@ -1,23 +1,25 @@
 import { createSlice } from '@reduxjs/toolkit'
-import type { PayloadAction } from '@reduxjs/toolkit'
-import type {IGoods} from '../../models/models'
+// import type { PayloadAction } from '@reduxjs/toolkit'
+// import type { IGoods} from '../../models/models'
 
-const initialState: IGoods = {
-    id: '',
-    title: '',
-    image: '',
-    price: '',
-    text: ''
-}
+type state = any[]
+
+const initialState: state = []
 
 export const goodsSlice = createSlice({
   name: 'setGoods',
   initialState,
   reducers: {
-    set: (state, action: PayloadAction<IGoods>) => {
-      console.log(state)
-      console.log(action)
-    },
+    setGoods: (state, action) => {action.payload.map((el: any) => {
+      state.push(el)
+      return
+    })}
+    // setGoods: (state, action: PayloadAction<any>) => state.push(action)
+    // state.push(action.payload)
+      // console.log(state[0].id)
+      // console.log(action, 1)
+      // console.log(action.payload, 2)
+    
     // decrement: (state) => {
     //   state.value -= 1
     // },
@@ -28,6 +30,6 @@ export const goodsSlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const { set } = goodsSlice.actions
+export const { setGoods } = goodsSlice.actions
 
 export default goodsSlice.reducer
