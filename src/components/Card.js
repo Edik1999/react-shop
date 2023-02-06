@@ -1,5 +1,7 @@
 import React from 'react'
 import burger from "../img/burger.png";
+import Button from '../components/Button';
+import { Link } from 'react-router-dom';
 
 function Card({id, title, image, price, text}) {
     // console.log('render')
@@ -10,13 +12,10 @@ function Card({id, title, image, price, text}) {
                 <div className="card__content">
                     <div className="card__title">
                         <p className="card__name">{title}</p>
-                        <p className="card__price">{price}</p>
+                        <p className="card__price text-color">{price}</p>
                     </div>
-                    <div className="card__descr">
-                        <p className="card__text">{text}</p>
-                        <input className="card__counter" type="text" placeholder="1" max="10" />
-                        <button className="card__btn">Add to card</button>
-                    </div>
+                    <p className="card__text">{text}</p>
+                    <Link to="/"><Button modificator={"card__btn"} text={"Add to card"}></Button></Link>
                 </div>
             </div>
         </>

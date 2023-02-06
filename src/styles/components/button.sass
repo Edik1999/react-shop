@@ -1,6 +1,7 @@
 @import '../varibles/index'
 
 .btn
+    cursor: pointer
     padding: 20px 35px
     border: none
     border-radius: 12px
@@ -8,3 +9,15 @@
     color: white
     font-size: $textFZ
     line-height: calc( $textFZ + 2px)
+
+.menu-btn--disabled 
+    padding: 19px 35px
+    outline: 2px solid $smalTextColor
+    color: $smalTextColor
+    background-color: $baseBgColor
+
+.card__btn
+    padding: 10px 12px
+    color: $smalTextColor
+    font-size: $baseFZ
+    line-height: calc( $baseFZ + 11px)

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDebounce } from "../hooks/debounce";
 import { RootState, useAppDispatch } from "../store";
 import { useSelector, useDispatch } from "react-redux";
+import '../styles/components/search.sass';
 
 function Search({handler}) {
 
@@ -18,7 +19,7 @@ function Search({handler}) {
 
 
   return (
-    <input
+    <input className="search"
       type="text"
       name="search"
       placeholder="type your search here..."
