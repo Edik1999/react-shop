@@ -26,9 +26,17 @@ img
     width: 100%
     margin: 0 auto
 
+.text-color
+    color: $maincolor
+
+.section__title
+    font-size: calc( $titleFZ + 10px )
+    line-height: calc( $titleFZ + 5px )
+    margin-bottom: $gap
+
 // header//
 .header
-    margin-bottom: 50px    
+    margin-bottom: calc( $gap * 4 )    
 
 .top
     padding: 14px 0
@@ -43,7 +51,7 @@ img
 
 .bottom
     display: flex
-    padding: 20px 0
+    padding: 20px 0 0
     align-items: center
     justify-content: space-between
 
@@ -75,22 +83,110 @@ img
 .nav-link--active
     font-weight: bold
 
-//order//
-.order
+//home//
+.home
+    position: relative
     display: flex
     flex-direction: row
     justify-content: space-between
-    
-.order__left
+    margin-bottom: calc( $gap * 5 )
+
+.home__left
     width: 50%
     display: flex
     flex-direction: column
     flex-wrap: wrap
 
-.card__wrap
+.home__title
+    width: 90%
+    font-size: calc( $titleFZ + 10px )
+    line-height: calc( $titleFZ + 10px )
+    margin-bottom: $gap
+
+.section__text 
+    width: 80%
+    font-size: $textFZ
+    line-height: calc( $textFZ + 6px )
+    margin-bottom: calc( $gap * 2 )
+
+.home__btn
+    width: 30%
+    margin-bottom: calc( $gap + 10px )
+
+.home__img
+    max-width: 16%
+    margin-bottom: calc( $gap / 3 )
+
+.home__text 
+    font-size: $textFZ
+
+.home__wrap
     display: flex
     flex-wrap: wrap
 
+.home__right
+    position: absolute
+    right: -146px
+
+//menu//
+    
+
+//footer//
+.footer
+    padding: 100px 0 60px
+    background-color: #F5FBFC 
+
+.footer__container    
+    display: flex
+    min-height: 230px
+    margin-bottom: 120px
+
+.footer__aside 
+    display: flex
+    flex-basis: 60%
+    flex-wrap: wrap
+    flex-direction: column
+
+.footer__logo
+    margin-bottom: 30px
+
+.footer__descr
+    width: 34%
+    line-height: 26px
+
+.footer__nav
+    display: flex
+    flex-wrap: wrap
+    flex-basis: 50%
+    justify-content: space-between
+
+.nav__title
+    margin-bottom: 25px
+
+.company__list,
+.template__list,
+.flowbase__list
+    display: flex
+    flex-direction: column
+
+
+.company__item,
+.template__item,
+.flowbase__item
+    margin-bottom: 25px
+
+.footer__link
+    display: flex
+    flex-wrap: wrap
+
+.link__descr
+    flex-basis: 85%
+
+.link__list 
+    display: flex
+    flex-basis: 15%
+    justify-content: space-between
+    
 
 
 

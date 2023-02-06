@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import Loader from "../components/Loader";
 // import {Link} from 'react-router-dom';
 import trustpilot from "../img/trustpilot.png";
-import orderdecorate from "../img/orderdecorate.png";
+import homedecorate from "../img/homedecorate.png";
 import { useGetGoodsQuery } from "../store/mockAPI/mockApi";
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState, useAppDispatch } from "../store";
@@ -27,9 +27,9 @@ function Home() {
         <p>Oops, something went wrong...</p>
       ) : (
         <>
-          <section className="order">
-            <div className="order__left">
-              <h1 className="section__title">
+          <section className="home">
+            <div className="home__left">
+              <h1 className="section__title home__title">
                 Beautiful food & takeaway,{" "}
                 <span className="text-color">delivered</span> to your door.
               </h1>
@@ -38,20 +38,19 @@ function Home() {
                 industry. Lorem Ipsum has been the industry's standard dummy
                 text ever since the 1500.
               </p>
-              <button className="order__btn">Place an Order</button>
-              <img className="order__img" src={trustpilot} />
-              <p className="order__text">
+              <button className="home__btn">Place an Order</button>
+              <img className="home__img" src={trustpilot} />
+              <p className="home__text">
                 <span className="text-color">4.8 out of 5</span> based on 2000+
                 reviews
               </p>
             </div>
-            <div className="order__right">
-              <img src={orderdecorate} />
+            <div className="home__right">
+              <img src={homedecorate} />
             </div>
           </section>
-
-          <section className="aboutus">
             
+          <section className="menu">
           </section>
 
           <section className="howitworks"></section>

@@ -4,7 +4,7 @@ import './styles/index.sass';
 import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
 import {Routes, Route, Navigate} from 'react-router-dom';
-import Order from './pages/Order';
+import Order from './pages/Menu';
 import Company from './pages/Company';
 import Contacts from './pages/Contacts';
 import FAQ from './pages/FAQ';
