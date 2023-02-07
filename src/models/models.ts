@@ -132,7 +132,7 @@ export interface IGoods {
     {
      "title": "Чизбургер",
      "image": "https://orderapp-static.burgerkingrus.ru/x256/mobile_image/aabf8e02d69d4d979574f3b7941024f6.webp",
-     "price": "75",
+     "price": "110",
      "text": "булочка для гамбургера с кунжутом(55 гр), котлета из говядины HAMBURGER, огурцы маринованные, кетчуп томатный, горчица, сыр плавленый",
      "type": "Burger",
      "id": "16"
@@ -148,7 +148,7 @@ export interface IGoods {
     {
      "title": "Гамбургер",
      "image": "https://orderapp-static.burgerkingrus.ru/x256/mobile_image/141ccfd46f9b40b4d3d2fb3b4702c1ab.webp",
-     "price": "70",
+     "price": "100",
      "text": "булочка для гамбургера с кунжутом(55 гр), котлета из говядины HAMBURGER, огурцы маринованные, кетчуп томатный, горчица",
      "type": "Burger",
      "id": "18"

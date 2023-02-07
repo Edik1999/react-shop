@@ -27,3 +27,29 @@
     color: $smalTextColor
     font-size: $baseFZ
     line-height: calc( $baseFZ + 11px)
+
+.sorting-btn
+    padding: 19px 40px 19px 30px
+    position: relative
+
+    &::before
+        content: ''
+        position: absolute
+        top: 45%
+        right: 17px
+        background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAZklEQVR4nO3QMQqAQAxE0X8JxfvfQ2vFzsbjKIJbitlNos18GEj3IKCUUsrRBBzBGy3wkgDPFrgDtkB0Bwbru6PwKjQKb0K9uAttxUPQWjwUteIp6Bueij7hn6ClHljvXbdSit86AUl3ltPxBzVwAAAAAElFTkSuQmCC') bottom
+        width: 15px
+        height: 14px
+
+    &:hover
+        &::before
+            background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAZ0lEQVR4nO3QIQ6AMBBE0V6ChvvfAzQEh+E4HwOVZNtOg5mfjFrxkk3JOedca8CKviUC7wPgLQJPwClEL2COvluFx1EhXo8K8Ha0A+9HG3AdWoHr0QA+Dv3Ax6NvQAaOZ7kcnHPph24z1p7nrmJPCQAAAABJRU5ErkJggg==') bottom
+    
+    &.whiteDown
+        &::before
+            background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAZ0lEQVR4nO3QIQ6AMBBE0V6ChvvfAzQEh+E4HwOVZNtOg5mfjFrxkk3JOedca8CKviUC7wPgLQJPwClEL2COvluFx1EhXo8K8Ha0A+9HG3AdWoHr0QA+Dv3Ax6NvQAaOZ7kcnHPph24z1p7nrmJPCQAAAABJRU5ErkJggg==') bottom
+    
+    &.whiteUp
+        &::before
+            background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAb0lEQVR4nO3RqxGAMBRE0VgKogQkFk0XdICjOsoB5iJiGcjnJUTsnVl9xDqnVGsBAzDXRifgwLf9gVIF5xkti/OOlsEJQ21x4lAbnDQ0DycPTcOxQeNwPHpi2xoC79h3Ad0X3AOL8cbgn5VSSjXTDSYLp4Z7w1yuAAAAAElFTkSuQmCC') top
+            top: 34%

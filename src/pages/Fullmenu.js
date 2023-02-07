@@ -11,14 +11,13 @@ function Fullmenu() {
   const state = useSelector((state) => state);
 
   const [content, setContent] = useState(state.setGoods)
-  const [activeSort, setActiveSort] = useState({
-    active: 1
-  })
+  const [activeSort, setActiveSort] = useState(1)
+  const [priceSort, setPriceSort] = useState(1)
 
   const filterContent = (filterString) => state.setGoods.filter(el => el.title.toLowerCase().indexOf(filterString.toLowerCase()) > -1)
 
   const searchHandler = (filterString) => {
-    setActiveSort({active: 1})
+    setActiveSort(1)
     if(filterString.length > 0){
       setContent(filterContent(filterString).length > 0 ? filterContent(filterString) : [])
     }else{
@@ -27,25 +26,54 @@ function Fullmenu() {
   }
 
   const sortingHandler = (sortingString) => {
+    setPriceSort(1);
     setContent(state.setGoods.filter(el => el.type.toLowerCase().indexOf(sortingString.toLowerCase()) > -1))
-    if (sortingString === 'Pizza') {
-      setActiveSort({
-        active: 2
-      })
-    }else if(sortingString === 'Burger'){
-      setActiveSort({
-        active: 3
-      })
-    }else{
-      setActiveSort({
-        active: 4
-      })
+    switch (sortingString) {
+      case 'Pizza':
+        setActiveSort(2)
+        break;
+      case 'Burger':
+        setActiveSort(3)
+        break;
+      default:
+        setActiveSort(4)
+        break;
     }
   }
 
   const orderByPrice = () => {
-    // console.log(content.sort((a, b) => a.price > b.price ? 1 : -1))
-    // setContent(state.setGoods.sort((a, b) => a.price > b.price ? 1 : -1))
+    let copyContent = [...content]
+    let sortedContent = copyContent.sort((a, b) => a.price > b.price ? 1 : -1);
+    setActiveOrderByPrice();
+    setContent(sortedContent);
+  }
+
+  const setActiveOrderByPrice = () => {
+    switch (priceSort) {
+      case 1:
+        setPriceSort(2)
+        break;
+      case 2:
+        setPriceSort(3)
+        break;
+      default:
+        setPriceSort(1)
+        break;
+    }
+  }
+
+  const whichClass = () => {
+    switch (priceSort) {
+      case 2:
+        return 'whiteDown'
+        break;
+      case 3:
+          return 'whiteUp'
+          break;
+      default:
+        return 'menu-btn--disabled'
+        break;
+    }
   }
  
   return (
@@ -56,11 +84,11 @@ function Fullmenu() {
         pickup order. Fast and fresh food.
       </p>
       <div className="menu__btn">
-        <Button modificator={`menu-btn ${activeSort.active !== 1 && 'menu-btn--disabled'}`} text={"Показать все"} onClick={(e) => {setContent(state.setGoods); setActiveSort({active: 1})}}></Button>
-        <Button modificator={`menu-btn ${activeSort.active !== 2 && 'menu-btn--disabled'}`} text={"Пицца"} onClick={(e) => sortingHandler('Pizza')}></Button>
-        <Button modificator={`menu-btn ${activeSort.active !== 3 && 'menu-btn--disabled'}`} text={"Бургеры"} onClick={(e) => sortingHandler('Burger')}></Button>
-        <Button modificator={`menu-btn ${activeSort.active !== 4 && 'menu-btn--disabled'}`} text={"Роллы"} onClick={(e) => sortingHandler('Roll')}></Button>
-        <Button modificator={`menu-btn ${'menu-btn--disabled'}`} text={"Price"} onClick={(e) => orderByPrice()}></Button>
+        <Button modificator={`menu-btn ${activeSort !== 1 && 'menu-btn--disabled'}`} text={"Показать все"} onClick={(e) => {setContent(state.setGoods); setActiveSort(1)}}></Button>
+        <Button modificator={`menu-btn ${activeSort !== 2 && 'menu-btn--disabled'}`} text={"Пицца"} onClick={(e) => sortingHandler('Pizza')}></Button>
+        <Button modificator={`menu-btn ${activeSort !== 3 && 'menu-btn--disabled'}`} text={"Бургеры"} onClick={(e) => sortingHandler('Burger')}></Button>
+        <Button modificator={`menu-btn ${activeSort !== 4 && 'menu-btn--disabled'}`} text={"Роллы"} onClick={(e) => sortingHandler('Roll')}></Button>
+        <Button modificator={`menu-btn sorting-btn ${whichClass()}`} text={"Price"} onClick={(e) => orderByPrice()}></Button>
         <Search handler={searchHandler}></Search>
       </div>
       <ul className="card__wrap">
