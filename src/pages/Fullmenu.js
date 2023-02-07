@@ -28,11 +28,11 @@ function Fullmenu() {
 
   const sortingHandler = (sortingString) => {
     setContent(state.setGoods.filter(el => el.type.toLowerCase().indexOf(sortingString.toLowerCase()) > -1))
-    if (sortingString === 'Car') {
+    if (sortingString === 'Pizza') {
       setActiveSort({
         active: 2
       })
-    }else if(sortingString === 'Chicken'){
+    }else if(sortingString === 'Burger'){
       setActiveSort({
         active: 3
       })
@@ -56,10 +56,10 @@ function Fullmenu() {
         pickup order. Fast and fresh food.
       </p>
       <div className="menu__btn">
-        <Button modificator={`menu-btn ${activeSort.active !== 1 && 'menu-btn--disabled'}`} text={"All"} onClick={(e) => {setContent(state.setGoods); setActiveSort({active: 1})}}></Button>
-        <Button modificator={`menu-btn ${activeSort.active !== 2 && 'menu-btn--disabled'}`} text={"Car"} onClick={(e) => sortingHandler('Car')}></Button>
-        <Button modificator={`menu-btn ${activeSort.active !== 3 && 'menu-btn--disabled'}`} text={"Chicken"} onClick={(e) => sortingHandler('Chicken')}></Button>
-        <Button modificator={`menu-btn ${activeSort.active !== 4 && 'menu-btn--disabled'}`} text={"Salad"} onClick={(e) => sortingHandler('Salad')}></Button>
+        <Button modificator={`menu-btn ${activeSort.active !== 1 && 'menu-btn--disabled'}`} text={"Показать все"} onClick={(e) => {setContent(state.setGoods); setActiveSort({active: 1})}}></Button>
+        <Button modificator={`menu-btn ${activeSort.active !== 2 && 'menu-btn--disabled'}`} text={"Пицца"} onClick={(e) => sortingHandler('Pizza')}></Button>
+        <Button modificator={`menu-btn ${activeSort.active !== 3 && 'menu-btn--disabled'}`} text={"Бургеры"} onClick={(e) => sortingHandler('Burger')}></Button>
+        <Button modificator={`menu-btn ${activeSort.active !== 4 && 'menu-btn--disabled'}`} text={"Роллы"} onClick={(e) => sortingHandler('Roll')}></Button>
         <Button modificator={`menu-btn ${'menu-btn--disabled'}`} text={"Price"} onClick={(e) => orderByPrice()}></Button>
         <Search handler={searchHandler}></Search>
       </div>

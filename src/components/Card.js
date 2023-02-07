@@ -16,7 +16,7 @@ function Card({id, title, image, price, text, type}) {
                     </div>
                     <p className="card__text">{text}</p>
                     <div className='card__footer'>
-                        <p className="card__price text-color">{price.split('.')[0]} €</p>
+                        <p className="card__price text-color">{price} &#8381;</p>
                         <Link to="/"><Button modificator={"card__btn"} text={"Add to card"}></Button></Link>
                     </div>
                 </div>
