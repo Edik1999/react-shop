@@ -42,8 +42,19 @@ function Fullmenu() {
   }
 
   const orderByPrice = () => {
-    let copyContent = [...content]
-    let sortedContent = copyContent.sort((a, b) => a.price > b.price ? 1 : -1);
+    let copyContent = [...content];
+    let sortedContent = [];
+    if (priceSort === 1){
+      sortedContent = copyContent.sort((a, b) => a.price > b.price ? 1 : -1);
+    }else if(priceSort === 2){
+      sortedContent = copyContent.sort((a, b) => a.price < b.price ? 1 : -1);
+    }else if(priceSort === 3){
+      if(activeSort !== 1){
+        sortedContent = state.setGoods.filter(el => el.type.toLowerCase().indexOf(whichSort().toLowerCase()) > -1)
+      }else {
+        sortedContent = state.setGoods
+      }
+    }
     setActiveOrderByPrice();
     setContent(sortedContent);
   }
@@ -75,6 +86,24 @@ function Fullmenu() {
         break;
     }
   }
+
+  function whichSort() {
+    switch (activeSort) {
+      case 2:
+        return 'Pizza'
+        break;
+      case 3:
+        return 'Burger'
+        break;
+      case 4:
+        return 'Roll'
+        break;
+      default:
+      
+        break;
+    }  
+  }
+
  
   return (
     <>
