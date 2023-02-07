@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import Loader from "../components/Loader";
 // import {Link} from 'react-router-dom';
 import trustpilot from "../img/trustpilot.png";
-import homedecorate from "../img/homedecorate.png";
+import homedecorate from "../img/home-decorate.png";
 import Button from '../components/Button';
 import { useGetGoodsQuery } from "../store/mockAPI/mockApi";
 import { useSelector, useDispatch } from 'react-redux';
@@ -62,10 +62,6 @@ function Home() {
           <section className="howitworks"></section>
 
           <section className="menu"></section>
-
-          <section className="faq"></section>
-
-          <section className="contacts"></section>
 
           <section className="support"></section>
         </>
