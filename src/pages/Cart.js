@@ -5,33 +5,65 @@ import Button from '../components/Button';
 function Cart() {
   return (
     <>
-    <div className="container">
-      <div className="cart">
+      <div className="cart-page">
         <div className="cart__header">
-          <h2 className="cart__title">Cart</h2>
-          <p className="cart__product-count">2 products</p>
-        </div>        
-        <div className="cart__product">
-          <div className="cart__product-img"><Link to="/"><img src={burger} alt="Image"/></Link></div>
-          <div className="cart__product-wrap">
-            <Link to="/"><p className="cart__product-name">Big Egg</p></Link>
-            <p className="cart__product-price">399 €</p>
-            <Link to="/"><div className="cart__product-delete">X</div></Link>
+          <h2 className="section__title cart__title text-color">Cart</h2>
+        </div>
+        <div className="cart__main">
+          <ul className="cart__list">
+            <li className="cart__item">
+              <div className="cart__product">
+                <img className="cart__product-img" src={burger} alt="Image" />
+                <div className="cart__product-wrap">
+                  <p className="cart__product-name">Big Egg</p>
+                  <p className="cart__product-price text-color">399 ₽</p>
+                  <div className="cart__product-delete"></div>
+                </div>
+              </div>
+            </li>
+            <li className="cart__item">
+              <div className="cart__product">
+                <img className="cart__product-img" src={burger} alt="Image" />
+                <div className="cart__product-wrap">
+                  <p className="cart__product-name">Big Egg</p>
+                  <p className="cart__product-price text-color">399 ₽</p>
+                  <div className="cart__product-delete"></div>
+                </div>
+              </div>
+            </li>
+            <li className="cart__item">
+              <div className="cart__product">
+                <img className="cart__product-img" src={burger} alt="Image" />
+                <div className="cart__product-wrap">
+                  <p className="cart__product-name">Big Egg</p>
+                  <p className="cart__product-price text-color">399 ₽</p>
+                  <div className="cart__product-delete"></div>
+                </div>
+              </div>
+            </li>
+            <li className="cart__item">
+              <div className="cart__product">
+                <img className="cart__product-img" src={burger} alt="Image" />
+                <div className="cart__product-wrap">
+                  <p className="cart__product-name">Big Egg</p>
+                  <p className="cart__product-price text-color">399 ₽</p>
+                  <div className="cart__product-delete"></div>
+                </div>
+              </div>
+            </li>
+          </ul>
+          <div className="cart__total">
+            <p className="cart__total-title text-color">Order conditions</p>
+            <div className="cart__total-count">
+              <p className="cart__product-count">4 products</p>
+              <p className="cart__total-price">Total <span className="text-color">700 ₽</span> </p>
+            </div>
+            <Button text={"Place order"}></Button>
           </div>
         </div>
-        <div className="cart__total">
-          <p>Order conditions</p>
-          <div className="cart__total-count">
-            <p className="cart__product-count">2 products</p>
-            <p className="cart__total-price">700 €</p>
-          </div>
-          <Button>Place order</Button>
-        </div>
-      </div>      
-    </div>
-    
+      </div>
     </>
-    
+
   )
 }
 
