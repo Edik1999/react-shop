@@ -1,0 +1,64 @@
+//faq//
+.faq
+    position: relative
+    display: flex
+    justify-content: space-between
+    align-items: center 
+    margin-bottom: calc( $gap * 5 )
+
+.faq__right
+    flex-basis: 50%
+
+.faq__title
+    width: 74%
+
+.faq__text
+    width: 80%
+    font-size: $textFZ
+    line-height: calc($textFZ + 9px)
+    color: $smalTextColor
+
+.faq__text:first-of-type
+    margin-bottom: $gap
+
+//how it works//
+.howitworks
+    display: flex
+    flex-wrap: wrap
+    margin-bottom: calc( $gap * 5 )
+
+.howitworks__title
+    width: 100%
+    text-align: center
+    font-size: $titleFZ
+    line-height: calc( $titleFZ + 5px )
+    margin-bottom: calc( $gap * 2 )
+
+.howitworks__list
+    display: flex
+
+.howitworks__item
+    display: flex
+    flex-direction: column
+    align-items: center
+    text-align: center
+
+.howitworks__img
+    margin-bottom: calc( ($gap * 2) - 10px )
+
+.howitworks__item-border
+    margin-top: 130px
+    min-width: calc( ($gap * 3) + 10px )
+    height: 2px
+    background-color: $counterBorderColor
+
+.howitworks__subtitle
+    font-size: calc($textFZ + 2px)
+    line-height: calc($textFZ + 4px)
+    margin-bottom: calc( $gap / 2 )
+
+.howitworks__text
+    width: 80%
+    font-size: $textFZ
+    line-height: calc($textFZ + 9px)
+    color: $smalTextColor

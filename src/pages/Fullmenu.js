@@ -6,7 +6,7 @@ import Card from "../components/Card";
 import Search from "../components/Search";
 import Button from '../components/Button';
 import Modal from '../components/Modal';
-import { useGetSingleGoodQuery } from "../store/mockAPI/mockApi";
+// import { useGetSingleGoodQuery } from "../store/mockAPI/mockApi";
 
 function Fullmenu() {
   const state = useSelector((state) => state);

@@ -9,7 +9,9 @@
 .footer__container    
     display: flex
     min-height: 230px
-    margin-bottom: 120px
+    margin-bottom: calc( $gap * 2 )
+    padding-bottom: calc( $gap * 2 )
+    border-bottom: 1px solid $counterBorderColor
 
 .footer__aside 
     display: flex
@@ -18,7 +20,7 @@
     flex-direction: column
 
 .footer__logo
-    margin-bottom: 30px
+    margin-bottom: $gap
 
 .footer__descr
     width: 34%

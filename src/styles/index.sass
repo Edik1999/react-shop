@@ -2,6 +2,11 @@
 @import './layout/footer'
 @import './layout/header'
 @import './pages/Home'
+@import './pages/Fullmenu'
+@import './pages/FAQ'
+@import './pages/Contacts'
+@import './pages/Company'
+@import './pages/Cart'
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap')
 
 *,
@@ -35,6 +40,12 @@ img
     font-size: $titleFZ
     line-height: calc( $titleFZ + 5px )
     margin-bottom: $gap
+
+.section__text 
+    width: 80%
+    font-size: $textFZ
+    line-height: calc( $textFZ + 9px )
+    margin-bottom: calc( $gap * 2 )
 
 .loader
     position: absolute

@@ -18,14 +18,9 @@
 
 .home__title
     width: 90%
-    font-size: calc( $titleFZ + 10px ) !important
-    line-height: calc( $titleFZ + 10px ) !important
-
-.section__text 
-    width: 80%
-    font-size: $textFZ
-    line-height: calc( $textFZ + 9px )
-    margin-bottom: calc( $gap * 2 )
+    font-size: calc( $titleFZ + 10px )
+    line-height: calc( $titleFZ + 10px )
+    margin-bottom: $gap
 
 .home__btn
     width: 30%
@@ -36,7 +31,11 @@
     margin-bottom: calc( $gap / 3 )
 
 .home__text 
+    width: 80%
     font-size: $textFZ
+    line-height: calc( $textFZ + 9px)
+    color: $smalTextColor
+    margin-bottom: $gap
 
 .home__wrap
     display: flex
@@ -46,74 +45,58 @@
     position: absolute
     right: 0px
 
-//menu//
-.menu__title
-    text-align: center
-
-.menu__text 
-    text-align: center
-    line-height: calc( $baseFZ * 2 )
-    margin-bottom: calc( $gap * 2 )
-
-.menu__btn 
+//clients//
+.clients
     display: flex
-    flex-direction: row 
-    justify-content: center
-    align-items: center
-    margin-bottom: calc( ($gap * 2) + 5px )
-
-.menu-btn
-    margin-right: $gap
-
-//company//
-.company
-    position: relative
-    display: flex
-    margin-bottom: calc( $gap * 10 )
-
-.company__left
-    flex-basis: 50%
-    margin-top: 60px
-
-.company-title
-    width: 62%
-
-.company__right
-    position: absolute
-    top: 0
-    right: 40px
-
-//FAQ//
-.faq
-    position: relative
-    display: flex
-    justify-content: space-between
-    align-items: center 
+    flex-wrap: wrap
     margin-bottom: calc( $gap * 5 )
 
-.faq-title
-    width: 74%
+.clients__title
+    width: 100%
+    text-align: center
+    font-size: $titleFZ
+    line-height: calc( $titleFZ + 5px )
+    margin-bottom: calc( $gap * 2 )
 
-.faq__right
-    flex-basis: 50%
-
-//contacts//
-.contacts
-    position: relative
+.clients__wrap
     display: flex
-    margin-bottom: calc( $gap * 10 )
+    justify-content: space-evenly
 
-.contacts__left
-    flex-basis: 50%
-    margin-top: 60px
+.client__card
+    width: 28%
+    padding: calc( ($gap * 2) - 10px ) $gap $gap
+    border-radius: 6px
+    box-shadow: 0px 0px 5px 1px rgba(34, 60, 80, 0.2)
 
-.contacts-title
-    width: 62%
+.client__text
+    width: 100%
+    margin-bottom: $gap
+    padding-bottom: $gap
+    border-bottom: 1px solid $counterBorderColor
+    font-size: $textFZ
+    line-height: calc( $textFZ + 9px)
+    color: $smalTextColor
 
-.contacts__right
-    position: absolute
-    top: 0
-    right: 40px
+.client__info
+    display: flex
+
+.client__avatar
+    margin-right: $gap
+    border: 2px solid $maincolor
+    border-radius: 100%
+
+.client__descr
+    display: flex
+    flex-direction: column
+    justify-content: space-around
+
+.client__name
+    font-size: calc( $textFZ + 2px)
+
+.client__role
+    font-size: $baseFZ
+    line-height: calc( $textFZ + 2px)
+    color: $smalTextColor
 
 // .btn-view
 //     display: block
