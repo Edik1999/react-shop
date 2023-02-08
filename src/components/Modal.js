@@ -22,10 +22,13 @@ function Modal({isVisible, id, onClose}) {
           {content.id 
             ?
               <>
-                <p className="card__name">{content.title}</p>
-                <img className="card__image" src={content.image} alt="" />
-                <p className="card__text">{content.text}</p>
-                <p className="card__price text-color">{content.price} &#8381;</p>
+                <img className="modal__card-image" src={content.image} alt="" />
+                <div className="modal__card-wraper">
+                <p className="modal__card-name">{content.title}</p>
+                <p className="modal__card-text">{content.text}</p>
+                <p className="modal__card-price text-color">{content.price} &#8381;</p>
+                <div className="modal__card-delete"></div>
+                </div>
               </>
             :
               <p>Oops, something went wrong...</p>

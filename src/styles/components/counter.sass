@@ -1,0 +1,33 @@
+@import '../varibles/index'
+
+.counter
+    display: flex
+    align-items: center
+    border: 2px solid $counterBorderColor
+    border-radius: 12px
+    background-color: $counterBgColor
+
+.counter__minus
+    height: 100%
+    padding: calc( ($gap / 6) - 1px ) calc( $gap / 4 ) calc( $gap / 4 )
+    font-size: calc( $textFZ + 4px )
+    font-weight: bold
+    line-height: calc($textFZ + 1px )
+    color: $smalTextColor
+    cursor: pointer
+
+.counter__number
+    border-right: 1px solid $counterBorderColor
+    border-left: 1px solid $counterBorderColor
+    font-weight: bold
+    color: $smalTextColor
+    padding: calc( $gap / 4 ) 
+
+.counter__plus
+    height: 100%
+    padding: calc( $gap / 4 )
+    font-size: $textFZ
+    font-weight: bold
+    line-height: calc($textFZ + 1px )
+    color: $smalTextColor
+    cursor: pointer
