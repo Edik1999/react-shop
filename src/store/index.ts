@@ -2,13 +2,13 @@ import { configureStore } from "@reduxjs/toolkit";
 import goodsSlice from "./slice/goodsSlice";
 import { mockAPI } from "./mockAPI/mockApi";
 import { useSelector, useDispatch } from 'react-redux';
-import singleGoodSlice from "./slice/singleGoodSlice";
+import cartSlice from "./slice/cartSlice";
 
 export const store = configureStore({
     reducer: {
         [mockAPI.reducerPath]: mockAPI.reducer,
         setGoods: goodsSlice,
-        setSingleGood: singleGoodSlice,
+        addToCart: cartSlice
     },
     middleware: getDefaultMiddleware => getDefaultMiddleware().concat(mockAPI.middleware)
 })

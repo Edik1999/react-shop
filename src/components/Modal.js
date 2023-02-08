@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useAppDispatch } from '../store';
 import { useGetSingleGoodQuery } from '../store/mockAPI/mockApi';
-import { setSingleGood } from '../store/slice/singleGoodSlice';
 import Loader from "./Loader";
 
 function Modal({isVisible, id, onClose}) {
@@ -12,7 +11,8 @@ function Modal({isVisible, id, onClose}) {
   const [content, setContent] = useState({});
 
   useEffect(() => {
-      setContent(state.setGoods.find((el) => el.id === id))
+    console.log(state)
+    setContent(state.setGoods.find((el) => el.id === id))
   }, [])
 
   return isVisible === false ? null : (

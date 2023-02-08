@@ -6,9 +6,16 @@ import Card from "../components/Card";
 import Search from "../components/Search";
 import Button from '../components/Button';
 import Modal from '../components/Modal';
+import { useGetGoodsQuery } from "../store/mockAPI/mockApi";
+import { setGoods } from "../store/slice/goodsSlice";
+import {addToCart} from '../store/slice/cartSlice';
+import Loader from "../components/Loader";
+
 // import { useGetSingleGoodQuery } from "../store/mockAPI/mockApi";
 
 function Fullmenu() {
+  const { isLoading, isError, data } = useGetGoodsQuery("");
+
   const state = useSelector((state) => state);
 
   const [content, setContent] = useState(state.setGoods)
@@ -16,6 +23,15 @@ function Fullmenu() {
   const [priceSort, setPriceSort] = useState(1)
   const [modalState, setModalState] = useState(false)
   const [clickedCard, setClickedCard] = useState()
+
+  const dispatch = useAppDispatch()
+
+  useEffect(() => {
+    if (data) {
+      dispatch(setGoods(data))
+      setContent(data)
+    }
+  }, [data])
 
   const filterContent = (filterString) => state.setGoods.filter(el => el.title.toLowerCase().indexOf(filterString.toLowerCase()) > -1)
 
@@ -106,39 +122,58 @@ function Fullmenu() {
   }
  
   const closeModal = () => {
-    console.log('closed modal')
     setClickedCard(undefined)
     setModalState(!modalState)
   }
 
+  const addToCartClick = (e, id) => {
+    e.stopPropagation();
+    console.log('click ' + id)
+    dispatch(addToCart(state.setGoods.find((el) => el.id === id)))
+  }
+
+  if (isLoading) {
+    document.querySelector('body').style.overflow = 'hidden';
+  } else {
+    document.querySelector('body').style.overflowY = 'visible';
+  }
+
   return (
     <>
-      <h2 className="section__title menu__title text-color">Browse our menu</h2>
-      <p className="menu__text">
-        Use our menu to place an order online, or <span className="text-color">phone</span> our store <br/> to place a
-        pickup order. Fast and fresh food.
-      </p>
-      <div className="menu__btn">
-        <Button modificator={`menu-btn ${activeSort !== 1 && 'menu-btn--disabled'}`} text={"Показать все"} onClick={(e) => {setContent(state.setGoods); setActiveSort(1); setPriceSort(1)}}></Button>
-        <Button modificator={`menu-btn ${activeSort !== 2 && 'menu-btn--disabled'}`} text={"Пицца"} onClick={(e) => sortingHandler('Pizza')}></Button>
-        <Button modificator={`menu-btn ${activeSort !== 3 && 'menu-btn--disabled'}`} text={"Бургеры"} onClick={(e) => sortingHandler('Burger')}></Button>
-        <Button modificator={`menu-btn ${activeSort !== 4 && 'menu-btn--disabled'}`} text={"Роллы"} onClick={(e) => sortingHandler('Roll')}></Button>
-        <Button modificator={`menu-btn sorting-btn ${whichClass()}`} text={"Price"} onClick={(e) => orderByPrice()}></Button>
-        <Search handler={searchHandler}></Search>
-      </div>
-      <ul className="card__wrap">
-        {content.length > 0 ? (
-          content.map((el) => (
-            <Card key={Math.random()} id={el.id} title={el.title} image={el.image} price={el.price} text={el.text} type={el.type} click={(id) => cardClickHandler(id)}/>
-          ))
-        ) : (
-          <p>Oops, try another search</p>
-        )}
-      </ul>
-      {clickedCard ? <Modal isVisible={modalState} id={clickedCard} onClose={closeModal}></Modal> : null}
-      {/* <Link to="/"><Button modificator={"menu-btn btn-view"} text={"View Full Menu"}></Button></Link> */}
+      {isLoading && <Loader></Loader>}
+
+      {isError ? (
+        <p>Oops, something went wrong...</p>
+      ) : (
+        <>
+          <h2 className="section__title menu__title text-color">Browse our menu</h2>
+          <p className="menu__text">
+            Use our menu to place an order online, or <span className="text-color">phone</span> our store <br/> to place a
+            pickup order. Fast and fresh food.
+          </p>
+          <div className="menu__btn">
+            <Button modificator={`menu-btn ${activeSort !== 1 && 'menu-btn--disabled'}`} text={"Показать все"} onClick={(e) => {setContent(state.setGoods); setActiveSort(1); setPriceSort(1)}}></Button>
+            <Button modificator={`menu-btn ${activeSort !== 2 && 'menu-btn--disabled'}`} text={"Пицца"} onClick={(e) => sortingHandler('Pizza')}></Button>
+            <Button modificator={`menu-btn ${activeSort !== 3 && 'menu-btn--disabled'}`} text={"Бургеры"} onClick={(e) => sortingHandler('Burger')}></Button>
+            <Button modificator={`menu-btn ${activeSort !== 4 && 'menu-btn--disabled'}`} text={"Роллы"} onClick={(e) => sortingHandler('Roll')}></Button>
+            <Button modificator={`menu-btn sorting-btn ${whichClass()}`} text={"Price"} onClick={(e) => orderByPrice()}></Button>
+            <Search handler={searchHandler}></Search>
+          </div>
+          <ul className="card__wrap">
+            {content.length > 0 ? (
+              content.map((el) => (
+                <Card key={Math.random()} id={el.id} title={el.title} image={el.image} price={el.price} text={el.text} type={el.type} click={(id) => cardClickHandler(id)} addToCartClick={(e, id) => addToCartClick(e, id)}/>
+              ))
+            ) : (
+              <p>Oops, try another search</p>
+            )}
+          </ul>
+          {clickedCard ? <Modal isVisible={modalState} id={clickedCard} onClose={closeModal}></Modal> : null}
+          {/* <Link to="/"><Button modificator={"menu-btn btn-view"} text={"View Full Menu"}></Button></Link> */}
+        </>
+      )}
     </>
-  );
+  )
 }
 
 export default Fullmenu;

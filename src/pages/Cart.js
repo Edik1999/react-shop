@@ -1,8 +1,21 @@
 import { Link } from "react-router-dom";
 import burger from "../img/burger.png";
 import Button from '../components/Button';
+import { useSelector, useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
 
 function Cart() {
+
+  const state = useSelector((state) => state);
+  const [content, setContent] = useState([]);
+
+  useEffect(() => {
+    console.log(typeof(content))
+      console.log(state.addToCart)
+      setContent(prev => [...prev, state.addToCart])
+  }, [])
+  
+
   return (
     <>
       <div className="cart-page">
@@ -11,46 +24,21 @@ function Cart() {
         </div>
         <div className="cart__main">
           <ul className="cart__list">
-            <li className="cart__item">
-              <div className="cart__product">
-                <img className="cart__product-img" src={burger} alt="Image" />
-                <div className="cart__product-wrap">
-                  <p className="cart__product-name">Big Egg</p>
-                  <p className="cart__product-price text-color">399 ₽</p>
-                  <div className="cart__product-delete"></div>
+            {
+            // content
+            content.map(el => {
+              <li className="cart__item">
+                <div className="cart__product">
+                  <img className="cart__product-img" src={el.image} alt="Image" />
+                  <div className="cart__product-wrap">
+                    <p className="cart__product-name">{el.title}</p>
+                    <p className="cart__product-price text-color">{el.price} ₽</p>
+                    <div className="cart__product-delete"></div>
+                  </div>
                 </div>
-              </div>
-            </li>
-            <li className="cart__item">
-              <div className="cart__product">
-                <img className="cart__product-img" src={burger} alt="Image" />
-                <div className="cart__product-wrap">
-                  <p className="cart__product-name">Big Egg</p>
-                  <p className="cart__product-price text-color">399 ₽</p>
-                  <div className="cart__product-delete"></div>
-                </div>
-              </div>
-            </li>
-            <li className="cart__item">
-              <div className="cart__product">
-                <img className="cart__product-img" src={burger} alt="Image" />
-                <div className="cart__product-wrap">
-                  <p className="cart__product-name">Big Egg</p>
-                  <p className="cart__product-price text-color">399 ₽</p>
-                  <div className="cart__product-delete"></div>
-                </div>
-              </div>
-            </li>
-            <li className="cart__item">
-              <div className="cart__product">
-                <img className="cart__product-img" src={burger} alt="Image" />
-                <div className="cart__product-wrap">
-                  <p className="cart__product-name">Big Egg</p>
-                  <p className="cart__product-price text-color">399 ₽</p>
-                  <div className="cart__product-delete"></div>
-                </div>
-              </div>
-            </li>
+              </li>
+            })
+            }
           </ul>
           <div className="cart__total">
             <p className="cart__total-title text-color">Order conditions</p>
