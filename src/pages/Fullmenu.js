@@ -5,6 +5,7 @@ import { RootState, useAppDispatch } from "../store";
 import Card from "../components/Card";
 import Search from "../components/Search";
 import Button from '../components/Button';
+import '../styles/pages/Fullmenu.sass';
 import { Link } from 'react-router-dom';
 
 function Fullmenu() {

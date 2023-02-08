@@ -4,6 +4,7 @@ import Loader from "../components/Loader";
 // import {Link} from 'react-router-dom';
 import trustpilot from "../img/trustpilot.png";
 import homedecorate from "../img/home-decorate.png";
+import clientavatar from "../img/client-avatar.png";
 import Button from '../components/Button';
 import { useGetGoodsQuery } from "../store/mockAPI/mockApi";
 import { useSelector, useDispatch } from 'react-redux';
@@ -12,7 +13,7 @@ import { setGoods } from "../store/mockAPI/goodsSlice";
 // import type { IGoods } from "../models/models";
 
 function Home() {
-  const { isLoading, isError, data} = useGetGoodsQuery("");
+  const { isLoading, isError, data } = useGetGoodsQuery("");
 
   const dispatch = useAppDispatch()
 
@@ -20,9 +21,9 @@ function Home() {
     if (data) dispatch(setGoods(data))
   }, [data])
 
-  if(isLoading) {
+  if (isLoading) {
     document.querySelector('body').style.overflow = 'hidden';
-  }else{
+  } else {
     document.querySelector('body').style.overflowY = 'visible';
   }
 
@@ -36,10 +37,10 @@ function Home() {
         <>
           <section className="home">
             <div className="home__left">
-              <h1 className="section__title home__title">
+              <h1 className="home__title">
                 Beautiful food & takeaway, <span className="text-color">delivered</span> to your door.
               </h1>
-              <p className="section__text">
+              <p className="home__text">
                 Lorem Ipsum is simply dummy text of the printing and typesetting
                 industry. Lorem Ipsum has been the industry's standard dummy
                 text ever since the 1500.
@@ -55,8 +56,41 @@ function Home() {
               <img src={homedecorate} />
             </div>
           </section>
-            
-          <section className="menu">
+
+          <section className="clients">
+            <h2 className="clients__title text-color">Clients</h2>
+            <ul className="clients__wrap">
+              <li className="client__card">
+                <p className="client__text">Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit odio dignissim qui blandit molestie consequat.</p>
+                <div className="client__info">
+                  <img className="client__avatar" src={clientavatar} />
+                  <div className="client__descr">
+                    <p className="client__name text-color">John Armstrong</p>
+                    <p className="client__role">Customer</p>
+                  </div>
+                </div>
+              </li>
+              <li className="client__card">
+                <p className="client__text">Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit odio dignissim qui blandit molestie consequat.</p>
+                <div className="client__info">
+                  <img className="client__avatar" src={clientavatar} />
+                  <div className="client__descr">
+                    <p className="client__name text-color">John Armstrong</p>
+                    <p className="client__role">Customer</p>
+                  </div>
+                </div>
+              </li>
+              <li className="client__card">
+                <p className="client__text">Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit odio dignissim qui blandit molestie consequat.</p>
+                <div className="client__info">
+                  <img className="client__avatar" src={clientavatar} />
+                  <div className="client__descr">
+                    <p className="client__name text-color">John Armstrong</p>
+                    <p className="client__role">Customer</p>
+                  </div>
+                </div>
+              </li>
+            </ul>
           </section>
 
           <section className="howitworks"></section>
