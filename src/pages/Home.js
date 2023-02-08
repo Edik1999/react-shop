@@ -8,7 +8,7 @@ import Button from '../components/Button';
 import { useGetGoodsQuery } from "../store/mockAPI/mockApi";
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState, useAppDispatch } from "../store";
-import { setGoods } from "../store/mockAPI/goodsSlice";
+import { setGoods } from "../store/slice/goodsSlice";
 // import type { IGoods } from "../models/models";
 
 function Home() {

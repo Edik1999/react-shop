@@ -8,12 +8,13 @@ export const mockAPI = createApi({
     }),
     endpoints: build => ({
         getGoods: build.query<any, String>({
-            query: (get: string) => ({
-                url: 'goods',
-                params: {}
-            })
+            query: () => 'goods',
+        }),
+        getSingleGood: build.query<any, String>({
+            query: (id) => `goods?id=${id}`,
         })
-    })
+    }),
 })
 
-export const {useGetGoodsQuery} = mockAPI
+
+export const {useGetGoodsQuery, useGetSingleGoodQuery} = mockAPI

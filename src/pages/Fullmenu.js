@@ -5,7 +5,8 @@ import { RootState, useAppDispatch } from "../store";
 import Card from "../components/Card";
 import Search from "../components/Search";
 import Button from '../components/Button';
-import { Link } from 'react-router-dom';
+import Modal from '../components/Modal';
+import { useGetSingleGoodQuery } from "../store/mockAPI/mockApi";
 
 function Fullmenu() {
   const state = useSelector((state) => state);
@@ -13,6 +14,8 @@ function Fullmenu() {
   const [content, setContent] = useState(state.setGoods)
   const [activeSort, setActiveSort] = useState(1)
   const [priceSort, setPriceSort] = useState(1)
+  const [modalState, setModalState] = useState(false)
+  const [clickedCard, setClickedCard] = useState()
 
   const filterContent = (filterString) => state.setGoods.filter(el => el.title.toLowerCase().indexOf(filterString.toLowerCase()) > -1)
 
@@ -77,13 +80,10 @@ function Fullmenu() {
     switch (priceSort) {
       case 2:
         return 'whiteDown'
-        break;
       case 3:
           return 'whiteUp'
-          break;
       default:
         return 'menu-btn--disabled'
-        break;
     }
   }
 
@@ -91,20 +91,26 @@ function Fullmenu() {
     switch (activeSort) {
       case 2:
         return 'Pizza'
-        break;
       case 3:
         return 'Burger'
-        break;
       case 4:
         return 'Roll'
-        break;
       default:
-      
         break;
     }  
   }
 
+  const cardClickHandler = (id) => {
+    setClickedCard(id)
+    setModalState(!modalState)
+  }
  
+  const closeModal = () => {
+    console.log('closed modal')
+    setClickedCard(undefined)
+    setModalState(!modalState)
+  }
+
   return (
     <>
       <h2 className="section__title menu__title text-color">Browse our menu</h2>
@@ -113,7 +119,7 @@ function Fullmenu() {
         pickup order. Fast and fresh food.
       </p>
       <div className="menu__btn">
-        <Button modificator={`menu-btn ${activeSort !== 1 && 'menu-btn--disabled'}`} text={"Показать все"} onClick={(e) => {setContent(state.setGoods); setActiveSort(1)}}></Button>
+        <Button modificator={`menu-btn ${activeSort !== 1 && 'menu-btn--disabled'}`} text={"Показать все"} onClick={(e) => {setContent(state.setGoods); setActiveSort(1); setPriceSort(1)}}></Button>
         <Button modificator={`menu-btn ${activeSort !== 2 && 'menu-btn--disabled'}`} text={"Пицца"} onClick={(e) => sortingHandler('Pizza')}></Button>
         <Button modificator={`menu-btn ${activeSort !== 3 && 'menu-btn--disabled'}`} text={"Бургеры"} onClick={(e) => sortingHandler('Burger')}></Button>
         <Button modificator={`menu-btn ${activeSort !== 4 && 'menu-btn--disabled'}`} text={"Роллы"} onClick={(e) => sortingHandler('Roll')}></Button>
@@ -123,12 +129,13 @@ function Fullmenu() {
       <ul className="card__wrap">
         {content.length > 0 ? (
           content.map((el) => (
-            <Card key={Math.random()} id={el.id} title={el.title} image={el.image} price={el.price} text={el.text} type={el.type}/>
+            <Card key={Math.random()} id={el.id} title={el.title} image={el.image} price={el.price} text={el.text} type={el.type} click={(id) => cardClickHandler(id)}/>
           ))
         ) : (
           <p>Oops, try another search</p>
         )}
       </ul>
+      {clickedCard ? <Modal isVisible={modalState} id={clickedCard} onClose={closeModal}></Modal> : null}
       {/* <Link to="/"><Button modificator={"menu-btn btn-view"} text={"View Full Menu"}></Button></Link> */}
     </>
   );
