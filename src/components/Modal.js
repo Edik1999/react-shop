@@ -11,8 +11,7 @@ function Modal({isVisible, id, onClose}) {
   const [content, setContent] = useState({});
 
   useEffect(() => {
-    console.log(state)
-    setContent(state.setGoods.find((el) => el.id === id))
+    setContent(state.goods.find((el) => el.id === id))
   }, [])
 
   return isVisible === false ? null : (

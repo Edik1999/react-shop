@@ -7,14 +7,14 @@ type state = any[]
 const initialState: state = []
 
 export const goodsSlice = createSlice({
-  name: 'setGoods',
+  name: 'goods',
   initialState,
   reducers: {
-    setGoods: (state, action) => action.payload
+    goods: (state, action) => action.payload
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { setGoods } = goodsSlice.actions
+export const { goods } = goodsSlice.actions
 
 export default goodsSlice.reducer

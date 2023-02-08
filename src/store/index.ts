@@ -7,8 +7,8 @@ import cartSlice from "./slice/cartSlice";
 export const store = configureStore({
     reducer: {
         [mockAPI.reducerPath]: mockAPI.reducer,
-        setGoods: goodsSlice,
-        addToCart: cartSlice
+        goods: goodsSlice,
+        cart: cartSlice
     },
     middleware: getDefaultMiddleware => getDefaultMiddleware().concat(mockAPI.middleware)
 })

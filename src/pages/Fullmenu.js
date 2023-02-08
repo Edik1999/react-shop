@@ -7,8 +7,8 @@ import Search from "../components/Search";
 import Button from '../components/Button';
 import Modal from '../components/Modal';
 import { useGetGoodsQuery } from "../store/mockAPI/mockApi";
-import { setGoods } from "../store/slice/goodsSlice";
-import {addToCart} from '../store/slice/cartSlice';
+import { goods } from "../store/slice/goodsSlice";
+import {cart, deleteFromCart} from '../store/slice/cartSlice';
 import Loader from "../components/Loader";
 
 // import { useGetSingleGoodQuery } from "../store/mockAPI/mockApi";
@@ -18,7 +18,7 @@ function Fullmenu() {
 
   const state = useSelector((state) => state);
 
-  const [content, setContent] = useState(state.setGoods)
+  const [content, setContent] = useState(state.goods)
   const [activeSort, setActiveSort] = useState(1)
   const [priceSort, setPriceSort] = useState(1)
   const [modalState, setModalState] = useState(false)
@@ -28,25 +28,25 @@ function Fullmenu() {
 
   useEffect(() => {
     if (data) {
-      dispatch(setGoods(data))
+      dispatch(goods(data))
       setContent(data)
     }
   }, [data])
 
-  const filterContent = (filterString) => state.setGoods.filter(el => el.title.toLowerCase().indexOf(filterString.toLowerCase()) > -1)
+  const filterContent = (filterString) => state.goods.filter(el => el.title.toLowerCase().indexOf(filterString.toLowerCase()) > -1)
 
   const searchHandler = (filterString) => {
     setActiveSort(1)
     if(filterString.length > 0){
       setContent(filterContent(filterString).length > 0 ? filterContent(filterString) : [])
     }else{
-      setContent(state.setGoods)
+      setContent(state.goods)
     }
   }
 
   const sortingHandler = (sortingString) => {
     setPriceSort(1);
-    setContent(state.setGoods.filter(el => el.type.toLowerCase().indexOf(sortingString.toLowerCase()) > -1))
+    setContent(state.goods.filter(el => el.type.toLowerCase().indexOf(sortingString.toLowerCase()) > -1))
     switch (sortingString) {
       case 'Pizza':
         setActiveSort(2)
@@ -69,9 +69,9 @@ function Fullmenu() {
       sortedContent = copyContent.sort((a, b) => a.price < b.price ? 1 : -1);
     }else if(priceSort === 3){
       if(activeSort !== 1){
-        sortedContent = state.setGoods.filter(el => el.type.toLowerCase().indexOf(whichSort().toLowerCase()) > -1)
+        sortedContent = state.goods.filter(el => el.type.toLowerCase().indexOf(whichSort().toLowerCase()) > -1)
       }else {
-        sortedContent = state.setGoods
+        sortedContent = state.goods
       }
     }
     setActiveOrderByPrice();
@@ -128,8 +128,7 @@ function Fullmenu() {
 
   const addToCartClick = (e, id) => {
     e.stopPropagation();
-    console.log('click ' + id)
-    dispatch(addToCart(state.setGoods.find((el) => el.id === id)))
+    dispatch(cart(state.goods.find((el) => el.id === id)))
   }
 
   if (isLoading) {
@@ -152,7 +151,7 @@ function Fullmenu() {
             pickup order. Fast and fresh food.
           </p>
           <div className="menu__btn">
-            <Button modificator={`menu-btn ${activeSort !== 1 && 'menu-btn--disabled'}`} text={"Показать все"} onClick={(e) => {setContent(state.setGoods); setActiveSort(1); setPriceSort(1)}}></Button>
+            <Button modificator={`menu-btn ${activeSort !== 1 && 'menu-btn--disabled'}`} text={"Показать все"} onClick={(e) => {setContent(state.goods); setActiveSort(1); setPriceSort(1)}}></Button>
             <Button modificator={`menu-btn ${activeSort !== 2 && 'menu-btn--disabled'}`} text={"Пицца"} onClick={(e) => sortingHandler('Pizza')}></Button>
             <Button modificator={`menu-btn ${activeSort !== 3 && 'menu-btn--disabled'}`} text={"Бургеры"} onClick={(e) => sortingHandler('Burger')}></Button>
             <Button modificator={`menu-btn ${activeSort !== 4 && 'menu-btn--disabled'}`} text={"Роллы"} onClick={(e) => sortingHandler('Roll')}></Button>
