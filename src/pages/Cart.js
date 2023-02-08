@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import burger from "../img/burger.png";
+import Counter from '../components/Counter';
 import Button from '../components/Button';
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
@@ -12,7 +12,7 @@ function Cart() {
   useEffect(() => {
     setContent(state.addToCart)
   }, [])
-  
+
 
   return (
     <>
@@ -22,13 +22,16 @@ function Cart() {
         </div>
         <div className="cart__main">
           <ul className="cart__list">
-            {content.map(el => 
+            {content.map(el =>
               <li className="cart__item" key={Math.random()}>
                 <div className="cart__product">
                   <img className="cart__product-img" src={el.image} alt="Image" />
                   <div className="cart__product-wrap">
                     <p className="cart__product-name">{el.title}</p>
-                    <p className="cart__product-price text-color">{el.price} ₽</p>
+                    <div className="cart__product-price-wraper">
+                      <p className="cart__product-price text-color">{el.price} ₽</p>
+                      <Counter></Counter>
+                    </div>
                     <div className="cart__product-delete"></div>
                   </div>
                 </div>

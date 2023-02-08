@@ -1,7 +1,8 @@
+//contacts//
 .contacts
     position: relative
     display: flex
-    margin-bottom: calc( $gap * 10 )
+    margin-bottom: calc( $gap * 8 )
 
 .contacts__left
     flex-basis: 50%
@@ -24,3 +25,64 @@
     position: absolute
     top: 0
     right: 40px
+
+//feedback//
+.feedback
+    margin-bottom: calc( $gap * 5 )
+
+.feedback__title
+    text-align: center
+    margin-bottom: calc( $gap * 2 )
+    font-size: $titleFZ
+    line-height: calc( $titleFZ + 5px )
+
+.form__top
+    display: flex
+    align-items: center
+    justify-content: center
+    width: 100%
+    margin-bottom: calc( $gap )
+
+.form__left
+    display: flex
+    flex-direction: column
+    align-items: end
+    width: 50%
+    margin-right: calc( $gap / 2 )
+
+.form__input
+    width: 75%
+    padding: calc( $gap / 2 ) 
+    border: 2px solid $counterBorderColor
+    border-radius: 12px
+    background-color: $counterBgColor
+    font-size: $baseFZ
+
+.form__input:not(:last-of-type)
+    margin-bottom: calc( $gap / 2 )
+
+
+.form__right
+    display: flex
+    justify-content: start
+    width: 50%
+
+.form__textarea
+    width: 75%
+    max-height: 189px
+    height: 189px
+    padding: calc( $gap / 2 ) 
+    border: 2px solid $counterBorderColor
+    border-radius: 12px
+    background-color: $counterBgColor
+    font-size: $baseFZ
+    resize: none
+
+.form__bottom
+    display: flex
+    justify-content: center
+
+.form__wrapper
+    display: flex
+    flex-direction: column
+
