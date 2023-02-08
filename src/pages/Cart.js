@@ -10,9 +10,7 @@ function Cart() {
   const [content, setContent] = useState([]);
 
   useEffect(() => {
-    console.log(typeof(content))
-      console.log(state.addToCart)
-      setContent(prev => [...prev, state.addToCart])
+    setContent(state.addToCart)
   }, [])
   
 
@@ -24,10 +22,8 @@ function Cart() {
         </div>
         <div className="cart__main">
           <ul className="cart__list">
-            {
-            // content
-            content.map(el => {
-              <li className="cart__item">
+            {content.map(el => 
+              <li className="cart__item" key={Math.random()}>
                 <div className="cart__product">
                   <img className="cart__product-img" src={el.image} alt="Image" />
                   <div className="cart__product-wrap">
@@ -37,8 +33,7 @@ function Cart() {
                   </div>
                 </div>
               </li>
-            })
-            }
+            )}
           </ul>
           <div className="cart__total">
             <p className="cart__total-title text-color">Order conditions</p>
