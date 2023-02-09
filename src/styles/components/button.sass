@@ -7,6 +7,7 @@
     border-radius: 12px
     background-color: $maincolor
     color: white
+    font-weight: bold
     font-size: $textFZ
     line-height: calc( $textFZ + 2px)
 
@@ -14,6 +15,7 @@
     padding: 19px 35px
     outline: 2px solid $smalTextColor
     color: $smalTextColor
+    font-weight: bold
     background-color: $baseBgColor
     transition: all .2s
 
@@ -24,12 +26,18 @@
 
 .card__btn
     padding: 10px 12px
-    color: #000
+    color: $smalTextColor
     font-size: $baseFZ
+    font-weight: bold
     line-height: calc( $baseFZ + 11px)
-    transition: all .5s
+    background-color: inherit
+    outline: 2px solid $smalTextColor 
+    transition: all .2s
 
     &:hover
+        background-color: $maincolor
+        color: white
+        outline: none
         transform: scale(1.02)
 
 .sorting-btn
@@ -59,4 +67,14 @@
             top: 34%
 
 .form-btn
-    margin-bottom: calc( $gap / 3)
+    margin-bottom:  $gap / 3
+
+.faq-btn
+    margin: 0 auto
+    width: 138%
+
+.page-btn
+    transition: all 0.2s
+    &:hover
+        filter: brightness(112%)
+        transform: scale(1.03)

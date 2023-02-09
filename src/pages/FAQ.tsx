@@ -3,6 +3,8 @@ import faqdecorate from "../img/faq-decorate.png";
 import hiwdecorate1 from "../img/hiw-decorate-1.png";
 import hiwdecorate2 from "../img/hiw-decorate-2.png";
 import hiwdecorate3 from "../img/hiw-decorate-3.png";
+import Button from '../components/Button';
+import {Link} from 'react-router-dom';
 
 function FAQ() {
   return (
@@ -44,6 +46,7 @@ function FAQ() {
             <p className="howitworks__text">Manage your own logistics and take orders simply through the ecommerce system.</p>
           </li>
         </ul>
+        <Link to="/menu"><Button modificator="faq-btn page-btn" text="Take Order" onClick=""></Button></Link>
       </section>
     </div>
 

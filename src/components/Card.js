@@ -14,7 +14,7 @@ function Card({id, title, image, price, text, type, click, addToCartClick}) {
                     {/* <p className="card__text">{text}</p> */}
                     <div className='card__footer'>
                         <p className="card__price text-color">{price} &#8381;</p>
-                        <Button modificator={"card__btn"} text={"Add to card"} onClick={(e) => addToCartClick(e, id)}></Button>
+                        <Button modificator={"card__btn"} text={"Add to cart"} onClick={(e) => addToCartClick(e, id)}></Button>
                     </div>
                 </div>
             </div>
