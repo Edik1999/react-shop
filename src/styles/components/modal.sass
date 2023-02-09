@@ -32,15 +32,15 @@
     display: flex 
     flex-direction: column
     justify-content: space-between
-    padding: $gap / 3 0 
+    padding: calc($gap / 3) 0 
 
 .modal__card-name
     display: flex
-    align-items: end
+    align-items: flex-end
     justify-content: center
 
 .card__name
-    margin-right: $gap / 3
+    margin-right: calc($gap / 3)
     font-size: $textFZ
     font-weight: bold
     line-height: $textFZ + 2px
@@ -86,7 +86,7 @@
 .modal__card-footer
     display: flex
     width: 100%
-    align-self: end
+    align-self: flex-end
     align-items: center
     justify-content: space-between
 

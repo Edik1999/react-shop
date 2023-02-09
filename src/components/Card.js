@@ -1,7 +1,7 @@
 import React from 'react'
-import burger from "../img/burger.png";
+// import burger from "../img/burger.png";
 import Button from '../components/Button';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
 function Card({id, title, image, price, text, type, click, addToCartClick}) {
 

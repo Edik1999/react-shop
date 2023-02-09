@@ -13,7 +13,7 @@ function Contacts() {
           <a className="contacts__link" href="tel:+79876543210"><Button modificator="page-btn" text="+7 (987) 654 32-10" onClick=""></Button></a>
         </div>
         <div className="contacts__right">
-          <img className="contacts__img" src={contactsdecorate} />
+          <img className="contacts__img" src={contactsdecorate} alt={''}/>
         </div>
       </section>
 

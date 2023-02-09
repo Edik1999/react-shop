@@ -1,7 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import goodsSlice from "./slice/goodsSlice";
 import { mockAPI } from "./mockAPI/mockApi";
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import cartSlice from "./slice/cartSlice";
 
 export const store = configureStore({

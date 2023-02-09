@@ -3,7 +3,7 @@ import logo from "../../img/logo.svg";
 import twitter from "../../img/twitter.svg";
 import instagram from "../../img/instagram.svg";
 import youtube from "../../img/youtube.svg";
-import { NavLink, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 function Footer() {
   return (
