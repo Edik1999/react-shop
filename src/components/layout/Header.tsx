@@ -13,7 +13,7 @@ function Header() {
             <p className="header__text">
               We're open and available for takeaway & delivery.
             </p>
-            <Link to="/order" className="header__btn">Order Now</Link>
+            <Link to="/menu" className="header__btn">Order Now</Link>
           </div>
         </div>
       </div>
@@ -72,6 +72,7 @@ function Header() {
               <Link to="/cart" className="nav-link cart">
                 <li className="nav__item">
                   <img src={cart} alt="Cart" />
+                  <div className="card__badge">1</div>
                 </li>
               </Link>
             </ul>

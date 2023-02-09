@@ -2,6 +2,7 @@ import trustpilot from "../img/trustpilot.png";
 import homedecorate from "../img/home-decorate.png";
 import clientavatar from "../img/client-avatar.png";
 import Button from '../components/Button';
+import {Link} from 'react-router-dom';
 
 function Home() {
 
@@ -17,7 +18,7 @@ function Home() {
             industry. Lorem Ipsum has been the industry's standard dummy
             text ever since the 1500.
           </p>
-          <Button modificator={"home__btn"} text={"Burgers"}></Button>
+          <Link to="/menu"><Button modificator={"home__btn page-btn"} text={"To Menu"}></Button></Link>
           <img className="home__img" src={trustpilot} />
           <p className="home__text">
             <span className="text-color">4.8 out of 5</span> based on 2000+
