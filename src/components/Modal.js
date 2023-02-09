@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { useAppDispatch } from '../store';
-import { useGetSingleGoodQuery } from '../store/mockAPI/mockApi';
+import { useSelector } from "react-redux";
+// import { useAppDispatch } from '../store';
+// import { useGetSingleGoodQuery } from '../store/mockAPI/mockApi';
 import Button from "./Button";
 import Counter from "./Counter";
-import Loader from "./Loader";
+// import Loader from "./Loader";
 
 function Modal({ isVisible, id, onClose }) {
 
@@ -14,7 +14,7 @@ function Modal({ isVisible, id, onClose }) {
 
   useEffect(() => {
     setContent(state.goods.find((el) => el.id === id))
-  }, [])
+  }, [state.goods, id])
 
   return isVisible === false ? null : (
     <>

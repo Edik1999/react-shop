@@ -1,10 +1,10 @@
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Counter from '../components/Counter';
 import Button from '../components/Button';
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import {cart, deleteFromCart} from '../store/slice/cartSlice';
-import { RootState, useAppDispatch } from "../store";
+import {deleteFromCart} from '../store/slice/cartSlice';
+import { useAppDispatch } from "../store";
 
 function Cart() {
 
@@ -13,6 +13,7 @@ function Cart() {
   const navigate = useNavigate();
 
   const [pageContent, setPageContent] = useState([]);
+  // setPageContent([]); /// не забыть убрать это!!!!!!!!!!
 
   const sum = () => {
     let prices = state.cart.map(el => el.price)
@@ -44,13 +45,14 @@ function Cart() {
     countItems[item] = countItems[item] ? countItems[item] + 1 : 1;
   }
 
-  let content = []
+  let content = [];
 
   Object.keys(countItems).forEach(el => {
     content.push(state.cart.find((e) => e.id === el))
   })
 
   useEffect(() => {
+    /// вот эту закоментить
     setPageContent(content)
   }, [state.cart])
   
@@ -70,7 +72,7 @@ function Cart() {
                 pageContent.map((el, ind) => 
                   <li className="cart__item" key={Math.random()}>
                     <div className="cart__product">
-                      <img className="cart__product-img" src={el.image} alt="Image" />
+                      <img className="cart__product-img" src={el.image} alt={''} />
                       <div className="cart__product-wrap">
                         <p className="cart__product-name">{el.title}</p>
                         <div className="cart__product-price-wraper">

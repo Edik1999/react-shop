@@ -12,7 +12,7 @@ function FAQ() {
     <div>
       <section className="faq">
         <div className="faq__left">
-          <img className="faq__img" src={faqdecorate} />
+          <img className="faq__img" src={faqdecorate} alt={''}/>
         </div>
         <div className="faq__right">
           <h2 className="section__title faq__title text-color">Order online with our simple checkout.</h2>
@@ -25,7 +25,7 @@ function FAQ() {
         <h2 className="howitworks__title text-color">How it works.</h2>
         <ul className="howitworks__list">
           <li className="howitworks__item">
-            <img className="howitworks__img" src={hiwdecorate1} />
+            <img className="howitworks__img" src={hiwdecorate1} alt={''}/>
             <p className="howitworks__subtitle">Adapt your menu items</p>
             <p className="howitworks__text">Easily adapt your menu using the webflow CMS and allow customers to browse your items.</p>
           </li>
@@ -33,7 +33,7 @@ function FAQ() {
             <div className="howitworks__item-border"></div>
           </li>
           <li className="howitworks__item">
-            <img className="howitworks__img" src={hiwdecorate2} />
+            <img className="howitworks__img" src={hiwdecorate2} alt={''}/>
             <p className="howitworks__subtitle">Accept online orders & takeout</p>
             <p className="howitworks__text">Let your customers order and pay via the powerful ecommerce system, or simple let them call your store.</p>
           </li>
@@ -41,7 +41,7 @@ function FAQ() {
             <div className="howitworks__item-border"></div>
           </li>
           <li className="howitworks__item">
-            <img className="howitworks__img" src={hiwdecorate3} />
+            <img className="howitworks__img" src={hiwdecorate3} alt={''}/>
             <p className="howitworks__subtitle">Manage delivery or takeout</p>
             <p className="howitworks__text">Manage your own logistics and take orders simply through the ecommerce system.</p>
           </li>

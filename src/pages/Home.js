@@ -19,14 +19,14 @@ function Home() {
             text ever since the 1500.
           </p>
           <Link to="/menu"><Button modificator={"home__btn page-btn"} text={"To Menu"}></Button></Link>
-          <img className="home__img" src={trustpilot} />
+          <img className="home__img" src={trustpilot} alt={''}/>
           <p className="home__text">
             <span className="text-color">4.8 out of 5</span> based on 2000+
             reviews
           </p>
         </div>
         <div className="home__right">
-          <img src={homedecorate} />
+          <img src={homedecorate} alt={''}/>
         </div>
       </section>
 
@@ -36,7 +36,7 @@ function Home() {
           <li className="client__card">
             <p className="client__text">Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit odio dignissim qui blandit molestie consequat.</p>
             <div className="client__info">
-              <img className="client__avatar" src={clientavatar} />
+              <img className="client__avatar" src={clientavatar} alt={''}/>
               <div className="client__descr">
                 <p className="client__name text-color">John Armstrong</p>
                 <p className="client__role">Customer</p>
@@ -46,7 +46,7 @@ function Home() {
           <li className="client__card">
             <p className="client__text">Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit odio dignissim qui blandit molestie consequat.</p>
             <div className="client__info">
-              <img className="client__avatar" src={clientavatar} />
+              <img className="client__avatar" src={clientavatar} alt={''}/>
               <div className="client__descr">
                 <p className="client__name text-color">John Armstrong</p>
                 <p className="client__role">Customer</p>
@@ -56,7 +56,7 @@ function Home() {
           <li className="client__card">
             <p className="client__text">Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit odio dignissim qui blandit molestie consequat.</p>
             <div className="client__info">
-              <img className="client__avatar" src={clientavatar} />
+              <img className="client__avatar" src={clientavatar} alt={''}/>
               <div className="client__descr">
                 <p className="client__name text-color">John Armstrong</p>
                 <p className="client__role">Customer</p>

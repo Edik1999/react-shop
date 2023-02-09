@@ -13,7 +13,7 @@ function Company() {
           <Link to="/menu"><Button modificator={"home__btn page-btn"} text={"Menu"} onClick=""></Button></Link>
         </div>
         <div className="company__right">
-          <img className="company__img" src={companydecorate}/>
+          <img className="company__img" src={companydecorate} alt={''}/>
         </div>
       </div>
   )

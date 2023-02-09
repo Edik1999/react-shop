@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { useDebounce } from "../hooks/debounce";
-import { useSelector, useDispatch } from "react-redux";
-import { RootState, useAppDispatch } from "../store";
+// import { useDebounce } from "../hooks/debounce";
+import { useSelector } from "react-redux";
+import { useAppDispatch } from "../store";
 import Card from "../components/Card";
 import Search from "../components/Search";
 import Button from '../components/Button';
 import Modal from '../components/Modal';
 import { useGetGoodsQuery } from "../store/mockAPI/mockApi";
 import { goods } from "../store/slice/goodsSlice";
-import {cart, deleteFromCart} from '../store/slice/cartSlice';
+import {cart} from '../store/slice/cartSlice';
 import Loader from "../components/Loader";
 
 // import { useGetSingleGoodQuery } from "../store/mockAPI/mockApi";
@@ -31,7 +31,7 @@ function Fullmenu() {
       dispatch(goods(data))
       setContent(data)
     }
-  }, [data])
+  }, [data, dispatch])
 
   const filterContent = (filterString) => state.goods.filter(el => el.title.toLowerCase().indexOf(filterString.toLowerCase()) > -1)
 
