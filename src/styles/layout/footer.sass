@@ -58,7 +58,18 @@
 
 .footer__link
     display: flex
-    justify-content: flex-end
+    align-items: center
+    justify-content: space-between
+
+.link__text
+    font-size: $baseFZ
+    color: $smalTextColor
+
+.link__dev
+    transition: all .2s
+
+    &:hover
+        filter: brightness(112%)
 
 .link__list 
     display: flex

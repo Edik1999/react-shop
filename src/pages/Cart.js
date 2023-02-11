@@ -1,9 +1,10 @@
 import { useNavigate } from "react-router-dom";
 import Counter from '../components/Counter';
 import Button from '../components/Button';
+import { Link } from 'react-router-dom';
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import {deleteFromCart} from '../store/slice/cartSlice';
+import { deleteFromCart } from '../store/slice/cartSlice';
 import { useAppDispatch } from "../store";
 
 function Cart() {
@@ -55,44 +56,43 @@ function Cart() {
     /// вот эту закоментить
     setPageContent(content)
   }, [state.cart])
-  
+
 
   let contentCount = Object.values(countItems)
 
   return (
     <>
       <div className="cart-page">
-        <div className="cart__header">
-          <h2 className="section__title cart__title text-color">Cart</h2>
-        </div>
+        <h2 className="cart__title text-color">Cart</h2>
         <div className="cart__main">
           <ul className="cart__list">
             {pageContent.length > 0
               ?
-                pageContent.map((el, ind) => 
-                  <li className="cart__item" key={Math.random()}>
-                    <div className="cart__product">
-                      <img className="cart__product-img" src={el.image} alt={''} />
-                      <div className="cart__product-wrap">
-                        <p className="cart__product-name">{el.title}</p>
-                        <div className="cart__product-price-wraper">
-                          <p className="cart__product-price text-color">{el.price} ₽</p>
-                          <Counter count={contentCount[ind]}></Counter>
-                        </div>
-                        <div className="cart__product-delete" onClick={() => deleteFromCartHandler(el.id)}></div>
+              pageContent.map((el, ind) =>
+                <li className="cart__item" key={Math.random()}>
+                  <div className="cart__product">
+                    <img className="cart__product-img" src={el.image} alt={''} />
+                    <div className="cart__product-wrap">
+                      <p className="cart__product-name">{el.title}</p>
+                      <div className="cart__product-price-wraper">
+                        <Counter count={contentCount[ind]}></Counter>
+                        <p className="cart__product-price text-color">{el.price} ₽</p>
                       </div>
+                      <div className="cart__product-delete" onClick={() => deleteFromCartHandler(el.id)}></div>
                     </div>
-                  </li>
-                )
+                  </div>
+                </li>
+              )
               :
-                <>
-                  <li>
-                    Коразина пуста, вы можете сделать заказ в нашем меню
-                  </li>
-                  <li>
-                    <Button text={'Order now!'} modificator={''} onClick={() => goToMenu()}></Button>
-                  </li>
-                </>
+              <>
+                <li className="cart__empty">
+                  Коразина пуста, вы можете сделать заказ в нашем меню
+                </li>
+                <li>
+                  <Link to="/Home"><Button text={'На главную'} modificator={'btn menu-btn menu-btn--disabled'}></Button></Link>
+                  <Button text={'Order now!'} modificator={'btn menu-btn menu-btn--disabled'} onClick={() => goToMenu()}></Button>
+                </li>
+              </>
             }
           </ul>
           <div className="cart__total">
@@ -101,7 +101,7 @@ function Cart() {
               <p className="cart__product-count">{state.cart.length} products</p>
               <p className="cart__total-price">Total <span className="text-color">{sum()} ₽</span> </p>
             </div>
-            <Button text={"Place order"}></Button>
+            <Button text={"Place order"} modificator={'btn page-btn'}></Button>
           </div>
         </div>
       </div>

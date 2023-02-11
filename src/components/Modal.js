@@ -51,7 +51,7 @@ function Modal({ isVisible, id, onClose }) {
                   </div>
                 </div>
                 <div className="modal__card-footer">
-                  <Counter></Counter>
+                  <Counter count={"1"}></Counter>
                   <p className="modal__card-price text-color">{content.price} &#8381;</p>
                   <Button modificator="card__btn" text="Add to cart"></Button>
                 </div>

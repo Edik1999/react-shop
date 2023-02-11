@@ -54,10 +54,11 @@ function Footer() {
           </div>
         </div>
         <div className="footer__link">
+          <p className="link__text">Built by: <Link to="https://github.com/Edik1999"><span className="link__dev text-color">Edik1999</span></Link> and <Link to="https://github.com/BalVan18"><span className="link__dev text-color">BalVan18</span></Link></p>
           <ul className="link__list">
-            <Link to="/"><li className="link__item link-instagram"><img src={instagram} alt="Instagram" /></li></Link>
-            <Link to="/"><li className="link__item link-twitter"><img src={twitter} alt="twitter" /></li></Link>
-            <Link to="/"><li className="link__item link-youtube"><img src={youtube} alt="youtube" /></li></Link>
+            <Link to="https://www.instagram.com/"><li className="link__item link-instagram"><img src={instagram} alt="Instagram" /></li></Link>
+            <Link to="https://twitter.com/"><li className="link__item link-twitter"><img src={twitter} alt="twitter" /></li></Link>
+            <Link to="https://www.youtube.com/"><li className="link__item link-youtube"><img src={youtube} alt="youtube" /></li></Link>
           </ul>
         </div>
       </div>

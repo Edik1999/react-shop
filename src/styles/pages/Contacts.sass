@@ -19,7 +19,10 @@
     margin-bottom: $gap
 
 .contacts__text:last-of-type
-    margin-bottom: calc( $gap * 2 )
+    margin-bottom: $gap
+
+.contacts__link
+    display: inline-block
 
 .contacts__right
     position: absolute
@@ -58,6 +61,13 @@
     background-color: $counterBgColor
     font-size: $baseFZ
     color: $smalTextColor
+    transition: all .2s
+
+    &:hover
+        border-color: $maincolor
+
+    &:focus
+        border-color: $maincolor
 
 .form__input:not(:last-of-type)
     margin-bottom: calc( $gap / 2 )
@@ -79,6 +89,13 @@
     font-size: $baseFZ
     color: $smalTextColor
     resize: none
+    transition: all .2s 
+
+    &:hover
+        border-color: $maincolor
+
+    &:focus
+        border-color: $maincolor
 
 .form__bottom
     display: flex
