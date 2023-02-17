@@ -76,6 +76,12 @@ function Header() {
                 </li>
               </Link>
             </ul>
+            <input className="checkbox" type="checkbox" name="" id=""/>
+              <div className="nav__burger">
+                <span className="burger__line line-1"></span>
+                <span className="burger__line line-2"></span>
+                <span className="burger__line line-3"></span>
+              </div>
           </nav>
         </div>
       </div>

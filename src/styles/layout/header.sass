@@ -3,7 +3,7 @@
 // header//
 .header
     margin-bottom: calc( $gap * 4 )    
-
+    // display: none
 .top
     padding: 14px 0
     background-color: $maincolor
@@ -29,6 +29,23 @@
     flex-direction: row
     align-items: center
     justify-content: space-between
+
+.nav__burger
+    display: none
+    flex-direction: column
+    align-items: center
+    justify-content: space-between
+    padding: 15px 0
+    width: 55px
+    height: 54px
+    border: 2px solid $maincolor 
+    border-radius: 5px
+
+.burger__line
+    display: block
+    width: 28px
+    height: 2px
+    background-color: $maincolor
 
 .nav__item
     margin-right: 30px
