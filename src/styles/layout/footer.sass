@@ -4,18 +4,18 @@
 .footer
     padding: 100px 0 60px
     background-color: #F5FBFC
+    // display: none
     
 
 .footer__container    
     display: flex
-    min-height: 230px
+    justify-content: space-between
     margin-bottom: calc( $gap * 2 )
     padding-bottom: calc( $gap * 2 )
     border-bottom: 1px solid $counterBorderColor
 
 .footer__aside 
     display: flex
-    flex-basis: 60%
     flex-wrap: wrap
     flex-direction: column
 
@@ -23,14 +23,13 @@
     margin-bottom: $gap
 
 .footer__descr
-    width: 34%
+    width: 64%
     line-height: 26px
     color: $smalTextColor
 
 .footer__nav
     display: flex
-    flex-wrap: wrap
-    flex-basis: 50%
+    flex-basis: 30%
     justify-content: space-between
 
 .nav__title
@@ -49,9 +48,9 @@
     margin-bottom: 25px
     color: $smalTextColor
 
-.company__title,
-.template__title,
-.flowbase__title
+.company-title,
+.template-title,
+.flowbase-title
     padding-left: 7px
     text-transform: uppercase
     color: black

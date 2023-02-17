@@ -19,11 +19,13 @@ function Home() {
             text ever since the 1500.
           </p>
           <Link to="/menu"><Button modificator={"home__btn page-btn"} text={"To Menu"}></Button></Link>
-          <img className="home__img" src={trustpilot} alt={''}/>
-          <p className="home__text">
-            <span className="text-color">4.8 out of 5</span> based on 2000+
-            reviews
-          </p>
+          <div className="home__rate">
+            <img className="rate__img" src={trustpilot} alt={''}/>
+            <p className="rate__text">
+              <span className="text-color">4.8 out of 5</span> based on 2000+
+              reviews
+            </p>
+          </div>
         </div>
         <div className="home__right">
           <img src={homedecorate} alt={''}/>
@@ -65,12 +67,6 @@ function Home() {
           </li>
         </ul>
       </section>
-
-      <section className="howitworks"></section>
-
-      <section className="menu"></section>
-
-      <section className="support"></section>
     </>
   );
 }

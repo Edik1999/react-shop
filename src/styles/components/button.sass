@@ -11,6 +11,10 @@
     font-size: $textFZ
     line-height: calc( $textFZ + 2px)
 
+.home__btn
+    width: 216px
+    margin-bottom: calc( $gap + 10px )
+
 .menu-btn--disabled 
     padding: 19px 35px
     border: 2px solid $smalTextColor
@@ -76,5 +80,9 @@
 .page-btn
     transition: all 0.2s
     &:hover
+        filter: brightness(112%)
+        transform: scale(1.03)
+    
+    &:active
         filter: brightness(112%)
         transform: scale(1.03)
