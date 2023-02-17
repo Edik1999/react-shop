@@ -75,7 +75,7 @@ function Cart() {
                     <div className="cart__product-wrap">
                       <p className="cart__product-name">{el.title}</p>
                       <div className="cart__product-price-wraper">
-                        <Counter count={contentCount[ind]}></Counter>
+                        <Counter count={contentCount[ind]} elementId={el.id}></Counter>
                         <p className="cart__product-price text-color">{el.price} ₽</p>
                       </div>
                       <div className="cart__product-delete" onClick={() => deleteFromCartHandler(el.id)}></div>
@@ -86,7 +86,7 @@ function Cart() {
               :
               <>
                 <li className="cart__empty">
-                  Коразина пуста, вы можете сделать заказ в нашем меню
+                  Корзина пуста, вы можете сделать заказ в нашем меню
                 </li>
                 <li>
                   <Link to="/Home"><Button text={'На главную'} modificator={'btn menu-btn menu-btn--disabled'}></Button></Link>

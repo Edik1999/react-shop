@@ -2,8 +2,13 @@ import React from "react";
 import logo from "../../img/logo.svg";
 import cart from "../../img/cart.svg";
 import { NavLink, Link } from 'react-router-dom';
+import { useSelector } from "react-redux";
+
 
 function Header() {
+
+  const state = useSelector((state) => state);
+
   return (
     <header className="header">
 
@@ -72,7 +77,7 @@ function Header() {
               <Link to="/cart" className="nav-link cart">
                 <li className="nav__item">
                   <img src={cart} alt="Cart" />
-                  <div className="card__badge">1</div>
+                  <div className="card__badge">{state.cart.length}</div>
                 </li>
               </Link>
             </ul>
