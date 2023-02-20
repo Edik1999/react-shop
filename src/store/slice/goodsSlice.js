@@ -1,10 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
-// import type { PayloadAction } from '@reduxjs/toolkit'
-// import type { IGoods} from '../../models/models'
 
-type state = any[]
-
-const initialState: state = []
+const initialState = []
 
 export const goodsSlice = createSlice({
   name: 'goods',
@@ -14,7 +10,6 @@ export const goodsSlice = createSlice({
   },
 })
 
-// Action creators are generated for each case reducer function
 export const { goods } = goodsSlice.actions
 
 export default goodsSlice.reducer

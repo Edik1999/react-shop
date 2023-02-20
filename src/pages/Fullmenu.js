@@ -8,7 +8,7 @@ import Button from '../components/Button';
 import Modal from '../components/Modal';
 import { useGetGoodsQuery } from "../store/mockAPI/mockApi";
 import { goods } from "../store/slice/goodsSlice";
-import {cart} from '../store/slice/cartSlice';
+// import {cart} from '../store/slice/cartSlice';
 import Loader from "../components/Loader";
 
 // import { useGetSingleGoodQuery } from "../store/mockAPI/mockApi";
@@ -126,11 +126,6 @@ function Fullmenu() {
     setModalState(!modalState)
   }
 
-  const addToCartClick = (e, id) => {
-    e.stopPropagation();
-    dispatch(cart(state.goods.find((el) => el.id === id)))
-  }
-
   if (isLoading) {
     document.querySelector('body').style.overflow = 'hidden';
   } else {
@@ -161,7 +156,7 @@ function Fullmenu() {
           <ul className="card__wrap">
             {content.length > 0 ? (
               content.map((el) => (
-                <Card key={Math.random()} id={el.id} title={el.title} image={el.image} price={el.price} text={el.text} type={el.type} click={(id) => cardClickHandler(id)} addToCartClick={(e, id) => addToCartClick(e, id)}/>
+                <Card key={el.id} id={el.id} title={el.title} image={el.image} price={el.price} text={el.text} type={el.type} click={(id) => cardClickHandler(id)} />
               ))
             ) : (
               <p>Oops, try another search</p>

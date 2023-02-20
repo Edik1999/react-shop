@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit'
-// import type { PayloadAction } from '@reduxjs/toolkit'
 
 const initial = [];
 
@@ -7,10 +6,10 @@ export const cartSlice = createSlice({
   name: 'cart',
   initialState: initial,
   reducers: {
-    cart: (state, action) => {state.push(action.payload)},
-    deleteFromCart: (state, action) => {return state.filter(el => el.id !== action.payload)},
-    deleteSingleGood: (state, action) => {return state.filter((el, index) => index !== action.payload)},
-    addSingleGood: (state, action) => {state.push(state[action.payload])},
+    cart: (state, action) => [...state, {id: action.payload, count: 1}],
+    deleteFromCart: (state, action) => state.filter(el => el.id !== action.payload),
+    deleteSingleGood: (state, action) => state.map(elem => (elem.id === action.payload ? {...elem, count: elem.count - 1} : elem)),
+    addSingleGood: (state, action) => state.map(elem => (elem.id === action.payload ? {...elem, count: elem.count + 1} : elem)),
   },
 })
 

@@ -2,30 +2,25 @@ import React, {useState, useEffect} from 'react'
 import Button from '../components/Button';
 import { useSelector } from "react-redux";
 import Counter from './Counter';
+import { useAppDispatch } from "../store";
+import {cart} from '../store/slice/cartSlice';
 
-function Card({id, title, image, price, text, type, click, addToCartClick}) {
+function Card({id, title, image, price, text, type, click}) {
 
-    const [isInCart, setIsInCart] = useState(false)
+    const [isInCart, setIsInCart] = useState();
+    const dispatch = useAppDispatch()
 
     const state = useSelector((state) => state);
-    let elementInCartId;
-    let count = [];
 
     useEffect(() => {
-        if(state.cart.length > 0){
-            elementInCartId = state.cart.findIndex((el) => el.id === id)
-            if(elementInCartId >= 0) {
-                setIsInCart(true)
-                count = state.cart.filter(el => el.id === id)
-            }else{
-                setIsInCart(false)
-            }    
-            
-            console.log(count.length)
-        }
-    }, [state.cart])
-    
+        state.cart.find(elem => elem.id === id) ? setIsInCart(true) : setIsInCart(false)
+    }, [state.cart, id])
 
+    const addToCartClick = (e) => {
+        e.stopPropagation();
+        dispatch(cart(id))
+    }
+    
     return (
         <div className={`card ${id} ${type}`} onClick={() => click(id)}>
             <img className="card__image" src={image} alt="" />
@@ -35,9 +30,9 @@ function Card({id, title, image, price, text, type, click, addToCartClick}) {
                     <p className="card__price text-color">{price} &#8381;</p>
                     {!isInCart 
                         ?
-                            <Button modificator={"card__btn"} text={"Add to cart"} onClick={(e) => addToCartClick(e, id)}></Button>
+                            <Button modificator={"card__btn"} text={"Add to cart"} onClick={(e) => addToCartClick(e)}></Button>
                         :
-                            <Counter count={count.length} elementId={0}></Counter>
+                            <Counter count={state.cart.find(elem => elem.id === id) ? state.cart.find(elem => elem.id === id).count : 0} elementId={id}></Counter>
                     }   
                 </div>
             </div>

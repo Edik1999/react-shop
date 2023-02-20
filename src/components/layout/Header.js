@@ -77,7 +77,7 @@ function Header() {
               <Link to="/cart" className="nav-link cart">
                 <li className="nav__item">
                   <img src={cart} alt="Cart" />
-                  <div className="card__badge">{state.cart.length}</div>
+                  <div className="card__badge">{state.cart.reduce((acc, num) => acc + Number(num.count), 0)}</div>
                 </li>
               </Link>
             </ul>
