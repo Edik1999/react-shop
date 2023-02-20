@@ -19,7 +19,7 @@ function Counter({count, elementId}) {
 
     return (
         <>
-            <div className="counter">
+            <div className="counter" onClick={(e) => e.stopPropagation()}>
                 <span className="counter__minus" onClick={() => dec()}>-</span>
                 <span className="counter__number">{count}</span>
                 <span className="counter__plus" onClick={() => inc()}>+</span>
