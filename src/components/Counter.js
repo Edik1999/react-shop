@@ -1,30 +1,21 @@
 import '../styles/components/counter.sass'
 import { useAppDispatch } from "../store";
-import { useSelector } from "react-redux";
-import {deleteSingleGood, addSingleGood} from '../store/slice/cartSlice';
+// import { useSelector } from "react-redux";
+import {deleteSingleGood, addSingleGood, deleteFromCart} from '../store/slice/cartSlice';
 
 function Counter({count, elementId}) {
     const dispatch = useAppDispatch();
-    const state = useSelector((state) => state);
 
-    const dec = () => {
-        let deletedId = state.cart.findIndex((el) => el.id === elementId)
-        dispatch(deleteSingleGood(deletedId))
-    }
+    const dec = () => count > 1 ? dispatch(deleteSingleGood(elementId)) : dispatch(deleteFromCart(elementId))
 
-    const inc = () => {
-        let incrementedId = state.cart.findIndex((el) => el.id === elementId)
-        dispatch(addSingleGood(incrementedId))
-    }
+    const inc = () => dispatch(addSingleGood(elementId))
 
     return (
-        <>
-            <div className="counter">
-                <span className="counter__minus" onClick={() => dec()}>-</span>
-                <span className="counter__number">{count}</span>
-                <span className="counter__plus" onClick={() => inc()}>+</span>
-            </div>
-        </>
+        <div className="counter" onClick={(e) => e.stopPropagation()}>
+            <span className="counter__minus" onClick={() => dec()}>-</span>
+            <span className="counter__number">{count}</span>
+            <span className="counter__plus" onClick={() => inc()}>+</span>
+        </div>
     )
 }
 
