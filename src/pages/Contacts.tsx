@@ -18,7 +18,7 @@ function Contacts() {
       </section>
 
       <section className="feedback">
-        <h2 className="feedback__title text-color">Here you can post your<br></br> feedback about us.</h2>
+        <h2 className="section__title feedback__title text-color">Here you can post your<br></br> feedback about us.</h2>
         <form className="form">
           <div className="form__top">
             <div className="form__left">

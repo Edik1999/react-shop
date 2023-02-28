@@ -22,7 +22,7 @@ function FAQ() {
       </section>
 
       <section className="howitworks">
-        <h2 className="howitworks__title text-color">How it works.</h2>
+        <h2 className="section__title howitworks__title text-color">How it works.</h2>
         <ul className="howitworks__list">
           <li className="howitworks__item">
             <img className="howitworks__img" src={hiwdecorate1} alt={''}/>

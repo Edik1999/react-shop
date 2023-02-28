@@ -10,13 +10,49 @@
         padding-left: $gap
 
 @media (max-width: 1360px)
-
+    // home
     .home__left
         margin: 0
 
+    // menu
+    .menu__btn
+        justify-content: space-evenly
+        flex-wrap: wrap
+
+        .menu-btn
+            margin-right: 0
+            margin-bottom: 2.5%
+
+        .search
+            margin-bottom: 2.5%
+
+    .card
+        width: 48.5%
+
+    .card:nth-of-type(3n+2)
+        margin: 0
+
+    .card:nth-child(even)
+        margin: 0 0 1.5% 1.5%
+
+    .card:nth-child(odd)
+        margin: 0 0 1.5%
+
+    // howitworks
+    .howitworks__img
+        height: 196px
+
+    .howitworks__item-border
+        width: 80px
+        margin-top: 100px
+
+    // contacts
+    .contacts__title
+        width: 80%
 
 @media (max-width: 1024px)
 
+    // home
     .home
         flex-direction: column
         margin-bottom: calc( $gap * 3 )
@@ -49,14 +85,116 @@
         margin: 0 auto $gap calc( $gap * 2 )
         width: 40%
 
+    // menu
+    .card
+        width: 100%
+
+    .card:nth-child(even)
+        margin: 0
+
+    .card:nth-child(odd)
+        margin: 0
+
+    .card:nth-child(n)
+        margin-bottom: 3.5%
+    
+    // company
+    .company
+        flex-direction: column-reverse
+        margin-bottom: calc( $gap * 4 )
+
+    .company__left
+        display: flex
+        flex-direction: column
+        align-items: center
+        margin-top: 0
+        padding-left: 0
+
+        .company__title,
+        .company__text
+            width: 100%
+            text-align: center
+
+    .company__right
+        position: relative
+        align-self: center
+        margin-bottom: $gap
+        padding-left: 80px
+
+    // faq
+    .faq
+        flex-direction: column
+
+    .faq__left
+        padding-left: 90px
+        margin-bottom: $gap
+
+    .faq__right
+        display: flex
+        flex-direction: column
+        align-items: center
+
+        .faq__title
+            width: 100%
+            text-align: center
+
+        .faq__text
+            width: 100%
+            text-align: center
+
+    // howitworks
+    .howitworks__img
+        height: 146px
+
+    .howitworks__item-border
+        width: 60px
+        margin-top: 70px
+
+    .howitworks__subtitle
+        font-size: 18px
+
+    .howitworks__text
+        width: 100%
+        font-size: 16px
+
+    // contacts
+    .contacts
+        flex-direction: column-reverse
+        align-items: center
+        margin-bottom: calc( $gap * 2 )
+
+    .contacts__left
+        display: flex
+        flex-direction: column
+        margin-top: 0
+        padding-left: 0
+
+    .contacts__right
+        position: relative
+        margin-bottom: $gap
+        padding-left: calc( $gap * 2 )
+
+    .contacts__title,
+    .contacts__text
+        width: 100%
+        text-align: center
+
+    .contacts__link
+        margin: 0 auto    
+        
 @media (max-width: 768px)
 
-    // .nav__list
-    //     display: none
+    // header
+    .nav__list
+        display: none
 
-    .header
+    .header__text,
+    .header__btn
+        font-size: 15px
+
+    .header--active
         height: 410px
-        background-color: $counterBorderColor
+        background-color: rgba(221, 221, 221, 0.2)
 
     .nav__burger
         display: flex
@@ -90,7 +228,7 @@
             margin-left: 8px
 
 
-    .nav__list
+    .nav__list--active
         position: absolute
         flex-direction: column
         justify-content: space-between
@@ -100,11 +238,9 @@
         right: 15px
 
     .nav__item
-        margin: 0
-    
-    
+        margin: 0  
 
-
+    // home 
     .home
         margin-bottom: $gap
         padding-bottom: $gap
@@ -133,8 +269,115 @@
         margin: 0 0 $gap 0
         width: 90%
 
-@media (max-width: 370px)
+    // menu
+    .menu__title
+        font-size: 40px
 
+    .menu__text
+        font-size: 16px
+
+    // company
+    .company__right
+        // display: none
+
+    // faq
+    .faq
+        margin-bottom: $gap
+        padding-bottom: $gap
+        border-bottom: 1px solid $counterBorderColor
+
+    // howitworks
+    .howitworks__list
+        flex-direction: column
+        align-items: center
+        margin-bottom: $gap
+
+    .howitworks__item
+        margin-bottom: $gap
+
+    .howitworks__item:nth-of-type(odd)
+        width: 50%
+
+    .howitworks__img
+        height: 188px
+        margin-bottom: $gap
+
+    .howitworks__item-border
+        width: 290px
+        margin-top: 0
+
+    // contacts
+    .contacts
+        margin-bottom: $gap
+        padding-bottom: $gap
+        border-bottom: 1px solid $counterBorderColor
+
+    // feedback
+    .form__left
+        align-items: center
+
+        .form__input
+            width: 100%
+
+    .form__right
+        justify-content: center
+
+        .form__textarea
+            width: 100%
+    
+
+@media (max-width: 576px)
+    // menu
+    .card__image
+        height: 140px
+
+    .card__name
+        font-size: 16px
+
+    .card__price
+        font-size: 20px
+
+    .card__btn
+        padding: 8px 8px 
+        font-size: 14px
+
+    // faq
+    .faq
+        margin-bottom: calc( $gap * 3 )
+
+    .faq__left
+        padding-left: $gap
+        
+    // howitworks
+    .howitworks__item:nth-of-type(odd)
+        width: 100%
+
+    .howitworks__img
+        height: 258px
+
+    // feedback
+    .form__top
+        flex-direction: column
+    
+    .form__left
+        align-items: center
+        width: 100%
+        margin: 0 0 10px
+
+        .form__input
+            width: 100%
+
+    .form__right
+        justify-content: center
+        width: 100%
+
+        .form__textarea
+            width: 100%
+            height: 106px
+
+
+@media (max-width: 370px)
+    // home
     .home
         margin-bottom: $gap
         padding-bottom: $gap
@@ -175,3 +418,18 @@
         margin-bottom: calc( $gap / 2 )
         padding-bottom: calc( $gap / 2 )
         border-bottom: 1px solid $counterBorderColor
+
+    // company
+    .company__text
+        font-size: 16px
+
+    // faq
+    .faq__left
+        padding-left: 40px
+
+    .faq__text
+        font-size: 16px
+
+    // contacts
+    .contacts__right
+        padding-left: 90px
