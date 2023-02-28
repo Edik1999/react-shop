@@ -163,7 +163,6 @@ function Fullmenu() {
             )}
           </ul>
           {clickedCard ? <Modal isVisible={modalState} id={clickedCard} onClose={closeModal}></Modal> : null}
-          {/* <Link to="/"><Button modificator={"menu-btn btn-view"} text={"View Full Menu"}></Button></Link> */}
         </>
       )}
     </>

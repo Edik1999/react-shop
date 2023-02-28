@@ -1,6 +1,7 @@
 @import '../varibles/index'
 
 .btn
+    display: inline-block
     cursor: pointer
     padding: 20px 35px
     border: none
@@ -8,21 +9,33 @@
     background-color: $maincolor
     color: white
     font-weight: bold
+    text-align: center
     font-size: $textFZ
     line-height: calc( $textFZ + 2px)
 
 .home__btn
     width: 216px
     margin-bottom: calc( $gap + 10px )
+    transition: all 0.2s
+    &:hover
+        filter: brightness(112%)
+        transform: scale(1.03)
+
+    &:active
+        filter: brightness(112%)
+        transform: scale(1.03)
+
+.menu-btn
+    margin-right: $gap
+    padding: 19px 35px
+    border: 2px solid #35B8BE
 
 .menu-btn--disabled 
-    padding: 19px 35px
     border: 2px solid $smalTextColor
     color: $smalTextColor
     font-weight: bold
     background-color: $baseBgColor
     transition: all .2s
-
     &:hover
         background-color: $maincolor
         color: white
@@ -72,17 +85,3 @@
 
 .form-btn
     margin-bottom:  calc($gap / 3)
-
-.faq-btn
-    margin: 0 auto
-    padding: 20px 70px
-
-.page-btn
-    transition: all 0.2s
-    &:hover
-        filter: brightness(112%)
-        transform: scale(1.03)
-    
-    &:active
-        filter: brightness(112%)
-        transform: scale(1.03)

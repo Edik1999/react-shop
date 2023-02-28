@@ -74,8 +74,8 @@ function Cart() {
                   Корзина пуста, вы можете сделать заказ в нашем меню
                 </li>
                 <li>
-                  <Link to="/Home"><Button text={'На главную'} modificator={'btn menu-btn menu-btn--disabled'}></Button></Link>
-                  <Button text={'Order now!'} modificator={'btn menu-btn menu-btn--disabled'} onClick={() => goToMenu()}></Button>
+                  <Link to="/Home" className="btn menu-btn menu-btn--disabled">На главную</Link>
+                  <Link to="/menu" className="btn menu-btn menu-btn--disabled">Order now!</Link>
                 </li>
               </>
             }
@@ -86,7 +86,7 @@ function Cart() {
               <p className="cart__product-count">{state.cart.reduce((acc, num) => acc + Number(num.count), 0)} products</p>
               <p className="cart__total-price">Total <span className="text-color">{sum()} ₽</span> </p>
             </div>
-            <Button text={"Place order"} modificator={'btn page-btn'}></Button>
+            <Button text={"Place order"} modificator={''}></Button>
           </div>
         </div>
       </div>

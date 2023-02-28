@@ -18,7 +18,7 @@ function Home() {
             industry. Lorem Ipsum has been the industry's standard dummy
             text ever since the 1500.
           </p>
-          <Link to="/menu"><Button modificator={"home__btn page-btn"} text={"To Menu"}></Button></Link>
+          <Link to="/menu" className="btn home__btn">To Menu</Link>
           <div className="home__rate">
             <img className="rate__img" src={trustpilot} alt={''}/>
             <p className="rate__text">

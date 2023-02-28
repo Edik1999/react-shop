@@ -46,7 +46,7 @@ function FAQ() {
             <p className="howitworks__text">Manage your own logistics and take orders simply through the ecommerce system.</p>
           </li>
         </ul>
-        <Link to="/menu"><Button modificator="faq-btn page-btn" text="Take Order" onClick=""></Button></Link>
+        <Link to="/menu" className="btn home__btn page-btn">Take Order</Link>
       </section>
     </div>
 
