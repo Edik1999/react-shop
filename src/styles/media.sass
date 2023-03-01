@@ -193,12 +193,15 @@
         font-size: 15px
 
     .header--active
-        height: 410px
-        background-color: rgba(221, 221, 221, 0.2)
+        .nav__list
+            display: flex
+            flex-direction: column
+            justify-content: space-between
+            align-items: flex-end
+            height: 240px
 
     .nav__burger
         display: flex
-        position: relative
 
     .line-1
         transform-origin: 18% 0%
@@ -227,15 +230,6 @@
             width: 38px
             margin-left: 8px
 
-
-    .nav__list--active
-        position: absolute
-        flex-direction: column
-        justify-content: space-between
-        align-items: flex-end
-        height: 240px
-        top: 140px
-        right: 15px
 
     .nav__item
         margin: 0  

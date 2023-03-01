@@ -1,4 +1,3 @@
-import { useNavigate } from "react-router-dom";
 import Counter from '../components/Counter';
 import Button from '../components/Button';
 import { Link } from 'react-router-dom';
@@ -13,7 +12,6 @@ function Cart() {
 
   const state = useSelector((state) => state);
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
 
   const sum = () => {
     let prices = state.cart.map(el => (state.goods.find(elem => elem.id === el.id).price * el.count))
@@ -22,10 +20,6 @@ function Cart() {
   }
 
   const deleteFromCartHandler = (id) => dispatch(deleteFromCart(id))
-
-  const goToMenu = () => {
-    navigate('/menu');
-  }
 
   // let IdArray = [];
   // state.cart.map(el => IdArray.push(el.id))

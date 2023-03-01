@@ -2,8 +2,16 @@
     
 // header//
 .header
-    margin-bottom: calc( $gap * 3 )
-    
+    position: absolute
+    top: 0
+    right: 0
+    left: 0
+    z-index: 1000
+    transition: all .25s
+
+    &--active
+        background-color: #FFFFFF
+
 .top
     padding: 14px 0
     background-color: $maincolor
@@ -18,7 +26,6 @@
 .bottom
     display: flex
     padding: 20px 0 0
-    align-items: center
     justify-content: space-between
 
 .header__logo
@@ -36,6 +43,7 @@
     align-items: center
     justify-content: space-between
     padding: 15px 0
+    margin-left: auto
     width: 55px
     height: 54px
     border: 2px solid $maincolor 

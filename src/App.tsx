@@ -14,9 +14,8 @@ function App() {
   return (
     <>
       <Header></Header>
-      
-        <div className="container">
-          <Routes>
+      <div className="container container--fluid">
+        <Routes>
           <Route path="/" element={<Home/>} />
           <Route path="/company" element={<Company/>} />
           <Route path="/contacts" element={<Contacts/>} />
@@ -24,9 +23,8 @@ function App() {
           <Route path="/cart" element={<Cart/>} />
           <Route path="/menu" element={<Fullmenu/>} />
           <Route path="*" element={<Navigate to="/" replace />}/>
-          </Routes>
-        </div>       
-      
+        </Routes>
+      </div>
       <Footer></Footer>
     </>
   );

@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import logo from "../../img/logo.svg";
 import cart from "../../img/cart.svg";
 import { NavLink, Link } from 'react-router-dom';
@@ -9,8 +9,14 @@ function Header() {
 
   const state = useSelector((state) => state);
 
+  const [isOpen, setIsOpen] = useState(false)
+
+  const clickHandler = () => {
+    setIsOpen(!isOpen)
+  }
+
   return (
-    <header className="header">
+    <header className={`header ${isOpen && 'header--active'}`}>
 
       <div className="top">
         <div className="container">
@@ -28,6 +34,11 @@ function Header() {
             <Link to="/"><img src={logo} alt="Logo" /></Link>
           </div>
           <nav className="header__nav">
+            <div className="nav__burger" onClick={() => clickHandler()}>
+              <span className="burger__line line-1"></span>
+              <span className="burger__line line-2"></span>
+              <span className="burger__line line-3"></span>
+            </div>
             <ul className="nav__list">
               <li className="nav__item">
                 <NavLink
@@ -84,11 +95,6 @@ function Header() {
                 </li>
               </Link>
             </ul>
-              <div className="nav__burger">
-                <span className="burger__line line-1"></span>
-                <span className="burger__line line-2"></span>
-                <span className="burger__line line-3"></span>
-              </div>
           </nav>
         </div>
       </div>
