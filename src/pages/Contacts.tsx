@@ -3,6 +3,11 @@ import Button from '../components/Button';
 import contactsdecorate from "../img/contacts-decorate.png";
 
 function Contacts() {
+
+  const clickHandler = (e: React.MouseEvent<HTMLElement>) => {
+    e.preventDefault();
+  }
+
   return (
     <div>
       <section className="contacts">
@@ -32,7 +37,7 @@ function Contacts() {
           </div>
           <div className="form__bottom">
             <div className="form__wrapper">
-              <Button text={"Post"} modificator={"form-btn"} onClick={""}></Button>
+              <Button text={"Post"} modificator={"form-btn"} onClick={(e: React.MouseEvent<HTMLElement>) => clickHandler(e)}></Button>
               <label className="form__check">
                 <input type="checkbox" required /> I agree with the <span className="text-color">user agreement</span>
               </label>

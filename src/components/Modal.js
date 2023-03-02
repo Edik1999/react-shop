@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import Button from "./Button";
 import Counter from "./Counter";
-import React, {useState, useEffect} from 'react'
+import {useState, useEffect} from 'react'
 import { useAppDispatch } from "../store";
 import {cart} from '../store/slice/cartSlice';
 

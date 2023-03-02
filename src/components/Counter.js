@@ -1,6 +1,5 @@
-import '../styles/components/counter.sass'
+// import '../styles/components/counter.sass'
 import { useAppDispatch } from "../store";
-// import { useSelector } from "react-redux";
 import {deleteSingleGood, addSingleGood, deleteFromCart} from '../store/slice/cartSlice';
 
 function Counter({count, elementId}) {

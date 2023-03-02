@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import {useState} from "react";
 import logo from "../../img/logo.svg";
 import cart from "../../img/cart.svg";
 import { NavLink, Link } from 'react-router-dom';
@@ -31,7 +31,7 @@ function Header() {
       <div className="container">
         <div className="bottom">
           <div className="header__logo">
-            <Link to="/"><img src={logo} alt="Logo" /></Link>
+            <Link to="/" className="logo"><img src={logo} alt="Logo" /></Link>
           </div>
           <nav className="header__nav">
             <div className="nav__burger" onClick={() => clickHandler()}>
