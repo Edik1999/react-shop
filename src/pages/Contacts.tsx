@@ -1,8 +1,9 @@
 import React from 'react'
 import Button from '../components/Button';
 import contactsdecorate from "../img/contacts-decorate.png";
+import { withAuthenticationRequired } from '@auth0/auth0-react'
 
-function Contacts() {
+export const Contacts = withAuthenticationRequired(() => {
 
   const clickHandler = (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
@@ -47,6 +48,4 @@ function Contacts() {
       </section>
     </div>
   )
-}
-
-export default Contacts
+})

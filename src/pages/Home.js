@@ -1,7 +1,6 @@
 import trustpilot from "../img/trustpilot.png";
 import homedecorate from "../img/home-decorate.png";
 import clientavatar from "../img/client-avatar.png";
-import Button from '../components/Button';
 import {Link} from 'react-router-dom';
 
 function Home() {

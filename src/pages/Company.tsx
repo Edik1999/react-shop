@@ -1,8 +1,9 @@
 import companydecorate from "../img/company-decorate.png";
 import {Link} from 'react-router-dom';
+import { withAuthenticationRequired } from '@auth0/auth0-react'
 
-function Company() {
-  return (
+export const Company = withAuthenticationRequired(() => {
+    return (
       <div className="company">
         <div className="company__left">
           <h2 className="section__title text-color">The home of fresh products.</h2>
@@ -14,7 +15,5 @@ function Company() {
           <img className="company__img" src={companydecorate} alt={''}/>
         </div>
       </div>
-  )
-}
-
-export default Company
+    )
+})

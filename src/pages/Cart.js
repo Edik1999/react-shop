@@ -5,8 +5,9 @@ import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { deleteFromCart } from '../store/slice/cartSlice';
 import { useAppDispatch } from "../store";
+import { withAuthenticationRequired } from '@auth0/auth0-react'
 
-function Cart() {
+export const Cart = withAuthenticationRequired(() => {
 
   const [pageContent, setPageContent] = useState([])
 
@@ -20,20 +21,6 @@ function Cart() {
   }
 
   const deleteFromCartHandler = (id) => dispatch(deleteFromCart(id))
-
-  // let IdArray = [];
-  // state.cart.map(el => IdArray.push(el.id))
-
-  // const countItems = {}; // здесь будет храниться промежуточный результат
-
-  // получаем объект в котором ключ - это элемент массива, а значение - сколько раз встречается элемент в списке
-  // например так будет выглядеть этот объект после цикла:
-  // {1: 1, 3: 2, 4: 2, 7: 1, 15: 1, 19: 2}
-  // 1 встречается в тексте 1 раз, 2 встречается 2 раза, 4 встречается 2 раза и так далее
-  // for (const item of IdArray) {
-  //   // если элемент уже был, то прибавляем 1, если нет - устанавливаем 1
-  //   countItems[item] = countItems[item] ? countItems[item] + 1 : 1;
-  // }
 
   useEffect(() => {
     setPageContent(state.cart.map((el) => state.goods.find(elem => el.id === elem.id)))
@@ -87,6 +74,4 @@ function Cart() {
     </>
 
   )
-}
-
-export default Cart
+})

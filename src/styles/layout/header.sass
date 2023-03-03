@@ -6,8 +6,8 @@
     left: 0
     z-index: 1000
     transition: all .25s
-    background-color: rgba(255,255,255, 0.8)
-
+    background-color: rgba(255,255,255, 0.97)
+    padding-bottom: 20px
 
 .top
     padding: 14px 0
@@ -64,14 +64,10 @@
 .nav__item
     margin-right: 30px
 
-    &:last-child
-        display: flex
-        align-items: center
-        justify-content: center
-        width: 41px
-        height: 41px
+    &--cart
         background-color: $maincolor
-        border-radius: 4px
+        border-radius: 5px
+        padding: 7px
         margin-right: 0
 
 .nav-link
@@ -79,9 +75,12 @@
     border-radius: 5px
     transition: all .2s
     
-    &.cart
-        position: relative
-        background: #35B8BE
+    &--cart
+        display: flex
+        align-items: center
+        justify-content: center
+        width: 41px
+        height: 41px
 
     .card__badge
         position: absolute
