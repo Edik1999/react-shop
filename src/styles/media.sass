@@ -185,8 +185,16 @@
 @media (max-width: 768px)
 
     // header
+    .header
+        padding-bottom: 15px
     .nav__list
-        display: none
+        visibility: hidden
+        opacity: 0
+        display: flex
+        flex-direction: column
+        align-items: flex-end
+        height: 0px
+        transition: all .15s ease-out
 
     .header__text,
     .header__btn
@@ -194,42 +202,29 @@
 
     .header--active
         .nav__list
-            display: flex
-            flex-direction: column
-            justify-content: space-between
-            align-items: flex-end
+            visibility: visible
+            opacity: 1
+            padding-top: 15px
             height: 240px
+
+        .nav__burger
+            .line-1 
+                transform: rotate(45deg)
+                transform-origin: 18% 0%
+                width: 38px
+                margin-left: 8px
+        
+            .line-2 
+                transform: scaleY(0)
+
+            .line-3 
+                transform: rotate(-45deg)
+                transform-origin: 15% 0%
+                width: 38px
+                margin-left: 8px
 
     .nav__burger
         display: flex
-
-    .line-1
-        transform-origin: 18% 0%
-        transition: transform 0.4s ease-in-out
-
-    .line-2 
-        transition: transform 0.2s ease-in-out
-    
-
-    .line-3 
-        transform-origin: 15% 0%
-        transition: transform 0.4s ease-in-out
-
-    .nav__burger
-
-        .line-1 
-            transform: rotate(45deg)
-            width: 38px
-            margin-left: 8px
-    
-        .line-2 
-            transform: scaleY(0)
-
-        .line-3 
-            transform: rotate(-45deg)
-            width: 38px
-            margin-left: 8px
-
 
     .nav__item
         margin: 0  
