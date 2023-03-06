@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/static/css/main.696195b9.css",
+    "main.js": "/static/js/main.b2a7bded.js",
+    "static/media/home-decorate.png": "/static/media/home-decorate.071a7f253f74008538d4.png",
+    "static/media/company-decorate.png": "/static/media/company-decorate.807cb89b42508ed2eb2a.png",
+    "static/media/contacts-decorate.png": "/static/media/contacts-decorate.06f11837b961da03f8ec.png",
+    "static/media/faq-decorate.png": "/static/media/faq-decorate.eeb5d5d30fa2899bece5.png",
+    "static/media/hiw-decorate-1.png": "/static/media/hiw-decorate-1.1607932e25da73c2682b.png",
+    "static/media/hiw-decorate-3.png": "/static/media/hiw-decorate-3.3efcf06ccba6c36b2de0.png",
+    "static/media/hiw-decorate-2.png": "/static/media/hiw-decorate-2.9a10ef68b115f167781a.png",
+    "static/media/instagram.svg": "/static/media/instagram.dff294a1f154cc0dbaf0d5cafefba0b8.svg",
+    "static/media/twitter.svg": "/static/media/twitter.c8392ef5874a8d5d6d6d5df0cc7c02a5.svg",
+    "static/media/youtube.svg": "/static/media/youtube.99624d92c97696b41c5d4fc94fe652cc.svg",
+    "static/media/logo.svg": "/static/media/logo.ef37d971d9286647dde029ab3599060e.svg",
+    "index.html": "/index.html",
+    "static/media/cart.svg": "/static/media/cart.720939cbf3cea4c5c908a440d9d69a29.svg",
+    "main.696195b9.css.map": "/static/css/main.696195b9.css.map",
+    "main.b2a7bded.js.map": "/static/js/main.b2a7bded.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.696195b9.css",
+    "static/js/main.b2a7bded.js"
+  ]
+}
