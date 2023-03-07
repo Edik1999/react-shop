@@ -5,16 +5,17 @@ import Button from "../components/Button";
      
      const {logout, user} = useAuth0()
 
+     console.log(user);
+
      return (
          <>
-             <h1>Profile Page</h1>
-             <div className='profile'>
+             <section className='profile'>
                  <img src={user?.picture} alt={user?.name} />
                  <div>
                      <h2>{user?.name}</h2>
                      <p>{user?.email}</p>
                  </div>
-             </div>
+             </section>
              <Button modificator={""} text={"Log Out"} onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}></Button>
          </>
      )
