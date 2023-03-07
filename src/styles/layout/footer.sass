@@ -27,28 +27,25 @@
 
 .footer__nav
     display: flex
-    flex-basis: 30%
-    justify-content: space-between
 
 .nav__title
     margin-bottom: 25px
 
 .company__list,
-.template__list,
-.flowbase__list
+.template__list
     display: flex
     flex-direction: column
 
+.template__list
+    margin-left: 140px
 
 .company__item,
-.template__item,
-.flowbase__item
+.template__item
     margin-bottom: 25px
     color: $smalTextColor
 
 .company-title,
-.template-title,
-.flowbase-title
+.template-title
     padding-left: 7px
     text-transform: uppercase
     color: black
@@ -70,5 +67,9 @@
 
 .link__list 
     display: flex
-    flex-basis: 15%
-    justify-content: space-between
+
+.link__item
+    margin-right: 30px
+
+    &.link-youtube
+        margin-right: 0

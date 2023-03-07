@@ -8,11 +8,12 @@ import Modal from '../components/Modal';
 import { useGetGoodsQuery } from "../store/mockAPI/mockApi";
 import { goods } from "../store/slice/goodsSlice";
 import Loader from "../components/Loader";
-import { withAuthenticationRequired } from '@auth0/auth0-react'
+import { useAuth0, withAuthenticationRequired } from '@auth0/auth0-react'
 
 export const Fullmenu = withAuthenticationRequired(() => {
 
     const { isLoading, isError, data } = useGetGoodsQuery("");
+    const {isAuthenticated, user} = useAuth0();
 
     const state = useSelector((state) => state);
 
@@ -28,6 +29,9 @@ export const Fullmenu = withAuthenticationRequired(() => {
       if (data) {
         dispatch(goods(data))
         setContent(data)
+      }
+      if(isAuthenticated){
+         console.log(user);
       }
     }, [data, dispatch])
 
