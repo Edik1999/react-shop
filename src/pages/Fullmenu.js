@@ -147,7 +147,7 @@ export const Fullmenu = withAuthenticationRequired(() => {
               Use our menu to place an order online, or <span className="text-color">phone</span> our store <br/> to place a
               pickup order. Fast and fresh food.
             </p>
-            <div className="menu__btn">
+            <div className="menu__filter">
               <Button modificator={`menu-btn ${activeSort !== 1 && 'menu-btn--disabled'}`} text={"Показать все"} onClick={(e) => {setContent(state.goods); setActiveSort(1); setPriceSort(1)}}></Button>
               <Button modificator={`menu-btn ${activeSort !== 2 && 'menu-btn--disabled'}`} text={"Пицца"} onClick={(e) => sortingHandler('Pizza')}></Button>
               <Button modificator={`menu-btn ${activeSort !== 3 && 'menu-btn--disabled'}`} text={"Бургеры"} onClick={(e) => sortingHandler('Burger')}></Button>
