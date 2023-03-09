@@ -1,5 +1,5 @@
 @media (max-width: 1800px)
-    //modal
+    // modal
     .modal
         width: 44%
 
@@ -17,9 +17,19 @@
     .search
         width: 30%
 
-    //modal
+    // modal
     .modal
         width: 52%
+
+    // cart
+    .cart__list
+        width: 35%
+
+    .cart__total
+        width: 30%
+
+    .cart__product-img
+        width: 180px
 
 @media (max-width: 1360px)
     // home
@@ -64,6 +74,13 @@
     //modal
     .modal
         width: 70%
+
+    // cart
+    .cart__list
+        width: 45%
+
+    .cart__total
+        width: 40%
 
 @media (max-width: 1023.9px)
 
@@ -222,9 +239,31 @@
     .footer__aside
         max-width: 53%
 
-    //modal
+    // modal
     .modal
         width: 94%
+
+    // cart
+    .cart__main 
+        flex-direction: column
+        align-items: center
+
+    .cart__list,
+    .cart__total
+        width: 70%
+
+    .cart__list
+        margin-bottom: $gap
+
+    .cart__empty
+        text-align: center
+
+    .cart__product-img
+        width: 140px
+
+    .cart__product-name
+        text-align: center
+
         
 @media (max-width: 768px)
 
@@ -414,7 +453,15 @@
     .modal__card-footer
         justify-content: space-around
 
+    // cart
+    .cart__total-title
+        font-size: 30px
+
 @media (max-width: 576px)
+    // header
+    .bottom
+        padding: 20px 10px 0    
+
     // menu
     .menu__filter
         padding: 0 $gap
@@ -510,6 +557,9 @@
             height: 106px
 
     // footer
+    .footer__aside
+        padding: 0 10px
+
     .footer__descr
         width: 80%
 
@@ -558,8 +608,54 @@
     .card__weight
         margin-bottom: 5px
 
+    // cart
+    .cart-page 
+        .cart__title
+            margin-bottom: calc( $gap + 10px )
 
+    .cart__empty-btn
+        justify-content: space-between
     
+    .cart-btn,
+    .cart-btn-total
+        padding: 15px 0
+
+    .cart-btn
+        width: 45% 
+
+    .cart-btn-total
+        width: 60% 
+
+    .cart__total-title
+        font-size: 24px
+
+    .cart__empty,
+    .cart-btn,
+    .cart__product-count,
+    .cart__total-price,
+    .cart-btn-total
+        font-size: 16px
+
+    .cart__product
+        flex-direction: column
+        align-items: center
+        padding: calc( $gap / 2 )
+
+    .cart__product-wrap
+        padding: 0
+
+    .cart__product-img
+        margin: 0 0 calc( $gap / 2 )
+        width: 180px
+
+    .cart__product-name
+        margin-bottom: calc( $gap / 2 )
+        font-size: 18px
+
+    .cart__product-price-wraper
+        flex-wrap: wrap
+        width: 90%
+          
 
 @media (max-width: 370px)
     // home
@@ -654,3 +750,32 @@
 
     .link__item
         margin-right: 12px
+
+    // modal
+    .modal
+        top: 55%
+
+    // cart
+    .cart__empty-btn
+        flex-direction: column
+        align-items: center
+
+    .cart-btn
+        width: 75%
+
+    .cart-btn:first-of-type
+        margin-bottom: calc( $gap / 3 )
+
+    .cart__empty
+        margin-bottom: calc( ($gap / 2) + 5px )
+
+    .cart__total-title
+        text-align: center
+        margin-bottom: calc( $gap / 2 )
+
+    .cart__total-count
+        flex-wrap: wrap
+        margin-bottom: calc( $gap / 2 )
+
+    .cart__product-img
+        width: 160px
