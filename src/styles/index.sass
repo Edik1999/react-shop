@@ -7,6 +7,7 @@
 @import './pages/Contacts'
 @import './pages/Company'
 @import './pages/Cart'
+@import './dark-theme.sass'
 @import './media'
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap')
 
@@ -19,6 +20,12 @@
     padding: 0
     outline: none
     color: #000
+
+body
+    background-color: $baseBgColor
+
+    &.themeDark
+        background-color: $darkBgColor
 
 a
     color: inherit
