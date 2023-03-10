@@ -10,6 +10,7 @@ function Header() {
 
   const state = useSelector((state) => state);
   const [isOpen, setIsOpen] = useState(false);
+  const [theme, setTheme] = useState('light');
 
   const { loginWithRedirect, isAuthenticated } = useAuth0();
 
@@ -19,6 +20,19 @@ function Header() {
 
   const closeMenu = () => {
     setIsOpen(false)
+  }
+
+  const switchTheme = () => {
+    document.body.classList.remove('themeDark');
+    setTheme((prev) => {
+      if(prev === 'light'){
+        document.body.classList.add('themeDark');
+        return 'dark'
+      }else{
+        return 'light'
+      }
+    })
+
   }
 
   return (
@@ -31,6 +45,9 @@ function Header() {
               We're open and available for takeaway & delivery.
             </p>
             <Link to="/menu" className="header__btn">Order Now</Link>
+            <span className={`theme-switcher ${theme === 'dark' ? 'themeDark' : null}`} onClick={() => switchTheme()}>
+              <span className="theme-switcher__dot"></span>
+            </span>
           </div>
         </div>
       </div>
