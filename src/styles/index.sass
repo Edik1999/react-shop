@@ -52,6 +52,7 @@ img
 
     @media (max-width: 575px)
         max-width: 100%
+        padding: 0 calc($gap / 2)
 
     &--fluid
         flex: 1
@@ -72,6 +73,10 @@ img
         text-align: center
         font-size: 40px
         line-height: 45px
+
+    @media (max-width: 576px)
+        font-size: 35px
+        line-height: 40px
 
     @media (max-width: 370px)
         text-align: center

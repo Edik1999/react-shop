@@ -144,7 +144,7 @@ export const Fullmenu = withAuthenticationRequired(() => {
           <>
             <h2 className="section__title menu__title text-color">Browse our menu</h2>
             <p className="menu__text">
-              Use our menu to place an order online, or <span className="text-color">phone</span> our store <br/> to place a
+              Use our menu to place an order online, or <span className="text-color">phone</span> our store <br className="breakLine"/> to place a
               pickup order. Fast and fresh food.
             </p>
             <div className="menu__filter">
