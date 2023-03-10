@@ -1,6 +1,6 @@
-import trustpilot from "../img/trustpilot.png";
-import homedecorate from "../img/home-decorate.png";
-import clientavatar from "../img/client-avatar.png";
+import trustpilot from "../img/trustpilot.webp";
+import homedecorate from "../img/home-decorate.webp";
+import clientavatar from "../img/client-avatar.webp";
 import {Link} from 'react-router-dom';
 
 function Home() {

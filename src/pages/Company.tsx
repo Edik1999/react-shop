@@ -1,4 +1,4 @@
-import companydecorate from "../img/company-decorate.png";
+import companydecorate from "../img/company-decorate.webp";
 import {Link} from 'react-router-dom';
 import { withAuthenticationRequired } from '@auth0/auth0-react'
 

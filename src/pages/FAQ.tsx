@@ -1,8 +1,8 @@
 import React from 'react'
-import faqdecorate from "../img/faq-decorate.png";
-import hiwdecorate1 from "../img/hiw-decorate-1.png";
-import hiwdecorate2 from "../img/hiw-decorate-2.png";
-import hiwdecorate3 from "../img/hiw-decorate-3.png";
+import faqdecorate from "../img/faq-decorate.webp";
+import hiwdecorate1 from "../img/hiw-decorate-1.webp";
+import hiwdecorate2 from "../img/hiw-decorate-2.webp";
+import hiwdecorate3 from "../img/hiw-decorate-3.webp";
 import {Link} from 'react-router-dom';
 import { withAuthenticationRequired } from '@auth0/auth0-react'
 
