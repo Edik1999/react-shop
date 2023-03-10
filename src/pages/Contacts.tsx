@@ -1,6 +1,6 @@
 import React from 'react'
 import Button from '../components/Button';
-import contactsdecorate from "../img/contacts-decorate.png";
+import contactsdecorate from "../img/contacts-decorate.webp";
 import { withAuthenticationRequired } from '@auth0/auth0-react'
 
 export const Contacts = withAuthenticationRequired(() => {
