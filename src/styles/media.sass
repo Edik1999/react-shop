@@ -426,7 +426,7 @@
         justify-content: space-around
 
     .company__item, .template__item
-        margin-bottom: 15px
+        margin-bottom: 20px
 
     .template__list
         margin-left: 0
@@ -460,12 +460,14 @@
 @media (max-width: 576px)
     // header
     .bottom
-        padding: 20px 10px 0    
+        padding-top: 20px
 
     // menu
     .menu__filter
-        padding: 0 $gap
-        align-items: stretch
+        margin-bottom: $gap
+
+    .menu__text
+        margin-bottom: calc($gap * 1.5)
 
     .menu-btn
         font-size: 14px
@@ -492,31 +494,42 @@
         align-items: center
         padding: 15px 0
 
-        .card__content
+        &__content
             padding: 0
             width: 100%
 
-        .card__image
+        &__image
             height: 180px
             margin: 0 5px 10px 10px
 
-        .card__footer
+        &__footer
             justify-content: space-evenly
 
-        .card__name
-            font-size: 16px
-            margin: 0 0 10px
-
-        .card__price
+        &__price
             font-size: 20px
             padding: 0
 
-        //.card__btn
-        //    display: none
+        &__wrap
+            margin-bottom: calc($gap * 2)
+
+        &:last-of-type
+            margin-bottom: 0!important
+
+        .card__name
+            margin: 0 0 10px
 
     .card:nth-child(n)
-        width: 80%
+        width: 90%
         margin-bottom: 5%
+
+    .breakLine
+        display: none
+
+    .clients
+        margin-bottom: $gap
+
+    .client__card
+        width: 100%
 
     // faq
     .faq
@@ -532,10 +545,22 @@
     .howitworks__img
         height: 258px
 
+    .howitworks__list
+        margin-bottom: 0
+
+    // company
+    .company, .howitworks
+        margin-bottom: calc($gap * 2)
+
+        .btn
+            margin-bottom: 0
+
     // feedback
     .feedback
-        .feedback__title
-            margin: $gap
+        margin-bottom: calc($gap * 2)
+
+        &__title
+            margin-bottom: $gap
 
     .form__top
         flex-direction: column
@@ -557,9 +582,6 @@
             height: 106px
 
     // footer
-    .footer__aside
-        padding: 0 10px
-
     .footer__descr
         width: 80%
 
@@ -569,6 +591,22 @@
 
     .link__item
         margin-right: 18px
+
+    .footer__logo
+        margin-bottom: 0
+
+    .company__item:last-of-type, .template__item:last-of-type
+        margin-bottom: 0
+
+    .company-title, .template-title
+        padding-left: 0
+
+    .footer__nav
+        justify-content: space-between
+
+        .nav-link
+            position: relative
+            left: -7px
 
     //modal
     .modal-wrapper
@@ -609,7 +647,9 @@
         margin-bottom: 5px
 
     // cart
-    .cart-page 
+    .cart-page
+        margin-bottom: calc($gap * 2)
+
         .cart__title
             margin-bottom: calc( $gap + 10px )
 
@@ -655,7 +695,9 @@
     .cart__product-price-wraper
         flex-wrap: wrap
         width: 90%
-          
+
+    .cart__list, .cart__total
+        width: 85%
 
 @media (max-width: 370px)
     // home
