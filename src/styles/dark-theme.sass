@@ -2,14 +2,91 @@
   .header
     background: hsl(0deg 0% 0% / 80%)
 
-  .nav-link, .home__title, .company-title, .template-title, .footer .nav-link:hover
+  .nav-link,
+  .home__title,
+  .company-title,
+  .template-title,
+  .footer .nav-link:hover,
+  .search,
+  .menu-btn--disabled:hover,
+  .card__name,
+  .modal__card-text,
+  .howitworks__subtitle,
+  .form__check,
+  .cart__empty,
+  .cart__product-count,
+  .cart__total-price,
+  .cart__product-name
     color: $baseBgColor
 
-  .home__text, .rate__text, .client__text, .client__role, .footer__descr, .footer .nav-link
+  .home__text,
+  .rate__text,
+  .client__text,
+  .client__role,
+  .footer__descr,
+  .footer .nav-link,
+  .menu__text,
+  .card__weight,
+  .modal__card-descr,
+  .info__name,
+  .company__text,
+  .faq__text,
+  .howitworks__text,
+  .contacts__text
     color: $darkSmalTextColor
 
   .client__card
     box-shadow: 0px 0px 17px 2px rgb(255 255 255 / 20%)
+
+  .rate__img
+    background-color: rgba(53,184,190, 0.6)
+    padding: 3px 8px 8px 4px
+    border-radius: 7px
+
+  .ico__g
+    fill: $baseBgColor
+
+  .card, .cart__product
+    background-color: lighten($darkBgColor, 12%)
+    border-radius: 10px
+
+  .menu-btn--disabled, .search, .card__btn, .cart-btn
+    background-color: lighten($darkBgColor, 20%)
+
+  .card__image, .modal__card-image, .cart__product-img
+    background-color: $baseBgColor
+    filter: brightness(0.85)
+    border-radius: 6px
+
+  .menu-btn--disabled, .card__btn, .cart-btn
+    border: 2px solid lighten($darkBgColor, 30%)
+    color: $darkSmalTextColor
+
+    &:hover
+      color: $baseBgColor
+      background-color: $maincolor
+      border: 2px solid $maincolor
+
+  .search
+    outline: 2px solid lighten($darkBgColor, 30%)
+
+    &:focus, &:hover
+      outline-color: $maincolor
+
+  .loader
+    background-color: $darkBgColor
+
+  .modal
+    background-color: lighten($darkBgColor, 8%)
+    box-shadow: 0px 0px 80px 70px rgb(255 255 255 / 10%)
+
+  .cart__total
+    box-shadow: unset
+    border-radius: 15px
+    border: 2px solid $maincolor
+
+  .cart__product
+    padding: 10px
 
   .footer
     background-color: lighten($darkBgColor, 4%)

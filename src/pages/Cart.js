@@ -20,7 +20,12 @@ export const Cart = withAuthenticationRequired(() => {
     return count(prices)
   }
 
-  const deleteFromCartHandler = (id) => dispatch(deleteFromCart(id))
+  const deleteFromCartHandler = (e, id) => {
+    e.target.closest('.cart__item').style.opacity = '0';
+    setTimeout(() => {
+      dispatch(deleteFromCart(id))
+    }, 300)
+  }
 
   useEffect(() => {
     setPageContent(state.cart.map((el) => state.goods.find(elem => el.id === elem.id)))
@@ -35,16 +40,16 @@ export const Cart = withAuthenticationRequired(() => {
             {pageContent.length > 0
               ?
               pageContent.map((el) =>
-                <li className="cart__item" key={Math.random()}>
+                <li className="cart__item" key={el.id}>
                   <div className="cart__product">
                     <img className="cart__product-img" src={el.image} alt={''} />
                     <div className="cart__product-wrap">
                       <p className="cart__product-name">{el.title}</p>
                       <div className={`cart__product-price-wraper ${el.id}`}>
-                        <Counter count={state.cart.find(elem => elem.id === el.id) ? state.cart.find(elem => elem.id === el.id).count : 0} elementId={el.id}></Counter>
+                        <Counter count={state.cart.find(elem => elem.id === el.id) ? state.cart.find(elem => elem.id === el.id).count : 0} elementId={el.id} deleteHandler={(e, id) => deleteFromCartHandler(e, id)}></Counter>
                         <p className="cart__product-price text-color">{el.price} ₽</p>
                       </div>
-                      <div className="cart__product-delete" onClick={() => deleteFromCartHandler(el.id)}></div>
+                      <div className="cart__product-delete" onClick={(e) => deleteFromCartHandler(e, el.id)}><div className="cart__product-delete-inner"></div></div>
                     </div>
                   </div>
                 </li>

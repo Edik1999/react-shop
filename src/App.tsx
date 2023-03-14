@@ -1,9 +1,9 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import Home from './pages/Home';
 import './styles/index.sass';
 import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
-import {Routes, Route, Navigate} from 'react-router-dom';
+import {useLocation, Routes, Route, Navigate} from 'react-router-dom';
 import {Company} from './pages/Company';
 import {Contacts} from './pages/Contacts';
 import {FAQ} from './pages/FAQ';
@@ -12,6 +12,13 @@ import {Fullmenu} from './pages/Fullmenu';
 import {Profile} from "./pages/Profile";
 
 function App() {
+
+    let location = useLocation();
+
+    useEffect(() => {
+        window.scrollTo(0,0);
+    }, [location.pathname])
+
   return (
     <>
       <Header></Header>
