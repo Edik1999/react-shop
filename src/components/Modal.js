@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import Button from "./Button";
 import Counter from "./Counter";
-import {useState, useEffect} from 'react'
+import {useState, useEffect} from 'react';
 import { useAppDispatch } from "../store";
 import {cart} from '../store/slice/cartSlice';
 
@@ -14,7 +14,7 @@ function Modal({ isVisible, id, onClose }) {
   const [isInCart, setIsInCart] = useState();
   const [fadeIn, setFadeIn] = useState(false);
 
-  const dispatch = useAppDispatch()
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
       state.cart.find(elem => elem.id === id) ? setIsInCart(true) : setIsInCart(false)
@@ -27,7 +27,7 @@ function Modal({ isVisible, id, onClose }) {
 
   const close = () => {
       setFadeIn(false);
-      setTimeout(() => onClose(), 300)
+      setTimeout(() => onClose(), 400)
   }
 
   return isVisible === false ? null : (
@@ -65,12 +65,12 @@ function Modal({ isVisible, id, onClose }) {
                 <p className="modal__card-price text-color">
                   {content.price} &#8381;
                 </p>
-                {!isInCart 
+                {!isInCart
                   ? <Button modificator="card__btn" text="Add to cart" onClick={() => addToCartClick()}></Button>
                   : <Counter count={state.cart.find(elem => elem.id === id) ? state.cart.find(elem => elem.id === id).count : 0} elementId={id}></Counter>
-                }  
+                }
               </div>
-              <div className="modal__card-delete" onClick={() => close()}></div>
+              <div className="modal__card-delete" onClick={() => close()}><div className="modal__card-delete-inner"></div></div>
             </div>
           </>
         ) : (

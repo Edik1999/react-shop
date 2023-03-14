@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useAppDispatch } from "../store";
 import Card from "../components/Card";
@@ -8,7 +8,7 @@ import Modal from '../components/Modal';
 import { useGetGoodsQuery } from "../store/mockAPI/mockApi";
 import { goods } from "../store/slice/goodsSlice";
 import Loader from "../components/Loader";
-import { useAuth0, withAuthenticationRequired } from '@auth0/auth0-react'
+import { useAuth0, withAuthenticationRequired } from '@auth0/auth0-react';
 
 export const Fullmenu = withAuthenticationRequired(() => {
 
@@ -164,7 +164,10 @@ export const Fullmenu = withAuthenticationRequired(() => {
                 <p>Oops, try another search</p>
               )}
             </ul>
-            {clickedCard ? <Modal isVisible={modalState} id={clickedCard} onClose={closeModal}></Modal> : null}
+            {clickedCard
+                ? <Modal isVisible={modalState} id={clickedCard} onClose={closeModal}></Modal>
+                : null
+            }
           </>
         )}
       </>

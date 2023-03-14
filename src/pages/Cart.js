@@ -49,7 +49,7 @@ export const Cart = withAuthenticationRequired(() => {
                         <Counter count={state.cart.find(elem => elem.id === el.id) ? state.cart.find(elem => elem.id === el.id).count : 0} elementId={el.id} deleteHandler={(e, id) => deleteFromCartHandler(e, id)}></Counter>
                         <p className="cart__product-price text-color">{el.price} ₽</p>
                       </div>
-                      <div className="cart__product-delete" onClick={(e) => deleteFromCartHandler(e, el.id)}></div>
+                      <div className="cart__product-delete" onClick={(e) => deleteFromCartHandler(e, el.id)}><div className="cart__product-delete-inner"></div></div>
                     </div>
                   </div>
                 </li>
