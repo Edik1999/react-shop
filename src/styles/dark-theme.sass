@@ -2,14 +2,63 @@
   .header
     background: hsl(0deg 0% 0% / 80%)
 
-  .nav-link, .home__title, .company-title, .template-title, .footer .nav-link:hover
+  .nav-link,
+  .home__title,
+  .company-title,
+  .template-title,
+  .footer .nav-link:hover,
+  .search,
+  .menu-btn--disabled:hover,
+  .card__name
     color: $baseBgColor
 
-  .home__text, .rate__text, .client__text, .client__role, .footer__descr, .footer .nav-link
+  .home__text,
+  .rate__text,
+  .client__text,
+  .client__role,
+  .footer__descr,
+  .footer .nav-link,
+  .menu__text
     color: $darkSmalTextColor
 
   .client__card
     box-shadow: 0px 0px 17px 2px rgb(255 255 255 / 20%)
+
+  .rate__img
+    background-color: rgba(53,184,190, 0.6)
+    padding: 3px 8px 8px 4px
+    border-radius: 7px
+
+  .ico__g
+    fill: $baseBgColor
+
+  .card
+    background-color: lighten($darkBgColor, 12%)
+
+  .menu-btn--disabled, .search, .card__btn
+    background-color: lighten($darkBgColor, 20%)
+
+  .card__image
+    background-color: $baseBgColor
+    filter: brightness(0.85)
+
+  .menu-btn--disabled, .card__btn
+    border: 2px solid lighten($darkBgColor, 30%)
+    color: lighten($darkBgColor, 45%)
+
+    &:hover
+      color: $baseBgColor
+      background-color: $maincolor
+      border: 2px solid $maincolor
+
+  .search
+    outline: 2px solid lighten($darkBgColor, 30%)
+
+    &:focus, &:hover
+      outline-color: $maincolor
+
+  .loader
+    background-color: $darkBgColor
 
   .footer
     background-color: lighten($darkBgColor, 4%)

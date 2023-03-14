@@ -122,3 +122,19 @@ img
         transform: rotate(0deg)
     100%
         transform: rotate(360deg)
+
+.animation-enter
+    opacity: 0
+    transform: translateY(250px)
+
+.animation-enter-active
+    opacity: 1
+    transform: translateY(0px)
+    transition: all 700ms
+
+.animation-exit
+    opacity: 1
+
+.animation-exit-active
+    opacity: 0
+    transition: all 700ms

@@ -12,19 +12,26 @@ function Modal({ isVisible, id, onClose }) {
   const content = state.goods.find((el) => el.id === id);
 
   const [isInCart, setIsInCart] = useState();
+  const [fadeIn, setFadeIn] = useState(false);
+
   const dispatch = useAppDispatch()
 
   useEffect(() => {
       state.cart.find(elem => elem.id === id) ? setIsInCart(true) : setIsInCart(false)
+      setFadeIn(true)
   }, [state.cart, id])
 
   const addToCartClick = () => {
     dispatch(cart(id))
   }
 
+  const close = () => {
+      setFadeIn(false);
+      setTimeout(() => onClose(), 300)
+  }
 
   return isVisible === false ? null : (
-    <div className="modal-wrapper" onClick={() => onClose()}>
+    <div className={`modal-wrapper ${fadeIn ? 'modal-wrapper--active' : null}`} onClick={() => close()}>
       <div className="modal" onClick={e => e.stopPropagation()}>
         {content.id ? (
           <>
@@ -63,7 +70,7 @@ function Modal({ isVisible, id, onClose }) {
                   : <Counter count={state.cart.find(elem => elem.id === id) ? state.cart.find(elem => elem.id === id).count : 0} elementId={id}></Counter>
                 }  
               </div>
-              <div className="modal__card-delete" onClick={() => onClose()}></div>
+              <div className="modal__card-delete" onClick={() => close()}></div>
             </div>
           </>
         ) : (
