@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import logo from "../../img/logo.svg";
 import cart from "../../img/cart.svg";
 import { NavLink, Link } from 'react-router-dom';
@@ -8,9 +8,17 @@ import Button from "../Button";
 
 function Header() {
 
+  let themeFromLocalStorage = localStorage.getItem('theme');
+
+  useEffect(() => {
+    themeFromLocalStorage === 'dark'
+        ? document.body.classList.add('themeDark')
+        : document.body.classList.remove('themeDark')
+  }, [])
+
   const state = useSelector((state) => state);
   const [isOpen, setIsOpen] = useState(false);
-  const [theme, setTheme] = useState('light');
+  const [theme, setTheme] = useState(themeFromLocalStorage !== null ? themeFromLocalStorage : 'light');
 
   const { loginWithRedirect, isAuthenticated } = useAuth0();
 
@@ -23,16 +31,18 @@ function Header() {
   }
 
   const switchTheme = () => {
+    console.log(theme)
     document.body.classList.remove('themeDark');
     setTheme((prev) => {
       if(prev === 'light'){
         document.body.classList.add('themeDark');
+        localStorage.setItem('theme', 'dark');
         return 'dark'
       }else{
+        localStorage.setItem('theme', 'light');
         return 'light'
       }
     })
-
   }
 
   return (
