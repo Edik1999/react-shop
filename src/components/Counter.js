@@ -5,10 +5,24 @@ import {deleteSingleGood, addSingleGood, deleteFromCart} from '../store/slice/ca
 function Counter({count, elementId, deleteHandler}) {
     const dispatch = useAppDispatch();
 
+    let localStorageCart,
+        elem;
+
+    if(localStorage.getItem('cart')){
+        localStorageCart = JSON.parse(localStorage.getItem('cart'));
+        elem = localStorageCart.filter(el => el.id === elementId)[0];
+    }
+
     const dec = (e) => {
         if(count > 1){
             dispatch(deleteSingleGood(elementId))
+            elem.count -= 1;
+            localStorage.setItem('cart', JSON.stringify(localStorageCart));
+
         }else{
+            localStorage.setItem('cart', JSON.stringify(localStorageCart.filter(el => el.id !== elementId)));
+            if(localStorage.getItem('cart') === '[]') localStorage.removeItem('cart')
+
             if(deleteHandler){
                 deleteHandler(e, elementId)
             }else{
@@ -17,7 +31,12 @@ function Counter({count, elementId, deleteHandler}) {
         }
     }
 
-    const inc = () => dispatch(addSingleGood(elementId))
+    const inc = () => {
+        dispatch(addSingleGood(elementId))
+
+        elem.count += 1;
+        localStorage.setItem('cart', JSON.stringify(localStorageCart));
+    }
 
     return (
         <div className="counter" onClick={(e) => e.stopPropagation()}>
