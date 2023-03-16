@@ -24,6 +24,10 @@ export const Cart = withAuthenticationRequired(() => {
     e.target.closest('.cart__item').style.opacity = '0';
     setTimeout(() => {
       dispatch(deleteFromCart(id))
+
+      let localStorageCart = JSON.parse(localStorage.getItem('cart'));
+      localStorage.setItem('cart', JSON.stringify(localStorageCart.filter(el => el.id !== id)));
+      if(localStorage.getItem('cart') === '[]') localStorage.removeItem('cart')
     }, 300)
   }
 
@@ -77,6 +81,5 @@ export const Cart = withAuthenticationRequired(() => {
         </div>
       </div>
     </>
-
   )
 })
