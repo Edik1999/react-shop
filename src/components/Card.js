@@ -5,7 +5,7 @@ import Counter from './Counter';
 import { useAppDispatch } from "../store";
 import {cart} from '../store/slice/cartSlice';
 
-function Card({id, title, image, price, text, type, click}) {
+function Card({id, title, image, renderImg, price, text, type, click}) {
 
     const [isInCart, setIsInCart] = useState();
     const dispatch = useAppDispatch()
@@ -31,7 +31,8 @@ function Card({id, title, image, price, text, type, click}) {
     
     return (
         <div className={`card ${id} ${type}`} onClick={() => click(id)}>
-            <img className="card__image" src={image} alt="" />
+            {/*<img className="card__image" src={image} alt={title} />*/}
+            {renderImg()}
             <div className="card__content">
                 <p className="card__name">{title}</p>
                 <div className='card__footer'>

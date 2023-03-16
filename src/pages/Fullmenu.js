@@ -5,6 +5,8 @@ import Search from "../components/Search";
 import Button from '../components/Button';
 import Modal from '../components/Modal';
 import { withAuthenticationRequired } from '@auth0/auth0-react';
+import Loader from "../components/Loader";
+import {imagesLoaded} from "../hooks/useImagesLoaded";
 
 export const Fullmenu = withAuthenticationRequired(() => {
 
@@ -15,6 +17,7 @@ export const Fullmenu = withAuthenticationRequired(() => {
     const [priceSort, setPriceSort] = useState(1)
     const [modalState, setModalState] = useState(false)
     const [clickedCard, setClickedCard] = useState()
+    const [loading, setLoading] = useState(true)
 
     const filterContent = (filterString) => state.goods.filter(el => el.title.toLowerCase().indexOf(filterString.toLowerCase()) > -1)
 
@@ -109,8 +112,28 @@ export const Fullmenu = withAuthenticationRequired(() => {
       setModalState(!modalState)
     }
 
+    let imagesParent;
+
+    const handleImageChange = () => {
+        setLoading(!imagesLoaded(imagesParent))
+    }
+
+    const renderSpinner = () => {
+        if (!loading) {
+            return null
+        }
+        return <Loader></Loader>
+    }
+
+    const renderImage = (imageUrl) => {
+        return (
+            <img className="card__image" src={imageUrl} alt="product image" onLoad={() => handleImageChange()} onError={() => handleImageChange()}/>
+        );
+    }
+
     return (
       <>
+        {renderSpinner()}
         <h2 className="section__title menu__title text-color">Browse our menu</h2>
         <p className="menu__text">
           Use our menu to place an order online, or <span className="text-color">phone</span> our store <br className="breakLine"/> to place a
@@ -124,10 +147,10 @@ export const Fullmenu = withAuthenticationRequired(() => {
           <Button modificator={`menu-btn sorting-btn ${whichClass()}`} text={"Price"} onClick={(e) => orderByPrice()}></Button>
           <Search handler={searchHandler}></Search>
         </div>
-        <ul className="card__wrap">
+        <ul className="card__wrap" ref={element => imagesParent = element}>
           {content.length > 0 ? (
             content.map((el) => (
-              <Card key={el.id} id={el.id} title={el.title} image={el.image} price={el.price} text={el.text} type={el.type} click={(id) => cardClickHandler(id)} />
+              <Card key={el.id} id={el.id} title={el.title} image={el.image} renderImg={() => renderImage(el.image)} price={el.price} text={el.text} type={el.type} click={(id) => cardClickHandler(id)} />
             ))
           ) : (
             <p>Oops, try another search</p>
