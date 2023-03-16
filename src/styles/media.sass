@@ -33,19 +33,27 @@
 
 @media (max-width: 1360px)
     // home
+    .home__right
+        right: calc( ($gap * -2) + 10px )
+
     .home__left
         margin: 0
 
     // menu
     .menu__filter
-        justify-content: space-between
+        justify-content: space-evenly
+        flex-wrap: wrap
 
     .menu-btn
+        width: 29%
         padding: 19px 0
-        width: 40%
+        margin: 0
+
+    .menu-btn:nth-of-type(-n+3)
+        margin-bottom: 1.5%
 
     .search
-        width: 27%      
+        width: 29%      
         
     .card
         width: 49.25%
@@ -68,6 +76,8 @@
         margin-top: 100px
 
     // contacts
+    .contacts
+        margin-bottom: calc( $gap * 5 )
     .contacts__title
         width: 80%
 
@@ -119,7 +129,7 @@
 
     // menu
     .menu__filter
-        flex-wrap: wrap
+        justify-content: space-between
 
     .menu-btn
         width: 49%
