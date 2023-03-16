@@ -4,6 +4,7 @@ import Counter from "./Counter";
 import {useState, useEffect} from 'react';
 import { useAppDispatch } from "../store";
 import {cart} from '../store/slice/cartSlice';
+import {saveProductLocal} from "../helpers/saveProductLocal";
 
 function Modal({ isVisible, id, onClose }) {
 
@@ -23,14 +24,7 @@ function Modal({ isVisible, id, onClose }) {
 
   const addToCartClick = () => {
       dispatch(cart(id));
-      if (localStorage.getItem('cart')){
-          let localStorageCart = JSON.parse(localStorage.getItem('cart'));
-          let newLocalStorageCart = [...localStorageCart, {id: id, count: 1}];
-          localStorage.setItem('cart', JSON.stringify(newLocalStorageCart));
-      }else{
-          let cart = [{id: id, count: 1}]
-          localStorage.setItem('cart', JSON.stringify(cart));
-      }
+      saveProductLocal(id);
   }
 
   const close = () => {

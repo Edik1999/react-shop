@@ -14,6 +14,7 @@ function Header() {
     themeFromLocalStorage === 'dark'
         ? document.body.classList.add('themeDark')
         : document.body.classList.remove('themeDark')
+    // eslint-disable-next-line
   }, [])
 
   const state = useSelector((state) => state);
@@ -31,7 +32,6 @@ function Header() {
   }
 
   const switchTheme = () => {
-    console.log(theme)
     document.body.classList.remove('themeDark');
     setTheme((prev) => {
       if(prev === 'light'){
