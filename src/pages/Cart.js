@@ -81,6 +81,5 @@ export const Cart = withAuthenticationRequired(() => {
         </div>
       </div>
     </>
-
   )
 })
