@@ -6,7 +6,7 @@ import Button from '../components/Button';
 import Modal from '../components/Modal';
 import { withAuthenticationRequired } from '@auth0/auth0-react';
 import Loader from "../components/Loader";
-import {imagesLoaded} from "../hooks/useImagesLoaded";
+import {imagesLoaded} from "../helpers/imagesLoaded";
 
 export const Fullmenu = withAuthenticationRequired(() => {
 
@@ -118,22 +118,15 @@ export const Fullmenu = withAuthenticationRequired(() => {
         setLoading(!imagesLoaded(imagesParent))
     }
 
-    const renderSpinner = () => {
-        if (!loading) {
-            return null
-        }
-        return <Loader></Loader>
-    }
-
     const renderImage = (imageUrl) => {
         return (
-            <img className="card__image" src={imageUrl} alt="product image" onLoad={() => handleImageChange()} onError={() => handleImageChange()}/>
+            <img className="card__image" src={imageUrl} alt="product" onLoad={() => handleImageChange()} onError={() => handleImageChange()}/>
         );
     }
 
     return (
       <>
-        {renderSpinner()}
+        {loading && <Loader></Loader>}
         <h2 className="section__title menu__title text-color">Browse our menu</h2>
         <p className="menu__text">
           Use our menu to place an order online, or <span className="text-color">phone</span> our store <br className="breakLine"/> to place a

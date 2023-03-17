@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useDebounce } from "../hooks/debounce";
+import { useDebounce } from "../hooks/useDebounce";
 
 function Search({handler}) {
 
@@ -7,11 +7,9 @@ function Search({handler}) {
   const debounced = useDebounce(search, 300);
 
   useEffect(() => {
-
     handler(debounced)
-
+    // eslint-disable-next-line
   }, [debounced])
-
 
   return (
     <input className="search"
@@ -24,4 +22,4 @@ function Search({handler}) {
   );
 }
 
-export default Search;
+export default Search
