@@ -17,7 +17,7 @@ export const Fullmenu = withAuthenticationRequired(() => {
     const [priceSort, setPriceSort] = useState(1)
     const [modalState, setModalState] = useState(false)
     const [clickedCard, setClickedCard] = useState()
-    const [loading, setLoading] = useState(true)
+    const [imagesLoading, setImagesLoading] = useState(true)
 
     const filterContent = (filterString) => state.goods.filter(el => el.title.toLowerCase().indexOf(filterString.toLowerCase()) > -1)
 
@@ -115,7 +115,7 @@ export const Fullmenu = withAuthenticationRequired(() => {
     let imagesParent;
 
     const handleImageChange = () => {
-        setLoading(!imagesLoaded(imagesParent))
+        setImagesLoading(!imagesLoaded(imagesParent))
     }
 
     const renderImage = (imageUrl) => {
@@ -126,7 +126,7 @@ export const Fullmenu = withAuthenticationRequired(() => {
 
     return (
       <>
-        {loading && <Loader></Loader>}
+        {imagesLoading && <Loader></Loader>}
         <h2 className="section__title menu__title text-color">Browse our menu</h2>
         <p className="menu__text">
           Use our menu to place an order online, or <span className="text-color">phone</span> our store <br className="breakLine"/> to place a
