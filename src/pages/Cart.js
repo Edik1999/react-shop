@@ -46,7 +46,7 @@ export const Cart = withAuthenticationRequired(() => {
               pageContent.map((el) =>
                 <li className="cart__item" key={el.id}>
                   <div className="cart__product">
-                    <img className="cart__product-img" src={el.image} alt={''} />
+                    <img className="cart__product-img" src={el.image} alt={el.title} />
                     <div className="cart__product-wrap">
                       <p className="cart__product-name">{el.title}</p>
                       <div className={`cart__product-price-wraper ${el.id}`}>
