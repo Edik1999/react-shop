@@ -37,7 +37,7 @@ function Modal({ isVisible, id, onClose }) {
       <div className="modal" onClick={e => e.stopPropagation()}>
         {content.id ? (
           <>
-            <img className="modal__card-image" src={content.image} alt="" />
+            <img className="modal__card-image" src={content.image} alt={content.title} />
             <div className="modal__card-wraper">
               <div className="modal__card-name">
                 <p className="card__name">{content.title}</p>

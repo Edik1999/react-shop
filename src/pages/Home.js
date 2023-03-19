@@ -4,7 +4,9 @@ import clientavatar from "../img/client-avatar.webp";
 import {Link} from 'react-router-dom';
 import { CSSTransition } from 'react-transition-group';
 import useAnimationState from "../hooks/useAnimationState";
-import {createRef} from "react";
+import {createRef, useState} from "react";
+import {imagesLoaded} from "../helpers/imagesLoaded";
+import Loader from "../components/Loader";
 
 function Home() {
 
@@ -12,8 +14,19 @@ function Home() {
   const nodeRef = createRef();
   const secondNodeRef = createRef();
 
+  const [imagesLoading, setImagesLoading] = useState(true)
+
+  const handleImageChange = (imagesParent) => {
+    setImagesLoading(!imagesLoaded(imagesParent))
+  }
+
+  let parent,
+      parent2,
+      parent3;
+
   return (
     <>
+      {imagesLoading && <Loader></Loader>}
       <CSSTransition
         classNames="animation"
         in={animationState}
@@ -33,16 +46,16 @@ function Home() {
               text ever since the 1500.
             </p>
             <Link to="/menu" className="btn home__btn">To Menu</Link>
-            <div className="home__rate">
-              <img className="rate__img" src={trustpilot} alt={''}/>
+            <div className="home__rate" ref={elem => parent = elem}>
+              <img className="rate__img" src={trustpilot} alt='Trustpilot' onLoad={() => handleImageChange(parent)} onError={() => handleImageChange(parent)}/>
               <p className="rate__text">
                 <span className="text-color">4.8 out of 5</span> based on 2000+
                 reviews
               </p>
             </div>
           </div>
-          <div className="home__right">
-            <img src={homedecorate} alt={''}/>
+          <div className="home__right" ref={elem => parent2 = elem}>
+            <img src={homedecorate} alt='food order' onLoad={() => handleImageChange(parent2)} onError={() => handleImageChange(parent2)}/>
           </div>
         </section>
       </CSSTransition>
@@ -56,11 +69,11 @@ function Home() {
       >
         <section className="clients" ref={secondNodeRef}>
           <h2 className="clients__title text-color">Clients</h2>
-          <ul className="clients__wrap">
+          <ul className="clients__wrap" ref={elem => parent3 = elem}>
             <li className="client__card">
               <p className="client__text">Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit odio dignissim qui blandit molestie consequat.</p>
               <div className="client__info">
-                <img className="client__avatar" src={clientavatar} alt={''}/>
+                <img className="client__avatar" src={clientavatar} alt='client avatar' onLoad={() => handleImageChange(parent3)} onError={() => handleImageChange(parent3)}/>
                 <div className="client__descr">
                   <p className="client__name text-color">John Armstrong</p>
                   <p className="client__role">Customer</p>
@@ -70,7 +83,7 @@ function Home() {
             <li className="client__card">
               <p className="client__text">Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit odio dignissim qui blandit molestie consequat.</p>
               <div className="client__info">
-                <img className="client__avatar" src={clientavatar} alt={''}/>
+                <img className="client__avatar" src={clientavatar} alt='client avatar' onLoad={() => handleImageChange(parent3)} onError={() => handleImageChange(parent3)}/>
                 <div className="client__descr">
                   <p className="client__name text-color">John Armstrong</p>
                   <p className="client__role">Customer</p>
@@ -80,7 +93,7 @@ function Home() {
             <li className="client__card">
               <p className="client__text">Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit odio dignissim qui blandit molestie consequat.</p>
               <div className="client__info">
-                <img className="client__avatar" src={clientavatar} alt={''}/>
+                <img className="client__avatar" src={clientavatar} alt='client avatar' onLoad={() => handleImageChange(parent3)} onError={() => handleImageChange(parent3)}/>
                 <div className="client__descr">
                   <p className="client__name text-color">John Armstrong</p>
                   <p className="client__role">Customer</p>

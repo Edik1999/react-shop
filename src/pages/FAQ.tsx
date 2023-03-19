@@ -1,4 +1,4 @@
-import {createRef} from "react";
+import {createRef, useState} from "react";
 import faqdecorate from "../img/faq-decorate.webp";
 import hiwdecorate1 from "../img/hiw-decorate-1.webp";
 import hiwdecorate2 from "../img/hiw-decorate-2.webp";
@@ -7,6 +7,8 @@ import {Link} from 'react-router-dom';
 import { withAuthenticationRequired } from '@auth0/auth0-react';
 import { CSSTransition } from 'react-transition-group';
 import useAnimationState from "../hooks/useAnimationState";
+import {imagesLoaded} from "../helpers/imagesLoaded";
+import Loader from "../components/Loader";
 
 export const FAQ = withAuthenticationRequired(() => {
 
@@ -14,8 +16,18 @@ export const FAQ = withAuthenticationRequired(() => {
   const nodeRef = createRef<HTMLElement>();
   const secondNodeRef = createRef<HTMLElement>();
 
+  const [imagesLoading, setImagesLoading] = useState(true)
+
+  const handleImageChange = (imagesParent: HTMLDivElement | HTMLUListElement): void => {
+    setImagesLoading(!imagesLoaded(imagesParent))
+  }
+
+  let parent: HTMLDivElement,
+      parent2: HTMLUListElement;
+
   return (
       <>
+        {imagesLoading && <Loader></Loader>}
         <CSSTransition
             classNames="animation"
             in={animationState}
@@ -25,8 +37,8 @@ export const FAQ = withAuthenticationRequired(() => {
             nodeRef={nodeRef}
         >
           <section className="faq" ref={nodeRef}>
-            <div className="faq__left">
-              <img className="faq__img" src={faqdecorate} alt={''}/>
+            <div className="faq__left" ref={elem => parent = elem as HTMLDivElement}>
+              <img className="faq__img" src={faqdecorate} alt="online order" onLoad={() => handleImageChange(parent)} onError={() => handleImageChange(parent)}/>
             </div>
             <div className="faq__right">
               <h2 className="section__title faq__title text-color">Order online with our simple checkout.</h2>
@@ -45,9 +57,9 @@ export const FAQ = withAuthenticationRequired(() => {
         >
           <section className="howitworks" ref={secondNodeRef}>
             <h2 className="section__title howitworks__title text-color">How it works.</h2>
-            <ul className="howitworks__list">
+            <ul className="howitworks__list"  ref={elem => parent2 = elem as HTMLUListElement}>
               <li className="howitworks__item">
-                <img className="howitworks__img" src={hiwdecorate1} alt={''}/>
+                <img className="howitworks__img" src={hiwdecorate1} alt="How it work. First step." onLoad={() => handleImageChange(parent2)} onError={() => handleImageChange(parent2)}/>
                 <p className="howitworks__subtitle">Adapt your menu items</p>
                 <p className="howitworks__text">Easily adapt your menu using the webflow CMS and allow customers to browse your items.</p>
               </li>
@@ -55,7 +67,7 @@ export const FAQ = withAuthenticationRequired(() => {
                 <div className="howitworks__item-border"></div>
               </li>
               <li className="howitworks__item">
-                <img className="howitworks__img" src={hiwdecorate2} alt={''}/>
+                <img className="howitworks__img" src={hiwdecorate2} alt="How it work. Second step." onLoad={() => handleImageChange(parent2)} onError={() => handleImageChange(parent2)}/>
                 <p className="howitworks__subtitle">Accept online orders & takeout</p>
                 <p className="howitworks__text">Let your customers order and pay via the powerful ecommerce system, or simple let them call your store.</p>
               </li>
@@ -63,7 +75,7 @@ export const FAQ = withAuthenticationRequired(() => {
                 <div className="howitworks__item-border"></div>
               </li>
               <li className="howitworks__item">
-                <img className="howitworks__img" src={hiwdecorate3} alt={''}/>
+                <img className="howitworks__img" src={hiwdecorate3} alt="How it work. Third step." onLoad={() => handleImageChange(parent2)} onError={() => handleImageChange(parent2)}/>
                 <p className="howitworks__subtitle">Manage delivery or takeout</p>
                 <p className="howitworks__text">Manage your own logistics and take orders simply through the ecommerce system.</p>
               </li>
