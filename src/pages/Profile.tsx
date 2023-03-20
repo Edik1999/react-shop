@@ -23,12 +23,15 @@ import {createRef} from "react";
              nodeRef={nodeRef}
          >
             <section className='profile' ref={nodeRef}>
-                 <img src={user?.picture} alt={user?.name} />
-                 <div>
-                     <h2>{user?.name}</h2>
-                     <p>{user?.email}</p>
+                 <div className='profile__user'>
+                    <img className='user__photo' src={user?.picture} alt={user?.name} />
+                    <h2 className='user__name'>{user?.name}</h2>
+                    <p className='user__email'>{user?.email}</p>
+                    <Button modificator={""} text={"Log Out"} onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}></Button>
                  </div>
-                 <Button modificator={""} text={"Log Out"} onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}></Button>
+                 <div className='profile__history'>
+                    <h2 className='history__title'>История заказов</h2>
+                 </div>
              </section>
          </CSSTransition>
      )
