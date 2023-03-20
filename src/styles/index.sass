@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500&display=swap')
 @import './varibles/index'
 @import './layout/footer'
 @import './layout/header'
@@ -10,13 +11,12 @@
 @import './pages/Profile'
 @import './dark-theme.sass'
 @import './media'
-@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap')
 
 *,
 *::before,
 *::after 
     box-sizing: border-box
-    font-family: 'Montserrat', sans-serif
+    font-family: 'Ubuntu', sans-serif
     margin: 0
     padding: 0
     outline: none
@@ -37,6 +37,9 @@ ul
 
 img
     max-width: 100%
+
+h1, h2
+    font-weight: 500
 
 .container
     max-width: 1440px
@@ -76,6 +79,7 @@ img
     font-size: $titleFZ
     line-height: calc( $titleFZ + 5px )
     margin-bottom: $gap
+    font-weight: 500
 
     @media (max-width: 768px)
         text-align: center
