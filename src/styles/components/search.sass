@@ -1,15 +1,12 @@
 .search
     padding: 20px 35px
-    border: 2px solid #546285
+    border: 2px solid $smalTextColor
     border-radius: 12px
     width: 35%
-    color: #546285
     font-size: $textFZ
     line-height: calc( $textFZ + 2px)
     color: $smalTextColor
     transition: all .2s
-    &:hover
-        outline-color: $maincolor
 
-    &:focus
-        outline-color: $maincolor
+    &:hover, &:focus
+        border-color: $maincolor

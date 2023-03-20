@@ -16,7 +16,11 @@
   .cart__empty,
   .cart__product-count,
   .cart__total-price,
-  .cart__product-name
+  .cart__product-name,
+  .form__input,
+  .form__textarea,
+  .user__name,
+  .history__title
     color: $baseBgColor
 
   .home__text,
@@ -33,13 +37,12 @@
   .faq__text,
   .howitworks__text,
   .contacts__text,
-  .user__name,
   .user__email,
-  .history__title
+  .history__text
     color: $darkSmalTextColor
 
   .client__card
-    box-shadow: 0px 0px 17px 2px rgb(255 255 255 / 20%)
+    box-shadow: 0px 0px 12px 5px rgb(255 255 255 / 11%)
 
   .rate__img
     background-color: rgba(53,184,190, 0.6)
@@ -49,7 +52,7 @@
   .ico__g
     fill: $baseBgColor
 
-  .card, .cart__product
+  .card, .cart__product, .client__card
     background-color: lighten($darkBgColor, 12%)
     border-radius: 10px
 
@@ -57,7 +60,7 @@
     .card__name
       text-shadow: 5px 5px 3px rgb(255 255 255 / 30%)
 
-  .menu-btn--disabled, .search, .card__btn, .cart-btn
+  .menu-btn--disabled, .search, .card__btn, .cart-btn, .form__input, .form__textarea 
     background-color: lighten($darkBgColor, 20%)
 
   .card__image, .modal__card-image, .cart__product-img
@@ -75,10 +78,10 @@
       border: 2px solid $maincolor
 
   .search
-    outline: 2px solid lighten($darkBgColor, 30%)
+    border: 2px solid lighten($darkBgColor, 30%)
 
     &:focus, &:hover
-      outline-color: $maincolor
+      border-color: $maincolor
 
   .loader
     background-color: $darkBgColor
@@ -97,3 +100,10 @@
 
   .footer
     background-color: lighten($darkBgColor, 4%)
+
+  .form__input, .form__textarea
+    border: 2px solid lighten($darkBgColor, 30%)
+
+    &:hover, &:focus, &:active
+      border: 2px solid $maincolor
+      

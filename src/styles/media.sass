@@ -476,6 +476,9 @@
     .bottom
         padding-top: 20px
 
+    .header__text
+        margin-right: 20px
+
     // menu
     .menu__filter
         margin-bottom: $gap
@@ -495,7 +498,7 @@
 
     .search
         order: -1
-        width: 98.7%
+        width: 100%
         margin-left: 2px
         padding: 12px 14px
         font-size: 14px
@@ -713,7 +716,16 @@
     .cart__list, .cart__total
         width: 85%
 
+@media (max-width: 518px)
+    // header
+    .theme-switcher
+        top: 5px
+
 @media (max-width: 370px)
+    // header
+    .header__text
+        margin-right: 0
+
     // home
     .home
         margin-bottom: $gap
