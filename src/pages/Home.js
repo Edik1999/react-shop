@@ -37,15 +37,15 @@ function Home() {
       >
         <section className="home" ref={nodeRef}>
           <div className="home__left">
-            <h1 className="home__title">
+            <h1 className="section__title">
               Beautiful food & takeaway, <span className="text-color">delivered</span> to your door.
             </h1>
-            <p className="home__text">
+            <p className="section__text">
               Lorem Ipsum is simply dummy text of the printing and typesetting
               industry. Lorem Ipsum has been the industry's standard dummy
               text ever since the 1500.
             </p>
-            <Link to="/menu" className="btn home__btn">To Menu</Link>
+            <Link to="/menu" className="btn home-btn">To Menu</Link>
             <div className="home__rate" ref={elem => parent = elem}>
               <img className="rate__img" src={trustpilot} alt='Trustpilot' onLoad={() => handleImageChange(parent)} onError={() => handleImageChange(parent)}/>
               <p className="rate__text">
@@ -68,10 +68,10 @@ function Home() {
           nodeRef={secondNodeRef}
       >
         <section className="clients" ref={secondNodeRef}>
-          <h2 className="clients__title text-color">Clients</h2>
+          <h2 className="section__title text-color">Clients</h2>
           <ul className="clients__wrap" ref={elem => parent3 = elem}>
             <li className="client__card">
-              <p className="client__text">Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit odio dignissim qui blandit molestie consequat.</p>
+              <p className="section__text">Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit odio dignissim qui blandit molestie consequat.</p>
               <div className="client__info">
                 <img className="client__avatar" src={clientavatar} alt='client avatar' onLoad={() => handleImageChange(parent3)} onError={() => handleImageChange(parent3)}/>
                 <div className="client__descr">
@@ -81,7 +81,7 @@ function Home() {
               </div>
             </li>
             <li className="client__card">
-              <p className="client__text">Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit odio dignissim qui blandit molestie consequat.</p>
+              <p className="section__text">Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit odio dignissim qui blandit molestie consequat.</p>
               <div className="client__info">
                 <img className="client__avatar" src={clientavatar} alt='client avatar' onLoad={() => handleImageChange(parent3)} onError={() => handleImageChange(parent3)}/>
                 <div className="client__descr">
@@ -91,7 +91,7 @@ function Home() {
               </div>
             </li>
             <li className="client__card">
-              <p className="client__text">Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit odio dignissim qui blandit molestie consequat.</p>
+              <p className="section__text">Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit odio dignissim qui blandit molestie consequat.</p>
               <div className="client__info">
                 <img className="client__avatar" src={clientavatar} alt='client avatar' onLoad={() => handleImageChange(parent3)} onError={() => handleImageChange(parent3)}/>
                 <div className="client__descr">

@@ -93,20 +93,19 @@
         width: 40%
 
 @media (max-width: 1023.9px)
-
     // home
     .home
         flex-direction: column
         margin-bottom: calc( $gap * 3 )
 
+        .section__title
+            font-size: 50px
+            line-height: 50px
+
     .home__left
         position: relative
         margin: 0
         padding-left: calc( $gap  * 3 )
-
-    .home__title
-        font-size: 50px
-        line-height: 50px
 
     .home__rate
         position: absolute
@@ -143,8 +142,7 @@
     .search
         width: 49%
         font-size: 16px
-        padding: 16px 26px
-        
+        padding: 16px 26px        
     
     .card
         width: 100%
@@ -170,10 +168,13 @@
         margin-top: 0
         padding-left: 0
 
-        .company__title,
-        .company__text
+        .section__title,
+        .section__text
             width: 100%
             text-align: center
+
+        .section__text
+            width: 80%
 
     .company__right
         position: relative
@@ -194,13 +195,13 @@
         flex-direction: column
         align-items: center
 
-        .faq__title
-            width: 100%
+        .section__title,
+        .section__text
             text-align: center
+            width: 100%
 
-        .faq__text
-            width: 100%
-            text-align: center
+        .section__text
+            width: 80%
 
     // howitworks
     .howitworks__img
@@ -223,21 +224,20 @@
         align-items: center
         margin-bottom: calc( $gap * 2 )
 
+        .section__title,
+        .section__text
+            width: 100%
+            text-align: center
+
     .contacts__left
         display: flex
         flex-direction: column
         margin-top: 0
-        padding-left: 0
 
     .contacts__right
         position: relative
         margin-bottom: $gap
         padding-left: calc( $gap * 2 )
-
-    .contacts__title,
-    .contacts__text
-        width: 100%
-        text-align: center
 
     .contacts__link
         margin: 0 auto
@@ -258,15 +258,15 @@
         flex-direction: column
         align-items: center
 
+    .section__text
+        text-align: center
+
     .cart__list,
     .cart__total
         width: 70%
 
     .cart__list
         margin-bottom: $gap
-
-    .cart__empty
-        text-align: center
 
     .cart__product-img
         width: 140px
@@ -330,16 +330,16 @@
         padding-bottom: $gap
         border-bottom: 1px solid $counterBorderColor
 
+        .section__title
+            font-size: 40px
+            line-height: 40px
+
+        .section__text
+            width: 90%
+
     .home__left
         padding: 0
         align-items: center
-
-    .home__title
-        font-size: 40px
-        line-height: 40px
-
-    .home__text
-        width: 90%
 
     .home__rate
         position: relative
@@ -670,6 +670,9 @@
         .cart__title
             margin-bottom: calc( $gap + 10px )
 
+        .section__text
+            font-size: 16px
+
     .cart__empty-btn
         justify-content: space-between
     
@@ -686,7 +689,6 @@
     .cart__total-title
         font-size: 24px
 
-    .cart__empty,
     .cart-btn,
     .cart__product-count,
     .cart__total-price,
@@ -824,6 +826,10 @@
         top: 55%
 
     // cart
+    .cart
+        .section__text
+        margin-bottom: calc( ($gap / 2) + 5px )
+
     .cart__empty-btn
         flex-direction: column
         align-items: center
@@ -834,8 +840,6 @@
     .cart-btn:first-of-type
         margin-bottom: calc( $gap / 3 )
 
-    .cart__empty
-        margin-bottom: calc( ($gap / 2) + 5px )
 
     .cart__total-title
         text-align: center

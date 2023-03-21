@@ -31,9 +31,9 @@ import emptycart from "../img/empty-cart.png";
                     <Button modificator={""} text={"Log Out"} onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}></Button>
                  </div>
                  <div className='profile__history'>
-                    <h2 className='history__title'>История заказов</h2>
+                    <h2 className='section__title text-color'>История заказов</h2>
                     <img className="history__img" src={emptycart} alt="Cart is empty"/>
-                    <p className="history__text">Ваша история заказов пуста!</p>
+                    <p className="section__text">Ваша история заказов пуста!</p>
                  </div>
              </section>
          </CSSTransition>

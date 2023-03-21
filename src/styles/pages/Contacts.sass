@@ -4,22 +4,18 @@
     display: flex
     margin-bottom: calc( $gap * 8 )
 
+    .section__title
+        margin-bottom: calc( $gap * 2 )
+
+    .section__text
+        margin-bottom: $gap
+
+    .section__text:last-of-type
+        margin-bottom: calc( $gap * 2 )
+
 .contacts__left
     flex-basis: 50%
     margin-top: 60px
-
-.contacts__title
-    width: 62%
-
-.contacts__text
-    width: 80%
-    font-size: $textFZ
-    line-height: calc($textFZ + 9px)
-    color: $smalTextColor
-    margin-bottom: $gap
-
-.contacts__text:last-of-type
-    margin-bottom: $gap
 
 .contacts__link
     display: inline-block
@@ -33,9 +29,17 @@
 .feedback
     margin-bottom: calc( $gap * 5 )
 
-    &__title
+    .section__title
         text-align: center
         margin-bottom: calc( $gap * 2 )
+
+    .section__text
+        display: none
+        text-align: center
+        width: 100%
+        font-size: calc(($baseFZ * 2) + 8px)
+        font-weight: 500
+        margin: 0
 
 .form__top
     display: flex
@@ -61,15 +65,11 @@
     color: $smalTextColor
     transition: all .2s
 
-    &:hover
-        border-color: $maincolor
-
-    &:focus
+    &:hover, &:focus
         border-color: $maincolor
 
 .form__input:not(:last-of-type)
     margin-bottom: calc( $gap / 2 )
-
 
 .form__right
     display: flex
@@ -89,10 +89,7 @@
     resize: none
     transition: all .2s 
 
-    &:hover
-        border-color: $maincolor
-
-    &:focus
+    &:hover, &:focus
         border-color: $maincolor
 
 .form__bottom
@@ -102,4 +99,3 @@
 .form__wrapper
     display: flex
     flex-direction: column
-
