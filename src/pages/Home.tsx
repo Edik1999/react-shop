@@ -45,7 +45,7 @@ function Home() {
               industry. Lorem Ipsum has been the industry's standard dummy
               text ever since the 1500.
             </p>
-            <Link to="/menu" className="btn home__btn">To Menu</Link>
+            <Link to="/menu" className="btn home-btn">To Menu</Link>
             <div className="home__rate" ref={elem => parent = elem as HTMLDivElement}>
               <img className="rate__img" src={trustpilot} alt='Trustpilot' onLoad={() => handleImageChange(parent)} onError={() => handleImageChange(parent)}/>
               <p className="rate__text">
