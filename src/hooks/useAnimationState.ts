@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 
 function useAnimationState (){
-    const [animationState, setAnimationState] = useState();
+    const [animationState, setAnimationState] = useState(false);
 
     useEffect(() => {
         setAnimationState(true)

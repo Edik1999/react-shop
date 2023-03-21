@@ -1,10 +1,15 @@
+// cart
 .cart-page
-    //flex-wrap: wrap
     margin-bottom: calc( $gap * 5 )
 
-    .cart__title
+    .section__title
         text-align: center
         margin-bottom: calc( $gap * 2 )
+
+    .section__text
+        text-align: center
+        width: 100%
+        margin: 0
 
 .cart__main
     display: flex
@@ -52,7 +57,6 @@
     align-self: center
     width: 80%
 
-
 .cart__product-price
     font-size: $textFZ
 
@@ -69,13 +73,6 @@
         clip-path: polygon(20% 0%, 0% 20%, 30% 50%, 0% 80%, 20% 100%, 50% 70%, 80% 100%, 100% 80%, 70% 50%, 100% 20%, 80% 0%, 50% 30%)
         background-color: red
 
-.cart__empty
-    text-align: center
-    font-size: $textFZ
-    line-height: calc($textFZ + 9px)
-    color: $smalTextColor
-    margin-bottom: $gap
-
 .cart__empty-btn
     display: flex
     justify-content: space-around
@@ -91,8 +88,9 @@
     border-radius: 6px
     box-shadow: 0px 0px 10px 7px rgb(50 72 90 / 10%)
 
-.cart__total-title
-    font-size: calc($textFZ * 2)
+.cart__title
+    font-size: calc($baseFZ * 2)
+    font-weight: 500
     margin-bottom: $gap
 
 .cart__total-count

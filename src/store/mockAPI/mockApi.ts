@@ -1,5 +1,4 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-// import { IGoods } from "../../models/models";
 
 export const mockAPI = createApi({
     reducerPath: 'mockAPI/api',

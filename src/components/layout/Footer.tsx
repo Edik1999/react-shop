@@ -15,31 +15,31 @@ function Footer() {
             <ul className="company__list">
               <li className="company__item company-title">Company</li>
               <li className="company__item">
-                <Link to="/" className={"nav-link"}>Home</Link>
+                <Link to="/" className="nav-link">Home</Link>
               </li>
               <li className="company__item">
-                <Link to="/menu" className={"nav-link"}>Menu</Link>
+                <Link to="/menu" className="nav-link">Menu</Link>
               </li>
               <li className="company__item">
-                <Link to="/faq" className={"nav-link"}>FAQ</Link>
+                <Link to="/faq" className="nav-link">FAQ</Link>
               </li>
               <li className="company__item">
-                <Link to="/contacts" className={"nav-link"}>Contact</Link>
+                <Link to="/contacts" className="nav-link">Contact</Link>
               </li>
             </ul>
             <ul className="template__list">
               <li className="template__item template-title">Template</li>
               <li className="template__item">
-                <Link to="/" className={"nav-link"}>Style Guide</Link>
+                <Link to="/" className="nav-link">Style Guide</Link>
               </li>
               <li className="template__item">
-                <Link to="/" className={"nav-link"}>Changelog</Link>
+                <Link to="/" className="nav-link">Changelog</Link>
               </li>
               <li className="template__item">
-                <Link to="/" className={"nav-link"}>Licence</Link>
+                <Link to="/" className="nav-link">Licence</Link>
               </li>
               <li className="template__item">
-                <Link to="/" className={"nav-link"}>Webflow University</Link>
+                <Link to="/" className="nav-link">Webflow University</Link>
               </li>
             </ul>
           </div>

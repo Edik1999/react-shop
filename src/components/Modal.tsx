@@ -1,24 +1,23 @@
-import { useSelector } from "react-redux";
 import Button from "./Button";
 import Counter from "./Counter";
 import {useState, useEffect} from 'react';
 import { useAppDispatch } from "../store";
 import {cart} from '../store/slice/cartSlice';
 import {saveProductLocal} from "../helpers/saveProductLocal";
+import {useAppSelector} from "../store";
 
-function Modal({ isVisible, id, onClose }) {
+function Modal({ isVisible, id, onClose }: {isVisible: boolean, id: any, onClose: () => void}) {
 
-  const state = useSelector((state) => state);
-
+  const state = useAppSelector(state => state);
   const content = state.goods.find((el) => el.id === id);
 
-  const [isInCart, setIsInCart] = useState();
+  const [isInCart, setIsInCart] = useState(false);
   const [fadeIn, setFadeIn] = useState(false);
 
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-      state.cart.find(elem => elem.id === id) ? setIsInCart(true) : setIsInCart(false)
+      state.cart.find((elem: { id: any; }) => elem.id === id) ? setIsInCart(true) : setIsInCart(false)
       setFadeIn(true)
   }, [state.cart, id])
 
@@ -69,7 +68,7 @@ function Modal({ isVisible, id, onClose }) {
                 </p>
                 {!isInCart
                   ? <Button modificator="card__btn" text="Add to cart" onClick={() => addToCartClick()}></Button>
-                  : <Counter count={state.cart.find(elem => elem.id === id) ? state.cart.find(elem => elem.id === id).count : 0} elementId={id}></Counter>
+                  : <Counter count={state.cart.find((elem: { id: any; }) => elem.id === id) ? state.cart.find((elem: { id: any; }) => elem.id === id).count : 0} elementId={id}></Counter>
                 }
               </div>
               <div className="modal__card-delete" onClick={() => close()}><div className="modal__card-delete-inner"></div></div>

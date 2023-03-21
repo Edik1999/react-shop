@@ -6,20 +6,17 @@
     align-items: center 
     margin-bottom: calc( $gap * 5 )
 
+    .section__title
+        width: 74%
+
+    .section__text
+        margin: 0
+
+        &:first-of-type
+            margin-bottom: $gap
+
 .faq__right
     flex-basis: 50%
-
-.faq__title
-    width: 74%
-
-.faq__text
-    width: 80%
-    font-size: $textFZ
-    line-height: calc($textFZ + 9px)
-    color: $smalTextColor
-
-    &:first-of-type
-        margin-bottom: $gap
 
 //how it works//
 .howitworks
@@ -28,12 +25,12 @@
     justify-content: center
     margin-bottom: calc( $gap * 5 )
 
-.howitworks__title
-    width: 100%
-    text-align: center
-    font-size: $titleFZ
-    line-height: calc( $titleFZ + 5px )
-    margin-bottom: calc( $gap * 2 )
+    .section__title
+        margin-bottom: calc( $gap * 2 )
+
+    .section__text,
+    .home-btn
+        margin: 0    
 
 .howitworks__list
     display: flex
@@ -56,11 +53,6 @@
 
 .howitworks__subtitle
     font-size: calc($textFZ + 2px)
+    font-weight: 500
     line-height: calc($textFZ + 4px)
     margin-bottom: calc( $gap / 2 )
-
-.howitworks__text
-    width: 80%
-    font-size: $textFZ
-    line-height: calc($textFZ + 9px)
-    color: $smalTextColor
