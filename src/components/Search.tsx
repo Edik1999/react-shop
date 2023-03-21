@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useDebounce } from "../hooks/useDebounce";
 
-function Search({handler}) {
+function Search(props: { handler: (arg0: string) => void; }) {
 
   const [search, setSearch] = useState("");
   const debounced = useDebounce(search, 300);
 
   useEffect(() => {
-    handler(debounced)
+    props.handler(debounced)
     // eslint-disable-next-line
   }, [debounced])
 

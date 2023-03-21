@@ -4,25 +4,25 @@ import clientavatar from "../img/client-avatar.webp";
 import {Link} from 'react-router-dom';
 import { CSSTransition } from 'react-transition-group';
 import useAnimationState from "../hooks/useAnimationState";
-import {createRef, useState} from "react";
+import {useRef, useState} from "react";
 import {imagesLoaded} from "../helpers/imagesLoaded";
 import Loader from "../components/Loader";
 
 function Home() {
 
   const animationState = useAnimationState();
-  const nodeRef = createRef();
-  const secondNodeRef = createRef();
+  const nodeRef = useRef(null);
+  const secondNodeRef = useRef(null);
 
   const [imagesLoading, setImagesLoading] = useState(true)
 
-  const handleImageChange = (imagesParent) => {
+  const handleImageChange = (imagesParent: HTMLElement | HTMLDivElement | HTMLUListElement) => {
     setImagesLoading(!imagesLoaded(imagesParent))
   }
 
-  let parent,
-      parent2,
-      parent3;
+  let parent: HTMLDivElement,
+      parent2: HTMLDivElement,
+      parent3: HTMLUListElement;
 
   return (
     <>
@@ -46,7 +46,7 @@ function Home() {
               text ever since the 1500.
             </p>
             <Link to="/menu" className="btn home__btn">To Menu</Link>
-            <div className="home__rate" ref={elem => parent = elem}>
+            <div className="home__rate" ref={elem => parent = elem as HTMLDivElement}>
               <img className="rate__img" src={trustpilot} alt='Trustpilot' onLoad={() => handleImageChange(parent)} onError={() => handleImageChange(parent)}/>
               <p className="rate__text">
                 <span className="text-color">4.8 out of 5</span> based on 2000+
@@ -54,7 +54,7 @@ function Home() {
               </p>
             </div>
           </div>
-          <div className="home__right" ref={elem => parent2 = elem}>
+          <div className="home__right" ref={elem => parent2 = elem as HTMLDivElement}>
             <img src={homedecorate} alt='food order' onLoad={() => handleImageChange(parent2)} onError={() => handleImageChange(parent2)}/>
           </div>
         </section>
@@ -69,7 +69,7 @@ function Home() {
       >
         <section className="clients" ref={secondNodeRef}>
           <h2 className="clients__title text-color">Clients</h2>
-          <ul className="clients__wrap" ref={elem => parent3 = elem}>
+          <ul className="clients__wrap" ref={elem => parent3 = elem as HTMLUListElement}>
             <li className="client__card">
               <p className="client__text">Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit odio dignissim qui blandit molestie consequat.</p>
               <div className="client__info">

@@ -1,5 +1,3 @@
-import '../styles/index.sass'
-
 function Loader() {
   return (
     <div className='loader'>

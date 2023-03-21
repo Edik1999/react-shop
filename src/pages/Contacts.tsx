@@ -3,7 +3,7 @@ import contactsdecorate from "../img/contacts-decorate.webp";
 import { withAuthenticationRequired } from '@auth0/auth0-react';
 import { CSSTransition } from 'react-transition-group';
 import useAnimationState from "../hooks/useAnimationState";
-import {createRef, useState} from "react";
+import {createRef, useState, MouseEvent} from "react";
 import {imagesLoaded} from "../helpers/imagesLoaded";
 import Loader from "../components/Loader";
 
@@ -15,7 +15,7 @@ export const Contacts = withAuthenticationRequired(() => {
 
   const [imagesLoading, setImagesLoading] = useState(true)
 
-  const clickHandler = (e: React.MouseEvent<HTMLElement>) => {
+  const clickHandler = (e: MouseEvent<HTMLElement>) => {
     e.preventDefault();
   }
 
@@ -71,7 +71,7 @@ export const Contacts = withAuthenticationRequired(() => {
             </div>
             <div className="form__bottom">
               <div className="form__wrapper">
-                <Button text={"Post"} modificator={"form-btn"} onClick={(e: React.MouseEvent<HTMLElement>) => clickHandler(e)}></Button>
+                <Button text={"Post"} modificator={"form-btn"} onClick={(e: MouseEvent<HTMLElement>) => clickHandler(e)}></Button>
                 <label className="form__check">
                   <input type="checkbox" required /> I agree with the <span className="text-color">user agreement</span>
                 </label>

@@ -1,10 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-const initialState = []
+const initial: any[] = [];
 
 export const goodsSlice = createSlice({
   name: 'goods',
-  initialState,
+  initialState: initial,
   reducers: {
     goods: (state, action) => action.payload
   },

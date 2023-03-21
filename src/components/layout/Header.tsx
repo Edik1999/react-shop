@@ -2,9 +2,9 @@ import {useEffect, useState} from "react";
 import logo from "../../img/logo.svg";
 import cart from "../../img/cart.svg";
 import { NavLink, Link } from 'react-router-dom';
-import { useSelector } from "react-redux";
 import { useAuth0 } from "@auth0/auth0-react";
 import Button from "../Button";
+import {useAppSelector} from "../../store";
 
 function Header() {
 
@@ -17,7 +17,7 @@ function Header() {
     // eslint-disable-next-line
   }, [])
 
-  const state = useSelector((state) => state);
+  const state = useAppSelector(state => state);
   const [isOpen, setIsOpen] = useState(false);
   const [theme, setTheme] = useState(themeFromLocalStorage !== null ? themeFromLocalStorage : 'light');
 
@@ -47,7 +47,6 @@ function Header() {
 
   return (
     <header className={`header ${isOpen && 'header--active'}`}>
-
       <div className="top">
         <div className="container">
           <div className="header__wrap">
@@ -111,7 +110,7 @@ function Header() {
                       <Link to="/cart" className="nav-link nav-link--cart" onClick={() => closeMenu()}>
                         <img src={cart} alt="Cart" />
                         {state.cart.length > 0
-                            ? <div className="card__badge">{state.cart.reduce((acc, num) => acc + Number(num.count), 0)}</div>
+                            ? <div className="card__badge">{state.cart.reduce((acc: number, num: { count: any; }) => acc + Number(num.count), 0)}</div>
                             : null
                         }
                       </Link>
