@@ -38,7 +38,7 @@ export const Cart = withAuthenticationRequired(() => {
   return (
     <>
       <div className="cart-page">
-        <h2 className="section__title cart__title text-color">Cart</h2>
+        <h2 className="section__title text-color">Cart</h2>
         <div className="cart__main">
           <ul className="cart__list">
             {pageContent.length > 0
@@ -63,7 +63,7 @@ export const Cart = withAuthenticationRequired(() => {
               )
               :
               <>
-                <li className="cart__empty">
+                <li className="section__text">
                   Корзина пуста, вы можете сделать заказ в нашем меню
                 </li>
                 <li className="cart__empty-btn">
@@ -74,12 +74,12 @@ export const Cart = withAuthenticationRequired(() => {
             }
           </ul>
           <div className="cart__total">
-            <p className="cart__total-title text-color">Order conditions</p>
+            <h3 className="cart__title text-color">Order conditions</h3>
             <div className="cart__total-count">
               <p className="cart__product-count">{state.cart.reduce((acc: number, num: { count: any; }) => acc + Number(num.count), 0)} products</p>
               <p className="cart__total-price">Total <span className="text-color">{sum()} ₽</span> </p>
             </div>
-            <Button text={"Place order"} modificator={'cart-btn-total'}></Button>
+            <Button text={"Place order"} modificator={""}></Button>
           </div>
         </div>
       </div>

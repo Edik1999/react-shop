@@ -38,9 +38,9 @@ export const Contacts = withAuthenticationRequired(() => {
       >
         <section className="contacts" ref={nodeRef}>
           <div className="contacts__left">
-            <h2 className="section__title contacts__title text-color">Call our store and takeaway when it suits you best.</h2>
-            <p className="contacts__text">Leo vel orci porta non pulvinar neque laoreet. Quis risus sed vulputate odio ut enim blandit volutpat maecenas. Fringilla phasellus faucibus scelerisque eleifend donec pretium vulputate sapien. Semper auctor neque vitae tempus quam pellentesque nec.</p>
-            <p className="contacts__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            <h2 className="section__title text-color">Call our store and takeaway when it suits you best.</h2>
+            <p className="section__text">Leo vel orci porta non pulvinar neque laoreet. Quis risus sed vulputate odio ut enim blandit volutpat maecenas. Fringilla phasellus faucibus scelerisque eleifend donec pretium vulputate sapien. Semper auctor neque vitae tempus quam pellentesque nec.</p>
+            <p className="section__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
             <a className="contacts__link btn" href="tel:+79876543210">+7 (987) 654 32-10</a>
           </div>
           <div className="contacts__right" ref={elem => parent = elem as HTMLDivElement}>
@@ -57,7 +57,7 @@ export const Contacts = withAuthenticationRequired(() => {
           nodeRef={secondNodeRef}
       >
         <section className="feedback" ref={secondNodeRef}>
-          <h2 className="section__title feedback__title text-color">Here you can post your<br/> feedback about us.</h2>
+          <h2 className="section__title text-color">Here you can post your<br/> feedback about us.</h2>
           <form className="form">
             <div className="form__top">
               <div className="form__left">
@@ -78,6 +78,7 @@ export const Contacts = withAuthenticationRequired(() => {
               </div>
             </div>
           </form>
+          <p className="section__text">Thank you for your feedback</p>
         </section>
       </CSSTransition>
     </>
