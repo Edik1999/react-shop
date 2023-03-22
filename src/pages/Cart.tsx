@@ -26,9 +26,11 @@ export const Cart = withAuthenticationRequired(() => {
     setTimeout(() => {
       dispatch(deleteFromCart(id))
 
-      let localStorageCart = JSON.parse(localStorage.getItem('cart') || "");
-      localStorage.setItem('cart', JSON.stringify(localStorageCart.filter((el: { id: any; }) => el.id !== id)));
-      if(localStorage.getItem('cart') === '[]') localStorage.removeItem('cart')
+      if(localStorage.getItem('cart')){
+        let localStorageCart = JSON.parse(localStorage.getItem('cart') || "");
+        localStorage.setItem('cart', JSON.stringify(localStorageCart.filter((el: { id: any; }) => el.id !== id)));
+        if(localStorage.getItem('cart') === '[]') localStorage.removeItem('cart')
+      }
     }, 300)
   }
 
@@ -62,10 +64,10 @@ export const Cart = withAuthenticationRequired(() => {
                               <Counter
                                   count={state.cart.find((elem: { id: any; }) => elem.id === el.id) ? state.cart.find((elem: { id: any; }) => elem.id === el.id).count : 0}
                                   elementId={el.id}
-                                  deleteHandler={(e: MouseEvent<HTMLDivElement>, id: any) => deleteFromCartHandler(e, id)}></Counter>
+                                  deleteHandler={(e, id) => deleteFromCartHandler(e, id)}></Counter>
                               <p className="cart__product-price text-color">{el.price * (state.cart.find((elem: { id: any; }) => elem.id === el.id) ? state.cart.find((elem: { id: any; }) => elem.id === el.id).count : 0)} ₽</p>
                             </div>
-                            <div className="cart__product-delete" onClick={(e) => deleteFromCartHandler(e, el.id)}><div className="cart__product-delete-inner"></div></div>
+                            <div className="cart__product-delete" onClick={e => deleteFromCartHandler(e, el.id)}><div className="cart__product-delete-inner"></div></div>
                           </div>
                         </div>
                       </li>
@@ -88,7 +90,7 @@ export const Cart = withAuthenticationRequired(() => {
                     <p className="cart__product-count">{state.cart.reduce((acc: number, num: { count: any; }) => acc + Number(num.count), 0)} products</p>
                     <p className="cart__total-price">Total <span className="text-color">{sum()} ₽</span> </p>
                   </div>
-                  <Button text={"Place order"} onClick={order}></Button>
+                  <Button text={"Place order"} disabled={pageContent.length > 0 ? false : true} onClick={order}></Button>
                 </div>
               </>
             :
