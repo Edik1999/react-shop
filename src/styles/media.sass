@@ -211,9 +211,6 @@
         width: 60px
         margin-top: 70px
 
-    .howitworks__subtitle
-        font-size: 18px
-
     .howitworks__text
         width: 100%
         font-size: 16px
@@ -233,6 +230,7 @@
         display: flex
         flex-direction: column
         margin-top: 0
+        padding-left: 0
 
     .contacts__right
         position: relative
@@ -258,9 +256,6 @@
         flex-direction: column
         align-items: center
 
-    .section__text
-        text-align: center
-
     .cart__list,
     .cart__total
         width: 70%
@@ -269,12 +264,19 @@
         margin-bottom: $gap
 
     .cart__product-img
-        width: 140px
+        width: calc( ($gap * 5) - 10px )
 
     .cart__product-name
         text-align: center
 
-        
+    // profile
+    .profile
+        justify-content: space-around
+
+    .profile__user,
+    .profile__history
+        flex: none
+
 @media (max-width: 768px)
 
     // header
@@ -362,13 +364,7 @@
         width: 32%
         font-size: 16px
         padding: 16px 12px
-        margin-bottom: 10px
-    
-    .menu__title
-        font-size: 40px
-
-    .menu__text
-        font-size: 16px
+        margin-bottom: 10px    
 
     // company
 
@@ -403,6 +399,9 @@
         margin-bottom: $gap
         padding-bottom: $gap
         border-bottom: 1px solid $counterBorderColor
+
+        .section__title
+            margin-bottom: $gap
 
     // feedback
     .form__left
@@ -468,8 +467,21 @@
         justify-content: space-around
 
     // cart
-    .cart__total-title
+    .cart__title
         font-size: 30px
+
+    // profile
+    .profile
+        flex-direction: column-reverse
+
+        .home-btn
+            margin: 0
+
+    .profile__user
+        width: 100%
+        margin-bottom: $gap
+        padding-bottom: $gap
+        border-bottom: 1px solid #DDDDDD
 
 @media (max-width: 576px)
     // header
@@ -480,11 +492,12 @@
         margin-right: 20px
 
     // menu
+    .menu
+        .section__text
+            margin-bottom: calc($gap * 1.5)
+
     .menu__filter
         margin-bottom: $gap
-
-    .menu__text
-        margin-bottom: calc($gap * 1.5)
 
     .menu-btn
         font-size: 14px
@@ -576,7 +589,7 @@
     .feedback
         margin-bottom: calc($gap * 2)
 
-        &__title
+        .section__title
             margin-bottom: $gap
 
     .form__top
@@ -667,11 +680,8 @@
     .cart-page
         margin-bottom: calc($gap * 2)
 
-        .cart__title
+        .section__title
             margin-bottom: calc( $gap + 10px )
-
-        .section__text
-            font-size: 16px
 
     .cart__empty-btn
         justify-content: space-between
@@ -734,38 +744,37 @@
         padding-bottom: $gap
         border-bottom: 1px solid $counterBorderColor
 
-    .home__title
-        width: 100%
-        font-size: 30px
-        line-height: 30px
+        .section__title
+            width: 100%
+            font-size: 30px
+            line-height: 30px
 
-    .home__text
-        width: 100%
-        font-size: $baseFZ
+        .section__text
+            width: 100%
 
-    .home__btn
-        margin: 0
-        font-size: 16px
-        padding: 16px 26px
+        .home-btn
+            margin: 0
+            font-size: 16px
+            padding: 16px 26px
 
     .home__rate
         display: none
 
-    .clients__title
-        font-size: 30px
-        line-height: 30px
+    // clients
+    .clients
+        .section__title
+            margin-bottom: $gap
+
+        .section__text
+            padding: 0
+            margin: 0
+            border: none
 
     .client__card
         display: flex
         flex-wrap: wrap-reverse
         width: 100%
         padding: $gap calc( $gap / 2 ) calc( $gap / 2 )
-
-    .client__text
-        font-size: $baseFZ
-        padding: 0
-        margin: 0
-        border: none
 
     .client__info
         margin-bottom: calc( $gap / 2 )
@@ -780,16 +789,14 @@
         width: 100%
         margin: 0
 
-    // company
-    .company__text
-        font-size: 16px
+    //company
+    .company
+        .section__text
+            margin-bottom: $gap
 
     // faq
     .faq__left
         padding-left: 40px
-
-    .faq__text
-        font-size: 16px
 
     //howitworks
     .howitworks__img
@@ -803,9 +810,6 @@
         font-size: 16px
         padding: 16px 26px
     
-    .contacts__text
-        font-size: 16px
-
     //feedback
     .form-btn
         font-size: 16px
@@ -826,10 +830,6 @@
         top: 55%
 
     // cart
-    .cart
-        .section__text
-        margin-bottom: calc( ($gap / 2) + 5px )
-
     .cart__empty-btn
         flex-direction: column
         align-items: center
@@ -840,10 +840,10 @@
     .cart-btn:first-of-type
         margin-bottom: calc( $gap / 3 )
 
-
-    .cart__total-title
+    .cart__title
         text-align: center
         margin-bottom: calc( $gap / 2 )
+        font-size: 25px
 
     .cart__total-count
         flex-wrap: wrap
@@ -851,3 +851,8 @@
 
     .cart__product-img
         width: 160px
+
+    // profile
+    .profile
+        .home-btn
+            font-size: $baseFZ

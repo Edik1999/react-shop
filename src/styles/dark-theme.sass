@@ -2,10 +2,8 @@
   .header
     background: hsl(0deg 0% 0% / 5%)
 
+  .section__title,
   .nav-link,
-  .home__title,
-  .company-title,
-  .template-title,
   .footer .nav-link:hover,
   .search,
   .menu-btn--disabled:hover,
@@ -19,26 +17,17 @@
   .cart__product-name,
   .form__input,
   .form__textarea,
-  .user__name,
-  .history__title
+  .user__name
     color: $baseBgColor
 
-  .home__text,
-  .rate__text,
-  .client__text,
+  .section__text,
   .client__role,
   .footer__descr,
   .footer .nav-link,
-  .menu__text,
   .card__weight,
   .modal__card-descr,
   .info__name,
-  .company__text,
-  .faq__text,
-  .howitworks__text,
-  .contacts__text,
-  .user__email,
-  .history__text
+  .user__email
     color: $darkSmalTextColor
 
   .client__card
@@ -106,4 +95,10 @@
 
     &:hover, &:focus, &:active
       border: 2px solid $maincolor
-      
+
+  .text-color
+    color: $maincolor
+
+  .sorting-btn::before
+    background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAZ0lEQVR4nO3QIQ6AMBBE0V6ChvvfAzQEh+E4HwOVZNtOg5mfjFrxkk3JOedca8CKviUC7wPgLQJPwClEL2COvluFx1EhXo8K8Ha0A+9HG3AdWoHr0QA+Dv3Ax6NvQAaOZ7kcnHPph24z1p7nrmJPCQAAAABJRU5ErkJggg==') bottom
+    filter: brightness(0.85)
