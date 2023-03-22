@@ -74,7 +74,7 @@ function Header() {
             </div>
             <ul className="nav__list">
               {!isAuthenticated
-                ? <li className="nav__item"><Button modificator={""} text={"Log In"} onClick={() => loginWithRedirect()}></Button></li>
+                ? <li className="nav__item"><Button text={"Log In"} onClick={() => loginWithRedirect()}></Button></li>
                 : <>
                     <li className="nav__item">
                       <NavLink to="/" className={({ isActive }) => isActive ? "nav-link nav-link--active" : "nav-link"} onClick={() => closeMenu()}>

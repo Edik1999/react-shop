@@ -12,9 +12,10 @@ export const cartSlice = createSlice({
     deleteFromCart: (state, action) => state.filter((el: { id: string; }) => el.id !== action.payload),
     deleteSingleGood: (state, action) => state.map((el: { id: string; count: number; }) => (el.id === action.payload ? {...el, count: el.count - 1} : el)),
     addSingleGood: (state, action) => state.map((el: { id: string; count: number; }) => (el.id === action.payload ? {...el, count: el.count + 1} : el)),
+    clearCart: () => [],
   },
 })
 
-export const { deleteFromCart, cart, deleteSingleGood, addSingleGood } = cartSlice.actions
+export const { deleteFromCart, cart, deleteSingleGood, addSingleGood, clearCart } = cartSlice.actions
 
 export default cartSlice.reducer
