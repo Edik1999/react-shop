@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { MouseEvent, useEffect, useState} from "react";
 import {deleteFromCart} from '../store/slice/cartSlice';
 import {useAppDispatch, useAppSelector} from "../store";
-import {withAuthenticationRequired} from '@auth0/auth0-react'
+import {withAuthenticationRequired} from '@auth0/auth0-react';
 
 export const Cart = withAuthenticationRequired(() => {
 

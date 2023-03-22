@@ -3,14 +3,14 @@ import {Link} from 'react-router-dom';
 import { withAuthenticationRequired } from '@auth0/auth0-react';
 import { CSSTransition } from 'react-transition-group';
 import useAnimationState from "../hooks/useAnimationState";
-import {createRef, useState} from "react";
+import {useRef, useState} from "react";
 import {imagesLoaded} from "../helpers/imagesLoaded";
 import Loader from "../components/Loader";
 
 export const Company = withAuthenticationRequired(() => {
 
     const animationState = useAnimationState();
-    const nodeRef = createRef<HTMLDivElement>();
+    const nodeRef = useRef(null);
 
     const [imagesLoading, setImagesLoading] = useState(true)
 

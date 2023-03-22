@@ -1,4 +1,4 @@
-import {createRef, useState} from "react";
+import {useRef, useState} from "react";
 import faqdecorate from "../img/faq-decorate.webp";
 import hiwdecorate1 from "../img/hiw-decorate-1.webp";
 import hiwdecorate2 from "../img/hiw-decorate-2.webp";
@@ -13,8 +13,8 @@ import Loader from "../components/Loader";
 export const FAQ = withAuthenticationRequired(() => {
 
   const animationState = useAnimationState();
-  const nodeRef = createRef<HTMLElement>();
-  const secondNodeRef = createRef<HTMLElement>();
+  const nodeRef = useRef(null);
+  const secondNodeRef = useRef(null);
 
   const [imagesLoading, setImagesLoading] = useState(true)
 
