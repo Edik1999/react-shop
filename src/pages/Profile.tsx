@@ -3,7 +3,7 @@ import Button from "../components/Button";
 import { CSSTransition } from 'react-transition-group';
 import useAnimationState from "../hooks/useAnimationState";
 import {useRef} from "react";
-import emptycart from "../img/empty-cart.png";
+import emptycart from "../img/empty-cart.webp";
 import { Link } from 'react-router-dom';
 
  export const Profile = withAuthenticationRequired(() => {
