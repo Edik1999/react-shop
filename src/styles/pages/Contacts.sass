@@ -34,7 +34,6 @@
         margin-bottom: calc( $gap * 2 )
 
     .section__text
-        display: none
         text-align: center
         width: 100%
         font-size: calc(($baseFZ * 2) + 8px)
@@ -46,7 +45,7 @@
     align-items: center
     justify-content: center
     width: 100%
-    margin-bottom: calc( $gap )
+    margin-bottom: $gap
 
 .form__left
     display: flex
@@ -67,6 +66,9 @@
 
     &:hover, &:focus
         border-color: $maincolor
+
+    &.error
+        border-color: red!important
 
 .form__input:not(:last-of-type)
     margin-bottom: calc( $gap / 2 )
@@ -92,10 +94,21 @@
     &:hover, &:focus
         border-color: $maincolor
 
+    &.error
+        border-color: red!important
+
 .form__bottom
     display: flex
     justify-content: center
 
+.form__check.error
+    color: red!important
+
 .form__wrapper
     display: flex
     flex-direction: column
+
+.error-message
+    margin-left: 12.5%
+    margin-bottom: $gap
+    color: red

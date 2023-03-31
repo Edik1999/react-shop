@@ -1,4 +1,4 @@
-import { useState} from "react";
+import {useRef, useState} from "react";
 import Card from "../components/Card";
 import Search from "../components/Search";
 import Button from '../components/Button';
@@ -7,6 +7,8 @@ import {withAuthenticationRequired} from '@auth0/auth0-react';
 import Loader from "../components/Loader";
 import {imagesLoaded} from "../helpers/imagesLoaded";
 import {useAppSelector} from "../store";
+import { CSSTransition } from 'react-transition-group';
+import useAnimationState from "../hooks/useAnimationState";
 
 export const Fullmenu = withAuthenticationRequired(() => {
 
@@ -18,6 +20,9 @@ export const Fullmenu = withAuthenticationRequired(() => {
     const [modalState, setModalState] = useState(false)
     const [clickedCard, setClickedCard] = useState(1)
     const [imagesLoading, setImagesLoading] = useState(true)
+
+    const animationState = useAnimationState();
+    const nodeRef = useRef(null);
 
     const filterContent = (filterString: string) => state.goods.filter(el => el.title.toLowerCase().indexOf(filterString.toLowerCase()) > -1)
 
@@ -127,34 +132,43 @@ export const Fullmenu = withAuthenticationRequired(() => {
     return (
       <>
           {imagesLoading && <Loader></Loader>}
-          <section className="menu">
-            <h2 className="section__title text-color">Browse our menu</h2>
-            <p className="section__text">
-              Use our menu to place an order online, or <span className="text-color">phone</span> our store <br className="breakLine"/> to place a
-              pickup order. Fast and fresh food.
-            </p>
-            <div className="menu__filter">
-              <Button modificator={`menu-btn ${activeSort !== 1 && 'menu-btn--disabled'}`} text={"Показать все"} onClick={() => {setContent(state.goods); setActiveSort(1); setPriceSort(1)}}></Button>
-              <Button modificator={`menu-btn ${activeSort !== 2 && 'menu-btn--disabled'}`} text={"Пицца"} onClick={() => sortingHandler('Pizza')}></Button>
-              <Button modificator={`menu-btn ${activeSort !== 3 && 'menu-btn--disabled'}`} text={"Бургеры"} onClick={() => sortingHandler('Burger')}></Button>
-              <Button modificator={`menu-btn ${activeSort !== 4 && 'menu-btn--disabled'}`} text={"Роллы"} onClick={() => sortingHandler('Roll')}></Button>
-              <Button modificator={`menu-btn sorting-btn ${whichClass()}`} text={"Price"} onClick={() => orderByPrice()}></Button>
-              <Search handler={searchHandler}></Search>
-            </div>
-            <ul className="card__wrap" ref={element => imagesParent = element as HTMLUListElement}>
-              {content.length > 0 ? (
-                content.map((el) => (
-                  <Card key={el.id} id={el.id} title={el.title} image={el.image} renderImg={(image) => renderImage(image)} price={el.price} type={el.type} click={(id) => cardClickHandler(id)} />
-                ))
-              ) : (
-                <p className="section__text">Oops, try another search</p>
-              )}
-            </ul>
-            {clickedCard
-                ? <Modal isVisible={modalState} id={clickedCard} onClose={closeModal}></Modal>
-                : null
-            }
-          </section>
+          <CSSTransition
+              classNames="animation"
+              in={animationState}
+              timeout={700}
+              mountOnEnter
+              unmountOnExit
+              nodeRef={nodeRef}
+          >
+              <section className="menu" ref={nodeRef}>
+                <h2 className="section__title text-color">Browse our menu</h2>
+                <p className="section__text">
+                  Use our menu to place an order online, or <span className="text-color">phone</span> our store <br className="breakLine"/> to place a
+                  pickup order. Fast and fresh food.
+                </p>
+                <div className="menu__filter">
+                  <Button modificator={`menu-btn ${activeSort !== 1 && 'menu-btn--disabled'}`} text={"Показать все"} onClick={() => {setContent(state.goods); setActiveSort(1); setPriceSort(1)}}></Button>
+                  <Button modificator={`menu-btn ${activeSort !== 2 && 'menu-btn--disabled'}`} text={"Пицца"} onClick={() => sortingHandler('Pizza')}></Button>
+                  <Button modificator={`menu-btn ${activeSort !== 3 && 'menu-btn--disabled'}`} text={"Бургеры"} onClick={() => sortingHandler('Burger')}></Button>
+                  <Button modificator={`menu-btn ${activeSort !== 4 && 'menu-btn--disabled'}`} text={"Роллы"} onClick={() => sortingHandler('Roll')}></Button>
+                  <Button modificator={`menu-btn sorting-btn ${whichClass()}`} text={"Price"} onClick={() => orderByPrice()}></Button>
+                  <Search handler={searchHandler}></Search>
+                </div>
+                <ul className="card__wrap" ref={element => imagesParent = element as HTMLUListElement}>
+                  {content.length > 0 ? (
+                    content.map((el) => (
+                      <Card key={el.id} id={el.id} title={el.title} image={el.image} renderImg={(image) => renderImage(image)} price={el.price} type={el.type} click={(id) => cardClickHandler(id)} />
+                    ))
+                  ) : (
+                    <p className="section__text">Oops, try another search</p>
+                  )}
+                </ul>
+                {clickedCard
+                    ? <Modal isVisible={modalState} id={clickedCard} onClose={closeModal}></Modal>
+                    : null
+                }
+              </section>
+          </CSSTransition>
       </>
     )
   }

@@ -1,6 +1,6 @@
-function Button({text, modificator, onClick}: {text: string, modificator: string, onClick?: (arg0: any) => void}) {
+function Button({text, modificator, onClick, disabled}: {text: string, modificator?: string, onClick?: (arg0: any) => void, disabled?: boolean}) {
   return (
-    <button className={`btn ${modificator}`} onClick={onClick}>{text}</button>
+    <button className={`btn ${modificator} ${disabled && 'disabled'}`} disabled={disabled ? true : false} onClick={onClick}>{text}</button>
   )
 }
 

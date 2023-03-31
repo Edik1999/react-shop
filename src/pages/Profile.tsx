@@ -2,8 +2,8 @@ import { useAuth0, withAuthenticationRequired } from '@auth0/auth0-react';
 import Button from "../components/Button";
 import { CSSTransition } from 'react-transition-group';
 import useAnimationState from "../hooks/useAnimationState";
-import {createRef} from "react";
-import emptycart from "../img/empty-cart.png";
+import {useRef} from "react";
+import emptycart from "../img/empty-cart.webp";
 import { Link } from 'react-router-dom';
 
  export const Profile = withAuthenticationRequired(() => {
@@ -11,7 +11,7 @@ import { Link } from 'react-router-dom';
      const {logout, user} = useAuth0();
 
      const animationState = useAnimationState();
-     const nodeRef = createRef<HTMLElement>();
+     const nodeRef = useRef(null);
 
      console.log(user);
 

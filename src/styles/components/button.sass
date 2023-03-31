@@ -19,6 +19,13 @@
         filter: brightness(112%)
         transform: scale(1.03)
 
+    &.disabled
+        background-color: #CCCCCC
+        cursor: not-allowed
+        &:hover
+            filter: none
+            transform: none
+
 .home-btn
     width: 216px
     margin-bottom: calc( $gap + 10px )
