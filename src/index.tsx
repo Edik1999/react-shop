@@ -37,8 +37,8 @@ root.render(
   <Provider store={store}>
     <BrowserRouter>
         <Auth0Provider
-            domain="react-shop-test-auth.eu.auth0.com"
-            clientId="ddya3bPc6X82PQcIp7M89aDIISgA2c8t"
+            domain="dev-jccez2ssxsrd8aa6.eu.auth0.com"
+            clientId="sxtDyoRC2o0gnC7OuICEFtDjPR1pDNeH"
             authorizationParams={{
                 redirect_uri: window.location.origin
             }}
