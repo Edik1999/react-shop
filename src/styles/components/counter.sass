@@ -1,31 +1,32 @@
 .counter
     display: flex
-    align-items: center
-    border: 2px solid $counterBorderColor
+    border: 2px solid $smalTextColor
     border-radius: 12px
-    background-color: $counterBgColor
+    height: 51px
+    font-size: 18px
+    overflow: hidden
 
-.counter__minus
-    padding: calc( ($gap / 6) - 1px ) calc( $gap / 4 ) calc( $gap / 4 )
-    font-size: calc( $textFZ + 4px )
-    font-weight: 500
-    line-height: calc($textFZ + 1px )
-    color: $smalTextColor
-    cursor: pointer
+    &__minus,
+    &__number,
+    &__plus
+        height: 100%
+        width: 30px
+        display: flex
+        align-items: center
+        justify-content: center
+        color: $smalTextColor
+        font-weight: 500
+        cursor: pointer
 
-.counter__number
-    width: 35px
-    border-right: 1px solid $counterBorderColor
-    border-left: 1px solid $counterBorderColor
-    font-weight: 500
-    text-align: center
-    color: $smalTextColor
-    padding: calc( $gap / 4 )
+    &__minus,
+    &__plus
+        transition: all .3s
 
-.counter__plus
-    padding: calc( $gap / 4 )
-    font-size: $textFZ
-    font-weight: 500
-    line-height: calc($textFZ + 1px )
-    color: $smalTextColor
-    cursor: pointer
+        &:hover
+            background-color: rgba(53, 184, 190, .35)
+
+    &__number
+        width: 42px
+        border-right: 1px solid $smalTextColor
+        border-left: 1px solid $smalTextColor
+        cursor: default

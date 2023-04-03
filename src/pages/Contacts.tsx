@@ -101,7 +101,7 @@ export const Contacts = withAuthenticationRequired(() => {
                   <form className="form">
                     <div className="form__top">
                       <div className="form__left">
-                        <input className="form__input" type="text" placeholder="Name" defaultValue={user?.name} required onFocus={(e) => clickHandler(e)} />
+                        <input className="form__input" type="text" placeholder="Name" defaultValue={user?.name !== user?.email ? user?.name : ''} required onFocus={(e) => clickHandler(e)} />
                         <input className="form__input" type="email" placeholder="E-mail" defaultValue={user?.email} onFocus={(e) => clickHandler(e)}/>
                         <input className="form__input" type="tel" placeholder="Phone" onFocus={(e) => clickHandler(e)}/>
                       </div>

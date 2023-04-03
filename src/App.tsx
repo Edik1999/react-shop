@@ -1,4 +1,4 @@
-import {useEffect} from 'react';
+import {useEffect, useState} from 'react';
 import Home from './pages/Home';
 import './styles/index.sass';
 import Header from './components/layout/Header';
@@ -19,11 +19,11 @@ import {useAuth0} from "@auth0/auth0-react";
 
 function App({db}: { db: any }) {
 
-    let mode = 'db'; // 'db' for data from firestore database, '' for mock api data
+    // const {isLoading, isError, data} = useGetGoodsQuery("");
+    // const body = document.querySelector('body') as HTMLBodyElement;
 
-    const {isLoading, isError, data} = useGetGoodsQuery("");
+    const [loading, setLoading] = useState(true)
     const dispatch = useAppDispatch();
-    const body = document.querySelector('body') as HTMLBodyElement;
     let location = useLocation();
     const {user} = useAuth0();
 
@@ -31,25 +31,23 @@ function App({db}: { db: any }) {
         window.scrollTo(0, 0);
     }, [location.pathname])
 
-    isLoading ? body.style.overflow = 'hidden' : body.style.overflowY = 'visible'
+    // isLoading ? body.style.overflow = 'hidden' : body.style.overflowY = 'visible'
 
     async function getDocsFromDB(){
+        setLoading(true)
         const querySnapshot = await getDocs(collection(db, "goods"));
         let appData: DocumentData[] = [];
         querySnapshot.forEach((doc) => {
             appData.push(doc.data());
         });
+        setLoading(false)
         return appData
     }
 
     useEffect( () => {
-        if(mode === 'db'){
-            getDocsFromDB().then(res => dispatch(goods(res)));
-        }else{
-            if (data) dispatch(goods(data))
-        }
-        // eslint-disable-next-line
-    }, [data, dispatch, mode])
+        getDocsFromDB().then(res => dispatch(goods(res)));
+        // if (data) dispatch(goods(data))
+    }, [])
 
     async function save(){
         await addDoc(collection(db, "users"), {
@@ -88,23 +86,19 @@ function App({db}: { db: any }) {
     return (
         <>
           <Header></Header>
-          {isLoading && <Loader></Loader>}
-          {isError ? (
-              <p>Oops, something went wrong...</p>
-          ) : (
-              <div className="container container--fluid">
-                <Routes>
-                  <Route path="/" element={<Home/>} />
-                  <Route path="/company" element={<Company/>} />
-                  <Route path="/contacts" element={<Contacts/>} />
-                  <Route path="/faq" element={<FAQ/>} />
-                  <Route path="/cart" element={<Cart/>} />
-                  <Route path="/menu" element={<Fullmenu/>} />
-                  <Route path="/profile" element={<Profile/>} />
-                  <Route path="*" element={<Navigate to="/" replace />}/>
-                </Routes>
-              </div>
-          )}
+          {loading && <Loader></Loader>}
+          <div className="container container--fluid">
+            <Routes>
+              <Route path="/" element={<Home/>} />
+              <Route path="/company" element={<Company/>} />
+              <Route path="/contacts" element={<Contacts/>} />
+              <Route path="/faq" element={<FAQ/>} />
+              <Route path="/cart" element={<Cart/>} />
+              <Route path="/menu" element={<Fullmenu/>} />
+              <Route path="/profile" element={<Profile/>} />
+              <Route path="*" element={<Navigate to="/" replace />}/>
+            </Routes>
+          </div>
           <Footer></Footer>
         </>
     );

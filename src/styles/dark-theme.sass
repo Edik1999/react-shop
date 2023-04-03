@@ -69,6 +69,18 @@
       background-color: $maincolor
       border: 2px solid $maincolor
 
+  .counter
+    border: 2px solid lighten($darkBgColor, 30%)
+
+    &__minus,
+    &__number,
+    &__plus
+      color: $darkSmalTextColor
+
+    &__number
+      border-right: 1px solid lighten($darkBgColor, 30%)
+      border-left: 1px solid lighten($darkBgColor, 30%)
+
   .search
     border: 2px solid lighten($darkBgColor, 30%)
 
