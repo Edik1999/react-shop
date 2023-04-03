@@ -14,23 +14,76 @@ import {useGetGoodsQuery} from "./store/mockAPI/mockApi";
 import Loader from "./components/Loader";
 import {useAppDispatch} from "./store";
 import {goods} from "./store/slice/goodsSlice";
+import {addDoc, collection, DocumentData, getDocs, query, where} from "firebase/firestore";
+import {useAuth0} from "@auth0/auth0-react";
 
-function App() {
+function App({db}: { db: any }) {
 
-    const { isLoading, isError, data } = useGetGoodsQuery("");
+    let mode = 'db'; // 'db' for data from firestore database, '' for mock api data
+
+    const {isLoading, isError, data} = useGetGoodsQuery("");
     const dispatch = useAppDispatch();
     const body = document.querySelector('body') as HTMLBodyElement;
     let location = useLocation();
+    const {user} = useAuth0();
 
     useEffect(() => {
-        window.scrollTo(0,0);
+        window.scrollTo(0, 0);
     }, [location.pathname])
 
     isLoading ? body.style.overflow = 'hidden' : body.style.overflowY = 'visible'
 
+    async function getDocsFromDB(){
+        const querySnapshot = await getDocs(collection(db, "goods"));
+        let appData: DocumentData[] = [];
+        querySnapshot.forEach((doc) => {
+            appData.push(doc.data());
+        });
+        return appData
+    }
+
+    useEffect( () => {
+        if(mode === 'db'){
+            getDocsFromDB().then(res => dispatch(goods(res)));
+        }else{
+            if (data) dispatch(goods(data))
+        }
+        // eslint-disable-next-line
+    }, [data, dispatch, mode])
+
+    async function save(){
+        await addDoc(collection(db, "users"), {
+            email: user?.email,
+            name: user?.name,
+            picture: user?.picture,
+            sub: user?.sub
+        });
+        console.log('user saved');
+    }
+
+    async function check(){
+        const q = query(collection(db, "users"), where("email", "==", user?.email));
+
+        let isNewUser = true;
+        const querySnapshot = await getDocs(q);
+        querySnapshot.forEach(() => {
+            isNewUser = false
+        });
+
+        return isNewUser
+    }
+
     useEffect(() => {
-        if (data) dispatch(goods(data))
-    }, [data, dispatch])
+        if (user){
+            check()
+                .then(res => {
+                    if(res){
+                        save();
+                    }
+                });
+        }
+        // eslint-disable-next-line
+    }, [user])
 
     return (
         <>

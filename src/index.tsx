@@ -6,15 +6,10 @@ import { Provider } from 'react-redux';
 import { store } from './store';
 import {BrowserRouter} from 'react-router-dom';
 import { Auth0Provider } from '@auth0/auth0-react';
-
-// Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+// import { getAnalytics } from "firebase/analytics";
+import { getFirestore } from "firebase/firestore";
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
     apiKey: "AIzaSyCkGk65zNBdpagu52sOa887fjNYbdEeDgk",
     authDomain: "react-shoppp.firebaseapp.com",
@@ -25,9 +20,9 @@ const firebaseConfig = {
     measurementId: "G-2ZP5WE5XGY"
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+// const analytics = getAnalytics(app);
+const db = getFirestore(app);
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -43,7 +38,7 @@ root.render(
                 redirect_uri: window.location.origin
             }}
         >
-            <App />
+            <App db={db}/>
         </Auth0Provider>
     </BrowserRouter>
   </Provider>
