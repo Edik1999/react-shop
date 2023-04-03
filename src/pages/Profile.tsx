@@ -2,41 +2,74 @@ import { useAuth0, withAuthenticationRequired } from '@auth0/auth0-react';
 import Button from "../components/Button";
 import { CSSTransition } from 'react-transition-group';
 import useAnimationState from "../hooks/useAnimationState";
-import {useRef} from "react";
+import {useEffect, useRef, useState} from "react";
 import emptycart from "../img/empty-cart.webp";
-import { Link } from 'react-router-dom';
+import {Link} from 'react-router-dom';
+import {collection, DocumentData, getDocs, query, where} from "firebase/firestore";
+import {useAppSelector} from "../store";
 
- export const Profile = withAuthenticationRequired(() => {
-     
-     const {logout, user} = useAuth0();
+export const Profile = withAuthenticationRequired(({db}: { db: any }) => {
 
-     const animationState = useAnimationState();
-     const nodeRef = useRef(null);
+    const {logout, user} = useAuth0();
+    const animationState = useAnimationState();
+    const nodeRef = useRef(null);
+    const state = useAppSelector(state => state);
 
-     console.log(user);
+    const [orders, setOrders] = useState([]);
 
-     return (
-         <CSSTransition
-             classNames="animation"
-             in={animationState}
-             timeout={700}
-             mountOnEnter
-             unmountOnExit
-             nodeRef={nodeRef}
-         >
+    async function check() {
+        const q = query(collection(db, "orders"), where("user", "==", user?.email));
+
+        let appData: DocumentData[] = [];
+        const querySnapshot = await getDocs(q);
+        querySnapshot.forEach((doc) => {
+            appData.push(doc.data());
+        });
+
+        return appData
+    }
+
+    useEffect(() => {
+        check().then((res: any) => setOrders(res.map((el: any) => el.items)))
+    }, [])
+
+    return (
+        <CSSTransition
+            classNames="animation"
+            in={animationState}
+            timeout={700}
+            mountOnEnter
+            unmountOnExit
+            nodeRef={nodeRef}
+        >
             <section className='profile' ref={nodeRef}>
-                 <div className='profile__user'>
-                    <img className='user__photo' src={user?.picture} alt={user?.name} />
+                <div className='profile__user'>
+                    <img className='user__photo' src={user?.picture} alt={user?.name}/>
                     <h3 className='user__name'>{user?.name}</h3>
                     <p className='user__email'>{user?.email}</p>
-                    <Button modificator={"cart-btn"} text={"Log Out"} onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}></Button>
-                 </div>
-                 <div className='profile__history'>
+                    <Button modificator={"cart-btn"} text={"Log Out"} onClick={() => logout({logoutParams: {returnTo: window.location.origin}})}></Button>
+                </div>
+                <div className='profile__history'>
                     <h2 className='section__title text-color'>История заказов</h2>
-                    <img className="history__img" src={emptycart} alt="Cart is empty"/>
-                    <p className="section__text">Ваша история заказов пуста!</p>
-                    <Link to="/menu" className="btn home-btn">Сделать заказ</Link>
-                 </div>
+                    {orders.length > 0
+                        ?   orders.map((el: any) => (
+                                <div key={Math.random()} style={{marginBottom: 20}}>
+                                    {el.map((elem: any) => (
+                                        <p key={Math.random()}>
+                                            <span>{state.goods.map(el => el.id === elem.id ? el.title : null)}</span>
+                                            <span> x {elem.count}</span>
+                                        </p>
+                                    ))}
+                                </div>
+                            ))
+                        :
+                            <>
+                                <img className="history__img" src={emptycart} alt="Cart is empty"/>
+                                <p className="section__text">Ваша история заказов пуста!</p>
+                                <Link to="/menu" className="btn home-btn">Сделать заказ</Link>
+                            </>
+                    }
+                </div>
              </section>
          </CSSTransition>
      )

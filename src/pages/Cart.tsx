@@ -4,15 +4,17 @@ import { Link } from 'react-router-dom';
 import { MouseEvent, useEffect, useState} from "react";
 import {deleteFromCart, clearCart} from '../store/slice/cartSlice';
 import {useAppDispatch, useAppSelector} from "../store";
-import {withAuthenticationRequired} from '@auth0/auth0-react';
+import {useAuth0, withAuthenticationRequired} from '@auth0/auth0-react';
+import {addDoc, collection} from "firebase/firestore";
 
-export const Cart = withAuthenticationRequired(() => {
+export const Cart = withAuthenticationRequired(({db}: {db: any}) => {
 
   const [pageContent, setPageContent] = useState([])
   const [isOrdered, setIsOrdered] = useState(false)
 
   const state = useAppSelector(state => state);
   const dispatch = useAppDispatch();
+  const {user} = useAuth0();
 
   const sum = () => {
     let prices = state.cart.map((el: { id: any; count: number; }) => (state.goods.find(elem => elem.id === el.id).price * el.count))
@@ -38,8 +40,18 @@ export const Cart = withAuthenticationRequired(() => {
     setPageContent(state.cart.map((el: { id: any; }) => state.goods.find(elem => el.id === elem.id)))
   }, [state.cart, state.goods])
 
+  async function saveOrder(){
+    console.log(state.cart)
+    await addDoc(collection(db, "orders"), {
+      user: user?.email,
+      items: state.cart
+    });
+    console.log('order saved');
+  }
+
   const order = () => {
     setIsOrdered(true)
+    saveOrder()
     dispatch(clearCart())
   }
 

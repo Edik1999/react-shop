@@ -93,9 +93,9 @@ function App({db}: { db: any }) {
               <Route path="/company" element={<Company/>} />
               <Route path="/contacts" element={<Contacts/>} />
               <Route path="/faq" element={<FAQ/>} />
-              <Route path="/cart" element={<Cart/>} />
+              <Route path="/cart" element={<Cart db={db}/>} />
               <Route path="/menu" element={<Fullmenu/>} />
-              <Route path="/profile" element={<Profile/>} />
+              <Route path="/profile" element={<Profile db={db}/>} />
               <Route path="*" element={<Navigate to="/" replace />}/>
             </Routes>
           </div>
