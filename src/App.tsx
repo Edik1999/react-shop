@@ -91,7 +91,7 @@ function App({db}: { db: any }) {
             <Routes>
               <Route path="/" element={<Home/>} />
               <Route path="/company" element={<Company/>} />
-              <Route path="/contacts" element={<Contacts/>} />
+              <Route path="/contacts" element={<Contacts db={db}/>} />
               <Route path="/faq" element={<FAQ/>} />
               <Route path="/cart" element={<Cart db={db}/>} />
               <Route path="/menu" element={<Fullmenu/>} />

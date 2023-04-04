@@ -6,8 +6,10 @@ import useAnimationState from "../hooks/useAnimationState";
 import {useState, MouseEvent, useRef, FocusEvent} from "react";
 import {imagesLoaded} from "../helpers/imagesLoaded";
 import Loader from "../components/Loader";
+import {addDoc, collection} from "firebase/firestore";
+import { PatternFormat } from 'react-number-format';
 
-export const Contacts = withAuthenticationRequired(() => {
+export const Contacts = withAuthenticationRequired(({db}: {db: any}) => {
 
   const animationState = useAnimationState();
   const nodeRef = useRef(null);
@@ -17,6 +19,24 @@ export const Contacts = withAuthenticationRequired(() => {
   const [imagesLoading, setImagesLoading] = useState(true);
   const [error, setError] = useState(false);
   const [isSended, setIsSended] = useState(false);
+
+  async function sendForm(form: any){
+    const formData = new FormData(form)
+    const name = formData.get('name')
+    const email = formData.get('email')
+    const phone = formData.get('phone')
+    const message = formData.get('message')
+
+    await addDoc(collection(db, "feedback"), {
+      name: name,
+      email: email,
+      phone: phone,
+      message: message,
+      date: new Date()
+    });
+
+    console.log('form sended');
+  }
 
   const formSubmitHandler = (e: { preventDefault: () => void; target: { closest: (arg0: string) => any; }; }) => {
     e.preventDefault();
@@ -48,7 +68,10 @@ export const Contacts = withAuthenticationRequired(() => {
       message.classList.add('error');
     }
 
-    if(allGood) setIsSended(true)
+    if(allGood) {
+      sendForm(form)
+      setIsSended(true)
+    }
   }
 
   const clickHandler = (e: FocusEvent<HTMLInputElement, Element> | FocusEvent<HTMLTextAreaElement, Element> | MouseEvent<HTMLLabelElement, globalThis.MouseEvent>) => {
@@ -95,18 +118,17 @@ export const Contacts = withAuthenticationRequired(() => {
       >
         <section className="feedback" ref={secondNodeRef}>
           { !isSended
-              ?
-                <>
+              ? <>
                   <h2 className="section__title text-color">Here you can post your<br/> feedback about us.</h2>
                   <form className="form">
                     <div className="form__top">
                       <div className="form__left">
-                        <input className="form__input" type="text" placeholder="Name" defaultValue={user?.name !== user?.email ? user?.name : ''} required onFocus={(e) => clickHandler(e)} />
-                        <input className="form__input" type="email" placeholder="E-mail" defaultValue={user?.email} onFocus={(e) => clickHandler(e)}/>
-                        <input className="form__input" type="tel" placeholder="Phone" onFocus={(e) => clickHandler(e)}/>
+                        <input className="form__input" name="name" type="text" placeholder="Name" defaultValue={user?.name !== user?.email ? user?.name : ''} required onFocus={(e) => clickHandler(e)} />
+                        <input className="form__input" name="email" type="email" placeholder="E-mail" defaultValue={user?.email} onFocus={(e) => clickHandler(e)}/>
+                        <PatternFormat format="+7 (###) ### ## ##" mask="_" className="form__input" name="phone" placeholder="Phone" onFocus={(e) => clickHandler(e)}/>
                       </div>
                       <div className="form__right">
-                        <textarea className="form__textarea" placeholder="Comment" required onFocus={(e) => clickHandler(e)}></textarea>
+                        <textarea className="form__textarea" name="message" placeholder="Comment" required onFocus={(e) => clickHandler(e)}></textarea>
                       </div>
                     </div>
                     {error && <p className="error-message">Все поля должны быть заполнены</p>}
