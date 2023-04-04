@@ -11,34 +11,34 @@ function Footer() {
             <Link to="/"><img className="footer__logo" src={logo} alt="Logo" /></Link>
             <p className="footer__descr">Takeaway & Delivery template for small - medium businesses.</p>
           </div>
-          <div className="footer__nav">
-            <ul className="company__list">
-              <li className="company__item company-title">Company</li>
-              <li className="company__item">
+          <div className="footer-nav">
+            <ul className="footer-nav__list">
+              <li className="footer-nav__item footer-nav-title">Company</li>
+              <li className="footer-nav__item">
                 <Link to="/" className="nav-link">Home</Link>
               </li>
-              <li className="company__item">
+              <li className="footer-nav__item">
                 <Link to="/menu" className="nav-link">Menu</Link>
               </li>
-              <li className="company__item">
+              <li className="footer-nav__item">
                 <Link to="/faq" className="nav-link">FAQ</Link>
               </li>
-              <li className="company__item">
+              <li className="footer-nav__item">
                 <Link to="/contacts" className="nav-link">Contact</Link>
               </li>
             </ul>
-            <ul className="template__list">
-              <li className="template__item template-title">Template</li>
-              <li className="template__item">
+            <ul className="footer-nav__list">
+              <li className="footer-nav__item footer-nav-title">Template</li>
+              <li className="footer-nav__item">
                 <Link to="/" className="nav-link">Style Guide</Link>
               </li>
-              <li className="template__item">
+              <li className="footer-nav__item">
                 <Link to="/" className="nav-link">Changelog</Link>
               </li>
-              <li className="template__item">
+              <li className="footer-nav__item">
                 <Link to="/" className="nav-link">Licence</Link>
               </li>
-              <li className="template__item">
+              <li className="footer-nav__item">
                 <Link to="/" className="nav-link">Webflow University</Link>
               </li>
             </ul>
@@ -47,8 +47,8 @@ function Footer() {
         <div className="footer__link">
           <p className="link__text">Built by: <Link to="https://github.com/Edik1999"><span className="link__dev text-color">Edik1999</span></Link> and <Link to="https://github.com/BalVan18"><span className="link__dev text-color">BalVan18</span></Link></p>
           <ul className="link__list">
-            <Link to="https://www.instagram.com/">
-              <li className="link__item link-instagram">
+            <Link className='link__item' to="https://www.instagram.com/">
+              <li className="link-instagram">
                 <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path className="ico__path" d="M0.5 20C0.5 9.23045 9.23045 0.5 20 0.5C30.7696 0.5 39.5 9.23045 39.5 20C39.5 30.7696 30.7696 39.5 20 39.5C9.23045 39.5 0.5 30.7696 0.5 20Z" stroke="#7E828F" strokeOpacity="0.3" />
                   <g opacity="0.5">
@@ -57,8 +57,8 @@ function Footer() {
                 </svg>
               </li>
             </Link>
-            <Link to="https://twitter.com/">
-              <li className="link__item link-twitter">
+            <Link className='link__item' to="https://twitter.com/">
+              <li className="link-twitter">
                 <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path className="ico__path" d="M0.5 20C0.5 9.23045 9.23045 0.5 20 0.5C30.7696 0.5 39.5 9.23045 39.5 20C39.5 30.7696 30.7696 39.5 20 39.5C9.23045 39.5 0.5 30.7696 0.5 20Z" stroke="#7E828F" strokeOpacity="0.3" />
                   <g opacity="0.5">
@@ -67,8 +67,8 @@ function Footer() {
                 </svg>
               </li>
             </Link>
-            <Link to="https://www.youtube.com/">
-              <li className="link__item link-youtube">
+            <Link className='link__item' to="https://www.youtube.com/">
+              <li className="link-youtube">
                 <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path className="ico__path" d="M0.5 20C0.5 9.23045 9.23045 0.5 20 0.5C30.7696 0.5 39.5 9.23045 39.5 20C39.5 30.7696 30.7696 39.5 20 39.5C9.23045 39.5 0.5 30.7696 0.5 20Z" stroke="#7E828F" strokeOpacity="0.3" />
                   <g opacity="0.5">

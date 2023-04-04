@@ -34,7 +34,7 @@
 @media (max-width: 1360px)
     // home
     .home__right
-        right: calc( ($gap * -2) + 10px )
+        right: calc( ($gap * -1) + 10px )
 
     .home__left
         margin: 0
@@ -91,6 +91,10 @@
 
     .cart__total
         width: 40%
+
+    // footer
+    .footer-nav
+        width: 35%
 
 @media (max-width: 1023.9px)
     // home
@@ -219,7 +223,7 @@
     .contacts
         flex-direction: column-reverse
         align-items: center
-        margin-bottom: calc( $gap * 2 )
+        margin-bottom: calc( $gap * 5 )
 
         .section__title,
         .section__text
@@ -239,13 +243,6 @@
 
     .contacts__link
         margin: 0 auto
-
-    // footer
-    .template__list
-        margin-left: 80px
-
-    .footer__aside
-        max-width: 53%
 
     // modal
     .modal
@@ -276,6 +273,13 @@
     .profile__user,
     .profile__history
         flex: none
+
+    // footer
+    .footer__aside
+        max-width: 53%
+
+    .footer-nav
+        width: 40%
 
 @media (max-width: 768px)
 
@@ -404,45 +408,8 @@
             margin-bottom: $gap
 
     // feedback
-    .form__left
-        align-items: center
-
-        .form__input
-            width: 100%
-
-    .form__right
-        justify-content: center
-
-        .form__textarea
-            width: 100%
-
-    // footer
-    .footer
-        padding: 60px 0 45px
-
-    .footer__container
-        flex-direction: column
-        margin-bottom: 35px
-        padding-bottom: 35px
-
-    .footer__aside
-        max-width: 100%
-        flex-direction: row
-        justify-content: space-between
-        margin-bottom: 25px
-
-    .footer__descr
-        width: 50%
-        text-align: center
-
-    .footer__nav
-        justify-content: space-around
-
-    .company__item, .template__item
-        margin-bottom: 20px
-
-    .template__list
-        margin-left: 0
+    .feedback-form
+        width: 100%
 
     //modal
     .modal
@@ -482,6 +449,31 @@
         margin-bottom: $gap
         padding-bottom: $gap
         border-bottom: 1px solid #DDDDDD
+
+    // footer
+    .footer
+        padding: 60px 0 45px
+
+    .footer__container
+        flex-direction: column
+        margin-bottom: 35px
+        padding-bottom: 35px
+
+    .footer__aside
+        max-width: 100%
+        flex-direction: row
+        justify-content: space-between
+        margin-bottom: 25px
+
+    .footer__descr
+        width: 50%
+        text-align: center
+
+    .footer-nav
+        width: 65%
+
+    .footer-nav__item
+        margin-bottom: 20px
 
 @media (max-width: 576px)
     // header
@@ -596,47 +588,11 @@
         flex-direction: column
     
     .form__left
-        align-items: center
         width: 100%
         margin: 0 0 10px
 
-        .form__input
-            width: 100%
-
     .form__right
-        justify-content: center
         width: 100%
-
-        .form__textarea
-            width: 100%
-            height: 106px
-
-    // footer
-    .footer__descr
-        width: 80%
-
-    .link__text
-        max-width: 40%
-        font-size: 14px
-
-    .link__item
-        margin-right: 18px
-
-    .footer__logo
-        margin-bottom: 0
-
-    .company__item:last-of-type, .template__item:last-of-type
-        margin-bottom: 0
-
-    .company-title, .template-title
-        padding-left: 0
-
-    .footer__nav
-        justify-content: space-between
-
-        .nav-link
-            position: relative
-            left: -7px
 
     //modal
     .modal-wrapper
@@ -739,6 +695,30 @@
         &__number
             width: 36px
 
+    // footer
+    .footer__descr
+        width: 80%
+
+    .link__text
+        max-width: 40%
+        font-size: 14px
+
+    .link__item
+        margin-right: 18px
+
+    .footer__logo
+        margin-bottom: 0
+
+    .footer-nav__item:last-of-type
+        margin-bottom: 0
+
+    .footer-nav-title
+        padding-left: 0
+
+    .footer-nav
+        width: 100%
+        justify-content: space-around
+
 @media (max-width: 518px)
     // header
     .theme-switcher
@@ -826,16 +806,6 @@
         font-size: 16px
         padding: 16px 26px
 
-    // footer
-    .nav-link
-        font-size: 14px
-
-    .link__text
-        font-size: 13px
-
-    .link__item
-        margin-right: 12px
-
     // modal
     .modal
         top: 55%
@@ -867,3 +837,27 @@
     .profile
         .home-btn
             font-size: $baseFZ
+
+    // footer
+    .footer-nav
+        flex-direction: column 
+        justify-content: space-between 
+        align-items: center
+
+    .footer-nav__list:first-child
+        width: 45%
+        padding-bottom: calc( $gap / 2 )
+        margin-bottom: calc( $gap / 2 )
+        border-bottom: 1px solid $counterBorderColor
+
+    .footer-nav__list
+        align-items: center
+
+    .nav-link
+        font-size: 14px
+
+    .link__text
+        font-size: 13px
+
+    .link__item
+        margin-right: 12px

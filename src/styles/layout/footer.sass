@@ -1,6 +1,6 @@
 //footer//
 .footer
-    padding: 100px 0 60px
+    padding: calc( ($gap * 3) + 10px ) 0 calc( $gap * 3 )
     background-color: #F5FBFC
 
 .footer__container    
@@ -11,10 +11,7 @@
     border-bottom: 1px solid $counterBorderColor
 
 .footer__aside
-    // REFACTOR
-    //flex-wrap тут не нужен
     display: flex
-    flex-wrap: wrap
     flex-direction: column
 
 .footer__logo
@@ -22,33 +19,25 @@
 
 .footer__descr
     width: 64%
-    line-height: 26px
+    line-height: calc( $gap - 4px )
     color: $smalTextColor
 
-.footer__nav
+.footer-nav
     display: flex
+    width: 30%
+    justify-content: space-between
 
-.nav__title
-    margin-bottom: 25px
-
-.company__list,
-.template__list
+.footer-nav__list
     display: flex
     flex-direction: column
 
-.template__list
-    margin-left: 140px
-
-.company__item,
-.template__item
-    margin-bottom: 25px
+.footer-nav__item
+    margin-bottom: calc( $gap - 5px )
     color: $smalTextColor
 
-.company-title,
-.template-title
-    padding-left: 7px
+.footer-nav-title
+    padding-left: calc( ($gap / 3) - 3px)
     text-transform: uppercase
-    color: black
 
 .footer__link
     display: flex
@@ -71,13 +60,15 @@
 
 .link__item:hover
     .ico__path
+        transition: all .2s
         stroke: $maincolor
             
     .ico__g
+        transition: all .2s
         fill: $maincolor
         
 .link__item
-    margin-right: 30px
+    margin-right: $gap
 
     &.link-youtube
         margin-right: 0

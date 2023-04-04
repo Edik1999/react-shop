@@ -4,17 +4,6 @@
     display: flex
     margin-bottom: calc( $gap * 8 )
 
-    // REFACTOR
-    // везде используется стандартный маргин тут почему-то двойной, убрать это, сделать обычным
-    .section__title
-        margin-bottom: calc( $gap * 2 )
-
-    .section__text
-        margin-bottom: $gap
-
-    .section__text:last-of-type
-        margin-bottom: calc( $gap * 2 )
-
 .contacts__left
     flex-basis: 50%
     margin-top: 60px
@@ -56,59 +45,41 @@
     width: 50%
     margin-right: calc( $gap / 2 )
 
-// REFACTOR
-// общие стили из .form__input и .form__textarea вынести в общий класс (ховер, фокус, еррор у них тоже одинаковые)
-.form__input
-    width: 75%
-    padding: calc( $gap / 2 ) 
-    border: 2px solid $counterBorderColor
-    border-radius: 12px
-    background-color: $counterBgColor
-    font-size: $baseFZ
-    color: $smalTextColor
-    transition: all .2s
-
-    &:hover, &:focus
-        border-color: $maincolor
-
-    &.error
-        border-color: red!important
-
 .form__input:not(:last-of-type)
     margin-bottom: calc( $gap / 2 )
 
-.form__right
-    display: flex
-    justify-content: flex-start
-    width: 50%
-
-// REFACTOR
-// общие стили из .form__input и .form__textarea вынести в общий класс (ховер, фокус, еррор у них тоже одинаковые)
-.form__textarea
+.feedback-form
     width: 75%
-    max-height: 189px
-    height: 189px
-    padding: calc( $gap / 2 ) 
+    padding: calc( $gap / 2 )
     border: 2px solid $counterBorderColor
     border-radius: 12px
     background-color: $counterBgColor
     font-size: $baseFZ
     color: $smalTextColor
-    resize: none
     transition: all .2s 
 
     &:hover, &:focus
         border-color: $maincolor
 
     &.error
-        border-color: red!important
+        border-color: red
+
+.form__right
+    display: flex
+    justify-content: flex-start
+    width: 50%
+
+.form__textarea
+    max-height: 189px
+    height: 189px
+    resize: none
 
 .form__bottom
     display: flex
     justify-content: center
 
-.form__check.error
-    color: red!important
+.form__check .error
+    color: red
 
 .form__wrapper
     display: flex

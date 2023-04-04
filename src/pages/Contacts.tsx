@@ -101,12 +101,12 @@ export const Contacts = withAuthenticationRequired(() => {
                   <form className="form">
                     <div className="form__top">
                       <div className="form__left">
-                        <input className="form__input" type="text" placeholder="Name" defaultValue={user?.name !== user?.email ? user?.name : ''} required onFocus={(e) => clickHandler(e)} />
-                        <input className="form__input" type="email" placeholder="E-mail" defaultValue={user?.email} onFocus={(e) => clickHandler(e)}/>
-                        <input className="form__input" type="tel" placeholder="Phone" onFocus={(e) => clickHandler(e)}/>
+                        <input className="form__input feedback-form" type="text" placeholder="Name" defaultValue={user?.name !== user?.email ? user?.name : ''} required onFocus={(e) => clickHandler(e)} />
+                        <input className="form__input feedback-form" type="email" placeholder="E-mail" defaultValue={user?.email} onFocus={(e) => clickHandler(e)}/>
+                        <input className="form__input feedback-form" type="tel" placeholder="Phone" onFocus={(e) => clickHandler(e)}/>
                       </div>
                       <div className="form__right">
-                        <textarea className="form__textarea" placeholder="Comment" required onFocus={(e) => clickHandler(e)}></textarea>
+                        <textarea className="form__textarea feedback-form" placeholder="Comment" required onFocus={(e) => clickHandler(e)}></textarea>
                       </div>
                     </div>
                     {error && <p className="error-message">Все поля должны быть заполнены</p>}
