@@ -11,18 +11,32 @@
     flex-direction: column
     align-items: center
 
+.profile__form
+    display: flex
+    flex-direction: column
+    margin-bottom: calc( $gap * 2 )
+
 .user__photo
     border-radius: 100%
     width: calc( $gap * 4 )
 
-.user__photo,
-.user__email
+.user__photo
     margin-bottom: $gap
 
-.user__email
+.user__input
+    border: 1px solid transparent
     color: $smalTextColor
+    font-size: 16px
+    text-align: center
+    padding: 8px 12px
+    border-radius: 6px
+    margin-bottom: calc( $gap / 2 )
+    transition: all .3s
 
-.user__name
+    &:hover
+        border: 1px solid $smalTextColor
+
+.user__email
     margin-bottom: calc( $gap / 2 )
 
 .profile__history
