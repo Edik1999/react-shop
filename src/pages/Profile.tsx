@@ -8,6 +8,7 @@ import {Link} from 'react-router-dom';
 import {collection, DocumentData, getDocs, query, where, orderBy} from "firebase/firestore";
 import {useAppSelector} from "../store";
 import Moment from 'react-moment';
+import {PatternFormat} from "react-number-format";
 
 export const Profile = withAuthenticationRequired(({db}: { db: any }) => {
 
@@ -47,8 +48,13 @@ export const Profile = withAuthenticationRequired(({db}: { db: any }) => {
             <section className='profile' ref={nodeRef}>
                 <div className='profile__user'>
                     <img className='user__photo' src={user?.picture} alt={user?.name}/>
-                    <h3 className='user__name'>{user?.name}</h3>
-                    <p className='user__email'>{user?.email}</p>
+                    <h3 className='user__email'>{user?.email}</h3>
+                    {/*<p className='user__email'>{user?.name}</p>*/}
+                    <form className="profile__form">
+                        <input type="text" defaultValue={user?.name !== user?.email ? user?.name : 'Имя'} name="userName" className="user__input"/>
+                        <PatternFormat format="+7 (###) ### ## ##" mask="_" className="user__input" name="userPhone" placeholder="Телефон"/>
+                        <Button modificator={"edit-btn"} text="save"></Button>
+                    </form>
                     <Button modificator={"cart-btn"} text={"Log Out"} onClick={() => logout({logoutParams: {returnTo: window.location.origin}})}></Button>
                 </div>
                 <div className='profile__history'>
