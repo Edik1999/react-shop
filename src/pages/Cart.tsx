@@ -41,9 +41,10 @@ export const Cart = withAuthenticationRequired(({db}: {db: any}) => {
   }, [state.cart, state.goods])
 
   async function saveOrder(){
-    console.log(state.cart)
     await addDoc(collection(db, "orders"), {
       user: user?.email,
+      date: new Date(),
+      sum: sum(),
       items: state.cart
     });
     console.log('order saved');
@@ -52,6 +53,7 @@ export const Cart = withAuthenticationRequired(({db}: {db: any}) => {
   const order = () => {
     setIsOrdered(true)
     saveOrder()
+    localStorage.removeItem('cart')
     dispatch(clearCart())
   }
 

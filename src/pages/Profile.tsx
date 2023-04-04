@@ -5,8 +5,9 @@ import useAnimationState from "../hooks/useAnimationState";
 import {useEffect, useRef, useState} from "react";
 import emptycart from "../img/empty-cart.webp";
 import {Link} from 'react-router-dom';
-import {collection, DocumentData, getDocs, query, where} from "firebase/firestore";
+import {collection, DocumentData, getDocs, query, where, orderBy} from "firebase/firestore";
 import {useAppSelector} from "../store";
+import Moment from 'react-moment';
 
 export const Profile = withAuthenticationRequired(({db}: { db: any }) => {
 
@@ -18,7 +19,7 @@ export const Profile = withAuthenticationRequired(({db}: { db: any }) => {
     const [orders, setOrders] = useState([]);
 
     async function check() {
-        const q = query(collection(db, "orders"), where("user", "==", user?.email));
+        const q = query(collection(db, "orders"), where("user", "==", user?.email), orderBy('date', 'desc'));
 
         let appData: DocumentData[] = [];
         const querySnapshot = await getDocs(q);
@@ -30,8 +31,9 @@ export const Profile = withAuthenticationRequired(({db}: { db: any }) => {
     }
 
     useEffect(() => {
-        check().then((res: any) => setOrders(res.map((el: any) => el.items)))
+        check().then((res: any) => setOrders(res));
     }, [])
+
 
     return (
         <CSSTransition
@@ -54,16 +56,21 @@ export const Profile = withAuthenticationRequired(({db}: { db: any }) => {
                     {orders.length > 0
                         ?   orders.map((el: any) => (
                                 <div key={Math.random()} style={{marginBottom: 20}}>
-                                    {el.map((elem: any) => (
+                                    {el.items.map((elem: any) => (
                                         <p key={Math.random()}>
-                                            <span>{state.goods.map(el => el.id === elem.id ? el.title : null)}</span>
+                                            <span>{state.goods.map(element => element.id === elem.id ? element.title : null)}</span>
                                             <span> x {elem.count}</span>
                                         </p>
                                     ))}
+                                    <p>
+                                        <span>Дата заказа: </span>
+                                        <Moment format="YYYY-MM-DD HH:mm">{new Date(el.date.seconds * 1000)}</Moment>
+                                    </p>
+                                    <p>Сумма заказа: {el.sum}</p>
                                 </div>
                             ))
-                        :
-                            <>
+
+                        :   <>
                                 <img className="history__img" src={emptycart} alt="Cart is empty"/>
                                 <p className="section__text">Ваша история заказов пуста!</p>
                                 <Link to="/menu" className="btn home-btn">Сделать заказ</Link>
