@@ -66,7 +66,7 @@ export const Profile = withAuthenticationRequired(({db}: { db: any }) => {
                                         <span>Дата заказа: </span>
                                         <Moment format="YYYY-MM-DD HH:mm">{new Date(el.date.seconds * 1000)}</Moment>
                                     </p>
-                                    <p>Сумма заказа: {el.sum}</p>
+                                    <p>Сумма заказа: {el.sum} ₽</p>
                                 </div>
                             ))
 

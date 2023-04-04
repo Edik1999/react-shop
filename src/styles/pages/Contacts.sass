@@ -4,6 +4,8 @@
     display: flex
     margin-bottom: calc( $gap * 8 )
 
+    // REFACTOR
+    // везде используется стандартный маргин тут почему-то двойной, убрать это, сделать обычным
     .section__title
         margin-bottom: calc( $gap * 2 )
 
@@ -54,6 +56,8 @@
     width: 50%
     margin-right: calc( $gap / 2 )
 
+// REFACTOR
+// общие стили из .form__input и .form__textarea вынести в общий класс (ховер, фокус, еррор у них тоже одинаковые)
 .form__input
     width: 75%
     padding: calc( $gap / 2 ) 
@@ -78,6 +82,8 @@
     justify-content: flex-start
     width: 50%
 
+// REFACTOR
+// общие стили из .form__input и .form__textarea вынести в общий класс (ховер, фокус, еррор у них тоже одинаковые)
 .form__textarea
     width: 75%
     max-height: 189px

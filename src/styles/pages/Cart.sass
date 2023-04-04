@@ -42,10 +42,14 @@
 .cart__product-wrap
     display: flex
     flex-direction: column
+    // REFACTOR
+    // align-items: center добавить
     justify-content: space-around
     width: 100%
 
 .cart__product-name
+    // REFACTOR
+    // text-align: center убрать
     text-align: center
     font-size: calc($textFZ + 2px)
     color: $smalTextColor
@@ -54,6 +58,8 @@
     display: flex
     justify-content: space-between
     align-items: center
+    // REFACTOR
+    // align-self: center убрать
     align-self: center
     width: 80%
 
@@ -95,14 +101,10 @@
 
 .cart__total-count
     display: flex
-    align-items: center 
     justify-content: space-around
     width: 100%
     margin-bottom: $gap
 
-.cart__product-count
+.cart__product-count, .cart__total-price
     font-size: $textFZ
     line-height: calc( $textFZ + 8px )
-
-.cart__total-price
-    font-size: $textFZ

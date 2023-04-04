@@ -2,8 +2,6 @@
 .footer
     padding: 100px 0 60px
     background-color: #F5FBFC
-    // display: none
-    
 
 .footer__container    
     display: flex
@@ -12,7 +10,9 @@
     padding-bottom: calc( $gap * 2 )
     border-bottom: 1px solid $counterBorderColor
 
-.footer__aside 
+.footer__aside
+    // REFACTOR
+    //flex-wrap тут не нужен
     display: flex
     flex-wrap: wrap
     flex-direction: column
@@ -71,7 +71,7 @@
 
 .link__item:hover
     .ico__path
-        stroke:$maincolor
+        stroke: $maincolor
             
     .ico__g
         fill: $maincolor
