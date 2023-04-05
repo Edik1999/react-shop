@@ -2,13 +2,14 @@ import { useAuth0, withAuthenticationRequired } from '@auth0/auth0-react';
 import Button from "../components/Button";
 import { CSSTransition } from 'react-transition-group';
 import useAnimationState from "../hooks/useAnimationState";
-import {useEffect, useRef, useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import emptycart from "../img/empty-cart.webp";
 import {Link} from 'react-router-dom';
 import {collection, DocumentData, getDocs, query, where, orderBy} from "firebase/firestore";
 import {useAppSelector} from "../store";
 import Moment from 'react-moment';
 import {PatternFormat} from "react-number-format";
+import {Accordion, AccordionItem, AccordionItemHeading, AccordionItemButton, AccordionItemPanel} from 'react-accessible-accordion';
 
 export const Profile = withAuthenticationRequired(({db}: { db: any }) => {
 
@@ -60,21 +61,27 @@ export const Profile = withAuthenticationRequired(({db}: { db: any }) => {
                 <div className='profile__history'>
                     <h2 className='section__title text-color'>История заказов</h2>
                     {orders.length > 0
-                        ?   orders.map((el: any) => (
-                                <div key={Math.random()} style={{marginBottom: 20}}>
-                                    {el.items.map((elem: any) => (
-                                        <p key={Math.random()}>
-                                            <span>{state.goods.map(element => element.id === elem.id ? element.title : null)}</span>
-                                            <span> x {elem.count}</span>
-                                        </p>
-                                    ))}
-                                    <p>
-                                        <span>Дата заказа: </span>
-                                        <Moment format="YYYY-MM-DD HH:mm">{new Date(el.date.seconds * 1000)}</Moment>
-                                    </p>
-                                    <p>Сумма заказа: {el.sum} ₽</p>
-                                </div>
-                            ))
+                        ?   <Accordion allowZeroExpanded>
+                                {orders.map((el: any) => (
+                                    <AccordionItem key={Math.random()}>
+                                        <AccordionItemHeading>
+                                            <AccordionItemButton>
+                                                <span>Дата заказа: </span>
+                                                <Moment format="YYYY-MM-DD HH:mm">{new Date(el.date.seconds * 1000)}</Moment>
+                                                <p>Сумма заказа: {el.sum} ₽</p>
+                                            </AccordionItemButton>
+                                        </AccordionItemHeading>
+                                        <AccordionItemPanel>
+                                            {el.items.map((elem: any) => (
+                                                <p key={Math.random()}>
+                                                    <span>{state.goods.map(element => element.id === elem.id ? element.title : null)}</span>
+                                                    <span> x {elem.count}</span>
+                                                </p>
+                                            ))}
+                                        </AccordionItemPanel>
+                                    </AccordionItem>
+                                ))}
+                            </Accordion>
 
                         :   <>
                                 <img className="history__img" src={emptycart} alt="Cart is empty"/>
