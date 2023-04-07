@@ -10,6 +10,15 @@ import {useAppSelector} from "../store";
 import Moment from 'react-moment';
 import {PatternFormat} from "react-number-format";
 import {Accordion, AccordionItem, AccordionItemHeading, AccordionItemButton, AccordionItemPanel} from 'react-accessible-accordion';
+import {
+    YMaps,
+    Map,
+    Placemark,
+    FullscreenControl,
+    SearchControl,
+    GeolocationControl,
+    ZoomControl
+} from '@pbe/react-yandex-maps';
 
 export const Profile = withAuthenticationRequired(({db}: { db: any }) => {
 
@@ -19,6 +28,11 @@ export const Profile = withAuthenticationRequired(({db}: { db: any }) => {
     const state = useAppSelector(state => state);
 
     const [orders, setOrders] = useState([]);
+    const [mapState, setMapState] = useState({
+        center: [55.75, 37.57],
+        zoom: 9
+    })
+    const [mapInstance, setMapInstance] = useState(null);
 
     async function check() {
         const q = query(collection(db, "orders"), where("user", "==", user?.email), orderBy('date', 'desc'));
@@ -36,6 +50,15 @@ export const Profile = withAuthenticationRequired(({db}: { db: any }) => {
         check().then((res: any) => setOrders(res));
     }, [])
 
+    const init = (ymaps: any) => {
+        setMapInstance(ymaps)
+    }
+
+    const mapClick = (e: any) => {
+        let coords = e.get('coords');
+        console.log(e)
+        setMapState({center: coords, zoom: 12})
+    }
 
     return (
         <CSSTransition
@@ -52,8 +75,22 @@ export const Profile = withAuthenticationRequired(({db}: { db: any }) => {
                     <h3 className='user__email'>{user?.email}</h3>
                     {/*<p className='user__email'>{user?.name}</p>*/}
                     <form className="profile__form">
-                        <input type="text" defaultValue={user?.name !== user?.email ? user?.name : 'Имя'} name="userName" className="user__input"/>
+                        <input type="text" defaultValue={user?.name !== user?.email ? user?.name : ''} name="userName" className="user__input" placeholder="Имя"/>
                         <PatternFormat format="+7 (###) ### ## ##" mask="_" className="user__input" name="userPhone" placeholder="Телефон"/>
+                        <YMaps query={{ apikey: '5f4951d5-9bcf-4ea4-ae8b-b561e80e3ca1',}}>
+                            <Map
+                                state={{ center: mapState.center, zoom: mapState.zoom, controls: [], }}
+                                className="map"
+                                onLoad={ymaps => init(ymaps)}
+                                onClick={(e: any) => mapClick(e)}
+                            >
+                                <Placemark geometry={mapState.center} />
+                                <FullscreenControl />
+                                <SearchControl options={{ float: "right" }} />
+                                <GeolocationControl options={{ float: "left" }} />
+                                <ZoomControl />
+                            </Map>
+                        </YMaps>
                         <Button modificator={"edit-btn"} text="save"></Button>
                     </form>
                     <Button modificator={"cart-btn"} text={"Log Out"} onClick={() => logout({logoutParams: {returnTo: window.location.origin}})}></Button>
