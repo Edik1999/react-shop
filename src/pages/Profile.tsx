@@ -69,65 +69,67 @@ export const Profile = withAuthenticationRequired(({db}: { db: any }) => {
             unmountOnExit
             nodeRef={nodeRef}
         >
-            <section className='profile' ref={nodeRef}>
-                <div className='profile__user'>
-                    <img className='user__photo' src={user?.picture} alt={user?.name}/>
-                    <h3 className='user__email'>{user?.email}</h3>
-                    {/*<p className='user__email'>{user?.name}</p>*/}
-                    <form className="profile__form">
-                        <input type="text" defaultValue={user?.name !== user?.email ? user?.name : ''} name="userName" className="user__input" placeholder="Имя"/>
-                        <PatternFormat format="+7 (###) ### ## ##" mask="_" className="user__input" name="userPhone" placeholder="Телефон"/>
-                        <YMaps query={{ apikey: '5f4951d5-9bcf-4ea4-ae8b-b561e80e3ca1',}}>
-                            <Map
-                                state={{ center: mapState.center, zoom: mapState.zoom, controls: [], }}
-                                className="map"
-                                onLoad={ymaps => init(ymaps)}
-                                onClick={(e: any) => mapClick(e)}
-                            >
-                                <Placemark geometry={mapState.center} />
-                                <FullscreenControl />
-                                <SearchControl options={{ float: "right" }} />
-                                <GeolocationControl options={{ float: "left" }} />
-                                <ZoomControl />
-                            </Map>
-                        </YMaps>
-                        <Button modificator={"edit-btn"} text="save"></Button>
-                    </form>
-                    <Button modificator={"cart-btn"} text={"Log Out"} onClick={() => logout({logoutParams: {returnTo: window.location.origin}})}></Button>
-                </div>
-                <div className='profile__history'>
-                    <h2 className='section__title text-color'>История заказов</h2>
-                    {orders.length > 0
-                        ?   <Accordion allowZeroExpanded>
-                                {orders.map((el: any) => (
-                                    <AccordionItem key={Math.random()}>
-                                        <AccordionItemHeading>
-                                            <AccordionItemButton>
-                                                <span>Дата заказа: </span>
-                                                <Moment format="YYYY-MM-DD HH:mm">{new Date(el.date.seconds * 1000)}</Moment>
-                                                <p>Сумма заказа: {el.sum} ₽</p>
-                                            </AccordionItemButton>
-                                        </AccordionItemHeading>
-                                        <AccordionItemPanel>
-                                            {el.items.map((elem: any) => (
-                                                <p key={Math.random()}>
-                                                    <span>{state.goods.map(element => element.id === elem.id ? element.title : null)}</span>
-                                                    <span> x {elem.count}</span>
-                                                </p>
-                                            ))}
-                                        </AccordionItemPanel>
-                                    </AccordionItem>
-                                ))}
-                            </Accordion>
+            <>
+                <section className='profile' ref={nodeRef}>
+                    <div className='profile__user'>
+                        <img className='user__photo' src={user?.picture} alt={user?.name}/>
+                        <h3 className='user__email'>{user?.email}</h3>
+                        {/*<p className='user__email'>{user?.name}</p>*/}
+                        <form className="profile__form">
+                            <input type="text" defaultValue={user?.name !== user?.email ? user?.name : ''} name="userName" className="user__input" placeholder="Имя"/>
+                            <PatternFormat format="+7 (###) ### ## ##" mask="_" className="user__input" name="userPhone" placeholder="Телефон"/>
+                            <YMaps query={{ apikey: '5f4951d5-9bcf-4ea4-ae8b-b561e80e3ca1',}}>
+                                <Map
+                                    state={{ center: mapState.center, zoom: mapState.zoom, controls: [], }}
+                                    className="map"
+                                    onLoad={ymaps => init(ymaps)}
+                                    onClick={(e: any) => mapClick(e)}
+                                >
+                                    <Placemark geometry={mapState.center} />
+                                    <FullscreenControl />
+                                    <SearchControl options={{ float: "right" }} />
+                                    <GeolocationControl options={{ float: "left" }} />
+                                    <ZoomControl />
+                                </Map>
+                            </YMaps>
+                            <Button modificator={"edit-btn"} text="save"></Button>
+                        </form>
+                    </div>
+                    <div className='profile__history'>
+                        <h2 className='section__title text-color'>История заказов</h2>
+                        {orders.length > 0
+                            ?   <Accordion allowZeroExpanded>
+                                    {orders.map((el: any) => (
+                                        <AccordionItem key={Math.random()}>
+                                            <AccordionItemHeading>
+                                                <AccordionItemButton>
+                                                    <span>Дата заказа: </span>
+                                                    <Moment format="YYYY-MM-DD HH:mm">{new Date(el.date.seconds * 1000)}</Moment>
+                                                    <p>Сумма заказа: {el.sum} ₽</p>
+                                                </AccordionItemButton>
+                                            </AccordionItemHeading>
+                                            <AccordionItemPanel>
+                                                {el.items.map((elem: any) => (
+                                                    <p key={Math.random()}>
+                                                        <span>{state.goods.map(element => element.id === elem.id ? element.title : null)}</span>
+                                                        <span> x {elem.count}</span>
+                                                    </p>
+                                                ))}
+                                            </AccordionItemPanel>
+                                        </AccordionItem>
+                                    ))}
+                                </Accordion>
 
-                        :   <>
-                                <img className="history__img" src={emptycart} alt="Cart is empty"/>
-                                <p className="section__text">Ваша история заказов пуста!</p>
-                                <Link to="/menu" className="btn home-btn">Сделать заказ</Link>
-                            </>
-                    }
-                </div>
-             </section>
+                            :   <>
+                                    <img className="history__img" src={emptycart} alt="Cart is empty"/>
+                                    <p className="section__text">Ваша история заказов пуста!</p>
+                                    <Link to="/menu" className="btn home-btn">Сделать заказ</Link>
+                                </>
+                        }
+                    </div>
+                </section>
+                <Button modificator={"cart-btn"} text={"Log Out"} onClick={() => logout({logoutParams: {returnTo: window.location.origin}})}></Button>
+             </>
          </CSSTransition>
      )
  })

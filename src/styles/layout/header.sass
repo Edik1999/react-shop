@@ -11,17 +11,30 @@
     transition: height .25s
 
 .top
+    height: 70px
     padding: 14px 0
     background-color: $maincolor
 
 .header__wrap 
-    position: relative
     display: flex
+    align-items: center
     justify-content: center
-    padding-right: calc( $gap + 10px )
+    height: 100%
 
 .header__text 
-    margin-right: 30px
+    text-align: center
+    flex-basis: 89%
+
+.header-photo
+    border-radius: 100%
+    width: 42px
+    margin: 0
+
+.top-right-wrap
+    display: flex
+    justify-content: space-between
+    align-items: center
+    flex-basis: 11%
 
 .bottom
     display: flex
@@ -112,8 +125,8 @@
 
 .theme-switcher
     position: absolute
-    right: 0
-    top: -3px
+    top: 22px
+    right: $gap
     cursor: pointer
 
 @keyframes cartImage
