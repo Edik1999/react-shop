@@ -32,7 +32,9 @@ export const Profile = withAuthenticationRequired(({db}: { db: any }) => {
         center: [55.75, 37.57],
         zoom: 9
     })
-    const [mapInstance, setMapInstance] = useState(null);
+    const [mapInstance, setMapInstance] = useState<any>();
+    const [placemark, setPlacemark] = useState<any>();
+    const [userAddress, setUserAddress] = useState<string>('');
 
     async function check() {
         const q = query(collection(db, "orders"), where("user", "==", user?.email), orderBy('date', 'desc'));
@@ -48,6 +50,7 @@ export const Profile = withAuthenticationRequired(({db}: { db: any }) => {
 
     useEffect(() => {
         check().then((res: any) => setOrders(res));
+        // eslint-disable-next-line
     }, [])
 
     const init = (ymaps: any) => {
@@ -56,8 +59,27 @@ export const Profile = withAuthenticationRequired(({db}: { db: any }) => {
 
     const mapClick = (e: any) => {
         let coords = e.get('coords');
-        console.log(e)
-        setMapState({center: coords, zoom: 12})
+        setMapState({zoom: 17, center: coords})
+        getAddress(coords)
+    }
+
+    const getAddress = (coords: any) => {
+        placemark.properties.set('iconCaption', 'поиск...');
+
+        mapInstance.geocode(coords).then(function (res: { geoObjects: { get: (arg0: number) => any; }; }) {
+
+            let geoObject = res.geoObjects.get(0);
+
+            setUserAddress(geoObject.getAddressLine())
+
+            placemark.properties.set({
+                iconCaption: [
+                    geoObject.getLocalities().length ? geoObject.getLocalities() : geoObject.getAdministrativeAreas(),
+                    geoObject.getThoroughfare() || geoObject.getPremise()
+                ].filter(Boolean).join(', '),
+                balloonContent: geoObject.getAddressLine()
+            });
+        });
     }
 
     return (
@@ -77,14 +99,15 @@ export const Profile = withAuthenticationRequired(({db}: { db: any }) => {
                         <form className="profile__form">
                             <input type="text" defaultValue={user?.name !== user?.email ? user?.name : ''} name="userName" className="user__input" placeholder="Имя"/>
                             <PatternFormat format="+7 (###) ### ## ##" mask="_" className="user__input" name="userPhone" placeholder="Телефон"/>
-                            <YMaps query={{ apikey: '5f4951d5-9bcf-4ea4-ae8b-b561e80e3ca1',}}>
+                            <input type="text" value={userAddress} name="userAddress" className="user__input" placeholder="Адрес" onChange={e => setUserAddress(e.target.value)}/>
+                            <YMaps query={{ apikey: '5f4951d5-9bcf-4ea4-ae8b-b561e80e3ca1', load: "package.full",}}>
                                 <Map
-                                    state={{ center: mapState.center, zoom: mapState.zoom, controls: [], }}
+                                    state={{ center: mapState.center, zoom: mapState.zoom, controls: []}}
                                     className="map"
                                     onLoad={ymaps => init(ymaps)}
                                     onClick={(e: any) => mapClick(e)}
                                 >
-                                    <Placemark geometry={mapState.center} />
+                                    <Placemark geometry={mapState.center} instanceRef={(instance) => setPlacemark(instance)}/>
                                     <FullscreenControl />
                                     <SearchControl options={{ float: "right" }} />
                                     <GeolocationControl options={{ float: "left" }} />

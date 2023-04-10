@@ -15,15 +15,12 @@
     padding: 14px 0
     background-color: $maincolor
 
-.header__wrap 
+.header__wrap
+    position: relative
     display: flex
     align-items: center
     justify-content: center
     height: 100%
-
-.header__text 
-    text-align: center
-    flex-basis: 89%
 
 .header-link
     height: 42px
@@ -36,10 +33,9 @@
     margin: 0
 
 .top-right-wrap
+    position: absolute
+    right: 0
     display: flex
-    justify-content: space-between
-    align-items: center
-    flex-basis: 11%
 
 .bottom
     display: flex
@@ -132,10 +128,19 @@
         color: white
 
 .theme-switcher
+    box-sizing: content-box
     position: absolute
-    top: 22px
-    right: $gap
+    top: 3px
+    left: 0
     cursor: pointer
+    border-radius: 50%
+    padding: 7px
+    background-color: #35B8BE
+    transition: all 0.2s
+
+    &:hover
+        filter: brightness(112%)
+        transform: scale(1.03)
 
 @keyframes cartImage
     0%
