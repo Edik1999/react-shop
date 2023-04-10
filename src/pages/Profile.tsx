@@ -74,7 +74,6 @@ export const Profile = withAuthenticationRequired(({db}: { db: any }) => {
                     <div className='profile__user'>
                         <img className='user__photo' src={user?.picture} alt={user?.name}/>
                         <h3 className='user__email'>{user?.email}</h3>
-                        {/*<p className='user__email'>{user?.name}</p>*/}
                         <form className="profile__form">
                             <input type="text" defaultValue={user?.name !== user?.email ? user?.name : ''} name="userName" className="user__input" placeholder="Имя"/>
                             <PatternFormat format="+7 (###) ### ## ##" mask="_" className="user__input" name="userPhone" placeholder="Телефон"/>

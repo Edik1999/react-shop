@@ -49,8 +49,7 @@ function Home() {
             <div className="home__rate" ref={elem => parent = elem as HTMLDivElement}>
               <img className="rate__img" src={trustpilot} alt='Trustpilot' onLoad={() => handleImageChange(parent)} onError={() => handleImageChange(parent)}/>
               <p className="rate__text">
-                <span className="text-color">4.8 out of 5</span> based on 2000+
-                reviews
+                <span className="text-color">4.8 out of 5</span> based on 2000+ reviews
               </p>
             </div>
           </div>

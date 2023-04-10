@@ -155,18 +155,14 @@ export const Fullmenu = withAuthenticationRequired(() => {
                   <Search handler={searchHandler}></Search>
                 </div>
                 <ul className="card__wrap" ref={element => imagesParent = element as HTMLUListElement}>
-                  {content.length > 0 ? (
-                    content.map((el) => (
-                      <Card key={el.id} id={el.id} title={el.title} image={el.image} renderImg={(image) => renderImage(image)} price={el.price} type={el.type} click={(id) => cardClickHandler(id)} />
-                    ))
-                  ) : (
-                    <p className="section__text">Oops, try another search</p>
-                  )}
+                  {content.length > 0
+                      ? content.map((el) =>
+                          <Card key={el.id} id={el.id} title={el.title} image={el.image} renderImg={(image) => renderImage(image)} price={el.price} type={el.type} click={(id) => cardClickHandler(id)} />
+                        )
+                      : <p className="section__text">Oops, try another search</p>
+                  }
                 </ul>
-                {clickedCard
-                    ? <Modal isVisible={modalState} id={clickedCard} onClose={closeModal}></Modal>
-                    : null
-                }
+                {clickedCard && <Modal isVisible={modalState} id={clickedCard} onClose={closeModal}></Modal>}
               </section>
           </CSSTransition>
       </>

@@ -117,7 +117,7 @@ export const Contacts = withAuthenticationRequired(({db}: {db: any}) => {
           nodeRef={secondNodeRef}
       >
         <section className="feedback" ref={secondNodeRef}>
-          { !isSended
+          {!isSended
               ? <>
                   <h2 className="section__title text-color">Here you can post your<br/> feedback about us.</h2>
                   <form className="form">
