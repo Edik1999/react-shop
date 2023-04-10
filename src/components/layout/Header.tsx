@@ -71,7 +71,7 @@ function Header() {
           <div className="header__logo">
             <Link to="/" className="logo"><img src={logo} alt="Logo" /></Link>
           </div>
-          <nav className="header__nav">
+          <nav className={`header__nav ${!isAuthenticated && 'guest'}`}>
             <div className="nav__burger" onClick={() => clickHandler()}>
               <span className="burger__line line-1"></span>
               <span className="burger__line line-2"></span>

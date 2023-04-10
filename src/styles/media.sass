@@ -349,11 +349,23 @@
     .nav__burger
         display: flex
 
+    .guest
+        .nav__burger
+            display: none
+
+        .nav__list
+            visibility: visible
+            opacity: 1
+            height: auto
+
     .nav__item
         margin-right: 0
         margin-bottom: 15px
 
         &--cart
+            margin-bottom: 0
+
+        &--short-list
             margin-bottom: 0
 
     // home 
@@ -489,6 +501,9 @@
     //header
     .theme-switcher
         left: 16px
+
+    .login-btn
+        margin-right: calc($gap / 2)
 
     // menu
     .menu
