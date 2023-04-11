@@ -5,14 +5,18 @@
  **
 
 .accordion
-  border: 1px solid rgba(0, 0, 0, 0.1)
-  border-radius: 2px
+  width: 90%
 
-.accordion__item + .accordion__item
-  border-top: 1px solid rgba(0, 0, 0, 0.1)
+.accordion__item
+  margin-bottom: calc( $gap / 2 )
+  border: 2px solid $counterBorderColor
+  border-radius: 12px
+
+  &:active
+    border-color: $maincolor
 
 .accordion__button
-  background-color: #f4f4f4
+  background-color: $counterBgColor
   color: #444
   cursor: pointer
   padding: 18px
@@ -20,10 +24,15 @@
   padding-left: 45px
   position: relative
   text-align: left
-  border: none
+  border-radius: 8px
 
   &:hover
     background-color: #ddd
+
+  &[aria-expanded='true']
+    border-bottom-left-radius: 0
+    border-bottom-right-radius: 0
+      
 
   &:before
     display: inline-block
