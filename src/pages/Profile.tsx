@@ -5,7 +5,7 @@ import useAnimationState from "../hooks/useAnimationState";
 import React, {useEffect, useRef, useState} from "react";
 import emptycart from "../img/empty-cart.webp";
 import {Link} from 'react-router-dom';
-import {collection, DocumentData, getDocs, query, where, orderBy, doc, updateDoc, Query} from "firebase/firestore";
+import {collection, DocumentData, getDocs, query, where, orderBy, doc, updateDoc, Query, deleteDoc} from "firebase/firestore";
 import {useAppSelector} from "../store";
 import Moment from 'react-moment';
 import {PatternFormat} from "react-number-format";
@@ -149,6 +149,15 @@ export const Profile = withAuthenticationRequired(({db}: { db: any }) => {
         accordionItem?.classList.add('open');
     }
 
+    const clearHistory = async () => {
+        const q = query(collection(db, "orders"), where("user", "==", user?.email));
+        const querySnapshot = await getDocs(q);
+        querySnapshot.forEach(async (order) => {
+            await deleteDoc(doc(db, "orders", order.id));
+            checkOrders().then((res: any) => setOrders(res));
+        });
+    }
+
     return (
         <CSSTransition
             classNames="animation"
@@ -190,27 +199,30 @@ export const Profile = withAuthenticationRequired(({db}: { db: any }) => {
                     <div className='profile__history'>
                         <h2 className='section__title text-color'>История заказов</h2>
                         {orders.length > 0
-                            ?   <Accordion allowZeroExpanded onChange={(id: any) => accordionClick(id)}>
-                                    {orders.map((el: any) => (
-                                        <AccordionItem key={Math.random()}>
-                                            <AccordionItemHeading>
-                                                <AccordionItemButton>
-                                                    <p>Сумма заказа: {el.sum} ₽</p>
-                                                    <span>Дата заказа: </span>
-                                                    <Moment format="YYYY-MM-DD HH:mm">{new Date(el.date.seconds * 1000)}</Moment>
-                                                </AccordionItemButton>
-                                            </AccordionItemHeading>
-                                            <AccordionItemPanel>
-                                                {el.items.map((elem: any) => (
-                                                    <p key={Math.random()}>
-                                                        <span>{state.goods.map(element => element.id === elem.id ? element.title : null)}</span>
-                                                        <span> x {elem.count}</span>
-                                                    </p>
-                                                ))}
-                                            </AccordionItemPanel>
-                                        </AccordionItem>
-                                    ))}
-                                </Accordion>
+                            ?   <>
+                                    <Accordion allowZeroExpanded onChange={(id: any) => accordionClick(id)}>
+                                        {orders.map((el: any) => (
+                                            <AccordionItem key={Math.random()}>
+                                                <AccordionItemHeading>
+                                                    <AccordionItemButton>
+                                                        <p>Сумма заказа: {el.sum} ₽</p>
+                                                        <span>Дата заказа: </span>
+                                                        <Moment format="YYYY-MM-DD HH:mm">{new Date(el.date.seconds * 1000)}</Moment>
+                                                    </AccordionItemButton>
+                                                </AccordionItemHeading>
+                                                <AccordionItemPanel>
+                                                    {el.items.map((elem: any) => (
+                                                        <p key={Math.random()}>
+                                                            <span>{state.goods.map(element => element.id === elem.id ? element.title : null)}</span>
+                                                            <span> x {elem.count}</span>
+                                                        </p>
+                                                    ))}
+                                                </AccordionItemPanel>
+                                            </AccordionItem>
+                                        ))}
+                                    </Accordion>
+                                    <Button modificator={"cart-btn"} text="Clear history" onClick={clearHistory}></Button>
+                                </>
 
                             :   <>
                                     <img className="history__img" src={emptycart} alt="Cart is empty"/>
