@@ -5,11 +5,17 @@ import useAnimationState from "../hooks/useAnimationState";
 import React, {useEffect, useRef, useState} from "react";
 import emptycart from "../img/empty-cart.webp";
 import {Link} from 'react-router-dom';
-import {collection, DocumentData, getDocs, query, where, orderBy, addDoc} from "firebase/firestore";
+import {collection, DocumentData, getDocs, query, where, orderBy, doc, updateDoc, Query} from "firebase/firestore";
 import {useAppSelector} from "../store";
 import Moment from 'react-moment';
 import {PatternFormat} from "react-number-format";
-import {Accordion, AccordionItem, AccordionItemHeading, AccordionItemButton, AccordionItemPanel} from 'react-accessible-accordion';
+import {
+    Accordion,
+    AccordionItem,
+    AccordionItemHeading,
+    AccordionItemButton,
+    AccordionItemPanel
+} from 'react-accessible-accordion';
 import {
     YMaps,
     Map,
@@ -35,23 +41,33 @@ export const Profile = withAuthenticationRequired(({db}: { db: any }) => {
     const [mapInstance, setMapInstance] = useState<any>();
     const [placemark, setPlacemark] = useState<any>();
     const [userAddress, setUserAddress] = useState<string>('');
-    const [error, setError] = useState(false);
     const [isSended, setIsSended] = useState(false);
+    const [userInfo, setUserInfo] = useState<any>();
 
-    async function checkOrders() {
-        const q = query(collection(db, "orders"), where("user", "==", user?.email), orderBy('date', 'desc'));
 
+    const check = async (q: Query<unknown>) => {
         let appData: DocumentData[] = [];
         const querySnapshot = await getDocs(q);
         querySnapshot.forEach((doc) => {
-            appData.push(doc.data());
+            appData.push(doc.data() as DocumentData);
         });
 
         return appData
     }
 
+    async function checkOrders() {
+        const q = query(collection(db, "orders"), where("user", "==", user?.email), orderBy('date', 'desc'));
+        return check(q)
+    }
+
+    async function checkUser() {
+        const q = query(collection(db, "users"), where("email", "==", user?.email));
+        return check(q)
+    }
+
     useEffect(() => {
         checkOrders().then((res: any) => setOrders(res));
+        checkUser().then((res: any) => setUserInfo(res));
         // eslint-disable-next-line
     }, [])
 
@@ -90,34 +106,24 @@ export const Profile = withAuthenticationRequired(({db}: { db: any }) => {
         const phone = formData.get('userPhone')
         const address = formData.get('userAddress')
 
-        // await addDoc(collection(db, "feedback"), {
-        //     name: name,
-        //     phone: phone,
-        //     address: address,
-        // });
+        const userRef = doc(db, "users", user?.email as string);
+
+        await updateDoc(userRef, {
+                name: name,
+                phone: phone,
+                address: address,
+        });
 
         console.log('form sended');
     }
 
     const formSubmitHandler = (e: { preventDefault: () => void; target: { closest: (arg0: string) => any; }; }) => {
         e.preventDefault();
-        setError(false);
+
         const form = e.target.closest('form');
-        const inputs = form.querySelectorAll('.user__input');
-        let allGood = true
 
-        for (const input of inputs) {
-            if (input.value === '') {
-                allGood = false
-                setError(true);
-                input.classList.add('error');
-            }
-        }
-
-        if(allGood) {
-            sendForm(form)
-            setIsSended(true)
-        }
+        sendForm(form)
+        setIsSended(true)
     }
 
     return (

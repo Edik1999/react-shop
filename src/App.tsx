@@ -14,7 +14,7 @@ import {useGetGoodsQuery} from "./store/mockAPI/mockApi";
 import Loader from "./components/Loader";
 import {useAppDispatch} from "./store";
 import {goods} from "./store/slice/goodsSlice";
-import {addDoc, collection, DocumentData, getDocs, query, where} from "firebase/firestore";
+import {addDoc, collection, DocumentData, getDocs, query, where, setDoc, doc} from "firebase/firestore";
 import {useAuth0} from "@auth0/auth0-react";
 
 function App({db}: { db: any }) {
@@ -50,7 +50,7 @@ function App({db}: { db: any }) {
     }, [])
 
     async function save(){
-        await addDoc(collection(db, "users"), {
+        await setDoc(doc(db, "users", user?.email as string), {
             email: user?.email,
             name: user?.name,
             picture: user?.picture,
