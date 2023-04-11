@@ -5,7 +5,7 @@ import useAnimationState from "../hooks/useAnimationState";
 import React, {useEffect, useRef, useState} from "react";
 import emptycart from "../img/empty-cart.webp";
 import {Link} from 'react-router-dom';
-import {collection, DocumentData, getDocs, query, where, orderBy, doc, updateDoc, Query} from "firebase/firestore";
+import {collection, DocumentData, getDocs, query, where, orderBy, doc, updateDoc, Query, deleteDoc} from "firebase/firestore";
 import {useAppSelector} from "../store";
 import Moment from 'react-moment';
 import {PatternFormat} from "react-number-format";
@@ -147,6 +147,15 @@ export const Profile = withAuthenticationRequired(({db}: { db: any }) => {
         const openedPanel = document.getElementById(`accordion__heading-${id[0]}`);
         const accordionItem = openedPanel?.closest(".accordion__item");
         accordionItem?.classList.add('open');
+    }
+
+    const clearHistory = async () => {
+        const q = query(collection(db, "orders"), where("user", "==", user?.email));
+        const querySnapshot = await getDocs(q);
+        querySnapshot.forEach(async (order) => {
+            await deleteDoc(doc(db, "orders", order.id));
+            checkOrders().then((res: any) => setOrders(res));
+        });
     }
 
     return (
