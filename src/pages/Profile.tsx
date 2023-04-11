@@ -199,7 +199,8 @@ export const Profile = withAuthenticationRequired(({db}: { db: any }) => {
                     <div className='profile__history'>
                         <h2 className='section__title text-color'>История заказов</h2>
                         {orders.length > 0
-                            ?   <Accordion allowZeroExpanded onChange={(id: any) => accordionClick(id)}>
+                            ?   <>
+                            <Accordion allowZeroExpanded onChange={(id: any) => accordionClick(id)}>
                                     {orders.map((el: any) => (
                                         <AccordionItem key={Math.random()}>
                                             <AccordionItemHeading>
@@ -224,6 +225,8 @@ export const Profile = withAuthenticationRequired(({db}: { db: any }) => {
                                         </AccordionItem>
                                     ))}
                                 </Accordion>
+                                <Button modificator={"cart-btn"} text="Clear history" onClick={clearHistory}></Button>
+                                </>
 
                             :   <>
                                     <img className="history__img" src={emptycart} alt="Cart is empty"/>
