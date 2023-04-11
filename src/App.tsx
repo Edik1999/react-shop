@@ -52,7 +52,7 @@ function App({db}: { db: any }) {
     async function save(){
         await setDoc(doc(db, "users", user?.email as string), {
             email: user?.email,
-            name: user?.name,
+            name: user?.name === user?.email ? user?.name : '',
             picture: user?.picture,
             sub: user?.sub
         });
@@ -73,12 +73,7 @@ function App({db}: { db: any }) {
 
     useEffect(() => {
         if (user){
-            check()
-                .then(res => {
-                    if(res){
-                        save();
-                    }
-                });
+            check().then(res => {if (res) save()})
         }
         // eslint-disable-next-line
     }, [user])
