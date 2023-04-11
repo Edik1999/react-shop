@@ -141,8 +141,10 @@ export const Profile = withAuthenticationRequired(({db}: { db: any }) => {
                         <img className='user__photo' src={user?.picture} alt={user?.name}/>
                         <h3 className='user__email'>{user?.email}</h3>
                         <form className="profile__form">
-                            <input type="text" defaultValue={user?.name !== user?.email ? user?.name : ''} name="userName" className="user__input" placeholder="Имя"/>
-                            <PatternFormat format="+7 (###) ### ## ##" mask="_" className="user__input" name="userPhone" placeholder="Телефон"/>
+                            <div className="form-wrap">
+                                <input type="text" defaultValue={user?.name !== user?.email ? user?.name : ''} name="userName" className="user__input" placeholder="Имя"/>
+                                <PatternFormat format="+7 (###) ### ## ##" mask="_" className="user__input" name="userPhone" placeholder="Телефон"/>
+                            </div>
                             <textarea value={userAddress} name="userAddress" className="user__input user__input--textarea" placeholder="Адрес" onChange={e => setUserAddress(e.target.value)}/>
                             <YMaps query={{ apikey: '5f4951d5-9bcf-4ea4-ae8b-b561e80e3ca1', load: "package.full",}}>
                                 <Map
@@ -158,7 +160,7 @@ export const Profile = withAuthenticationRequired(({db}: { db: any }) => {
                                     <ZoomControl />
                                 </Map>
                             </YMaps>
-                            <Button modificator={"edit-btn"} text="save" onClick={(e) => formSubmitHandler(e)}></Button>
+                            <Button modificator={"edit-btn"} text="Save" onClick={(e) => formSubmitHandler(e)}></Button>
                         </form>
                     </div>
                     <div className='profile__history'>
