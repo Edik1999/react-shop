@@ -5,7 +5,7 @@ import useAnimationState from "../hooks/useAnimationState";
 import React, {useEffect, useRef, useState} from "react";
 import emptycart from "../img/empty-cart.webp";
 import {Link} from 'react-router-dom';
-import {collection, DocumentData, getDocs, query, where, orderBy} from "firebase/firestore";
+import {collection, DocumentData, getDocs, query, where, orderBy, addDoc} from "firebase/firestore";
 import {useAppSelector} from "../store";
 import Moment from 'react-moment';
 import {PatternFormat} from "react-number-format";
@@ -35,8 +35,10 @@ export const Profile = withAuthenticationRequired(({db}: { db: any }) => {
     const [mapInstance, setMapInstance] = useState<any>();
     const [placemark, setPlacemark] = useState<any>();
     const [userAddress, setUserAddress] = useState<string>('');
+    const [error, setError] = useState(false);
+    const [isSended, setIsSended] = useState(false);
 
-    async function check() {
+    async function checkOrders() {
         const q = query(collection(db, "orders"), where("user", "==", user?.email), orderBy('date', 'desc'));
 
         let appData: DocumentData[] = [];
@@ -49,7 +51,7 @@ export const Profile = withAuthenticationRequired(({db}: { db: any }) => {
     }
 
     useEffect(() => {
-        check().then((res: any) => setOrders(res));
+        checkOrders().then((res: any) => setOrders(res));
         // eslint-disable-next-line
     }, [])
 
@@ -82,6 +84,42 @@ export const Profile = withAuthenticationRequired(({db}: { db: any }) => {
         });
     }
 
+    async function sendForm(form: any){
+        const formData = new FormData(form)
+        const name = formData.get('userName')
+        const phone = formData.get('userPhone')
+        const address = formData.get('userAddress')
+
+        // await addDoc(collection(db, "feedback"), {
+        //     name: name,
+        //     phone: phone,
+        //     address: address,
+        // });
+
+        console.log('form sended');
+    }
+
+    const formSubmitHandler = (e: { preventDefault: () => void; target: { closest: (arg0: string) => any; }; }) => {
+        e.preventDefault();
+        setError(false);
+        const form = e.target.closest('form');
+        const inputs = form.querySelectorAll('.user__input');
+        let allGood = true
+
+        for (const input of inputs) {
+            if (input.value === '') {
+                allGood = false
+                setError(true);
+                input.classList.add('error');
+            }
+        }
+
+        if(allGood) {
+            sendForm(form)
+            setIsSended(true)
+        }
+    }
+
     return (
         <CSSTransition
             classNames="animation"
@@ -99,7 +137,7 @@ export const Profile = withAuthenticationRequired(({db}: { db: any }) => {
                         <form className="profile__form">
                             <input type="text" defaultValue={user?.name !== user?.email ? user?.name : ''} name="userName" className="user__input" placeholder="Имя"/>
                             <PatternFormat format="+7 (###) ### ## ##" mask="_" className="user__input" name="userPhone" placeholder="Телефон"/>
-                            <input type="text" value={userAddress} name="userAddress" className="user__input" placeholder="Адрес" onChange={e => setUserAddress(e.target.value)}/>
+                            <textarea value={userAddress} name="userAddress" className="user__input user__input--textarea" placeholder="Адрес" onChange={e => setUserAddress(e.target.value)}/>
                             <YMaps query={{ apikey: '5f4951d5-9bcf-4ea4-ae8b-b561e80e3ca1', load: "package.full",}}>
                                 <Map
                                     state={{ center: mapState.center, zoom: mapState.zoom, controls: []}}
@@ -114,7 +152,7 @@ export const Profile = withAuthenticationRequired(({db}: { db: any }) => {
                                     <ZoomControl />
                                 </Map>
                             </YMaps>
-                            <Button modificator={"edit-btn"} text="save"></Button>
+                            <Button modificator={"edit-btn"} text="save" onClick={(e) => formSubmitHandler(e)}></Button>
                         </form>
                     </div>
                     <div className='profile__history'>
