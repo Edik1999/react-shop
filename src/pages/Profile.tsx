@@ -126,6 +126,16 @@ export const Profile = withAuthenticationRequired(({db}: { db: any }) => {
         setIsSended(true)
     }
 
+    const accordionClick = (id: any[]) => {
+        const allItems = document.querySelectorAll(".accordion__item");
+        for (const item of allItems){
+            item.classList.remove('open');
+        }
+        const openedPanel = document.getElementById(`accordion__heading-${id[0]}`);
+        const accordionItem = openedPanel?.closest(".accordion__item");
+        accordionItem?.classList.add('open');
+    }
+
     return (
         <CSSTransition
             classNames="animation"
@@ -166,7 +176,7 @@ export const Profile = withAuthenticationRequired(({db}: { db: any }) => {
                     <div className='profile__history'>
                         <h2 className='section__title text-color'>История заказов</h2>
                         {orders.length > 0
-                            ?   <Accordion allowZeroExpanded>
+                            ?   <Accordion allowZeroExpanded onChange={(id: any) => accordionClick(id)}>
                                     {orders.map((el: any) => (
                                         <AccordionItem key={Math.random()}>
                                             <AccordionItemHeading>
