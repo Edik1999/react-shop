@@ -12,27 +12,19 @@
   border: 2px solid $counterBorderColor
   border-radius: 12px
 
-  &:active
-    border-color: $maincolor
-
 .accordion__button
   background-color: $counterBgColor
-  color: #444
   cursor: pointer
   padding: 18px
   width: 100%
   padding-left: 45px
   position: relative
   text-align: left
-  border-radius: 8px
+  border-radius: 9px
+  transition: all .3s
 
   &:hover
-    background-color: #ddd
-
-  &[aria-expanded='true']
-    border-bottom-left-radius: 0
-    border-bottom-right-radius: 0
-      
+    background-color: $counterBorderColor      
 
   &:before
     display: inline-block
@@ -42,20 +34,26 @@
     top: 50%
     height: 10px
     width: 10px
-    border-bottom: 2px solid currentColor
-    border-right: 2px solid currentColor
-    transform: translateY(-60%) rotate(-45deg)
-    transition: all 0.3s
+    border-bottom: 2px solid $maincolor
+    border-right: 2px solid $maincolor
+    transform: translateY(-60%) rotate(45deg)
+    transition: all 0.3s  
 
   &[aria-expanded='true']::before, &[aria-selected='true']::before
-    transform: translateY(-80%) rotate(45deg)
-
-[hidden]
-  display: none
-
+    transform: translateY(-60%) rotateZ(-135deg)
+  
 .accordion__panel
   padding: 20px
-  animation: fadein 0.35s ease-in
+  animation: fadein .3s forwards
+
+.open
+  border: 2px solid $maincolor
+  animation: border .3s forwards
+
+  .accordion__button
+    border-bottom-left-radius: 0
+    border-bottom-right-radius: 0
+    background-color: $counterBorderColor
 
 /* --------------------------------------------------
 /* ---------------- Animation part ------------------
@@ -63,7 +61,14 @@
 
 @keyframes fadein
   0%
-    opacity: 0
+    transform: translateY(-5%)
 
   100%
-    opacity: 1
+    transform: translateY(0)
+
+@keyframes border
+  0%
+    border: 2px solid $counterBorderColor
+
+  100%
+    border: 2px solid $maincolor

@@ -195,16 +195,20 @@ export const Profile = withAuthenticationRequired(({db}: { db: any }) => {
                                         <AccordionItem key={Math.random()}>
                                             <AccordionItemHeading>
                                                 <AccordionItemButton>
-                                                    <p>Сумма заказа: {el.sum} ₽</p>
-                                                    <span>Дата заказа: </span>
-                                                    <Moment format="YYYY-MM-DD HH:mm">{new Date(el.date.seconds * 1000)}</Moment>
+                                                    <div className='accordion__wrap'>
+                                                        <p className='section__text accordion-price'>Сумма заказа: <span className='text-color'>{el.sum} ₽</span></p>
+                                                        <div className='accordion-date'>
+                                                            <span className='section__text'>Дата заказа: </span>
+                                                            <Moment className='section__text' format="YYYY-MM-DD HH:mm">{new Date(el.date.seconds * 1000)}</Moment>
+                                                        </div>
+                                                    </div>
                                                 </AccordionItemButton>
                                             </AccordionItemHeading>
                                             <AccordionItemPanel>
                                                 {el.items.map((elem: any) => (
                                                     <p key={Math.random()}>
-                                                        <span>{state.goods.map(element => element.id === elem.id ? element.title : null)}</span>
-                                                        <span> x {elem.count}</span>
+                                                        <span className='section__text'>{state.goods.map(element => element.id === elem.id ? element.title : null)}</span>
+                                                        <span className='section__text'> x {elem.count}</span>
                                                     </p>
                                                 ))}
                                             </AccordionItemPanel>
