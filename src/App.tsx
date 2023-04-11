@@ -52,7 +52,7 @@ function App({db}: { db: any }) {
     async function save(){
         await setDoc(doc(db, "users", user?.email as string), {
             email: user?.email,
-            name: user?.name === user?.email ? user?.name : '',
+            name: user?.name !== user?.email ? user?.name : '',
             picture: user?.picture,
             sub: user?.sub
         });
