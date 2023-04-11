@@ -34,16 +34,15 @@ export const Profile = withAuthenticationRequired(({db}: { db: any }) => {
     const state = useAppSelector(state => state);
 
     const [orders, setOrders] = useState([]);
-    const [mapState, setMapState] = useState({
-        center: [55.75, 37.57],
-        zoom: 9
-    })
     const [mapInstance, setMapInstance] = useState<any>();
     const [placemark, setPlacemark] = useState<any>();
     const [userAddress, setUserAddress] = useState<string>('');
     const [isSended, setIsSended] = useState(false);
     const [userInfo, setUserInfo] = useState<any>();
-
+    const [mapState, setMapState] = useState({
+        center: [55.75, 37.57],
+        zoom: 9
+    })
 
     const check = async (q: Query<unknown>) => {
         let appData: DocumentData[] = [];
@@ -71,9 +70,20 @@ export const Profile = withAuthenticationRequired(({db}: { db: any }) => {
         // eslint-disable-next-line
     }, [])
 
-    const init = (ymaps: any) => {
-        setMapInstance(ymaps)
-    }
+    useEffect(() => {
+        if(userInfo) {
+            setUserAddress(userInfo[0].address)
+        }
+    }, [userInfo])
+
+    useEffect(() => {
+        if(mapInstance) {
+            mapInstance.geocode(userInfo[0].address, {results: 1}).then((res: { geoObjects: { get: (arg0: number) => { (): any; new(): any; geometry: { (): any; new(): any; getCoordinates: { (): any; new(): any; }; }; }; }; }) => {
+                let coords = res.geoObjects.get(0).geometry.getCoordinates();
+                setMapState({center: coords, zoom: 16})
+            })
+        }
+    }, [mapInstance, userInfo])
 
     const mapClick = (e: any) => {
         let coords = e.get('coords');
@@ -124,6 +134,9 @@ export const Profile = withAuthenticationRequired(({db}: { db: any }) => {
 
         sendForm(form)
         setIsSended(true)
+        setTimeout(() => {
+            setIsSended(false)
+        }, 5000)
     }
 
     const accordionClick = (id: any[]) => {
@@ -152,15 +165,15 @@ export const Profile = withAuthenticationRequired(({db}: { db: any }) => {
                         <h3 className='user__email'>{user?.email}</h3>
                         <form className="profile__form">
                             <div className="form-wrap">
-                                <input type="text" defaultValue={user?.name !== user?.email ? user?.name : ''} name="userName" className="user__input" placeholder="Имя"/>
-                                <PatternFormat format="+7 (###) ### ## ##" mask="_" className="user__input" name="userPhone" placeholder="Телефон"/>
+                                <input type="text" defaultValue={userInfo ? userInfo[0].name : ''} name="userName" className="user__input" placeholder="Имя"/>
+                                <PatternFormat value={userInfo ? userInfo[0].phone : ''} format="+7 (###) ### ## ##" mask="_" className="user__input" name="userPhone" placeholder="Телефон"/>
                             </div>
                             <textarea value={userAddress} name="userAddress" className="user__input user__input--textarea" placeholder="Адрес" onChange={e => setUserAddress(e.target.value)}/>
                             <YMaps query={{ apikey: '5f4951d5-9bcf-4ea4-ae8b-b561e80e3ca1', load: "package.full",}}>
                                 <Map
                                     state={{ center: mapState.center, zoom: mapState.zoom, controls: []}}
                                     className="map"
-                                    onLoad={ymaps => init(ymaps)}
+                                    onLoad={ymaps => setMapInstance(ymaps)}
                                     onClick={(e: any) => mapClick(e)}
                                 >
                                     <Placemark geometry={mapState.center} instanceRef={(instance) => setPlacemark(instance)}/>
@@ -170,7 +183,8 @@ export const Profile = withAuthenticationRequired(({db}: { db: any }) => {
                                     <ZoomControl />
                                 </Map>
                             </YMaps>
-                            <Button modificator={"edit-btn"} text="Save" onClick={(e) => formSubmitHandler(e)}></Button>
+                            <Button modificator={"edit-btn"} disabled={isSended ? true : false} text="Save" onClick={(e) => formSubmitHandler(e)}></Button>
+                            {isSended && <p className="success-text">✅ your data was saved!</p>}
                         </form>
                     </div>
                     <div className='profile__history'>
@@ -181,9 +195,9 @@ export const Profile = withAuthenticationRequired(({db}: { db: any }) => {
                                         <AccordionItem key={Math.random()}>
                                             <AccordionItemHeading>
                                                 <AccordionItemButton>
+                                                    <p>Сумма заказа: {el.sum} ₽</p>
                                                     <span>Дата заказа: </span>
                                                     <Moment format="YYYY-MM-DD HH:mm">{new Date(el.date.seconds * 1000)}</Moment>
-                                                    <p>Сумма заказа: {el.sum} ₽</p>
                                                 </AccordionItemButton>
                                             </AccordionItemHeading>
                                             <AccordionItemPanel>
