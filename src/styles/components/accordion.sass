@@ -6,6 +6,7 @@
 
 .accordion
   width: 90%
+  margin-bottom: calc( $gap / 2 )
 
 .accordion__item
   margin-bottom: calc( $gap / 2 )
@@ -21,7 +22,7 @@
   position: relative
   text-align: left
   border-radius: 9px
-  transition: all .3s
+  transition: all .5s
 
   &:hover
     background-color: $counterBorderColor      
@@ -44,11 +45,11 @@
   
 .accordion__panel
   padding: 20px
-  animation: fadein .3s forwards
+  animation: fadein .5s forwards
 
 .open
   border: 2px solid $maincolor
-  animation: border .3s forwards
+  animation: border .5s forwards
 
   .accordion__button
     border-bottom-left-radius: 0
