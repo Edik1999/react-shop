@@ -3,7 +3,9 @@
 
 .profile
     display: flex
+    flex-wrap: wrap
     align-items: flex-start
+    justify-content: center
     margin-bottom: calc( $gap * 5 )
 
 .profile__user,
@@ -73,6 +75,7 @@
 
 .accordion__wrap
     display: flex
+    align-items: center
 
     .section__text
         margin: 0
@@ -82,7 +85,14 @@
 
 .accordion-date
     display: flex
+    justify-content: flex-end
     flex: 65%
+
+    .date__text
+        width: 29%
+
+    .date__descr
+        width: 38%
 
 .history__img
     width: 378px

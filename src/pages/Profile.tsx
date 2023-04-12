@@ -225,15 +225,15 @@ export const Profile = withAuthenticationRequired(({db}: { db: any }) => {
                                                     <div className='accordion__wrap'>
                                                         <p className='section__text accordion-price'>Сумма заказа: <span className='text-color'>{el.sum} ₽</span></p>
                                                         <div className='accordion-date'>
-                                                            <span className='section__text'>Дата заказа: </span>
-                                                            <Moment className='section__text' format="YYYY-MM-DD HH:mm">{new Date(el.date.seconds * 1000)}</Moment>
+                                                            <span className='section__text date__text'>Дата заказа: </span>
+                                                            <Moment className='section__text date__descr' format="YYYY-MM-DD HH:mm">{new Date(el.date.seconds * 1000)}</Moment>
                                                         </div>
                                                     </div>
                                                 </AccordionItemButton>
                                             </AccordionItemHeading>
                                             <AccordionItemPanel>
                                                 {el.items.map((elem: any) => (
-                                                    <p key={Math.random()} ref={(ref) => setHeight()}>
+                                                    <p className='accordion-text'key={Math.random()} ref={(ref) => setHeight()}>
                                                         <span className='section__text'>{state.goods.map(element => element.id === elem.id ? element.title : null)}</span>
                                                         <span className='section__text'> x {elem.count}</span>
                                                     </p>
@@ -252,8 +252,8 @@ export const Profile = withAuthenticationRequired(({db}: { db: any }) => {
                                 </>
                         }
                     </div>
+                <Button modificator={"cart-btn profile-btn"} text={"Log Out"} onClick={() => logout({logoutParams: {returnTo: window.location.origin}})}></Button>
                 </section>
-                <Button modificator={"cart-btn"} text={"Log Out"} onClick={() => logout({logoutParams: {returnTo: window.location.origin}})}></Button>
              </>
          </CSSTransition>
      )

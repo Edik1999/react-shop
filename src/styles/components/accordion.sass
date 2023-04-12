@@ -36,7 +36,7 @@
     border-bottom: 2px solid $maincolor
     border-right: 2px solid $maincolor
     transform: translateY(-60%) rotate(45deg)
-    transition: all 0.3s  
+    transition: all .5s  
 
   &[aria-expanded='true']::before, &[aria-selected='true']::before
     transform: translateY(-60%) rotateZ(-135deg)
@@ -47,7 +47,7 @@
   overflow: hidden
   transition: all .5s
 
-  p
+  .accordion-text
     opacity: 1
     transform: translateY(0)
     padding: 10px 0
@@ -66,12 +66,18 @@
     padding-bottom: 0
     height: 0!important
 
-    p
+    .accordion-text
       pointer-events: none
       transform: translateY(-100%)
       opacity: 0
 
-.open .accordion__button
-    border-bottom-left-radius: 0
-    border-bottom-right-radius: 0
-    background-color: #f4f4f4
+.open 
+    border: 2px solid $maincolor
+
+    &:hover
+        border-color: $maincolorlight
+
+    .accordion__button
+      border-bottom-left-radius: 0
+      border-bottom-right-radius: 0
+      background-color: #f4f4f4
