@@ -158,6 +158,23 @@ export const Profile = withAuthenticationRequired(({db}: { db: any }) => {
         });
     }
 
+    const setHeight = () => {
+        const accordion = document.querySelector('.accordion')
+        const panels = accordion?.querySelectorAll('.accordion__panel')
+        if(panels){
+            panels.forEach((panel: any) => {
+                const paragraphs = panel.querySelectorAll('p')
+                let height: number = 0
+                paragraphs.forEach((paragraph: any) => {
+                    let paragraphHeight = getComputedStyle(paragraph).height
+                    paragraphHeight = paragraphHeight.replace(/[^0-9]/g, '');
+                    height += Number(paragraphHeight)
+                })
+                panel.style.height = `${height + 40}px`
+            })
+        }
+    }
+
     return (
         <CSSTransition
             classNames="animation"
@@ -216,7 +233,7 @@ export const Profile = withAuthenticationRequired(({db}: { db: any }) => {
                                             </AccordionItemHeading>
                                             <AccordionItemPanel>
                                                 {el.items.map((elem: any) => (
-                                                    <p key={Math.random()}>
+                                                    <p key={Math.random()} ref={(ref) => setHeight()}>
                                                         <span className='section__text'>{state.goods.map(element => element.id === elem.id ? element.title : null)}</span>
                                                         <span className='section__text'> x {elem.count}</span>
                                                     </p>
