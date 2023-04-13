@@ -2,7 +2,7 @@ import { useAuth0, withAuthenticationRequired } from '@auth0/auth0-react';
 import Button from "../components/Button";
 import { CSSTransition } from 'react-transition-group';
 import useAnimationState from "../hooks/useAnimationState";
-import React, {useEffect, useRef, useState} from "react";
+import React, { useEffect, useRef, useState } from "react";
 import emptycart from "../img/empty-cart.webp";
 import {Link} from 'react-router-dom';
 import {collection, getDocs, query, where, orderBy, doc, updateDoc, deleteDoc} from "firebase/firestore";
@@ -14,7 +14,7 @@ import {YMaps, Map, Placemark, FullscreenControl, SearchControl, GeolocationCont
 import {check} from "../helpers/check";
 import {updateUserData} from "../store/slice/userSlice";
 
-export const Profile = withAuthenticationRequired(({db}: { db: any }) => {
+export const Profile = withAuthenticationRequired(({ db }: { db: any }) => {
 
     const {logout} = useAuth0();
     const animationState = useAnimationState();
@@ -52,14 +52,14 @@ export const Profile = withAuthenticationRequired(({db}: { db: any }) => {
         if(mapInstance && state.user[0].address) {
             mapInstance.geocode(state.user[0].address, {results: 1}).then((res: { geoObjects: { get: (arg0: number) => { (): any; new(): any; geometry: { (): any; new(): any; getCoordinates: { (): any; new(): any; }; }; }; }; }) => {
                 let coords = res.geoObjects.get(0).geometry.getCoordinates();
-                setMapState({center: coords, zoom: 16})
+                setMapState({ center: coords, zoom: 16 })
             })
         }
     }, [mapInstance, state.user[0].address])
 
     const mapClick = (e: any) => {
         let coords = e.get('coords');
-        setMapState({zoom: 17, center: coords})
+        setMapState({ zoom: 17, center: coords })
         getAddress(coords)
     }
 
@@ -82,7 +82,7 @@ export const Profile = withAuthenticationRequired(({db}: { db: any }) => {
         });
     }
 
-    async function sendForm(form: any){
+    async function sendForm(form: any) {
         const formData = new FormData(form)
         const name = formData.get('userName')
         const phone = formData.get('userPhone')
@@ -119,7 +119,7 @@ export const Profile = withAuthenticationRequired(({db}: { db: any }) => {
 
     const accordionClick = (id: any[]) => {
         const allItems = document.querySelectorAll(".accordion__item");
-        for (const item of allItems){
+        for (const item of allItems) {
             item.classList.remove('open');
         }
         const openedPanel = document.getElementById(`accordion__heading-${id[0]}`);
@@ -139,7 +139,7 @@ export const Profile = withAuthenticationRequired(({db}: { db: any }) => {
     const setHeight = () => {
         const accordion = document.querySelector('.accordion')
         const panels = accordion?.querySelectorAll('.accordion__panel')
-        if(panels){
+        if (panels) {
             panels.forEach((panel: any) => {
                 const paragraphs = panel.querySelectorAll('p')
                 let height: number = 0
@@ -164,38 +164,11 @@ export const Profile = withAuthenticationRequired(({db}: { db: any }) => {
         >
             <>
                 <section className='profile' ref={nodeRef}>
-                    <div className='profile__user'>
-                        <img className='user__photo' src={state.user[0].picture} alt={state.user[0].name}/>
-                        <h3 className='user__email'>{state.user[0].email}</h3>
-                        <form className="profile__form">
-                            <div className="form-wrap">
-                                <input type="text" defaultValue={state.user[0].name ? state.user[0].name : ''} name="userName" className="user__input" placeholder="Имя"/>
-                                <PatternFormat value={state.user[0].phone ? state.user[0].phone : ''} format="+7 (###) ### ## ##" mask="_" className="user__input" name="userPhone" placeholder="Телефон"/>
-                            </div>
-                            <textarea value={userAddress} name="userAddress" className="user__input user__input--textarea" placeholder="Адрес" onChange={e => setUserAddress(e.target.value)}/>
-                            <YMaps query={{ apikey: '5f4951d5-9bcf-4ea4-ae8b-b561e80e3ca1', load: "package.full",}}>
-                                <Map
-                                    state={{ center: mapState.center, zoom: mapState.zoom, controls: []}}
-                                    className="map"
-                                    onLoad={ymaps => setMapInstance(ymaps)}
-                                    onClick={(e: any) => mapClick(e)}
-                                >
-                                    <Placemark geometry={mapState.center} instanceRef={(instance) => setPlacemark(instance)}/>
-                                    <FullscreenControl />
-                                    <SearchControl options={{ float: "right" }} />
-                                    <GeolocationControl options={{ float: "left" }} />
-                                    <ZoomControl />
-                                </Map>
-                            </YMaps>
-                            <Button modificator={"edit-btn"} disabled={isSended ? true : false} text="Save" onClick={(e) => formSubmitHandler(e)}></Button>
-                            {isSended && <p className="success-text">✅ your data was saved!</p>}
-                        </form>
-                    </div>
                     <div className='profile__history'>
                         <h2 className='section__title text-color'>История заказов</h2>
                         {orders.length > 0
-                            ?   <>
-                            <Accordion allowZeroExpanded onChange={(id: any) => accordionClick(id)}>
+                            ? <>
+                                <Accordion allowZeroExpanded onChange={(id: any) => accordionClick(id)}>
                                     {orders.map((el: any) => (
                                         <AccordionItem key={Math.random()}>
                                             <AccordionItemHeading>
@@ -211,7 +184,7 @@ export const Profile = withAuthenticationRequired(({db}: { db: any }) => {
                                             </AccordionItemHeading>
                                             <AccordionItemPanel>
                                                 {el.items.map((elem: any) => (
-                                                    <p className='accordion-text'key={Math.random()} ref={(ref) => setHeight()}>
+                                                    <p className='accordion-text' key={Math.random()} ref={(ref) => setHeight()}>
                                                         <span className='section__text'>{state.goods.map(element => element.id === elem.id ? element.title : null)}</span>
                                                         <span className='section__text'> x {elem.count}</span>
                                                     </p>
@@ -221,18 +194,53 @@ export const Profile = withAuthenticationRequired(({db}: { db: any }) => {
                                     ))}
                                 </Accordion>
                                 <Button modificator={"cart-btn"} text="Clear history" onClick={clearHistory}></Button>
-                                </>
+                            </>
 
-                            :   <>
-                                    <img className="history__img" src={emptycart} alt="Cart is empty"/>
-                                    <p className="section__text">Ваша история заказов пуста!</p>
-                                    <Link to="/menu" className="btn home-btn">Сделать заказ</Link>
-                                </>
+                            : <>
+                                <img className="history__img" src={emptycart} alt="Cart is empty" />
+                                <p className="section__text">Ваша история заказов пуста!</p>
+                                <Link to="/menu" className="btn home-btn">Сделать заказ</Link>
+                            </>
                         }
                     </div>
-                <Button modificator={"cart-btn profile-btn"} text={"Log Out"} onClick={() => logout({logoutParams: {returnTo: window.location.origin}})}></Button>
+                    <div className='profile__user'>
+                        <div className='user__container'>
+                            <div className='user__wrap'>
+                                <img className='user__photo' src={state.user[0].picture} alt={state.user[0].name} />
+                                <h3 className='user__email'>{state.user[0].email}</h3>
+                            </div>
+                            <form className="profile__form">
+                                <div className="form__wrap">
+                                    <input type="text" defaultValue={state.user[0].name} name="userName" className="user__input" placeholder="Имя*" />
+                                    <PatternFormat value={state.user[0].phone} format="+7 (###) ### ## ##" mask="_" className="user__input" name="userPhone" placeholder="Телефон*" />
+                                </div>
+                                <textarea value={userAddress} name="userAddress" className="user__input user__input--textarea" placeholder="Адрес*" onChange={e => setUserAddress(e.target.value)} />
+                            </form>
+                        </div>
+                        <div className='user__map'>
+                            <YMaps query={{ apikey: '5f4951d5-9bcf-4ea4-ae8b-b561e80e3ca1', load: "package.full", }}>
+                                <Map
+                                    state={{ center: mapState.center, zoom: mapState.zoom, controls: [] }}
+                                    className="map"
+                                    onLoad={ymaps => setMapInstance(ymaps)}
+                                    onClick={(e: any) => mapClick(e)}
+                                >
+                                    <Placemark geometry={mapState.center} instanceRef={(instance) => setPlacemark(instance)} />
+                                    <FullscreenControl />
+                                    <SearchControl options={{ float: "right" }} />
+                                    <GeolocationControl options={{ float: "left" }} />
+                                    <ZoomControl />
+                                </Map>
+                            </YMaps>
+                            <Button modificator={"edit-btn"} disabled={isSended ? true : false} text="Save" onClick={(e) => formSubmitHandler(e)}></Button>
+                            {isSended && <p className="success-text section__text">✅ your data was saved!</p>}
+                        </div>
+                    </div>
                 </section>
-             </>
-         </CSSTransition>
-     )
- })
+                <div className='profile__footer'>
+                    <Button modificator={"cart-btn profile-btn"} text={"Log Out"} onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}></Button>
+                </div>
+            </>
+        </CSSTransition>
+    )
+})

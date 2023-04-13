@@ -3,8 +3,10 @@
 
 .profile
     display: flex
-    flex-wrap: wrap
     align-items: flex-start
+
+.profile__footer
+    display: flex
     justify-content: center
     margin-bottom: calc( $gap * 5 )
 
@@ -15,17 +17,39 @@
     flex-direction: column
     align-items: center
     padding-top: calc( $gap * 3 )
+
+.user__container
+    display: flex
+    flex-direction: column
+    width: 85%
+    margin-bottom: calc( $gap / 2 )
     
+.user__wrap
+    display: flex
+    flex-direction: column
+    align-items: center
+    margin-bottom: calc( $gap / 2 )
+
 .profile__form
     display: flex
     flex-direction: column
     flex-wrap: wrap
     align-items: center
+
+    .section__text
+        text-align: center
+        margin: 0
+
+.user__map
+    display: flex
+    flex-direction: column
+    align-items: center
     margin-bottom: calc( $gap * 2 )
 
-.form-wrap
+.form__wrap
     display: flex
-    justify-content: space-evenly
+    width: 80%
+    justify-content: space-between
 
 .user__photo
     display: block
@@ -35,7 +59,8 @@
     margin-bottom: $gap
 
 .user__input
-    width: 49%
+    display: flex
+    width: 49.8%
     border: 2px solid transparent
     color: $smalTextColor
     font-size: 16px
@@ -43,6 +68,7 @@
     padding: 12px 16px
     border-radius: 12px
     margin-bottom: calc( $gap / 2 )
+    overflow: hidden
     transition: all .3s ease-out
 
     &:hover
@@ -54,16 +80,13 @@
 
     &--textarea
         resize: none
-        width: 100%
+        width: 80%
+        margin-bottom: 0
 
         &::placeholder
             padding-top: 8px
 
-.user__email
-    margin-bottom: calc( $gap / 2 )
-
 .profile__history
-    order: -1
     justify-content: center
 
     .section__text
@@ -85,14 +108,14 @@
 
 .accordion-date
     display: flex
-    justify-content: flex-end
     flex: 65%
 
     .date__text
-        width: 29%
+        text-align: end
+        margin-right: calc( $gap / 2 )
 
     .date__descr
-        width: 38%
+        text-align: start
 
 .history__img
     width: 378px

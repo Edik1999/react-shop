@@ -65,6 +65,21 @@
     .card:nth-child(odd)
         margin: 0 0 1.5%
 
+    // profile
+    .form__wrap,
+    .accordion__wrap
+        flex-direction: column
+        width: 100%
+
+    .user__input,
+    .accordion-price,
+    .accordion-date
+        width: 100%
+
+    .accordion-price,
+    .accordion-date
+        justify-content: center
+
     // footer
     .footer__aside
         width: 45%
@@ -94,6 +109,13 @@
     //modal
     .modal
         width: 70%
+
+    // profile
+    .accordion__button
+        padding-left: 18px
+
+    .user__input
+        margin-bottom: calc( $gap / 3 )
 
     // cart
     .cart__list
@@ -281,12 +303,55 @@
 
     // profile
     .profile
-        justify-content: space-around
+        flex-direction: column-reverse
 
     .profile__user,
     .profile__history
         flex: none
+        width: 100%
+        padding-top: 0
 
+    .profile__user
+        flex-wrap: wrap
+        flex-direction: row
+
+    .user__container
+        flex-direction: row
+        align-items: center
+        width: 100%
+        margin-bottom: $gap
+
+    .user__wrap
+        margin-right: $gap
+
+    .user__wrap, .user__input--textarea
+        margin-bottom: 0
+
+    .profile__form
+        justify-content: space-between
+        width: 100%
+
+    .form__wrap
+        flex-direction: row
+
+    .user__input
+        width: 49.8%
+
+    .user__input--textarea, .user__map
+        width: 100%
+
+    .edit-btn
+        width: 216px 
+
+    .accordion
+        width: 83%
+
+    .accordion__button
+        padding-left: 45px
+
+    .accordion__wrap
+        flex-direction: row
+        
     // footer
     .footer__container
         flex-direction: column
@@ -485,6 +550,31 @@
         margin-bottom: $gap
         padding-bottom: $gap
         border-bottom: 1px solid #DDDDDD
+
+    .form__wrap
+        flex-direction: column
+
+    .user__input
+        width: 100%
+
+    .user__map
+        width: 100%
+        height: 348px
+        .map
+            width: 100%
+            height: 348px
+            .ymaps-2-1-79-map:style
+                width: 100%
+                height: 348px
+
+    .accordion
+        width: 83%
+
+    .accordion__button
+        padding-left: 18px
+
+    .accordion__wrap
+        flex-direction: column
 
     // footer
     .footer
@@ -716,6 +806,14 @@
 
         &__number
             width: 36px
+
+    // profile
+    .user__container
+        flex-direction: column
+        margin-bottom: calc( $gap / 3 )
+
+    .user__wrap
+        margin: 0 0 calc( $gap / 2 )
 
     // footer
     .footer__descr
