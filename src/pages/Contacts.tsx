@@ -1,6 +1,6 @@
 import Button from '../components/Button';
 import contactsdecorate from "../img/contacts-decorate.webp";
-import {useAuth0, withAuthenticationRequired} from '@auth0/auth0-react';
+import {withAuthenticationRequired} from '@auth0/auth0-react';
 import { CSSTransition } from 'react-transition-group';
 import useAnimationState from "../hooks/useAnimationState";
 import {useState, MouseEvent, useRef, FocusEvent} from "react";
@@ -8,13 +8,14 @@ import {imagesLoaded} from "../helpers/imagesLoaded";
 import Loader from "../components/Loader";
 import {addDoc, collection} from "firebase/firestore";
 import { PatternFormat } from 'react-number-format';
+import {useAppSelector} from "../store";
 
 export const Contacts = withAuthenticationRequired(({db}: {db: any}) => {
 
   const animationState = useAnimationState();
   const nodeRef = useRef(null);
   const secondNodeRef = useRef(null);
-  const {user} = useAuth0();
+  const state = useAppSelector(state => state.user[0]);
 
   const [imagesLoading, setImagesLoading] = useState(true);
   const [error, setError] = useState(false);
@@ -123,9 +124,9 @@ export const Contacts = withAuthenticationRequired(({db}: {db: any}) => {
                   <form className="form">
                     <div className="form__top">
                       <div className="form__left">
-                        <input className="form__input feedback-form" name="name" type="text" placeholder="Name" defaultValue={user?.name !== user?.email ? user?.name : ''} required onFocus={(e) => clickHandler(e)} />
-                        <input className="form__input feedback-form" name="email" type="email" placeholder="E-mail" defaultValue={user?.email} onFocus={(e) => clickHandler(e)}/>
-                        <PatternFormat format="+7 (###) ### ## ##" mask="_" className="form__input feedback-form" type="tel" placeholder="Phone" onFocus={(e) => clickHandler(e)}/>
+                        <input className="form__input feedback-form" name="name" type="text" placeholder="Name" defaultValue={state.name ? state.name : ''} required onFocus={(e) => clickHandler(e)} />
+                        <input className="form__input feedback-form" name="email" type="email" placeholder="E-mail" defaultValue={state.email ? state.email : ''} onFocus={(e) => clickHandler(e)}/>
+                        <PatternFormat value={state.phone ? state.phone : ''} format="+7 (###) ### ## ##" mask="_" className="form__input feedback-form" type="tel" placeholder="Phone" onFocus={(e) => clickHandler(e)}/>
                       </div>
                       <div className="form__right">
                         <textarea className="form__textarea feedback-form" name="message" placeholder="Comment" required onFocus={(e) => clickHandler(e)}></textarea>

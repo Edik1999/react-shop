@@ -14,15 +14,17 @@ import {useGetGoodsQuery} from "./store/mockAPI/mockApi";
 import Loader from "./components/Loader";
 import {useAppDispatch} from "./store";
 import {goods} from "./store/slice/goodsSlice";
-import {addDoc, collection, DocumentData, getDocs, query, where, setDoc, doc} from "firebase/firestore";
+import {collection, DocumentData, getDocs, query, where, setDoc, doc} from "firebase/firestore";
 import {useAuth0} from "@auth0/auth0-react";
+import {setUserData} from "./store/slice/userSlice";
+import {checkUser} from "./helpers/checkUser";
 
 function App({db}: { db: any }) {
 
     // const {isLoading, isError, data} = useGetGoodsQuery("");
-    // const body = document.querySelector('body') as HTMLBodyElement;
 
     const [loading, setLoading] = useState(true)
+
     const dispatch = useAppDispatch();
     let location = useLocation();
     const {user} = useAuth0();
@@ -30,8 +32,6 @@ function App({db}: { db: any }) {
     useEffect(() => {
         window.scrollTo(0, 0);
     }, [location.pathname])
-
-    // isLoading ? body.style.overflow = 'hidden' : body.style.overflowY = 'visible'
 
     async function getDocsFromDB(){
         setLoading(true)
@@ -56,6 +56,12 @@ function App({db}: { db: any }) {
             picture: user?.picture,
             sub: user?.sub
         });
+        dispatch(setUserData([{
+            email: user?.email,
+            name: user?.name !== user?.email ? user?.name : '',
+            picture: user?.picture,
+            sub: user?.sub
+        }]))
         console.log('user saved');
     }
 
@@ -73,7 +79,13 @@ function App({db}: { db: any }) {
 
     useEffect(() => {
         if (user){
-            check().then(res => {if (res) save()})
+            check().then(res => {
+                if (res){
+                    save()
+                }else{
+                    checkUser(db, user?.email).then((res: any) => dispatch(setUserData(res)))
+                }
+            })
         }
         // eslint-disable-next-line
     }, [user])

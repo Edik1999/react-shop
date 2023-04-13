@@ -5,85 +5,57 @@ import useAnimationState from "../hooks/useAnimationState";
 import React, {useEffect, useRef, useState} from "react";
 import emptycart from "../img/empty-cart.webp";
 import {Link} from 'react-router-dom';
-import {collection, DocumentData, getDocs, query, where, orderBy, doc, updateDoc, Query, deleteDoc} from "firebase/firestore";
-import {useAppSelector} from "../store";
+import {collection, getDocs, query, where, orderBy, doc, updateDoc, deleteDoc} from "firebase/firestore";
+import {useAppDispatch, useAppSelector} from "../store";
 import Moment from 'react-moment';
 import {PatternFormat} from "react-number-format";
-import {
-    Accordion,
-    AccordionItem,
-    AccordionItemHeading,
-    AccordionItemButton,
-    AccordionItemPanel
-} from 'react-accessible-accordion';
-import {
-    YMaps,
-    Map,
-    Placemark,
-    FullscreenControl,
-    SearchControl,
-    GeolocationControl,
-    ZoomControl
-} from '@pbe/react-yandex-maps';
+import {Accordion, AccordionItem, AccordionItemHeading, AccordionItemButton, AccordionItemPanel} from 'react-accessible-accordion';
+import {YMaps, Map, Placemark, FullscreenControl, SearchControl, GeolocationControl, ZoomControl} from '@pbe/react-yandex-maps';
+import {check} from "../helpers/check";
+import {updateUserData} from "../store/slice/userSlice";
 
 export const Profile = withAuthenticationRequired(({db}: { db: any }) => {
 
-    const {logout, user} = useAuth0();
+    const {logout} = useAuth0();
     const animationState = useAnimationState();
     const nodeRef = useRef(null);
     const state = useAppSelector(state => state);
+    const dispatch = useAppDispatch();
 
     const [orders, setOrders] = useState([]);
     const [mapInstance, setMapInstance] = useState<any>();
     const [placemark, setPlacemark] = useState<any>();
     const [userAddress, setUserAddress] = useState<string>('');
     const [isSended, setIsSended] = useState(false);
-    const [userInfo, setUserInfo] = useState<any>();
     const [mapState, setMapState] = useState({
         center: [55.75, 37.57],
         zoom: 9
     })
 
-    const check = async (q: Query<unknown>) => {
-        let appData: DocumentData[] = [];
-        const querySnapshot = await getDocs(q);
-        querySnapshot.forEach((doc) => {
-            appData.push(doc.data() as DocumentData);
-        });
-
-        return appData
-    }
-
     async function checkOrders() {
-        const q = query(collection(db, "orders"), where("user", "==", user?.email), orderBy('date', 'desc'));
-        return check(q)
-    }
-
-    async function checkUser() {
-        const q = query(collection(db, "users"), where("email", "==", user?.email));
+        const q = query(collection(db, "orders"), where("user", "==", state.user[0].email), orderBy('date', 'desc'));
         return check(q)
     }
 
     useEffect(() => {
         checkOrders().then((res: any) => setOrders(res));
-        checkUser().then((res: any) => setUserInfo(res));
         // eslint-disable-next-line
     }, [])
 
     useEffect(() => {
-        if(userInfo) {
-            setUserAddress(userInfo[0].address)
+        if(state.user[0].address) {
+            setUserAddress(state.user[0].address)
         }
-    }, [userInfo])
+    }, [state.user[0].address])
 
     useEffect(() => {
-        if(mapInstance) {
-            mapInstance.geocode(userInfo[0].address, {results: 1}).then((res: { geoObjects: { get: (arg0: number) => { (): any; new(): any; geometry: { (): any; new(): any; getCoordinates: { (): any; new(): any; }; }; }; }; }) => {
+        if(mapInstance && state.user[0].address) {
+            mapInstance.geocode(state.user[0].address, {results: 1}).then((res: { geoObjects: { get: (arg0: number) => { (): any; new(): any; geometry: { (): any; new(): any; getCoordinates: { (): any; new(): any; }; }; }; }; }) => {
                 let coords = res.geoObjects.get(0).geometry.getCoordinates();
                 setMapState({center: coords, zoom: 16})
             })
         }
-    }, [mapInstance, userInfo])
+    }, [mapInstance, state.user[0].address])
 
     const mapClick = (e: any) => {
         let coords = e.get('coords');
@@ -116,13 +88,19 @@ export const Profile = withAuthenticationRequired(({db}: { db: any }) => {
         const phone = formData.get('userPhone')
         const address = formData.get('userAddress')
 
-        const userRef = doc(db, "users", user?.email as string);
+        const userRef = doc(db, "users", state.user[0].email as string);
 
         await updateDoc(userRef, {
-                name: name,
-                phone: phone,
-                address: address,
+            name: name,
+            phone: phone,
+            address: address,
         });
+
+        dispatch(updateUserData([{
+            name: name,
+            phone: phone,
+            address: address,
+        }]))
 
         console.log('form sended');
     }
@@ -150,7 +128,7 @@ export const Profile = withAuthenticationRequired(({db}: { db: any }) => {
     }
 
     const clearHistory = async () => {
-        const q = query(collection(db, "orders"), where("user", "==", user?.email));
+        const q = query(collection(db, "orders"), where("user", "==", state.user[0].email));
         const querySnapshot = await getDocs(q);
         querySnapshot.forEach(async (order) => {
             await deleteDoc(doc(db, "orders", order.id));
@@ -187,12 +165,12 @@ export const Profile = withAuthenticationRequired(({db}: { db: any }) => {
             <>
                 <section className='profile' ref={nodeRef}>
                     <div className='profile__user'>
-                        <img className='user__photo' src={user?.picture} alt={user?.name}/>
-                        <h3 className='user__email'>{user?.email}</h3>
+                        <img className='user__photo' src={state.user[0].picture} alt={state.user[0].name}/>
+                        <h3 className='user__email'>{state.user[0].email}</h3>
                         <form className="profile__form">
                             <div className="form-wrap">
-                                <input type="text" defaultValue={userInfo ? userInfo[0].name : ''} name="userName" className="user__input" placeholder="Имя"/>
-                                <PatternFormat value={userInfo ? userInfo[0].phone : ''} format="+7 (###) ### ## ##" mask="_" className="user__input" name="userPhone" placeholder="Телефон"/>
+                                <input type="text" defaultValue={state.user[0].name ? state.user[0].name : ''} name="userName" className="user__input" placeholder="Имя"/>
+                                <PatternFormat value={state.user[0].phone ? state.user[0].phone : ''} format="+7 (###) ### ## ##" mask="_" className="user__input" name="userPhone" placeholder="Телефон"/>
                             </div>
                             <textarea value={userAddress} name="userAddress" className="user__input user__input--textarea" placeholder="Адрес" onChange={e => setUserAddress(e.target.value)}/>
                             <YMaps query={{ apikey: '5f4951d5-9bcf-4ea4-ae8b-b561e80e3ca1', load: "package.full",}}>

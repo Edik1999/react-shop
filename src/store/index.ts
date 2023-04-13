@@ -3,12 +3,14 @@ import goodsSlice from "./slice/goodsSlice";
 import { mockAPI } from "./mockAPI/mockApi";
 import {TypedUseSelectorHook, useDispatch, useSelector} from 'react-redux';
 import cartSlice from "./slice/cartSlice";
+import userSlice from "./slice/userSlice";
 
 export const store = configureStore({
     reducer: {
         [mockAPI.reducerPath]: mockAPI.reducer,
         goods: goodsSlice,
-        cart: cartSlice
+        cart: cartSlice,
+        user: userSlice,
     },
     middleware: getDefaultMiddleware => getDefaultMiddleware().concat(mockAPI.middleware)
 })
