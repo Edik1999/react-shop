@@ -17,12 +17,6 @@
     flex-direction: column
     align-items: center
     padding-top: calc( $gap * 3 )
-
-.user__container
-    display: flex
-    flex-direction: column
-    width: 85%
-    margin-bottom: calc( $gap / 2 )
     
 .user__wrap
     display: flex
@@ -48,8 +42,10 @@
 
 .form__wrap
     display: flex
-    width: 80%
+    flex-wrap: wrap
     justify-content: space-between
+    width: 70%
+    margin-bottom: calc( $gap / 2 )
 
 .user__photo
     display: block
@@ -80,7 +76,7 @@
 
     &--textarea
         resize: none
-        width: 80%
+        width: 100%
         margin-bottom: 0
 
         &::placeholder

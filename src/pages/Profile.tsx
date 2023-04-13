@@ -4,19 +4,19 @@ import { CSSTransition } from 'react-transition-group';
 import useAnimationState from "../hooks/useAnimationState";
 import React, { useEffect, useRef, useState } from "react";
 import emptycart from "../img/empty-cart.webp";
-import {Link} from 'react-router-dom';
-import {collection, getDocs, query, where, orderBy, doc, updateDoc, deleteDoc} from "firebase/firestore";
-import {useAppDispatch, useAppSelector} from "../store";
+import { Link } from 'react-router-dom';
+import { collection, getDocs, query, where, orderBy, doc, updateDoc, deleteDoc } from "firebase/firestore";
+import { useAppDispatch, useAppSelector } from "../store";
 import Moment from 'react-moment';
-import {PatternFormat} from "react-number-format";
-import {Accordion, AccordionItem, AccordionItemHeading, AccordionItemButton, AccordionItemPanel} from 'react-accessible-accordion';
-import {YMaps, Map, Placemark, FullscreenControl, SearchControl, GeolocationControl, ZoomControl} from '@pbe/react-yandex-maps';
-import {check} from "../helpers/check";
-import {updateUserData} from "../store/slice/userSlice";
+import { PatternFormat } from "react-number-format";
+import { Accordion, AccordionItem, AccordionItemHeading, AccordionItemButton, AccordionItemPanel } from 'react-accessible-accordion';
+import { YMaps, Map, Placemark, FullscreenControl, SearchControl, GeolocationControl, ZoomControl } from '@pbe/react-yandex-maps';
+import { check } from "../helpers/check";
+import { updateUserData } from "../store/slice/userSlice";
 
 export const Profile = withAuthenticationRequired(({ db }: { db: any }) => {
 
-    const {logout} = useAuth0();
+    const { logout } = useAuth0();
     const animationState = useAnimationState();
     const nodeRef = useRef(null);
     const state = useAppSelector(state => state);
@@ -43,14 +43,14 @@ export const Profile = withAuthenticationRequired(({ db }: { db: any }) => {
     }, [])
 
     useEffect(() => {
-        if(state.user[0].address) {
+        if (state.user[0].address) {
             setUserAddress(state.user[0].address)
         }
     }, [state.user[0].address])
 
     useEffect(() => {
-        if(mapInstance && state.user[0].address) {
-            mapInstance.geocode(state.user[0].address, {results: 1}).then((res: { geoObjects: { get: (arg0: number) => { (): any; new(): any; geometry: { (): any; new(): any; getCoordinates: { (): any; new(): any; }; }; }; }; }) => {
+        if (mapInstance && state.user[0].address) {
+            mapInstance.geocode(state.user[0].address, { results: 1 }).then((res: { geoObjects: { get: (arg0: number) => { (): any; new(): any; geometry: { (): any; new(): any; getCoordinates: { (): any; new(): any; }; }; }; }; }) => {
                 let coords = res.geoObjects.get(0).geometry.getCoordinates();
                 setMapState({ center: coords, zoom: 16 })
             })
@@ -204,37 +204,35 @@ export const Profile = withAuthenticationRequired(({ db }: { db: any }) => {
                         }
                     </div>
                     <div className='profile__user'>
-                        <div className='user__container'>
-                            <div className='user__wrap'>
-                                <img className='user__photo' src={state.user[0].picture} alt={state.user[0].name} />
-                                <h3 className='user__email'>{state.user[0].email}</h3>
+                        <div className='user__wrap'>
+                            <img className='user__photo' src={state.user[0].picture} alt={state.user[0].name}/>
+                            <h3 className='user__email'>{state.user[0].email}</h3>
+                        </div>
+                        <form className="profile__form">
+                            <div className="form__wrap">
+                                <input type="text" defaultValue={state.user[0].name} name="userName" className="user__input" placeholder="Имя*"/>
+                                <PatternFormat value={state.user[0].phone} format="+7 (###) ### ## ##" mask="_" className="user__input" name="userPhone" placeholder="Телефон*"/>
+                                <textarea value={userAddress} name="userAddress" className="user__input user__input--textarea" placeholder="Адрес*" onChange={e => setUserAddress(e.target.value)}/>
                             </div>
-                            <form className="profile__form">
-                                <div className="form__wrap">
-                                    <input type="text" defaultValue={state.user[0].name} name="userName" className="user__input" placeholder="Имя*" />
-                                    <PatternFormat value={state.user[0].phone} format="+7 (###) ### ## ##" mask="_" className="user__input" name="userPhone" placeholder="Телефон*" />
-                                </div>
-                                <textarea value={userAddress} name="userAddress" className="user__input user__input--textarea" placeholder="Адрес*" onChange={e => setUserAddress(e.target.value)} />
-                            </form>
-                        </div>
-                        <div className='user__map'>
-                            <YMaps query={{ apikey: '5f4951d5-9bcf-4ea4-ae8b-b561e80e3ca1', load: "package.full", }}>
-                                <Map
-                                    state={{ center: mapState.center, zoom: mapState.zoom, controls: [] }}
-                                    className="map"
-                                    onLoad={ymaps => setMapInstance(ymaps)}
-                                    onClick={(e: any) => mapClick(e)}
-                                >
-                                    <Placemark geometry={mapState.center} instanceRef={(instance) => setPlacemark(instance)} />
-                                    <FullscreenControl />
-                                    <SearchControl options={{ float: "right" }} />
-                                    <GeolocationControl options={{ float: "left" }} />
-                                    <ZoomControl />
-                                </Map>
-                            </YMaps>
-                            <Button modificator={"edit-btn"} disabled={isSended ? true : false} text="Save" onClick={(e) => formSubmitHandler(e)}></Button>
-                            {isSended && <p className="success-text section__text">✅ your data was saved!</p>}
-                        </div>
+                            <div className='user__map'>
+                                <YMaps query={{ apikey: '5f4951d5-9bcf-4ea4-ae8b-b561e80e3ca1', load: "package.full", }}>
+                                    <Map
+                                        state={{ center: mapState.center, zoom: mapState.zoom, controls: [] }}
+                                        className="map"
+                                        onLoad={ymaps => setMapInstance(ymaps)}
+                                        onClick={(e: any) => mapClick(e)}
+                                    >
+                                        <Placemark geometry={mapState.center} instanceRef={(instance) => setPlacemark(instance)}/>
+                                        <FullscreenControl />
+                                        <SearchControl options={{ float: "right" }} />
+                                        <GeolocationControl options={{ float: "left" }} />
+                                        <ZoomControl />
+                                    </Map>
+                                </YMaps>
+                                <Button modificator={"edit-btn"} disabled={isSended ? true : false} text="Save" onClick={(e) => formSubmitHandler(e)}></Button>
+                                {isSended && <p className="success-text section__text">✅ your data was saved!</p>}
+                            </div>
+                        </form>
                     </div>
                 </section>
                 <div className='profile__footer'>
