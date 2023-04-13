@@ -1,11 +1,15 @@
-import companydecorate from "../img/company-decorate.webp";
-import {Link} from 'react-router-dom';
+import '../styles/pages/Company.sass';
+
 import { withAuthenticationRequired } from '@auth0/auth0-react';
-import { CSSTransition } from 'react-transition-group';
 import useAnimationState from "../hooks/useAnimationState";
 import {useRef, useState} from "react";
 import {imagesLoaded} from "../helpers/imagesLoaded";
+
+import { CSSTransition } from 'react-transition-group';
+import {Link} from 'react-router-dom';
 import Loader from "../components/Loader";
+
+import companydecorate from "../img/company-decorate.webp";
 
 export const Company = withAuthenticationRequired(() => {
 

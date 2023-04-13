@@ -1,14 +1,18 @@
+import '../styles/pages/FAQ.sass';
+
 import {useRef, useState} from "react";
+import { withAuthenticationRequired } from '@auth0/auth0-react';
+import useAnimationState from "../hooks/useAnimationState";
+import {imagesLoaded} from "../helpers/imagesLoaded";
+
+import {Link} from 'react-router-dom';
+import Loader from "../components/Loader";
+import { CSSTransition } from 'react-transition-group';
+
 import faqdecorate from "../img/faq-decorate.webp";
 import hiwdecorate1 from "../img/hiw-decorate-1.webp";
 import hiwdecorate2 from "../img/hiw-decorate-2.webp";
 import hiwdecorate3 from "../img/hiw-decorate-3.webp";
-import {Link} from 'react-router-dom';
-import { withAuthenticationRequired } from '@auth0/auth0-react';
-import { CSSTransition } from 'react-transition-group';
-import useAnimationState from "../hooks/useAnimationState";
-import {imagesLoaded} from "../helpers/imagesLoaded";
-import Loader from "../components/Loader";
 
 export const FAQ = withAuthenticationRequired(() => {
 

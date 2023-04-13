@@ -1,5 +1,4 @@
-@import '../components/accordion'
-@import '../components/map'
+@import '../variables/index'
 
 .profile
     display: flex
@@ -92,27 +91,93 @@
     .home-btn
         margin-bottom: 0
 
-.accordion__wrap
-    display: flex
-    align-items: center
-
-    .section__text
-        margin: 0
-
-.accordion-price
-    flex: 35%
-
-.accordion-date
-    display: flex
-    flex: 65%
-
-    .date__text
-        text-align: end
-        margin-right: calc( $gap / 2 )
-
-    .date__descr
-        text-align: start
-
 .history__img
     width: 378px
     margin-bottom: $gap
+
+@media (max-width: 1400px)
+    .form__wrap
+        flex-direction: column
+        width: 100%
+
+    .user__input
+        width: 100%
+
+@media (max-width: 1360px)
+    .user__input:not(:last-child)
+        margin-bottom: calc( $gap / 3 )
+
+@media (max-width: 1023.9px)
+    .profile
+        flex-direction: column-reverse
+        align-items: center
+
+    .profile__user,
+    .profile__history
+        flex: none
+        width: 100%
+        padding-top: 0
+
+    .profile__user
+        align-items: center
+        flex-direction: row
+        padding-bottom: calc( $gap * 23.5 )
+        max-width: 720px
+
+    .profile__history
+        margin-bottom: $gap
+
+    .user__wrap
+        margin-right: $gap
+
+    .user__wrap, .user__input--textarea
+        margin-bottom: 0
+
+    .profile__form
+        width: 100%
+
+    .form__wrap
+        position: relative
+        flex-direction: row
+        margin: 0
+
+    .user__map
+        position: absolute
+        top: 430px
+        right: 0
+        bottom: -559px
+        left: 0
+        margin-bottom: 0
+
+    .user__input
+        width: 49.8%
+
+    .user__input--textarea, .user__map
+        width: 100%
+
+@media (max-width: 768px)
+    .profile__user
+        width: 100%
+        margin-bottom: $gap
+        padding-bottom: calc( $gap * 13 )
+        border-bottom: 1px solid #DDDDDD
+
+    .user__input
+        width: 100%
+
+    .user__map
+        top: 380px
+        bottom: 0
+        left: auto
+        width: 100%
+        height: 348px
+
+@media (max-width: 575px)
+    .user__wrap
+        margin: 0 0 calc( $gap / 2 )
+
+    .profile__user
+        flex-direction: column
+
+    .user__map
+        top: calc( $gap * 18 )

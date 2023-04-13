@@ -1,9 +1,5 @@
-@import '../components/button'
-@import '../components/card'
-@import '../components/search'
-@import '../components/modal'
+@import '../variables/index'
 
-//home//
 .home
     position: relative
     display: flex
@@ -37,7 +33,6 @@
     position: absolute
     right: 0
 
-//clients//
 .clients
     margin-bottom: calc( $gap * 5 )
 
@@ -54,10 +49,10 @@
 
 .clients__wrap
     display: flex
-    justify-content: space-evenly
+    justify-content: space-between
 
 .client__card
-    width: 28%
+    width: 31%
     padding: calc( ($gap * 2) - 10px ) $gap $gap
     border-radius: 6px
     box-shadow: 0px 0px 5px 1px rgba(34, 60, 80, 0.2)
@@ -82,3 +77,108 @@
     font-size: $baseFZ
     line-height: calc( $textFZ + 2px)
     color: $smalTextColor
+
+@media (max-width: 1600px)
+    .home__left
+        padding-left: $gap
+
+@media (max-width: 1360px)
+    .home__right
+        right: -20px
+
+    .home__left
+        margin: 0
+
+@media (max-width: 1023.9px)
+    .home
+        flex-direction: column
+        margin-bottom: calc( $gap * 3 )
+
+        .section__title
+            font-size: 50px
+            line-height: 50px
+
+    .home__left
+        position: relative
+        margin: 0
+        padding-left: calc( $gap  * 3 )
+
+    .home__rate
+        position: absolute
+        left: 360px
+        bottom: 6px
+        max-width: 322px
+
+    .home__right
+        display: none
+
+    .clients
+        margin-bottom: calc( $gap * 3 )
+
+    .clients__wrap
+        display: none
+
+    .client__card
+        box-shadow: unset
+        border: 2px solid $maincolor
+
+@media (max-width: 768px)
+    .home
+        margin-bottom: $gap
+        padding-bottom: $gap
+        border-bottom: 1px solid $counterBorderColor
+
+        .section__title
+            font-size: 40px
+            line-height: 40px
+
+        .section__text
+            width: 90%
+
+    .home__left
+        padding: 0
+        align-items: center
+
+    .home__rate
+        position: relative
+        left: 0
+
+    .clients__title
+        font-size: 40px
+        line-height: 40px
+
+@media (max-width: 370px)
+    .home
+        margin-bottom: $gap
+        padding-bottom: $gap
+        border-bottom: 1px solid $counterBorderColor
+
+        .section__title
+            width: 100%
+            font-size: 30px
+            line-height: 30px
+
+        .section__text
+            width: 100%
+
+        .home-btn
+            margin: 0
+            font-size: 16px
+            padding: 16px 26px
+
+    .home__rate
+        display: none
+
+    .clients
+        .section__title
+            margin-bottom: $gap
+
+        .section__text
+            padding: 0
+            margin: 0
+            border: none
+
+    .client__info
+        margin-bottom: calc( $gap / 2 )
+        padding-bottom: calc( $gap / 2 )
+        border-bottom: 1px solid $counterBorderColor

@@ -1,16 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500&display=swap')
-@import './varibles/index'
-@import './layout/footer'
-@import './layout/header'
-@import './pages/Home'
-@import './pages/Fullmenu'
-@import './pages/FAQ'
-@import './pages/Contacts'
-@import './pages/Company'
-@import './pages/Cart'
-@import './pages/Profile'
+@import 'variables/index'
 @import './dark-theme.sass'
-@import './media'
+
+//@import './media'
 
 *,
 *::before,
@@ -22,7 +14,16 @@
     outline: none
     color: #000
 
+html, body, #root
+    min-height: 100vh
+
+#root
+    display: flex
+    flex-direction: column
+
 body
+    -webkit-font-smoothing: antialiased
+    -moz-osx-font-smoothing: grayscale
     background-color: $baseBgColor
 
     &.themeDark
@@ -108,32 +109,6 @@ h1, h2
 
     @media (max-width: 370px)
         font-size: $baseFZ
-
-.loader
-    position: fixed
-    top: 0
-    bottom: 0
-    right: 0
-    left: 0
-    background: #fff
-    z-index: 10
-
-.loader__body
-    position: relative
-    top: 50%
-    left: 50%
-    width: 45px
-    height: 45px
-    border: 5px solid #35B8BE
-    border-right: 5px solid transparent
-    border-radius: 50%
-    animation: rotate 1.5s infinite
-
-@keyframes rotate
-    0%
-        transform: translate(-50%, -50%) rotate(0deg)
-    100%
-        transform: translate(-50%, -50%) rotate(360deg)
 
 .animation-enter
     opacity: 0

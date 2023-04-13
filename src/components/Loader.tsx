@@ -1,3 +1,5 @@
+import '../styles/components/loader.sass';
+
 function Loader() {
   return (
     <div className='loader'>

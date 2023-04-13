@@ -1,10 +1,13 @@
+import '../styles/components/card.sass';
+
 import {useState, useEffect} from 'react'
-import Button from './Button';
-import Counter from './Counter';
 import { useAppDispatch } from "../store";
 import {cart} from '../store/slice/cartSlice';
 import {saveProductLocal} from "../helpers/saveProductLocal";
 import {useAppSelector} from "../store";
+
+import Button from './Button';
+import Counter from './Counter';
 
 interface IProps {
     id: number,

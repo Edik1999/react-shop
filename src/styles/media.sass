@@ -1,10 +1,6 @@
-@media (max-width: 1800px)
-    // modal
-    .modal
-        width: 44%
+
 
 @media (max-width: 1600px)
-    .home__left,
     .company__left,
     .faq__left,
     .contacts__left
@@ -16,10 +12,6 @@
 
     .search
         width: 30%
-
-    // modal
-    .modal
-        width: 52%
 
     // cart
     .cart__list
@@ -66,19 +58,7 @@
         margin: 0 0 1.5%
 
     // profile
-    .form__wrap,
-    .accordion__wrap
-        flex-direction: column
-        width: 100%
 
-    .user__input,
-    .accordion-price,
-    .accordion-date
-        width: 100%
-
-    .accordion-price,
-    .accordion-date
-        justify-content: center
 
     // footer
     .footer__aside
@@ -86,11 +66,7 @@
 
 @media (max-width: 1360px)
     // home
-    .home__right
-        right: calc( ($gap * -1) + 10px )
 
-    .home__left
-        margin: 0
 
     // howitworks
     .howitworks__img
@@ -110,13 +86,6 @@
     .modal
         width: 70%
 
-    // profile
-    .accordion__button
-        padding-left: 18px
-
-    .user__input:not(:last-child)
-        margin-bottom: calc( $gap / 3 )
-
     // cart
     .cart__list
         width: 45%
@@ -132,38 +101,8 @@
         width: 35%
 
 @media (max-width: 1023.9px)
-    // home
-    .home
-        flex-direction: column
-        margin-bottom: calc( $gap * 3 )
-
-        .section__title
-            font-size: 50px
-            line-height: 50px
-
-    .home__left
-        position: relative
-        margin: 0
-        padding-left: calc( $gap  * 3 )
-
-    .home__rate
-        position: absolute
-        left: 360px
-        bottom: 6px
-        max-width: 322px
-
-    .home__right
-        display: none
-
-    .clients
-        margin-bottom: calc( $gap * 3 )
-
-    .clients__wrap
-        flex-wrap: wrap
-
-    .client__card
-        margin: 0 auto $gap calc( $gap * 2 )
-        width: 40%
+    .slick-slider
+        display: block
 
     // menu
     .menu__filter
@@ -302,64 +241,12 @@
         text-align: center
 
     // profile
-    .profile
-        flex-direction: column-reverse
-        align-items: center
 
-    .profile__user,
-    .profile__history
-        flex: none
-        width: 100%
-        padding-top: 0
-
-    .profile__user
-        align-items: center
-        flex-direction: row
-        padding-bottom: calc( $gap * 23.5 )
-        max-width: 720px
-
-    .profile__history
-        margin-bottom: $gap
-
-    .user__wrap
-        margin-right: $gap
-
-    .user__wrap, .user__input--textarea
-        margin-bottom: 0
-
-    .profile__form
-        width: 100%
-
-    .form__wrap
-        position: relative
-        flex-direction: row
-        margin: 0
-
-    .user__map
-        position: absolute
-        top: 430px
-        right: 0
-        bottom: -559px
-        left: 0
-        margin-bottom: 0
-
-    .user__input
-        width: 49.8%
-
-    .user__input--textarea, .user__map
-        width: 100%
 
     .edit-btn
         width: 216px 
 
-    .accordion
-        width: 83%
 
-    .accordion__button
-        padding-left: 45px
-
-    .accordion__wrap
-        flex-direction: row
         
     // footer
     .footer__container
@@ -443,33 +330,7 @@
             margin-bottom: 0
 
     // home 
-    .home
-        margin-bottom: $gap
-        padding-bottom: $gap
-        border-bottom: 1px solid $counterBorderColor
 
-        .section__title
-            font-size: 40px
-            line-height: 40px
-
-        .section__text
-            width: 90%
-
-    .home__left
-        padding: 0
-        align-items: center
-
-    .home__rate
-        position: relative
-        left: 0
-
-    .clients__title
-        font-size: 40px
-        line-height: 40px
-
-    .client__card
-        margin: 0 0 $gap 0
-        width: 90%
 
     // menu
     .menu-btn:nth-child(-n+5) 
@@ -548,37 +409,14 @@
         font-size: 30px
 
     // profile
-    .profile
-        .home-btn
-            margin: 0
 
-    .profile__user
-        width: 100%
-        margin-bottom: $gap
-        padding-bottom: calc( $gap * 13 )
-        border-bottom: 1px solid #DDDDDD
 
-    .user__input
-        width: 100%
 
-    .user__map
-        top: 380px
-        bottom: 0
-        left: auto
-        width: 100%
+    .map
+        width: 90%
         height: 348px
-        .map
-            width: 90%
-            height: 348px
 
-    .accordion
-        width: 83%
 
-    .accordion__button
-        padding-left: 18px
-
-    .accordion__wrap
-        flex-direction: column
 
     // footer
     .footer
@@ -662,12 +500,6 @@
 
     .breakLine
         display: none
-
-    .clients
-        margin-bottom: $gap
-
-    .client__card
-        width: 100%
 
     // faq
     .faq
@@ -812,14 +644,7 @@
             width: 36px
 
     // profile
-    .user__wrap
-        margin: 0 0 calc( $gap / 2 )
 
-    .profile__user
-        flex-direction: column
-
-    .user__map
-        top: calc( $gap * 18 )
 
     // footer
     .footer__descr
@@ -835,58 +660,11 @@
     .footer-nav
         width: 100%
 
-@media (max-width: 470px)
-    // profile
-    .accordion-date
-        display: none
 
-    .accordion__panel
-        &[style]
-            height: auto!important
 
 @media (max-width: 370px)
     // home
-    .home
-        margin-bottom: $gap
-        padding-bottom: $gap
-        border-bottom: 1px solid $counterBorderColor
 
-        .section__title
-            width: 100%
-            font-size: 30px
-            line-height: 30px
-
-        .section__text
-            width: 100%
-
-        .home-btn
-            margin: 0
-            font-size: 16px
-            padding: 16px 26px
-
-    .home__rate
-        display: none
-
-    // clients
-    .clients
-        .section__title
-            margin-bottom: $gap
-
-        .section__text
-            padding: 0
-            margin: 0
-            border: none
-
-    .client__card
-        display: flex
-        flex-wrap: wrap-reverse
-        width: 100%
-        padding: $gap calc( $gap / 2 ) calc( $gap / 2 )
-
-    .client__info
-        margin-bottom: calc( $gap / 2 )
-        padding-bottom: calc( $gap / 2 )
-        border-bottom: 1px solid $counterBorderColor
 
     //menu
     .menu-btn:nth-child(-n+4)  
@@ -950,15 +728,8 @@
         width: 160px
 
     // profile
-    .profile
-        .home-btn
-            font-size: $baseFZ
 
-    .accordion__button
-        padding-left: $gap
 
-    .accordion-price
-        width: 100%
 
     // footer
     .footer__logo

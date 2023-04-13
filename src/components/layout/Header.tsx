@@ -1,10 +1,14 @@
-import React, {useEffect, useState} from "react";
+import '../../styles/layout/header.sass';
+
 import logo from "../../img/logo.svg";
 import cart from "../../img/cart.svg";
-import { NavLink, Link } from 'react-router-dom';
+
+import {useEffect, useState} from "react";
 import { useAuth0 } from "@auth0/auth0-react";
-import Button from "../Button";
 import {useAppSelector} from "../../store";
+
+import Button from "../Button";
+import { NavLink, Link } from 'react-router-dom';
 
 function Header() {
 

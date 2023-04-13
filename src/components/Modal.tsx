@@ -1,10 +1,13 @@
-import Button from "./Button";
-import Counter from "./Counter";
+import '../styles/components/modal.sass';
+
 import {useState, useEffect} from 'react';
 import { useAppDispatch } from "../store";
 import {cart} from '../store/slice/cartSlice';
 import {saveProductLocal} from "../helpers/saveProductLocal";
 import {useAppSelector} from "../store";
+
+import Button from "./Button";
+import Counter from "./Counter";
 
 function Modal({ isVisible, id, onClose }: {isVisible: boolean, id: any, onClose: () => void}) {
 

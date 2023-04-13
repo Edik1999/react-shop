@@ -1,14 +1,17 @@
+import '../styles/pages/Fullmenu.sass';
+
 import {useRef, useState} from "react";
+import {withAuthenticationRequired} from '@auth0/auth0-react';
+import {imagesLoaded} from "../helpers/imagesLoaded";
+import {useAppSelector} from "../store";
+import useAnimationState from "../hooks/useAnimationState";
+
+import { CSSTransition } from 'react-transition-group';
 import Card from "../components/Card";
 import Search from "../components/Search";
 import Button from '../components/Button';
 import Modal from '../components/Modal';
-import {withAuthenticationRequired} from '@auth0/auth0-react';
 import Loader from "../components/Loader";
-import {imagesLoaded} from "../helpers/imagesLoaded";
-import {useAppSelector} from "../store";
-import { CSSTransition } from 'react-transition-group';
-import useAnimationState from "../hooks/useAnimationState";
 
 export const Fullmenu = withAuthenticationRequired(() => {
 

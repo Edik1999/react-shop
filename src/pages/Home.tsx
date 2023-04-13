@@ -1,12 +1,18 @@
-import trustpilot from "../img/trustpilot.webp";
-import homedecorate from "../img/home-decorate.webp";
-import clientavatar from "../img/client-avatar.webp";
-import {Link} from 'react-router-dom';
-import { CSSTransition } from 'react-transition-group';
+import '../styles/pages/Home.sass';
+import '../styles/components/slider.sass';
+
 import useAnimationState from "../hooks/useAnimationState";
 import {useRef, useState} from "react";
 import {imagesLoaded} from "../helpers/imagesLoaded";
+
+import {Link} from 'react-router-dom';
+import Slider from "react-slick";
 import Loader from "../components/Loader";
+import { CSSTransition } from 'react-transition-group';
+
+import trustpilot from "../img/trustpilot.webp";
+import homedecorate from "../img/home-decorate.webp";
+import clientavatar from "../img/client-avatar.webp";
 
 function Home() {
 
@@ -23,6 +29,17 @@ function Home() {
   let parent: HTMLDivElement,
       parent2: HTMLDivElement,
       parent3: HTMLUListElement;
+
+  const settings = {
+    dots: true,
+    arrows: false,
+    infinite: true,
+    autoplay: true,
+    autoplaySpeed: 5000,
+    speed: 1000,
+    slidesToShow: 1,
+    slidesToScroll: 1
+  }
 
   return (
     <>
@@ -100,6 +117,38 @@ function Home() {
               </div>
             </li>
           </ul>
+          <Slider {...settings}>
+            <div className="client__card">
+              <p className="section__text">Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit odio dignissim qui blandit molestie consequat.</p>
+              <div className="client__info">
+                <img className="client__avatar" src={clientavatar} alt='client avatar' onLoad={() => handleImageChange(parent3)} onError={() => handleImageChange(parent3)}/>
+                <div className="client__descr">
+                  <p className="client__name text-color">John Armstrong</p>
+                  <p className="client__role">Customer</p>
+                </div>
+              </div>
+            </div>
+            <div className="client__card">
+              <p className="section__text">Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit odio dignissim qui blandit molestie consequat.</p>
+              <div className="client__info">
+                <img className="client__avatar" src={clientavatar} alt='client avatar' onLoad={() => handleImageChange(parent3)} onError={() => handleImageChange(parent3)}/>
+                <div className="client__descr">
+                  <p className="client__name text-color">John Armstrong</p>
+                  <p className="client__role">Customer</p>
+                </div>
+              </div>
+            </div>
+            <div className="client__card">
+              <p className="section__text">Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit odio dignissim qui blandit molestie consequat.</p>
+              <div className="client__info">
+                <img className="client__avatar" src={clientavatar} alt='client avatar' onLoad={() => handleImageChange(parent3)} onError={() => handleImageChange(parent3)}/>
+                <div className="client__descr">
+                  <p className="client__name text-color">John Armstrong</p>
+                  <p className="client__role">Customer</p>
+                </div>
+              </div>
+            </div>
+          </Slider>
         </section>
       </CSSTransition>
     </>

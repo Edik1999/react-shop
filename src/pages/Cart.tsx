@@ -1,11 +1,14 @@
-import Counter from '../components/Counter';
-import Button from '../components/Button';
-import { Link } from 'react-router-dom';
+import '../styles/pages/Cart.sass';
+
 import { MouseEvent, useEffect, useState} from "react";
 import {deleteFromCart, clearCart} from '../store/slice/cartSlice';
 import {useAppDispatch, useAppSelector} from "../store";
 import {useAuth0, withAuthenticationRequired} from '@auth0/auth0-react';
 import {addDoc, collection} from "firebase/firestore";
+
+import { Link } from 'react-router-dom';
+import Counter from '../components/Counter';
+import Button from '../components/Button';
 
 export const Cart = withAuthenticationRequired(({db}: {db: any}) => {
 

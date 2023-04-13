@@ -1,3 +1,5 @@
+@import "../variables/index"
+
 .accordion
   width: 90%
   margin-bottom: calc( $gap / 2 )
@@ -71,6 +73,27 @@
       transform: translateY(-100%)
       opacity: 0
 
+.accordion__wrap
+  display: flex
+  align-items: center
+
+  .section__text
+    margin: 0
+
+.accordion-price
+  flex: 35%
+
+.accordion-date
+  display: flex
+  flex: 65%
+
+  .date__text
+    text-align: end
+    margin-right: calc( $gap / 2 )
+
+  .date__descr
+    text-align: start
+
 .open 
     border: 2px solid $maincolor
 
@@ -81,3 +104,58 @@
       border-bottom-left-radius: 0
       border-bottom-right-radius: 0
       background-color: #f4f4f4
+
+
+@media (max-width: 1400px)
+  .accordion__wrap
+    flex-direction: column
+    width: 100%
+
+  .accordion-price,
+  .accordion-date
+    width: 100%
+    justify-content: center
+
+
+@media (max-width: 1360px)
+  .accordion__button
+    padding-left: 18px
+
+
+@media (max-width: 1023.9px)
+  .accordion
+    width: 83%
+
+  .accordion__button
+    padding-left: 45px
+
+  .accordion__wrap
+    flex-direction: row
+
+
+@media (max-width: 768px)
+  .accordion
+    width: 83%
+
+    .accordion__button
+      padding-left: 18px
+
+    .accordion__wrap
+      flex-direction: column
+
+
+@media (max-width: 470px)
+  .accordion-date
+    display: none
+
+  .accordion__panel
+    &[style]
+      height: auto!important
+      
+
+@media (max-width: 370px)
+  .accordion__button
+    padding-left: $gap
+
+  .accordion-price
+    width: 100%

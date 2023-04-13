@@ -1,13 +1,15 @@
-import React, { useEffect, useState } from "react";
+import '../styles/components/search.sass';
+
+import { useEffect, useState } from "react";
 import { useDebounce } from "../hooks/useDebounce";
 
-function Search(props: { handler: (arg0: string) => void; }) {
+function Search({handler}: {handler: any}) {
 
   const [search, setSearch] = useState("");
   const debounced = useDebounce(search, 300);
 
   useEffect(() => {
-    props.handler(debounced)
+    handler(debounced)
     // eslint-disable-next-line
   }, [debounced])
 

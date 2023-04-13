@@ -1,18 +1,24 @@
+import '../styles/pages/Profile.sass';
+import '../styles/components/map.sass';
+import '../styles/components/accordion.sass';
+
 import { useAuth0, withAuthenticationRequired } from '@auth0/auth0-react';
-import Button from "../components/Button";
-import { CSSTransition } from 'react-transition-group';
 import useAnimationState from "../hooks/useAnimationState";
-import React, { useEffect, useRef, useState } from "react";
-import emptycart from "../img/empty-cart.webp";
-import { Link } from 'react-router-dom';
+import { useEffect, useRef, useState } from "react";
 import { collection, getDocs, query, where, orderBy, doc, updateDoc, deleteDoc } from "firebase/firestore";
 import { useAppDispatch, useAppSelector } from "../store";
+import { check } from "../helpers/check";
+import { updateUserData } from "../store/slice/userSlice";
+
+import Button from "../components/Button";
+import { CSSTransition } from 'react-transition-group';
+import { Link } from 'react-router-dom';
 import Moment from 'react-moment';
 import { PatternFormat } from "react-number-format";
 import { Accordion, AccordionItem, AccordionItemHeading, AccordionItemButton, AccordionItemPanel } from 'react-accessible-accordion';
 import { YMaps, Map, Placemark, FullscreenControl, SearchControl, GeolocationControl, ZoomControl } from '@pbe/react-yandex-maps';
-import { check } from "../helpers/check";
-import { updateUserData } from "../store/slice/userSlice";
+
+import emptycart from "../img/empty-cart.webp";
 
 export const Profile = withAuthenticationRequired(({ db }: { db: any }) => {
 
@@ -40,7 +46,7 @@ export const Profile = withAuthenticationRequired(({ db }: { db: any }) => {
     useEffect(() => {
         checkOrders().then((res: any) => setOrders(res));
         // eslint-disable-next-line
-    }, [])
+    }, [state.user])
 
     useEffect(() => {
         if (state.user[0].address) {

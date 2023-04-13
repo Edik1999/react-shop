@@ -1,6 +1,6 @@
 import {useEffect, useState} from 'react';
 import Home from './pages/Home';
-import './styles/index.sass';
+import './styles/global.sass';
 import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
 import {useLocation, Routes, Route, Navigate} from 'react-router-dom';

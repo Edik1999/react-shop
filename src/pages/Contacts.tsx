@@ -1,14 +1,18 @@
-import Button from '../components/Button';
-import contactsdecorate from "../img/contacts-decorate.webp";
+import '../styles/pages/Contacts.sass';
+
 import {withAuthenticationRequired} from '@auth0/auth0-react';
-import { CSSTransition } from 'react-transition-group';
 import useAnimationState from "../hooks/useAnimationState";
 import {useState, MouseEvent, useRef, FocusEvent} from "react";
 import {imagesLoaded} from "../helpers/imagesLoaded";
-import Loader from "../components/Loader";
 import {addDoc, collection} from "firebase/firestore";
-import { PatternFormat } from 'react-number-format';
 import {useAppSelector} from "../store";
+
+import { CSSTransition } from 'react-transition-group';
+import { PatternFormat } from 'react-number-format';
+import Button from '../components/Button';
+import Loader from "../components/Loader";
+
+import contactsdecorate from "../img/contacts-decorate.webp";
 
 export const Contacts = withAuthenticationRequired(({db}: {db: any}) => {
 

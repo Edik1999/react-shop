@@ -1,3 +1,5 @@
+import '../styles/components/counter.sass';
+
 import { MouseEvent } from "react";
 import {useAppDispatch} from "../store";
 import {deleteSingleGood, addSingleGood, deleteFromCart} from '../store/slice/cartSlice';
