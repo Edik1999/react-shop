@@ -111,3 +111,93 @@
 .edit-btn
     width: 43%
     margin-bottom: $gap
+
+
+@media (max-width: 1600px)
+    .menu-btn
+        padding: 19px 0
+        width: 16%
+
+
+@media (max-width: 1400px)
+    .menu-btn
+        width: 29%
+        padding: 19px 0
+        margin: 0
+
+        &:nth-of-type(-n+3)
+            margin-bottom: 1.5%
+
+
+@media (max-width: 1023.9px)
+    .edit-btn
+        width: 216px
+
+    .menu-btn
+        width: 49%
+        font-size: 16px
+        margin: 0
+        padding: 16px 26px
+
+        &:nth-child(-n+4)
+            margin-bottom: calc( $gap / 3 )
+
+
+@media (max-width: 991px)
+    .login-btn
+        margin-right: calc($gap / 2)
+
+
+@media (max-width: 768px)
+    .login-btn
+        margin-right: $gap
+
+    .menu-btn:nth-child(-n+5)
+        width: 32%
+        margin-bottom: 10px
+
+
+@media (max-width: 575px)
+    .cart-btn
+        width: 45%
+        padding: 15px 0
+        font-size: 16px
+
+        // REFACTOR  не используется
+        &-total
+            width: 60%
+            padding: 15px 0
+            font-size: 16px
+
+    .card__btn
+        font-size: 14px
+        padding: 8px 10px
+
+    .login-btn
+        margin-right: calc($gap / 2)
+
+    .menu-btn
+        font-size: 14px
+        padding: 12px 0
+
+        &:nth-child(-n+3)
+            width: 32.5%
+
+        &:nth-last-child(-n+3)
+            width: 49.2%
+
+
+@media (max-width: 370px)
+    .cart-btn
+        width: 75%
+
+        &:first-of-type
+            margin-bottom: calc( $gap / 3 )
+
+    .menu-btn
+        &:nth-child(-n+4)
+            width: 49%
+
+        &:nth-last-child(-n+2)
+            width: 100%
+            margin: 0

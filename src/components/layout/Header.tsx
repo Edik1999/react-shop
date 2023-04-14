@@ -118,7 +118,7 @@ function Header() {
                     <li className="nav__item nav__item--cart">
                       <Link to="/cart" className="nav-link nav-link--cart" onClick={() => closeMenu()}>
                         <img src={cart} alt="Cart" />
-                        {state.cart.length > 0 && <div className="card__badge">{state.cart.reduce((acc: number, num: { count: any; }) => acc + Number(num.count), 0)}</div>}
+                        {state.cart.length > 0 && <div className="cart__badge">{state.cart.reduce((acc: number, num: { count: any; }) => acc + Number(num.count), 0)}</div>}
                       </Link>
                     </li>
                 </>

@@ -1,104 +1,223 @@
 @import '../variables/index'
 
-.cart-page
-    margin-bottom: calc( $gap * 5 )
+.cart
+    &-page
+        margin-bottom: calc( $gap * 5 )
 
-    .section__title
-        text-align: center
-        margin-bottom: calc( $gap * 2 )
+        .section__title
+            text-align: center
+            margin-bottom: calc( $gap * 2 )
 
-    .section__text
-        text-align: center
+        .section__text
+            text-align: center
+            width: 100%
+            margin-bottom: $gap
+
+    &__main
+        display: flex
+        justify-content: space-around
+
+    &__list
+        display: flex
+        flex-direction: column
+        justify-content: space-between
+        width: 42%
+
+    &__item
+        display: flex
+        margin-bottom: calc( $gap / 2 )
+        border-radius: 6px
+        box-shadow: 0px 0px 10px 7px rgb(50 72 90 / 10%)
+        transition: all 0.3s
+
+    &__product
+        position: relative
+        display: flex
+        justify-content: space-between
         width: 100%
+        padding: calc( $gap / 6 ) calc( $gap / 3 ) 0 calc( $gap / 6 )
+
+        &-img
+            width: 180px
+            margin-right: calc( $gap / 2)
+
+        &-wrap
+            display: flex
+            flex-direction: column
+            align-items: center
+            justify-content: space-around
+            width: 100%
+
+        &-name
+            font-size: calc($textFZ + 2px)
+            color: $smalTextColor
+
+        &-price
+            font-size: $textFZ
+
+            &-wraper
+                display: flex
+                justify-content: space-between
+                align-items: center
+                width: 80%
+
+        &-delete
+            position: absolute
+            top: -7px
+            right: -7px
+            padding: 12px
+            cursor: pointer
+
+            &-inner
+                width: 20px
+                height: 20px
+                clip-path: polygon(20% 0%, 0% 20%, 30% 50%, 0% 80%, 20% 100%, 50% 70%, 80% 100%, 100% 80%, 70% 50%, 100% 20%, 80% 0%, 50% 30%)
+                background-color: red
+
+        &-count
+            font-size: $textFZ
+            line-height: calc( $textFZ + 8px )
+
+    &__empty-btn
+        display: flex
+        justify-content: space-around
+        width: 100%
+
+    &__total
+        display: flex
+        flex-direction: column
+        align-items: center
+        width: 25%
+        height: 40%
+        padding: calc( $gap / 2 )
+        border-radius: 6px
+        box-shadow: 0px 0px 10px 7px rgb(50 72 90 / 10%)
+
+        &-count
+            display: flex
+            justify-content: space-around
+            width: 100%
+            margin-bottom: $gap
+
+        &-price
+            font-size: $textFZ
+            line-height: calc( $textFZ + 8px )
+
+    &__title
+        font-size: calc($baseFZ * 2)
+        font-weight: 500
         margin-bottom: $gap
 
-.cart__main
-    display: flex
-    justify-content: space-around
 
-.cart__list
-    display: flex
-    flex-direction: column
-    justify-content: space-between
-    width: 42%
+@media (max-width: 1600px)
+    .cart
+        &__list
+            width: 35%
 
-.cart__item
-    display: flex
-    margin-bottom: calc( $gap / 2 )
-    border-radius: 6px
-    box-shadow: 0px 0px 10px 7px rgb(50 72 90 / 10%)
-    transition: all 0.3s
+        &__total
+            width: 30%
 
-.cart__product
-    position: relative
-    display: flex
-    justify-content: space-between
-    width: 100%
-    padding: calc( $gap / 6 ) calc( $gap / 3 ) 0 calc( $gap / 6 )
+        &__product-img
+            width: 180px
 
-.cart__product-img
-    width: 180px
-    margin-right: calc( $gap / 2)
 
-.cart__product-wrap
-    display: flex
-    flex-direction: column
-    align-items: center
-    justify-content: space-around
-    width: 100%
+@media (max-width: 1360px)
+    .cart
+        &__list
+            width: 45%
 
-.cart__product-name
-    font-size: calc($textFZ + 2px)
-    color: $smalTextColor
+        &__total
+            width: 40%
 
-.cart__product-price-wraper
-    display: flex
-    justify-content: space-between
-    align-items: center
-    width: 80%
 
-.cart__product-price
-    font-size: $textFZ
+@media (max-width: 1023.9px)
+    .cart
+        &__main
+            flex-direction: column
+            align-items: center
 
-.cart__product-delete
-    position: absolute
-    top: -7px
-    right: -7px
-    padding: 12px
-    cursor: pointer
+        &__total
+            width: 70%
 
-    &-inner
-        width: 20px
-        height: 20px
-        clip-path: polygon(20% 0%, 0% 20%, 30% 50%, 0% 80%, 20% 100%, 50% 70%, 80% 100%, 100% 80%, 70% 50%, 100% 20%, 80% 0%, 50% 30%)
-        background-color: red
+        &__list
+            margin-bottom: $gap
+            width: 70%
 
-.cart__empty-btn
-    display: flex
-    justify-content: space-around
-    width: 100%
+        &__product
+            &-img
+                width: calc( ($gap * 5) - 10px )
 
-.cart__total
-    display: flex
-    flex-direction: column
-    align-items: center
-    width: 25%
-    height: 40%
-    padding: calc( $gap / 2 )
-    border-radius: 6px
-    box-shadow: 0px 0px 10px 7px rgb(50 72 90 / 10%)
+            &-name
+                text-align: center
 
-.cart__title
-    font-size: calc($baseFZ * 2)
-    font-weight: 500
-    margin-bottom: $gap
 
-.cart__total-count
-    display: flex
-    justify-content: space-around
-    width: 100%
-    margin-bottom: $gap
+@media (max-width: 768px)
+    .cart__title
+        font-size: 30px
 
-.cart__product-count, .cart__total-price
-    font-size: $textFZ
-    line-height: calc( $textFZ + 8px )
+
+@media (max-width: 575px)
+    .cart
+        &-page
+            margin-bottom: calc($gap * 2)
+
+            .section__title
+                margin-bottom: calc( $gap + 10px )
+
+        &__list
+            width: 85%
+
+        &__empty-btn
+            justify-content: space-between
+
+        &__total
+            width: 85%
+
+            &-title
+                font-size: 24px
+
+            &-price
+                font-size: 16px
+
+        &__product
+            flex-direction: column
+            align-items: center
+            padding: calc( $gap / 2 )
+
+            &-count
+                font-size: 16px
+
+            &-wrap
+                padding: 0
+
+            &-img
+                margin: 0 0 calc( $gap / 2 )
+                width: 180px
+
+            &-name
+                margin-bottom: calc( $gap / 2 )
+                font-size: 18px
+
+            &-price-wraper
+                flex-wrap: wrap
+                width: 90%
+
+
+
+@media (max-width: 370px)
+    .cart
+        &__empty-btn
+            flex-direction: column
+            align-items: center
+
+        &__title
+            text-align: center
+            margin-bottom: calc( $gap / 2 )
+            font-size: 25px
+
+        &__total-count
+            flex-wrap: wrap
+            margin-bottom: calc( $gap / 2 )
+
+        &__product-img
+            width: 160px

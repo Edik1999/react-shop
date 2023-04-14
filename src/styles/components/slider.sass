@@ -2,14 +2,22 @@
 @import "slick-carousel/slick/slick-theme.css"
 @import "../variables/index"
 
-.slick-slider
-  display: none
+.slick
+  &-slider
+    display: none
 
-.slick-slide
-  padding: 0 calc($gap / 2)
+  &-slide
+    padding: 0 calc($gap / 2)
 
-.slick-dots li button:before, .slick-dots li.slick-active button:before
-  color: $maincolor
+  &-dots li
+    &.slick-active button:before
+      color: $maincolor
+      opacity: 1
 
-.slick-dots li.slick-active button:before
-  opacity: 1
+    button:before
+      color: $maincolor
+
+
+@media (max-width: 1023.9px)
+  .slick-slider
+    display: block
