@@ -7,9 +7,26 @@
   overflow: hidden
   border: 2px solid $maincolor
   margin-bottom: $gap
+  overflow: hidden
 
+@media (max-width: 1400px)
+  .map
+    width: 80%
+
+    .ymaps-2-1-79-map
+      [style="width"]
+        width: 100%!important
 
 @media (max-width: 768px)
   .map
+    height: 368px
+
+@media (max-width: 575px)
+  .map
+    width: 80%
+    height: 268px
+
+@media (max-width: 370px)
+  .map
     width: 90%
-    height: 348px
+    height: 218px
