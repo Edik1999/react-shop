@@ -1,9 +1,5 @@
-
-
 @media (max-width: 1600px)
-    .company__left,
-    .faq__left,
-    .contacts__left
+    .company__left
         padding-left: $gap
 
     .menu-btn
@@ -29,59 +25,11 @@
         width: 40%
 
 @media (max-width: 1400px)
-    // menu
-    .menu__filter
-        justify-content: space-evenly
-        flex-wrap: wrap
-
-    .menu-btn
-        width: 29%
-        padding: 19px 0
-        margin: 0
-
-    .menu-btn:nth-of-type(-n+3)
-        margin-bottom: 1.5%
-
-    .search
-        width: 29%      
-        
-    .card
-        width: 49.25%
-
-    .card:nth-of-type(3n+2)
-        margin: 0
-
-    .card:nth-child(even)
-        margin: 0 0 1.5% 1.5%
-
-    .card:nth-child(odd)
-        margin: 0 0 1.5%
-
-    // profile
-
-
     // footer
     .footer__aside
         width: 45%
 
 @media (max-width: 1360px)
-    // home
-
-
-    // howitworks
-    .howitworks__img
-        height: 196px
-
-    .howitworks__item-border
-        width: 80px
-        margin-top: 100px
-
-    // contacts
-    .contacts
-        margin-bottom: calc( $gap * 5 )
-    .contacts__title
-        width: 80%
-
     //modal
     .modal
         width: 70%
@@ -103,36 +51,6 @@
 @media (max-width: 1023.9px)
     .slick-slider
         display: block
-
-    // menu
-    .menu__filter
-        justify-content: space-between
-
-    .menu-btn
-        width: 49%
-        font-size: 16px
-        margin: 0
-        padding: 16px 26px
-
-    .menu-btn:nth-child(-n+4) 
-        margin-bottom: calc( $gap / 3 )
-
-    .search
-        width: 49%
-        font-size: 16px
-        padding: 16px 26px        
-    
-    .card
-        width: 100%
-
-    .card:nth-child(even)
-        margin: 0
-
-    .card:nth-child(odd)
-        margin: 0
-
-    .card:nth-child(n)
-        margin-bottom: 3.5%
     
     // company
     .company
@@ -160,64 +78,6 @@
         margin-bottom: $gap
         padding-left: 80px
 
-    // faq
-    .faq
-        flex-direction: column
-
-    .faq__left
-        padding-left: 90px
-        margin-bottom: $gap
-
-    .faq__right
-        display: flex
-        flex-direction: column
-        align-items: center
-
-        .section__title,
-        .section__text
-            text-align: center
-            width: 100%
-
-        .section__text
-            width: 80%
-
-    // howitworks
-    .howitworks__img
-        height: 146px
-
-    .howitworks__item-border
-        width: 60px
-        margin-top: 70px
-
-    .howitworks__text
-        width: 100%
-        font-size: 16px
-
-    // contacts
-    .contacts
-        flex-direction: column-reverse
-        align-items: center
-        margin-bottom: calc( $gap * 5 )
-
-        .section__title,
-        .section__text
-            width: 100%
-            text-align: center
-
-    .contacts__left
-        display: flex
-        flex-direction: column
-        margin-top: 0
-        padding-left: 0
-
-    .contacts__right
-        position: relative
-        margin-bottom: $gap
-        padding-left: calc( $gap * 2 )
-
-    .contacts__link
-        margin: 0 auto
-
     // modal
     .modal
         width: 94%
@@ -241,13 +101,10 @@
         text-align: center
 
     // profile
-
-
     .edit-btn
         width: 216px 
 
 
-        
     // footer
     .footer__container
         flex-direction: column
@@ -329,58 +186,12 @@
         &--short-list
             margin-bottom: 0
 
-    // home 
-
-
-    // menu
-    .menu-btn:nth-child(-n+5) 
-        width: 32%
-        margin-bottom: 10px
-
+    // search
     .search
         width: 32%
         font-size: 16px
         padding: 16px 12px
         margin-bottom: 10px    
-
-    // faq
-    .faq
-        margin-bottom: $gap
-        padding-bottom: $gap
-        border-bottom: 1px solid $counterBorderColor
-
-    // howitworks
-    .howitworks__list
-        flex-direction: column
-        align-items: center
-        margin-bottom: $gap
-
-    .howitworks__item
-        margin-bottom: $gap
-
-    .howitworks__item:nth-of-type(odd)
-        width: 50%
-
-    .howitworks__img
-        height: 211px
-        margin-bottom: $gap
-
-    .howitworks__item-border
-        width: 290px
-        margin-top: 0
-
-    // contacts
-    .contacts
-        margin-bottom: $gap
-        padding-bottom: $gap
-        border-bottom: 1px solid $counterBorderColor
-
-        .section__title
-            margin-bottom: $gap
-
-    // feedback
-    .feedback-form
-        width: 100%
 
     //modal
     .modal
@@ -408,15 +219,9 @@
     .cart__title
         font-size: 30px
 
-    // profile
-
-
-
     .map
         width: 90%
         height: 348px
-
-
 
     // footer
     .footer
@@ -438,22 +243,7 @@
         margin-right: calc($gap / 2)
 
     // menu
-    .menu
-        .section__text
-            margin-bottom: calc($gap * 1.5)
 
-    .menu__filter
-        margin-bottom: $gap
-
-    .menu-btn
-        font-size: 14px
-        padding: 12px 0
-
-    .menu-btn:nth-child(-n+3)  
-        width: 32.5%
-
-    .menu-btn:nth-last-child(-n+3)  
-        width: 49.2%
 
     .search
         order: -1
@@ -462,85 +252,12 @@
         padding: 12px 14px
         font-size: 14px
 
-    .card__wrap
-        justify-content: center
-
-    .card
-        flex-direction: column
-        align-items: center
-        padding: 15px 0
-
-        &__content
-            padding: 0
-            width: 100%
-
-        &__image
-            height: 180px
-            margin: 0 5px 10px 10px
-
-        &__footer
-            justify-content: space-evenly
-
-        &__price
-            font-size: 20px
-            padding: 0
-
-        &__wrap
-            margin-bottom: calc($gap * 2)
-
-        &:last-of-type
-            margin-bottom: 0!important
-
-        .card__name
-            margin: 0 0 10px
-
-    .card:nth-child(n)
-        width: 90%
-        margin-bottom: 5%
-
-    .breakLine
-        display: none
-
-    // faq
-    .faq
-        margin-bottom: calc( $gap * 3 )
-
-    .faq__left
-        padding-left: $gap
-        
-    // howitworks
-    .howitworks__item:nth-of-type(odd)
-        width: 100%
-
-    .howitworks__img
-        height: 258px
-
-    .howitworks__list
-        margin-bottom: 0
-
     // company
-    .company, .howitworks
+    .company
         margin-bottom: calc($gap * 2)
 
         .btn
             margin-bottom: 0
-
-    // feedback
-    .feedback
-        margin-bottom: calc($gap * 2)
-
-        .section__title
-            margin-bottom: $gap
-
-    .form__top
-        flex-direction: column
-    
-    .form__left
-        width: 100%
-        margin: 0 0 10px
-
-    .form__right
-        width: 100%
 
     //modal
     .modal-wrapper
@@ -643,9 +360,6 @@
         &__number
             width: 36px
 
-    // profile
-
-
     // footer
     .footer__descr
         width: 75%
@@ -661,44 +375,11 @@
         width: 100%
 
 
-
 @media (max-width: 370px)
-    // home
-
-
-    //menu
-    .menu-btn:nth-child(-n+4)  
-        width: 49%
-
-    .menu-btn:nth-last-child(-n+2)
-        width: 100%
-        margin: 0
-
     //company
     .company
         .section__text
             margin-bottom: $gap
-
-    // faq
-    .faq__left
-        padding-left: 40px
-
-    //howitworks
-    .howitworks__img
-        height: 212px
-
-    // contacts
-    .contacts__right
-        padding-left: 90px
-
-    .contacts__link 
-        font-size: 16px
-        padding: 16px 26px
-    
-    //feedback
-    .form-btn
-        font-size: 16px
-        padding: 16px 26px
 
     // modal
     .modal
@@ -726,10 +407,6 @@
 
     .cart__product-img
         width: 160px
-
-    // profile
-
-
 
     // footer
     .footer__logo

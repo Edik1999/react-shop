@@ -10,41 +10,149 @@
     .section__title
         width: 74%
 
-.faq__right
-    flex-basis: 50%
+    &__right
+        flex-basis: 50%
 
 .howitworks
     text-align: center
     margin-bottom: calc( $gap * 5 )
+
+    &__list
+        display: flex
+        margin-bottom: $gap * 2
+
+    &__item
+        display: flex
+        flex-direction: column
+        align-items: center
+        text-align: center
+
+        &-border
+            margin-top: 130px
+            width: calc( ($gap * 3) + 10px )
+            height: 2px
+            background-color: $counterBorderColor
+
+    &__img
+        margin-bottom: calc( ($gap * 2) - 10px )
+
+    &__subtitle
+        font-size: calc($textFZ + 2px)
+        font-weight: 500
+        line-height: calc($textFZ + 4px)
+        margin-bottom: calc( $gap / 2 )
 
     .section__title
         margin-bottom: calc( $gap * 2 )
 
     .section__text,
     .home-btn
-        margin: 0    
+        margin: 0
 
-.howitworks__list
-    display: flex
-    margin-bottom: $gap * 2
 
-.howitworks__item
-    display: flex
-    flex-direction: column
-    align-items: center
-    text-align: center
+@media (max-width: 1600px)
+    .faq__left
+        padding-left: $gap
 
-.howitworks__img
-    margin-bottom: calc( ($gap * 2) - 10px )
 
-.howitworks__item-border
-    margin-top: 130px
-    width: calc( ($gap * 3) + 10px )
-    height: 2px
-    background-color: $counterBorderColor
+@media (max-width: 1360px)
+    .howitworks
+        &__img
+            height: 196px
 
-.howitworks__subtitle
-    font-size: calc($textFZ + 2px)
-    font-weight: 500
-    line-height: calc($textFZ + 4px)
-    margin-bottom: calc( $gap / 2 )
+        &__item-border
+            width: 80px
+            margin-top: 100px
+
+
+@media (max-width: 1023.9px)
+    .faq
+        flex-direction: column
+
+        &__left
+            padding-left: 90px
+            margin-bottom: $gap
+
+        &__right
+            display: flex
+            flex-direction: column
+            align-items: center
+
+            .section
+                &__title,
+                &__text
+                    text-align: center
+                    width: 100%
+
+                &__text
+                    width: 80%
+
+    .howitworks
+        &__img
+            height: 146px
+
+        &__item-border
+            width: 60px
+            margin-top: 70px
+
+        &__text
+            width: 100%
+            font-size: 16px
+
+
+@media (max-width: 768px)
+    .faq
+        margin-bottom: $gap
+        padding-bottom: $gap
+        border-bottom: 1px solid $counterBorderColor
+
+    .howitworks
+        &__list
+            flex-direction: column
+            align-items: center
+            margin-bottom: $gap
+
+        &__img
+            height: 211px
+            margin-bottom: $gap
+
+        &__item
+            margin-bottom: $gap
+
+            &:nth-of-type(odd)
+                width: 50%
+
+            &-border
+                width: 290px
+                margin-top: 0
+
+
+@media (max-width: 575px)
+    .faq
+        margin-bottom: calc( $gap * 3 )
+
+        &__left
+            padding-left: $gap
+
+    .howitworks
+        margin-bottom: calc($gap * 2)
+
+        &__item:nth-of-type(odd)
+            width: 100%
+
+        &__img
+            height: 258px
+
+        &__list
+            margin-bottom: 0
+
+        .btn
+            margin-bottom: 0
+
+
+@media (max-width: 370px)
+    .faq__left
+        padding-left: 40px
+
+    .howitworks__img
+        height: 212px

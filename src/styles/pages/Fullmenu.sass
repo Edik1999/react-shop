@@ -1,6 +1,12 @@
 @import '../variables/index'
 
 .menu
+    &__filter
+        display: flex
+        justify-content: center
+        align-items: center
+        margin-bottom: calc( ($gap * 2) + 5px )
+
     .section__title
         text-align: center
 
@@ -8,8 +14,125 @@
         width: 100%
         text-align: center
 
-.menu__filter
-    display: flex
-    justify-content: center
-    align-items: center
-    margin-bottom: calc( ($gap * 2) + 5px )
+
+@media (max-width: 1400px)
+    .menu
+        &__filter
+            justify-content: space-evenly
+            flex-wrap: wrap
+
+        &-btn
+            width: 29%
+            padding: 19px 0
+            margin: 0
+
+        &:nth-of-type(-n+3)
+            margin-bottom: 1.5%
+
+    .card
+        width: 49.25%
+
+        &:nth-of-type(3n+2)
+            margin: 0
+
+        &:nth-child(even)
+            margin: 0 0 1.5% 1.5%
+
+        &:nth-child(odd)
+            margin: 0 0 1.5%
+
+
+@media (max-width: 1023.9px)
+    .menu
+        &__filter
+            justify-content: space-between
+
+        &-btn
+            width: 49%
+            font-size: 16px
+            margin: 0
+            padding: 16px 26px
+
+            &:nth-child(-n+4)
+                margin-bottom: calc( $gap / 3 )
+
+    .card
+        width: 100%
+
+        &:nth-child(even), &:nth-child(odd)
+            margin: 0
+
+        &:nth-child(n)
+            margin-bottom: 3.5%
+
+
+@media (max-width: 768px)
+    .menu-btn:nth-child(-n+5)
+        width: 32%
+        margin-bottom: 10px
+
+
+@media (max-width: 575px)
+    .menu
+        &__filter
+            margin-bottom: $gap
+
+        &-btn
+            font-size: 14px
+            padding: 12px 0
+
+            &:nth-child(-n+3)
+                width: 32.5%
+
+            &:nth-last-child(-n+3)
+                width: 49.2%
+
+        .section__text
+            margin-bottom: calc($gap * 1.5)
+
+    .card
+        flex-direction: column
+        align-items: center
+        padding: 15px 0
+
+        &__content
+            padding: 0
+            width: 100%
+
+        &__image
+            height: 180px
+            margin: 0 5px 10px 10px
+
+        &__footer
+            justify-content: space-evenly
+
+        &__price
+            font-size: 20px
+            padding: 0
+
+        &__wrap
+            margin-bottom: calc($gap * 2)
+            justify-content: center
+
+        &:last-of-type
+            margin-bottom: 0!important
+
+        .card__name
+            margin: 0 0 10px
+
+        &:nth-child(n)
+            width: 90%
+            margin-bottom: 5%
+
+    .breakLine
+        display: none
+
+
+@media (max-width: 370px)
+    .menu-btn
+        &:nth-child(-n+4)
+            width: 49%
+
+        &:nth-last-child(-n+2)
+            width: 100%
+            margin: 0

@@ -2,8 +2,6 @@
 @import 'variables/index'
 @import './dark-theme.sass'
 
-//@import './media'
-
 *,
 *::before,
 *::after 
@@ -80,48 +78,50 @@ h1, h2
 .text-color
     color: $maincolor
 
-.section__title
-    font-size: $titleFZ
-    line-height: calc( $titleFZ + 5px )
-    margin-bottom: $gap
+.section
+    &__title
+        font-size: $titleFZ
+        line-height: calc( $titleFZ + 5px )
+        margin-bottom: $gap
 
-    @media (max-width: 768px)
-        text-align: center
-        font-size: 40px
-        line-height: 45px
+        @media (max-width: 768px)
+            text-align: center
+            font-size: 40px
+            line-height: 45px
 
-    @media (max-width: 576px)
-        text-align: center
-        font-size: 35px
-        line-height: 40px
+        @media (max-width: 576px)
+            text-align: center
+            font-size: 35px
+            line-height: 40px
 
-    @media (max-width: 370px)
-        text-align: center
-        font-size: 30px
-        line-height: 35px
+        @media (max-width: 370px)
+            text-align: center
+            font-size: 30px
+            line-height: 35px
 
-.section__text 
-    width: 80%
-    font-size: $textFZ
-    line-height: calc( $textFZ + 9px )
-    color: $smalTextColor
-    margin-bottom: calc( $gap * 2 )
+    &__text
+        width: 80%
+        font-size: $textFZ
+        line-height: calc( $textFZ + 9px )
+        color: $smalTextColor
+        margin-bottom: calc( $gap * 2 )
 
-    @media (max-width: 370px)
-        font-size: $baseFZ
+        @media (max-width: 370px)
+            font-size: $baseFZ
 
-.animation-enter
-    opacity: 0
-    transform: translateY(250px)
+.animation
+    &-enter
+        opacity: 0
+        transform: translateY(250px)
 
-.animation-enter-active
-    opacity: 1
-    transform: translateY(0px)
-    transition: all 700ms
+        &-active
+            opacity: 1
+            transform: translateY(0px)
+            transition: all 700ms
 
-.animation-exit
-    opacity: 1
+    &-exit
+        opacity: 1
 
-.animation-exit-active
-    opacity: 0
-    transition: all 700ms
+        &-active
+            opacity: 0
+            transition: all 700ms

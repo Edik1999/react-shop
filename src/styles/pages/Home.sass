@@ -5,36 +5,41 @@
     display: flex
     margin-bottom: calc( $gap * 5 )
 
+    &__left
+        flex-basis: 50%
+        display: flex
+        flex-direction: column
+        margin-top: 60px
+
+    &__right
+        position: absolute
+        right: 0
+
     .section__title
         width: 80%
         font-size: calc( $titleFZ + 10px )
         line-height: calc( $titleFZ + 10px )
         margin-bottom: $gap
 
-    .section__text 
+    .section__text
         margin-bottom: $gap
 
-.home__left
-    flex-basis: 50%
-    display: flex
-    flex-direction: column
-    margin-top: 60px
+.rate
+    &__text
+        font-size: $textFZ
+        line-height: calc( $textFZ + 9px)
+        color: $smalTextColor
+        margin-bottom: $gap
 
-.rate__text
-    font-size: $textFZ
-    line-height: calc( $textFZ + 9px)
-    color: $smalTextColor
-    margin-bottom: $gap
-
-.rate__img
-    margin-bottom: calc( $gap / 3 )
-
-.home__right
-    position: absolute
-    right: 0
+    &__img
+        margin-bottom: calc( $gap / 3 )
 
 .clients
     margin-bottom: calc( $gap * 5 )
+
+    &__wrap
+        display: flex
+        justify-content: space-between
 
     .section__title
         width: 100%
@@ -47,76 +52,74 @@
         padding-bottom: $gap
         border-bottom: 1px solid $counterBorderColor
 
-.clients__wrap
-    display: flex
-    justify-content: space-between
+.client
+    &__card
+        width: 31%
+        padding: calc( ($gap * 2) - 10px ) $gap $gap
+        border-radius: 6px
+        box-shadow: 0px 0px 5px 1px rgba(34, 60, 80, 0.2)
 
-.client__card
-    width: 31%
-    padding: calc( ($gap * 2) - 10px ) $gap $gap
-    border-radius: 6px
-    box-shadow: 0px 0px 5px 1px rgba(34, 60, 80, 0.2)
+    &__info
+        display: flex
 
-.client__info
-    display: flex
+    &__avatar
+        margin-right: $gap
+        border: 2px solid $maincolor
+        border-radius: 100%
 
-.client__avatar
-    margin-right: $gap
-    border: 2px solid $maincolor
-    border-radius: 100%
+    &__descr
+        display: flex
+        flex-direction: column
+        justify-content: space-around
 
-.client__descr
-    display: flex
-    flex-direction: column
-    justify-content: space-around
+    &__name
+        font-size: calc( $textFZ + 2px)
 
-.client__name
-    font-size: calc( $textFZ + 2px)
-
-.client__role
-    font-size: $baseFZ
-    line-height: calc( $textFZ + 2px)
-    color: $smalTextColor
+    &__role
+        font-size: $baseFZ
+        line-height: calc( $textFZ + 2px)
+        color: $smalTextColor
 
 @media (max-width: 1600px)
     .home__left
         padding-left: $gap
 
 @media (max-width: 1360px)
-    .home__right
-        right: -20px
+    .home
+        &__right
+            right: -20px
 
-    .home__left
-        margin: 0
+        &__left
+            margin: 0
 
 @media (max-width: 1023.9px)
     .home
         flex-direction: column
         margin-bottom: calc( $gap * 3 )
 
+        &__left
+            position: relative
+            margin: 0
+            padding-left: calc( $gap  * 3 )
+
+        &__rate
+            position: absolute
+            left: 360px
+            bottom: 6px
+            max-width: 322px
+
+        &__right
+            display: none
+
         .section__title
             font-size: 50px
             line-height: 50px
 
-    .home__left
-        position: relative
-        margin: 0
-        padding-left: calc( $gap  * 3 )
-
-    .home__rate
-        position: absolute
-        left: 360px
-        bottom: 6px
-        max-width: 322px
-
-    .home__right
-        display: none
-
     .clients
         margin-bottom: calc( $gap * 3 )
 
-    .clients__wrap
-        display: none
+        &__wrap
+            display: none
 
     .client__card
         box-shadow: unset
@@ -128,20 +131,20 @@
         padding-bottom: $gap
         border-bottom: 1px solid $counterBorderColor
 
+        &__left
+            padding: 0
+            align-items: center
+
+        &__rate
+            position: relative
+            left: 0
+
         .section__title
             font-size: 40px
             line-height: 40px
 
         .section__text
             width: 90%
-
-    .home__left
-        padding: 0
-        align-items: center
-
-    .home__rate
-        position: relative
-        left: 0
 
     .clients__title
         font-size: 40px
@@ -152,6 +155,9 @@
         margin-bottom: $gap
         padding-bottom: $gap
         border-bottom: 1px solid $counterBorderColor
+
+        &__rate
+            display: none
 
         .section__title
             width: 100%
@@ -165,9 +171,6 @@
             margin: 0
             font-size: 16px
             padding: 16px 26px
-
-    .home__rate
-        display: none
 
     .clients
         .section__title
