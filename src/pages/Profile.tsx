@@ -1,5 +1,4 @@
 import '../styles/pages/Profile.sass';
-import '../styles/components/map.sass';
 import '../styles/components/accordion.sass';
 
 import { useAuth0, withAuthenticationRequired } from '@auth0/auth0-react';
@@ -16,6 +15,7 @@ import { Link } from 'react-router-dom';
 import Moment from 'react-moment';
 import { PatternFormat } from "react-number-format";
 import { Accordion, AccordionItem, AccordionItemHeading, AccordionItemButton, AccordionItemPanel } from 'react-accessible-accordion';
+import MapComponent from "../components/MapComponent";
 import { YMaps, Map, Placemark, FullscreenControl, SearchControl, GeolocationControl, ZoomControl } from '@pbe/react-yandex-maps';
 
 import emptycart from "../img/empty-cart.webp";
@@ -29,14 +29,14 @@ export const Profile = withAuthenticationRequired(({ db }: { db: any }) => {
     const dispatch = useAppDispatch();
 
     const [orders, setOrders] = useState([]);
-    const [mapInstance, setMapInstance] = useState<any>();
-    const [placemark, setPlacemark] = useState<any>();
+    // const [mapInstance, setMapInstance] = useState<any>();
+    // const [placemark, setPlacemark] = useState<any>();
     const [userAddress, setUserAddress] = useState<string>('');
     const [isSended, setIsSended] = useState(false);
-    const [mapState, setMapState] = useState({
-        center: [55.75, 37.57],
-        zoom: 9
-    })
+    // const [mapState, setMapState] = useState({
+    //     center: [55.75, 37.57],
+    //     zoom: 9
+    // })
 
     async function checkOrders() {
         const q = query(collection(db, "orders"), where("user", "==", state.user[0].email), orderBy('date', 'desc'));
@@ -54,39 +54,39 @@ export const Profile = withAuthenticationRequired(({ db }: { db: any }) => {
         }
     }, [state.user[0].address])
 
-    useEffect(() => {
-        if (mapInstance && state.user[0].address) {
-            mapInstance.geocode(state.user[0].address, { results: 1 }).then((res: { geoObjects: { get: (arg0: number) => { (): any; new(): any; geometry: { (): any; new(): any; getCoordinates: { (): any; new(): any; }; }; }; }; }) => {
-                let coords = res.geoObjects.get(0).geometry.getCoordinates();
-                setMapState({ center: coords, zoom: 16 })
-            })
-        }
-    }, [mapInstance, state.user[0].address])
-
-    const mapClick = (e: any) => {
-        let coords = e.get('coords');
-        setMapState({ zoom: 17, center: coords })
-        getAddress(coords)
-    }
-
-    const getAddress = (coords: any) => {
-        placemark.properties.set('iconCaption', 'поиск...');
-
-        mapInstance.geocode(coords).then(function (res: { geoObjects: { get: (arg0: number) => any; }; }) {
-
-            let geoObject = res.geoObjects.get(0);
-
-            setUserAddress(geoObject.getAddressLine())
-
-            placemark.properties.set({
-                iconCaption: [
-                    geoObject.getLocalities().length ? geoObject.getLocalities() : geoObject.getAdministrativeAreas(),
-                    geoObject.getThoroughfare() || geoObject.getPremise()
-                ].filter(Boolean).join(', '),
-                balloonContent: geoObject.getAddressLine()
-            });
-        });
-    }
+    // useEffect(() => {
+    //     if (mapInstance && state.user[0].address) {
+    //         mapInstance.geocode(state.user[0].address, { results: 1 }).then((res: { geoObjects: { get: (arg0: number) => { (): any; new(): any; geometry: { (): any; new(): any; getCoordinates: { (): any; new(): any; }; }; }; }; }) => {
+    //             let coords = res.geoObjects.get(0).geometry.getCoordinates();
+    //             setMapState({ center: coords, zoom: 16 })
+    //         })
+    //     }
+    // }, [mapInstance, state.user[0].address])
+    //
+    // const mapClick = (e: any) => {
+    //     let coords = e.get('coords');
+    //     setMapState({ zoom: 17, center: coords })
+    //     getAddress(coords)
+    // }
+    //
+    // const getAddress = (coords: any) => {
+    //     placemark.properties.set('iconCaption', 'поиск...');
+    //
+    //     mapInstance.geocode(coords).then(function (res: { geoObjects: { get: (arg0: number) => any; }; }) {
+    //
+    //         let geoObject = res.geoObjects.get(0);
+    //
+    //         setUserAddress(geoObject.getAddressLine())
+    //
+    //         placemark.properties.set({
+    //             iconCaption: [
+    //                 geoObject.getLocalities().length ? geoObject.getLocalities() : geoObject.getAdministrativeAreas(),
+    //                 geoObject.getThoroughfare() || geoObject.getPremise()
+    //             ].filter(Boolean).join(', '),
+    //             balloonContent: geoObject.getAddressLine()
+    //         });
+    //     });
+    // }
 
     async function sendForm(form: any) {
         const formData = new FormData(form)
@@ -221,20 +221,21 @@ export const Profile = withAuthenticationRequired(({ db }: { db: any }) => {
                                 <textarea value={userAddress} name="userAddress" className="user__input user__input--textarea" placeholder="Адрес*" onChange={e => setUserAddress(e.target.value)}/>
                             </div>
                             <div className='user__map'>
-                                <YMaps query={{ apikey: '5f4951d5-9bcf-4ea4-ae8b-b561e80e3ca1', load: "package.full", }}>
-                                    <Map
-                                        state={{ center: mapState.center, zoom: mapState.zoom, controls: [] }}
-                                        className="map"
-                                        onLoad={ymaps => setMapInstance(ymaps)}
-                                        onClick={(e: any) => mapClick(e)}
-                                    >
-                                        <Placemark geometry={mapState.center} instanceRef={(instance) => setPlacemark(instance)}/>
-                                        <FullscreenControl />
-                                        <SearchControl options={{ float: "right" }} />
-                                        <GeolocationControl options={{ float: "left" }} />
-                                        <ZoomControl />
-                                    </Map>
-                                </YMaps>
+                                <MapComponent setUserAddress={setUserAddress}></MapComponent>
+                                {/*<YMaps query={{ apikey: '5f4951d5-9bcf-4ea4-ae8b-b561e80e3ca1', load: "package.full", }}>*/}
+                                {/*    <Map*/}
+                                {/*        state={{ center: mapState.center, zoom: mapState.zoom, controls: [] }}*/}
+                                {/*        className="map"*/}
+                                {/*        onLoad={ymaps => setMapInstance(ymaps)}*/}
+                                {/*        onClick={(e: any) => mapClick(e)}*/}
+                                {/*    >*/}
+                                {/*        <Placemark geometry={mapState.center} instanceRef={(instance) => setPlacemark(instance)}/>*/}
+                                {/*        <FullscreenControl />*/}
+                                {/*        <SearchControl options={{ float: "right" }} />*/}
+                                {/*        <GeolocationControl options={{ float: "left" }} />*/}
+                                {/*        <ZoomControl />*/}
+                                {/*    </Map>*/}
+                                {/*</YMaps>*/}
                                 <Button modificator={"edit-btn"} disabled={isSended ? true : false} text="Save" onClick={(e) => formSubmitHandler(e)}></Button>
                                 {isSended && <p className="success-text section__text">✅ your data was saved!</p>}
                             </div>

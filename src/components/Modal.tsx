@@ -8,21 +8,26 @@ import {useAppSelector} from "../store";
 
 import Button from "./Button";
 import Counter from "./Counter";
+import {PatternFormat} from "react-number-format";
+import MapComponent from "./MapComponent";
 
-function Modal({ isVisible, id, onClose }: {isVisible: boolean, id: any, onClose: () => void}) {
+function Modal({ isVisible, id, onClose, order }: {isVisible: boolean, id?: any, onClose: () => void, order?: () => void}) {
 
   const state = useAppSelector(state => state);
   const content = state.goods.find((el) => el.id === id);
 
   const [isInCart, setIsInCart] = useState(false);
   const [fadeIn, setFadeIn] = useState(false);
+  const [userAddress, setUserAddress] = useState(state.user[0].address);
+  const [isMapVisible, setIsMapVisible] = useState(false);
 
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-      state.cart.find((elem: { id: any; }) => elem.id === id) ? setIsInCart(true) : setIsInCart(false)
       setFadeIn(true)
-  }, [state.cart, id])
+      setUserAddress(state.user[0].address)
+      if (id) state.cart.find((elem: { id: any; }) => elem.id === id) ? setIsInCart(true) : setIsInCart(false)
+  }, [isVisible])
 
   const addToCartClick = () => {
       dispatch(cart(id));
@@ -31,13 +36,18 @@ function Modal({ isVisible, id, onClose }: {isVisible: boolean, id: any, onClose
 
   const close = () => {
       setFadeIn(false);
+      // @ts-ignore
       setTimeout(() => onClose(), 400)
   }
 
+  const showMap = () => {
+      setIsMapVisible(true)
+  }
+
   return isVisible === false ? null : (
-    <div className={`modal-wrapper ${fadeIn ? 'modal-wrapper--active' : null}`} onClick={() => close()}>
+    <div className={`modal-wrapper ${fadeIn && 'modal-wrapper--active'}`} onClick={() => close()}>
       <div className="modal" onClick={e => e.stopPropagation()}>
-        {content.id ? (
+        {content ? (
           <>
             <img className="modal__card-image" src={content.image} alt={content.title} />
             <div className="modal__card-wraper">
@@ -78,7 +88,16 @@ function Modal({ isVisible, id, onClose }: {isVisible: boolean, id: any, onClose
             </div>
           </>
         ) : (
-          <p>Oops, something went wrong...</p>
+            <>
+                <h2>Подтверждение заказа</h2>
+                <form className="modal__form">
+                    <PatternFormat value={state.user[0].phone} format="+7 (###) ### ## ##" mask="_" className="user__input" name="userPhone" placeholder="Телефон*"/>
+                    <textarea value={userAddress} name="userAddress" className="user__input user__input--textarea" placeholder="Адрес*" onChange={e => setUserAddress(e.target.value)}/>
+                </form>
+                {!isMapVisible && <Button text="Выбрать на карте" onClick={showMap}></Button>}
+                {isMapVisible && <MapComponent setUserAddress={setUserAddress}></MapComponent>}
+                <Button text="Подтвердить" onClick={order}></Button>
+            </>
         )}
       </div>
     </div>

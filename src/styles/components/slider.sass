@@ -9,13 +9,17 @@
   &-slide
     padding: 0 calc($gap / 2)
 
-  &-dots li
-    &.slick-active button:before
-      color: $maincolor
-      opacity: 1
+  &-dots
+    bottom: -40px
 
-    button:before
-      color: $maincolor
+    li
+      &.slick-active button:before
+        color: $maincolor
+        opacity: 1
+
+      button:before
+        font-size: 8px
+        color: $maincolor
 
 
 @media (max-width: 1023.9px)

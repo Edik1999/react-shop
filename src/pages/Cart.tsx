@@ -9,11 +9,13 @@ import {addDoc, collection} from "firebase/firestore";
 import { Link } from 'react-router-dom';
 import Counter from '../components/Counter';
 import Button from '../components/Button';
+import Modal from "../components/Modal";
 
 export const Cart = withAuthenticationRequired(({db}: {db: any}) => {
 
   const [pageContent, setPageContent] = useState([])
   const [isOrdered, setIsOrdered] = useState(false)
+  const [showModal, setShowModal] = useState(false)
 
   const state = useAppSelector(state => state);
   const dispatch = useAppDispatch();
@@ -58,6 +60,16 @@ export const Cart = withAuthenticationRequired(({db}: {db: any}) => {
     saveOrder()
     localStorage.removeItem('cart')
     dispatch(clearCart())
+  }
+
+  const openModal = () => {
+    console.log('show modal')
+    setShowModal(true);
+  }
+
+  const closeModal = () => {
+    console.log('close modal')
+    setShowModal(false);
   }
 
   return (
@@ -107,8 +119,9 @@ export const Cart = withAuthenticationRequired(({db}: {db: any}) => {
                     <p className="cart__product-count">{state.cart.reduce((acc: number, num: { count: any; }) => acc + Number(num.count), 0)} products</p>
                     <p className="cart__total-price">Total <span className="text-color">{sum()} ₽</span> </p>
                   </div>
-                  <Button text={"Place order"} disabled={pageContent.length > 0 ? false : true} onClick={order}></Button>
+                  <Button text={"Place order"} disabled={pageContent.length > 0 ? false : true} onClick={openModal}></Button>
                 </div>
+                <Modal isVisible={showModal} onClose={closeModal} order={order}></Modal>
               </>
             :
               <p className="section__title">Thank you for your Order!</p>
