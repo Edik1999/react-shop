@@ -57,21 +57,11 @@
         line-height: calc( $baseFZ + 6px )
         font-weight: 500
 
-    // REFACTOR
-    //класс не используется
-    &__text
-        flex: 1
-        color: $smalTextColor
-        margin-bottom: 10px
-        font-size: $baseFZ
-        line-height: calc( $baseFZ + 8px )
-
     &__footer
         display: flex
         justify-content: space-between
         align-items: center
         height: 51px
-
 
 @media (max-width: 1400px)
     .card
@@ -86,16 +76,58 @@
         &:nth-child(odd)
             margin: 0 0 1.5%
 
-
-@media (max-width: 1023.9px)
+@media (max-width: 991px)
     .card
-        width: 100%
+        flex-direction: column
+        align-items: center
+        padding: 15px 0
+
+        &__content
+            padding: 0
+            width: 100%
+
+        &__image
+            margin: 0 5px 10px 10px
+
+        &__footer
+            justify-content: space-evenly
+
+        &__price
+            font-size: 20px
+            padding: 0
+
+        &__wrap
+            margin-bottom: calc($gap * 2)
+            justify-content: space-between
+
+        &:last-of-type
+            margin-bottom: 0!important
+
+        .card__name
+            margin: 0 0 20px
+
+        &:nth-child(n)
+            width: 49.2%
+
+@media (max-width: 768px)
+    .card
+        flex-direction: row
+        padding: 15px
+
+        &__image
+            margin: 0 15px 0 0
+
+        &__content
+            height: 100%
+            justify-content: space-around
+            padding-top: 20px
 
         &:nth-child(even), &:nth-child(odd)
             margin: 0
 
         &:nth-child(n)
             margin-bottom: 3.5%
+            width: 100%
 
 
 @media (max-width: 575px)
@@ -132,3 +164,13 @@
         &:nth-child(n)
             width: 90%
             margin-bottom: 5%
+
+@media (max-width: 486px)
+    .card
+        &__image
+            height: 170px
+
+@media (max-width: 400px)
+    .card
+        &__image
+            height: 160px

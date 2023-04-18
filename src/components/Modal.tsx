@@ -11,7 +11,7 @@ import Counter from "./Counter";
 import {PatternFormat} from "react-number-format";
 import MapComponent from "./MapComponent";
 
-function Modal({ isVisible, id, onClose, order }: {isVisible: boolean, id?: any, onClose: () => void, order?: () => void}) {
+function Modal({ isVisible, id, onClose, order, userCart, sum }: {isVisible: boolean, id?: any, onClose: () => void, order?: () => void, userCart?: any, sum?: any}) {
 
   const state = useAppSelector(state => state);
   const content = state.goods.find((el) => el.id === id);
@@ -19,15 +19,18 @@ function Modal({ isVisible, id, onClose, order }: {isVisible: boolean, id?: any,
   const [isInCart, setIsInCart] = useState(false);
   const [fadeIn, setFadeIn] = useState(false);
   const [userAddress, setUserAddress] = useState(state.user[0].address);
+  const [userPhone, setUserPhone] = useState(state.user[0].phone)
   const [isMapVisible, setIsMapVisible] = useState(false);
+  const [isDataConfirmed, setIsDataConfirmed] = useState(false);
 
   const dispatch = useAppDispatch();
 
   useEffect(() => {
       setFadeIn(true)
       setUserAddress(state.user[0].address)
+      setUserPhone(state.user[0].phone)
       if (id) state.cart.find((elem: { id: any; }) => elem.id === id) ? setIsInCart(true) : setIsInCart(false)
-  }, [isVisible])
+  }, [isVisible, state.cart])
 
   const addToCartClick = () => {
       dispatch(cart(id));
@@ -42,6 +45,10 @@ function Modal({ isVisible, id, onClose, order }: {isVisible: boolean, id?: any,
 
   const showMap = () => {
       setIsMapVisible(true)
+  }
+
+  const dataConfirmation = () => {
+      setIsDataConfirmed(true)
   }
 
   return isVisible === false ? null : (
@@ -89,14 +96,35 @@ function Modal({ isVisible, id, onClose, order }: {isVisible: boolean, id?: any,
           </>
         ) : (
             <>
-                <h2>Подтверждение заказа</h2>
-                <form className="modal__form">
-                    <PatternFormat value={state.user[0].phone} format="+7 (###) ### ## ##" mask="_" className="user__input" name="userPhone" placeholder="Телефон*"/>
-                    <textarea value={userAddress} name="userAddress" className="user__input user__input--textarea" placeholder="Адрес*" onChange={e => setUserAddress(e.target.value)}/>
-                </form>
-                {!isMapVisible && <Button text="Выбрать на карте" onClick={showMap}></Button>}
-                {isMapVisible && <MapComponent setUserAddress={setUserAddress}></MapComponent>}
-                <Button text="Подтвердить" onClick={order}></Button>
+                {!isDataConfirmed
+                    ?
+                        <>
+                            <h3>Подтверждение данных для заказа</h3>
+                            <form className="modal__form">
+                                <PatternFormat value={userPhone} format="+7 (###) ### ## ##" mask="_" className="user__input" name="userPhone" placeholder="Телефон*" onChange={e => setUserPhone(e.target.value)}/>
+                                <textarea value={userAddress} name="userAddress" className="user__input user__input--textarea" placeholder="Адрес*" onChange={e => setUserAddress(e.target.value)}/>
+                            </form>
+                            {!isMapVisible && <Button text="Выбрать на карте" onClick={showMap}></Button>}
+                            {isMapVisible && <MapComponent setUserAddress={setUserAddress}></MapComponent>}
+                            <Button text="Подтвердить" onClick={dataConfirmation} disabled={userPhone !== '' && userAddress !== '' ? false : true}></Button>
+                        </>
+
+                    :
+                        <>
+                            <ul>
+                                {userCart.map((el: any) =>
+                                    <li key={el.id}>
+                                        <h4>{el.title}</h4>
+                                        <p>Количество: {state.cart.find((elem: { id: any; }) => elem.id === el.id).count}</p>
+                                        <p>Стоимость: {el.price * state.cart.find((elem: { id: any; }) => elem.id === el.id).count} ₽</p>
+                                    </li>
+                                )}
+                            </ul>
+                            <br/>
+                            <p>Сумма заказа: <span className="text-color">{sum} ₽</span></p>
+                            <Button text="Сделать заказ" onClick={order}></Button>
+                        </>
+                }
             </>
         )}
       </div>

@@ -210,41 +210,19 @@ export const Profile = withAuthenticationRequired(({ db }: { db: any }) => {
                         }
                     </div>
                     <div className='profile__user'>
-                        <div className='user__wrap'>
-                            <img className='user__photo' src={state.user[0].picture} alt={state.user[0].name}/>
-                            <h3 className='user__email'>{state.user[0].email}</h3>
-                        </div>
+                        <img className='user__photo' src={state.user[0].picture} alt={state.user[0].name} />
+                        <h3 className='user__email'>{state.user[0].email}</h3>
                         <form className="profile__form">
-                            <div className="form__wrap">
-                                <input type="text" defaultValue={state.user[0].name} name="userName" className="user__input" placeholder="Имя*"/>
-                                <PatternFormat value={state.user[0].phone} format="+7 (###) ### ## ##" mask="_" className="user__input" name="userPhone" placeholder="Телефон*"/>
-                                <textarea value={userAddress} name="userAddress" className="user__input user__input--textarea" placeholder="Адрес*" onChange={e => setUserAddress(e.target.value)}/>
-                            </div>
-                            <div className='user__map'>
-                                <MapComponent setUserAddress={setUserAddress}></MapComponent>
-                                {/*<YMaps query={{ apikey: '5f4951d5-9bcf-4ea4-ae8b-b561e80e3ca1', load: "package.full", }}>*/}
-                                {/*    <Map*/}
-                                {/*        state={{ center: mapState.center, zoom: mapState.zoom, controls: [] }}*/}
-                                {/*        className="map"*/}
-                                {/*        onLoad={ymaps => setMapInstance(ymaps)}*/}
-                                {/*        onClick={(e: any) => mapClick(e)}*/}
-                                {/*    >*/}
-                                {/*        <Placemark geometry={mapState.center} instanceRef={(instance) => setPlacemark(instance)}/>*/}
-                                {/*        <FullscreenControl />*/}
-                                {/*        <SearchControl options={{ float: "right" }} />*/}
-                                {/*        <GeolocationControl options={{ float: "left" }} />*/}
-                                {/*        <ZoomControl />*/}
-                                {/*    </Map>*/}
-                                {/*</YMaps>*/}
-                                <Button modificator={"edit-btn"} disabled={isSended ? true : false} text="Save" onClick={(e) => formSubmitHandler(e)}></Button>
-                                {isSended && <p className="success-text section__text">✅ your data was saved!</p>}
-                            </div>
+                            <input type="text" defaultValue={state.user[0].name} name="userName" className="user__input" placeholder="Имя*" />
+                            <PatternFormat value={state.user[0].phone} format="+7 (###) ### ## ##" mask="_" className="user__input" name="userPhone" placeholder="Телефон*" />
+                            <textarea value={userAddress} name="userAddress" className="user__input user__input--textarea" placeholder="Адрес*" onChange={e => setUserAddress(e.target.value)} />
+                            <MapComponent setUserAddress={setUserAddress}></MapComponent>
+                            <Button modificator={"edit-btn home-btn"} disabled={isSended ? true : false} text="Save" onClick={(e) => formSubmitHandler(e)}></Button>
+                            {isSended && <p className="success-text section__text">✅ your data was saved!</p>}
+                            <Button modificator={"cart-btn profile-btn"} text={"Log Out"} onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}></Button>
                         </form>
                     </div>
                 </section>
-                <div className='profile__footer'>
-                    <Button modificator={"cart-btn profile-btn"} text={"Log Out"} onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}></Button>
-                </div>
             </>
         </CSSTransition>
     )

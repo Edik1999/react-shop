@@ -108,51 +108,36 @@
 
 @media (max-width: 1400px)
   .accordion
-    &__wrap
-      flex-direction: column
-      width: 100%
+    width: 60%
 
-    &-price, &-date
-      width: 100%
-      justify-content: center
-
-
-@media (max-width: 1360px)
-  .accordion__button
-    padding-left: 18px
-
+@media (max-width: 1200px)
+  .accordion
+    width: 70%
 
 @media (max-width: 1023.9px)
   .accordion
     width: 83%
 
-    &__button
-      padding-left: 45px
-
-    &__wrap
-      flex-direction: row
-
-
 @media (max-width: 768px)
   .accordion
-    width: 83%
+    width: 100%
 
     &__button
-      padding-left: 18px
+      padding-left: calc( $gap + 10px )
 
     &__wrap
       flex-direction: column
 
+    &-date
+      width: 100%
+
 
 @media (max-width: 470px)
   .accordion
+    width: 90%
+    
     &-date
       display: none
-
-    &__panel
-      &[style]
-        height: auto!important
-
 
 @media (max-width: 370px)
   .accordion

@@ -63,12 +63,10 @@ export const Cart = withAuthenticationRequired(({db}: {db: any}) => {
   }
 
   const openModal = () => {
-    console.log('show modal')
     setShowModal(true);
   }
 
   const closeModal = () => {
-    console.log('close modal')
     setShowModal(false);
   }
 
@@ -117,11 +115,11 @@ export const Cart = withAuthenticationRequired(({db}: {db: any}) => {
                   <h3 className="cart__title text-color">Order conditions</h3>
                   <div className="cart__total-count">
                     <p className="cart__product-count">{state.cart.reduce((acc: number, num: { count: any; }) => acc + Number(num.count), 0)} products</p>
-                    <p className="cart__total-price">Total <span className="text-color">{sum()} ₽</span> </p>
+                    <p className="cart__total-price">Total <span className="text-color">{sum()} ₽</span></p>
                   </div>
                   <Button text={"Place order"} disabled={pageContent.length > 0 ? false : true} onClick={openModal}></Button>
                 </div>
-                <Modal isVisible={showModal} onClose={closeModal} order={order}></Modal>
+                <Modal isVisible={showModal} onClose={closeModal} order={order} userCart={pageContent} sum={sum()}></Modal>
               </>
             :
               <p className="section__title">Thank you for your Order!</p>
