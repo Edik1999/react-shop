@@ -52,7 +52,6 @@
         padding-bottom: $gap
         border-bottom: 1px solid $counterBorderColor
 
-.client
     &__card
         width: 31%
         padding: calc( ($gap * 2) - 10px ) $gap $gap
@@ -121,9 +120,9 @@
         &__wrap
             display: none
 
-    .client__card
-        box-shadow: unset
-        border: 2px solid $maincolor
+        &__card
+            box-shadow: unset
+            border: 2px solid $maincolor
 
 @media (max-width: 768px)
     .home
@@ -146,9 +145,10 @@
         .section__text
             width: 90%
 
-    .clients__title
-        font-size: 40px
-        line-height: 40px
+    .clients        
+        &__title
+            font-size: 40px
+            line-height: 40px
 
 @media (max-width: 370px)
     .home
@@ -181,7 +181,11 @@
             margin: 0
             border: none
 
-    .client__info
-        margin-bottom: calc( $gap / 2 )
-        padding-bottom: calc( $gap / 2 )
-        border-bottom: 1px solid $counterBorderColor
+        &__info
+            margin-bottom: calc( $gap / 2 )
+            padding-bottom: calc( $gap / 2 )
+            border-bottom: 1px solid $counterBorderColor
+
+        &__card
+            display: flex!important
+            flex-direction: column-reverse

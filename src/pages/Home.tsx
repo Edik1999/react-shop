@@ -86,65 +86,65 @@ function Home() {
         <section className="clients" ref={secondNodeRef}>
           <h2 className="section__title text-color">Clients</h2>
           <ul className="clients__wrap" ref={elem => parent3 = elem as HTMLUListElement}>
-            <li className="client__card">
+            <li className="clients__card">
               <p className="section__text">Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit odio dignissim qui blandit molestie consequat.</p>
-              <div className="client__info">
-                <img className="client__avatar" src={clientavatar} alt='client avatar' onLoad={() => handleImageChange(parent3)} onError={() => handleImageChange(parent3)}/>
-                <div className="client__descr">
-                  <p className="client__name text-color">John Armstrong</p>
-                  <p className="client__role">Customer</p>
+              <div className="clients__info">
+                <img className="clients__avatar" src={clientavatar} alt='client avatar' onLoad={() => handleImageChange(parent3)} onError={() => handleImageChange(parent3)}/>
+                <div className="clients__descr">
+                  <p className="clients__name text-color">John Armstrong</p>
+                  <p className="clients__role">Customer</p>
                 </div>
               </div>
             </li>
-            <li className="client__card">
+            <li className="clients__card">
               <p className="section__text">Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit odio dignissim qui blandit molestie consequat.</p>
-              <div className="client__info">
-                <img className="client__avatar" src={clientavatar} alt='client avatar' onLoad={() => handleImageChange(parent3)} onError={() => handleImageChange(parent3)}/>
-                <div className="client__descr">
-                  <p className="client__name text-color">John Armstrong</p>
-                  <p className="client__role">Customer</p>
+              <div className="clients__info">
+                <img className="clients__avatar" src={clientavatar} alt='client avatar' onLoad={() => handleImageChange(parent3)} onError={() => handleImageChange(parent3)}/>
+                <div className="clients__descr">
+                  <p className="clients__name text-color">John Armstrong</p>
+                  <p className="clients__role">Customer</p>
                 </div>
               </div>
             </li>
-            <li className="client__card">
+            <li className="clients__card">
               <p className="section__text">Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit odio dignissim qui blandit molestie consequat.</p>
-              <div className="client__info">
-                <img className="client__avatar" src={clientavatar} alt='client avatar' onLoad={() => handleImageChange(parent3)} onError={() => handleImageChange(parent3)}/>
-                <div className="client__descr">
-                  <p className="client__name text-color">John Armstrong</p>
-                  <p className="client__role">Customer</p>
+              <div className="clients__info">
+                <img className="clients__avatar" src={clientavatar} alt='client avatar' onLoad={() => handleImageChange(parent3)} onError={() => handleImageChange(parent3)}/>
+                <div className="clients__descr">
+                  <p className="clients__name text-color">John Armstrong</p>
+                  <p className="clients__role">Customer</p>
                 </div>
               </div>
             </li>
           </ul>
           <Slider {...settings}>
-            <div className="client__card">
+            <div className="clients__card">
               <p className="section__text">Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit odio dignissim qui blandit molestie consequat.</p>
-              <div className="client__info">
-                <img className="client__avatar" src={clientavatar} alt='client avatar' onLoad={() => handleImageChange(parent3)} onError={() => handleImageChange(parent3)}/>
-                <div className="client__descr">
-                  <p className="client__name text-color">John Armstrong</p>
-                  <p className="client__role">Customer</p>
+              <div className="clients__info">
+                <img className="clients__avatar" src={clientavatar} alt='client avatar' onLoad={() => handleImageChange(parent3)} onError={() => handleImageChange(parent3)}/>
+                <div className="clients__descr">
+                  <p className="clients__name text-color">John Armstrong</p>
+                  <p className="clients__role">Customer</p>
                 </div>
               </div>
             </div>
-            <div className="client__card">
+            <div className="clients__card">
               <p className="section__text">Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit odio dignissim qui blandit molestie consequat.</p>
-              <div className="client__info">
-                <img className="client__avatar" src={clientavatar} alt='client avatar' onLoad={() => handleImageChange(parent3)} onError={() => handleImageChange(parent3)}/>
-                <div className="client__descr">
-                  <p className="client__name text-color">John Armstrong</p>
-                  <p className="client__role">Customer</p>
+              <div className="clients__info">
+                <img className="clients__avatar" src={clientavatar} alt='client avatar' onLoad={() => handleImageChange(parent3)} onError={() => handleImageChange(parent3)}/>
+                <div className="clients__descr">
+                  <p className="clients__name text-color">John Armstrong</p>
+                  <p className="clients__role">Customer</p>
                 </div>
               </div>
             </div>
-            <div className="client__card">
+            <div className="clients__card">
               <p className="section__text">Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit odio dignissim qui blandit molestie consequat.</p>
-              <div className="client__info">
-                <img className="client__avatar" src={clientavatar} alt='client avatar' onLoad={() => handleImageChange(parent3)} onError={() => handleImageChange(parent3)}/>
-                <div className="client__descr">
-                  <p className="client__name text-color">John Armstrong</p>
-                  <p className="client__role">Customer</p>
+              <div className="clients__info">
+                <img className="clients__avatar" src={clientavatar} alt='client avatar' onLoad={() => handleImageChange(parent3)} onError={() => handleImageChange(parent3)}/>
+                <div className="clients__descr">
+                  <p className="clients__name text-color">John Armstrong</p>
+                  <p className="clients__role">Customer</p>
                 </div>
               </div>
             </div>

@@ -70,7 +70,7 @@
         padding: 15px 0
         margin-left: auto
         width: 55px
-        height: 54px
+        height: 55px
         border: 2px solid $maincolor
         border-radius: 5px
 
@@ -172,14 +172,14 @@
                 &__burger
                     .line
                         &-1
-                            transform: rotate(45deg) translate(6px, 6px)
+                            transform: rotate(45deg) translate(7px, 6px)
                             width: 38px
 
                         &-2
                             transform: scaleY(0)
 
                         &-3
-                            transform: rotate(-45deg) translate(6px, -6px)
+                            transform: rotate(-45deg) translate(7px, -6px)
                             width: 38px
 
     .nav
@@ -220,29 +220,62 @@
     .theme-switcher
         left: 16px
 
+    .logo-img
+        height: 40px
+
     .header
+        padding-bottom: calc( $gap / 2 )
+
+        .bottom
+            padding-top: calc( $gap / 2 )
+
         .nav
             &__burger
                 width: 40px
-                height: 39px
+                height: 40px
                 padding: 10px 0
+            
+            &-link
+                &--cart
+                    width: 40px
+                    height: 40px
+
+                    .cart-image
+                        max-width: 85%
+
+        .burger    
+            &__line
+                width: 22px
 
         &--active
             .nav
                 &__burger
                     width: 40px
-                    height: 39px
+                    height: 40px
 
                     .line
-                        width: 28px
 
                         &-1
-                            transform: rotate(45deg) translate(4px, 5px)
-                            width: 28px
+                            position: relative
+                            width: 30px
+                            right: 1px
+                            transform: rotate(45deg) translate(6px, 4px)
 
                         &-2
                             transform: scaleY(0)
 
                         &-3
-                            transform: rotate(-45deg) translate(5px, -4px)
-                            width: 28px
+                            position: relative
+                            width: 30px
+                            left: -1px
+                            transform: rotate(-45deg) translate(6px, -4px)
+
+@media (max-height: 500px) and (max-width: 575px)
+    .header
+        .bottom
+            .nav
+                &__list
+                    position: relative
+                    right: calc( 50vw - 15px )
+                    transform: translateX(50%)
+                    align-items: center

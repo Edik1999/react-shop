@@ -73,7 +73,7 @@ function Header() {
       <div className="container">
         <div className="bottom">
           <div className="header__logo">
-            <Link to="/" className="logo"><img src={logo} alt="Logo" /></Link>
+            <Link to="/" className="logo"><img className='logo-img' src={logo} alt="Logo" /></Link>
           </div>
           <nav className={`header__nav ${!isAuthenticated && 'guest'}`}>
             <div className="nav__burger" onClick={() => clickHandler()}>
@@ -117,7 +117,7 @@ function Header() {
                     </li>
                     <li className="nav__item nav__item--cart">
                       <Link to="/cart" className="nav-link nav-link--cart" onClick={() => closeMenu()}>
-                        <img src={cart} alt="Cart" />
+                        <img className='cart-image' src={cart} alt="Cart" />
                         {state.cart.length > 0 && <div className="cart__badge">{state.cart.reduce((acc: number, num: { count: any; }) => acc + Number(num.count), 0)}</div>}
                       </Link>
                     </li>
