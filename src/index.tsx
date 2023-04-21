@@ -1,13 +1,14 @@
-import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './App';
-import { Provider } from 'react-redux';
+
 import { store } from './store';
-import {BrowserRouter} from 'react-router-dom';
-import { Auth0Provider } from '@auth0/auth0-react';
 import { initializeApp } from "firebase/app";
 // import { getAnalytics } from "firebase/analytics";
 import { getFirestore } from "firebase/firestore";
+
+import App from './App';
+import { Provider } from 'react-redux';
+import {BrowserRouter} from 'react-router-dom';
+import { Auth0Provider } from '@auth0/auth0-react';
 
 const firebaseConfig = {
     apiKey: "AIzaSyCkGk65zNBdpagu52sOa887fjNYbdEeDgk",

@@ -3,7 +3,7 @@ import '../styles/pages/Cart.sass';
 import { MouseEvent, useEffect, useState} from "react";
 import {deleteFromCart, clearCart} from '../store/slice/cartSlice';
 import {useAppDispatch, useAppSelector} from "../store";
-import {useAuth0, withAuthenticationRequired} from '@auth0/auth0-react';
+import {withAuthenticationRequired} from '@auth0/auth0-react';
 import {addDoc, collection} from "firebase/firestore";
 
 import { Link } from 'react-router-dom';
@@ -19,7 +19,6 @@ export const Cart = withAuthenticationRequired(({db}: {db: any}) => {
 
   const state = useAppSelector(state => state);
   const dispatch = useAppDispatch();
-  const {user} = useAuth0();
 
   const sum = () => {
     let prices = state.cart.map((el: { id: any; count: number; }) => (state.goods.find(elem => elem.id === el.id).price * el.count))
@@ -27,18 +26,19 @@ export const Cart = withAuthenticationRequired(({db}: {db: any}) => {
     return count(prices)
   }
 
-  const deleteFromCartHandler = (e: MouseEvent, id: any) => {
-    // @ts-ignore
-    e.target.closest('.cart__item').style.opacity = '0';
-    setTimeout(() => {
-      dispatch(deleteFromCart(id))
+  const deleteFromCartHandler = (e: MouseEvent<HTMLDivElement, globalThis.MouseEvent>, id: any) => {
+    if(e.target instanceof Element){
+      e.target.closest<HTMLElement>('.cart__item')!.style.opacity = '0';
+      setTimeout(() => {
+        dispatch(deleteFromCart(id))
 
-      if(localStorage.getItem('cart')){
-        let localStorageCart = JSON.parse(localStorage.getItem('cart') || "");
-        localStorage.setItem('cart', JSON.stringify(localStorageCart.filter((el: { id: any; }) => el.id !== id)));
-        if(localStorage.getItem('cart') === '[]') localStorage.removeItem('cart')
-      }
-    }, 300)
+        if(localStorage.getItem('cart')){
+          let localStorageCart = JSON.parse(localStorage.getItem('cart') || "");
+          localStorage.setItem('cart', JSON.stringify(localStorageCart.filter((el: { id: any; }) => el.id !== id)));
+          if(localStorage.getItem('cart') === '[]') localStorage.removeItem('cart')
+        }
+      }, 300)
+    }
   }
 
   useEffect(() => {
@@ -47,17 +47,16 @@ export const Cart = withAuthenticationRequired(({db}: {db: any}) => {
 
   async function saveOrder(){
     await addDoc(collection(db, "orders"), {
-      user: user?.email,
+      user: state.user[0].email,
       date: new Date(),
       sum: sum(),
       items: state.cart
     });
-    console.log('order saved');
   }
 
   const order = () => {
     setIsOrdered(true)
-    saveOrder()
+    saveOrder().then(() => console.log('order saved'))
     localStorage.removeItem('cart')
     dispatch(clearCart())
   }
@@ -117,7 +116,7 @@ export const Cart = withAuthenticationRequired(({db}: {db: any}) => {
                     <p className="cart__product-count">{state.cart.reduce((acc: number, num: { count: any; }) => acc + Number(num.count), 0)} products</p>
                     <p className="cart__total-price">Total <span className="text-color">{sum()} ₽</span></p>
                   </div>
-                  <Button text={"Place order"} disabled={pageContent.length > 0 ? false : true} onClick={openModal}></Button>
+                  <Button text="Place order" disabled={pageContent.length > 0 ? false : true} onClick={openModal}></Button>
                 </div>
                 <Modal isVisible={showModal} onClose={closeModal} order={order} userCart={pageContent} sum={sum()}></Modal>
               </>

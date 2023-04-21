@@ -11,7 +11,16 @@ import Counter from "./Counter";
 import {PatternFormat} from "react-number-format";
 import MapComponent from "./MapComponent";
 
-function Modal({ isVisible, id, onClose, order, userCart, sum }: {isVisible: boolean, id?: any, onClose: () => void, order?: () => void, userCart?: any, sum?: any}) {
+interface IProps {
+    isVisible: boolean,
+    id?: any,
+    onClose: () => void,
+    order?: () => void,
+    userCart?: any,
+    sum?: any
+}
+
+function Modal({ isVisible, id, onClose, order, userCart, sum }: IProps) {
 
   const state = useAppSelector(state => state);
   const content = state.goods.find((el) => el.id === id);
@@ -30,7 +39,7 @@ function Modal({ isVisible, id, onClose, order, userCart, sum }: {isVisible: boo
       setUserAddress(state.user[0].address)
       setUserPhone(state.user[0].phone)
       if (id) state.cart.find((elem: { id: any; }) => elem.id === id) ? setIsInCart(true) : setIsInCart(false)
-  }, [isVisible, state.cart])
+  }, [isVisible, state.cart, id, state.user])
 
   const addToCartClick = () => {
       dispatch(cart(id));
@@ -39,7 +48,6 @@ function Modal({ isVisible, id, onClose, order, userCart, sum }: {isVisible: boo
 
   const close = () => {
       setFadeIn(false);
-      // @ts-ignore
       setTimeout(() => onClose(), 400)
   }
 
@@ -87,7 +95,7 @@ function Modal({ isVisible, id, onClose, order, userCart, sum }: {isVisible: boo
                   {content.price} &#8381;
                 </p>
                 {!isInCart
-                  ? <Button modificator="card__btn" text="Add to cart" onClick={() => addToCartClick()}></Button>
+                  ? <Button modifier="card__btn" text="Add to cart" onClick={() => addToCartClick()}></Button>
                   : <Counter count={state.cart.find((elem: { id: any; }) => elem.id === id) ? state.cart.find((elem: { id: any; }) => elem.id === id).count : 0} elementId={id}></Counter>
                 }
               </div>
@@ -105,8 +113,8 @@ function Modal({ isVisible, id, onClose, order, userCart, sum }: {isVisible: boo
                                 <textarea value={userAddress} name="userAddress" className="user__input user__input--textarea" placeholder="Адрес*" onChange={e => setUserAddress(e.target.value)}/>
                             </form>
                             {!isMapVisible && <Button text="Выбрать на карте" onClick={showMap}></Button>}
-                            {isMapVisible && <MapComponent setUserAddress={setUserAddress}></MapComponent>}
-                            <Button text="Подтвердить" onClick={dataConfirmation} disabled={userPhone !== '' && userAddress !== '' ? false : true}></Button>
+                            {isMapVisible && <MapComponent setAddress={setUserAddress}></MapComponent>}
+                            <Button text="Подтвердить" onClick={dataConfirmation} disabled={userPhone && userAddress ? false : true}></Button>
                         </>
 
                     :

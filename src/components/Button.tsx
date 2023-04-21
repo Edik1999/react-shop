@@ -1,8 +1,15 @@
 import '../styles/components/button.sass';
 
-function Button({text, modificator, onClick, disabled}: {text: string, modificator?: string, onClick?: (arg0: any) => void, disabled?: boolean}) {
+interface IProps {
+  text: string,
+  modifier?: string,
+  onClick?: (arg0: any) => void,
+  disabled?: boolean
+}
+
+function Button({text, modifier, onClick, disabled}: IProps) {
   return (
-    <button className={`btn ${modificator} ${disabled && 'disabled'}`} disabled={disabled ? true : false} onClick={onClick}>{text}</button>
+    <button className={`btn ${modifier} ${disabled && 'disabled'}`} disabled={disabled ? true : false} onClick={onClick}>{text}</button>
   )
 }
 

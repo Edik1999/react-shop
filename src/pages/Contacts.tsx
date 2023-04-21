@@ -4,7 +4,7 @@ import {withAuthenticationRequired} from '@auth0/auth0-react';
 import useAnimationState from "../hooks/useAnimationState";
 import {useState, MouseEvent, useRef, FocusEvent} from "react";
 import {imagesLoaded} from "../helpers/imagesLoaded";
-import {addDoc, collection} from "firebase/firestore";
+import {addDoc, collection, Firestore} from "firebase/firestore";
 import {useAppSelector} from "../store";
 
 import { CSSTransition } from 'react-transition-group';
@@ -14,7 +14,7 @@ import Loader from "../components/Loader";
 
 import contactsdecorate from "../img/contacts-decorate.webp";
 
-export const Contacts = withAuthenticationRequired(({db}: {db: any}) => {
+export const Contacts = withAuthenticationRequired(({db}: {db: Firestore}) => {
 
   const animationState = useAnimationState();
   const nodeRef = useRef(null);
@@ -23,24 +23,22 @@ export const Contacts = withAuthenticationRequired(({db}: {db: any}) => {
 
   const [imagesLoading, setImagesLoading] = useState(true);
   const [error, setError] = useState(false);
-  const [isSended, setIsSended] = useState(false);
+  const [isFormSent, setIsFormSent] = useState(false);
 
-  async function sendForm(form: any){
+  function sendForm(form: any){
     const formData = new FormData(form)
     const name = formData.get('name')
     const email = formData.get('email')
     const phone = formData.get('phone')
     const message = formData.get('message')
 
-    await addDoc(collection(db, "feedback"), {
+    addDoc(collection(db, "feedback"), {
       name: name,
       email: email,
       phone: phone,
       message: message,
       date: new Date()
-    });
-
-    console.log('form sended');
+    }).then(() => console.log('form was sent'))
   }
 
   const formSubmitHandler = (e: { preventDefault: () => void; target: { closest: (arg0: string) => any; }; }) => {
@@ -75,16 +73,15 @@ export const Contacts = withAuthenticationRequired(({db}: {db: any}) => {
 
     if(allGood) {
       sendForm(form)
-      setIsSended(true)
+      setIsFormSent(true)
     }
   }
 
   const clickHandler = (e: FocusEvent<HTMLInputElement, Element> | FocusEvent<HTMLTextAreaElement, Element> | MouseEvent<HTMLLabelElement, globalThis.MouseEvent>) => {
-    // @ts-ignore
-    e.target.classList.remove('error');
+    if(e.target instanceof Element) e.target.classList.remove('error');
   }
 
-  const handleImageChange = (imagesParent: HTMLDivElement): void => {
+  const handleImageChange = (imagesParent: HTMLDivElement) => {
     setImagesLoading(!imagesLoaded(imagesParent))
   }
 
@@ -122,7 +119,7 @@ export const Contacts = withAuthenticationRequired(({db}: {db: any}) => {
           nodeRef={secondNodeRef}
       >
         <section className="feedback" ref={secondNodeRef}>
-          {!isSended
+          {!isFormSent
               ? <>
                   <h2 className="section__title text-color">Here you can post your<br/> feedback about us.</h2>
                   <form className="form">
@@ -139,7 +136,7 @@ export const Contacts = withAuthenticationRequired(({db}: {db: any}) => {
                     {error && <p className="error-message">Все поля должны быть заполнены</p>}
                     <div className="form__bottom">
                       <div className="form__wrapper">
-                        <Button text={"Post"} modificator={"form-btn"} onClick={(e) => formSubmitHandler(e)}></Button>
+                        <Button text="Post" modifier="form-btn" onClick={(e) => formSubmitHandler(e)}></Button>
                         <label className="form__check" onClick={(e) => clickHandler(e)}>
                           <input className="form__checkbox" type="checkbox" required /> I agree with the <span className="text-color">user agreement</span>
                         </label>

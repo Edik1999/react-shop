@@ -22,7 +22,7 @@ function Home() {
 
   const [imagesLoading, setImagesLoading] = useState(true)
 
-  const handleImageChange = (imagesParent: HTMLElement | HTMLDivElement | HTMLUListElement) => {
+  const handleImageChange = (imagesParent: HTMLDivElement | HTMLUListElement) => {
     setImagesLoading(!imagesLoaded(imagesParent))
   }
 

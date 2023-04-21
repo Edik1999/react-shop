@@ -59,7 +59,7 @@ function Header() {
             </p>
             {isAuthenticated &&
                 <div className="top-right-wrap">
-                    <Button text={"Log Out"} modificator={"login-btn"} onClick={() => logout({logoutParams: {returnTo: window.location.origin}})}></Button>
+                    <Button text="Log Out" modifier="login-btn" onClick={() => logout({logoutParams: {returnTo: window.location.origin}})}></Button>
                     <Link to="/profile" className="header-link"><img className='header-photo' src={user?.picture} alt={user?.name}/></Link>
                 </div>
             }
@@ -83,7 +83,7 @@ function Header() {
             </div>
             <ul className="nav__list">
               {!isAuthenticated
-                ? <li className="nav__item nav__item--short-list"><Button text={"Log In"} onClick={() => loginWithRedirect()}></Button></li>
+                ? <li className="nav__item nav__item--short-list"><Button text="Log In" onClick={() => loginWithRedirect()}></Button></li>
                 : <>
                     <li className="nav__item">
                       <NavLink to="/" className={({ isActive }) => isActive ? "nav-link nav-link--active" : "nav-link"} onClick={() => closeMenu()}>

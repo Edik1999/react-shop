@@ -45,7 +45,7 @@ function Card({id, title, image, renderImg, price, type, click}: IProps) {
                     <p className="card__price text-color">{price} &#8381;</p>
                     {!isInCart 
                         ?
-                            <Button modificator={"card__btn"} text={"Add to cart"} onClick={(e: any) => addToCartClick(e)}></Button>
+                            <Button modifier="card__btn" text="Add to cart" onClick={(e: any) => addToCartClick(e)}></Button>
                         :
                             <Counter count={state.cart.find((elem: { id: number; }) => elem.id === id) ? state.cart.find((elem: { id: number; }) => elem.id === id).count : 0} elementId={id}></Counter>
                     }   

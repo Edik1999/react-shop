@@ -1,5 +1,4 @@
 import '../styles/pages/Profile.sass';
-import '../styles/components/accordion.sass';
 
 import { useAuth0, withAuthenticationRequired } from '@auth0/auth0-react';
 import useAnimationState from "../hooks/useAnimationState";
@@ -12,10 +11,9 @@ import { updateUserData } from "../store/slice/userSlice";
 import Button from "../components/Button";
 import { CSSTransition } from 'react-transition-group';
 import { Link } from 'react-router-dom';
-import Moment from 'react-moment';
 import { PatternFormat } from "react-number-format";
-import { Accordion, AccordionItem, AccordionItemHeading, AccordionItemButton, AccordionItemPanel } from 'react-accessible-accordion';
 import MapComponent from "../components/MapComponent";
+import AccordionComponent from "../components/AccordionComponent";
 
 import emptycart from "../img/empty-cart.webp";
 
@@ -31,17 +29,17 @@ export const Profile = withAuthenticationRequired(({ db }: { db: any }) => {
     const email = useMemo(() => (emailFromStore), [emailFromStore])
 
     const [orders, setOrders] = useState([]);
-    const [userAddress, setUserAddress] = useState<string>('');
+    const [userAddress, setUserAddress] = useState('');
     const [isSent, setIsSent] = useState(false);
 
-    const checkOrders = useCallback(async () => {
+    const getOrdersFromDB = useCallback(async () => {
         const q = query(collection(database, "orders"), where("user", "==", email), orderBy('date', 'desc'));
         return getDataFromDB(q)
     }, [database, email])
 
     useEffect(() => {
-        checkOrders().then((res: any) => setOrders(res));
-    }, [checkOrders])
+        getOrdersFromDB().then((res: any) => setOrders(res));
+    }, [getOrdersFromDB])
 
     useEffect(() => {
         const address = state.user[0].address
@@ -84,40 +82,13 @@ export const Profile = withAuthenticationRequired(({ db }: { db: any }) => {
         }, 5000)
     }
 
-    const accordionClick = (id: any[]) => {
-        const allItems = document.querySelectorAll(".accordion__item");
-        for (const item of allItems) {
-            item.classList.remove('open');
-        }
-        const openedPanel = document.getElementById(`accordion__heading-${id[0]}`);
-        const accordionItem = openedPanel?.closest(".accordion__item");
-        accordionItem?.classList.add('open');
-    }
-
     const clearHistory = async () => {
         const q = query(collection(db, "orders"), where("user", "==", state.user[0].email));
         const querySnapshot = await getDocs(q);
-        querySnapshot.forEach(async (order) => {
-            await deleteDoc(doc(db, "orders", order.id));
-            checkOrders().then((res: any) => setOrders(res));
+        querySnapshot.forEach((order) => {
+            deleteDoc(doc(db, "orders", order.id));
+            getOrdersFromDB().then((res: any) => setOrders(res));
         });
-    }
-
-    const setHeight = () => {
-        const accordion = document.querySelector('.accordion')
-        const panels = accordion?.querySelectorAll('.accordion__panel')
-        if (panels) {
-            panels.forEach((panel: any) => {
-                const paragraphs = panel.querySelectorAll('p')
-                let height: number = 0
-                paragraphs.forEach((paragraph: any) => {
-                    let paragraphHeight = getComputedStyle(paragraph).height
-                    paragraphHeight = paragraphHeight.replace(/[^0-9]/g, '');
-                    height += Number(paragraphHeight)
-                })
-                panel.style.height = `${height + 40}px`
-            })
-        }
     }
 
     return (
@@ -135,32 +106,8 @@ export const Profile = withAuthenticationRequired(({ db }: { db: any }) => {
                         <h2 className='section__title text-color'>История заказов</h2>
                         {orders.length > 0
                             ? <>
-                                <Accordion allowZeroExpanded onChange={(id: any) => accordionClick(id)}>
-                                    {orders.map((el: any) => (
-                                        <AccordionItem key={Math.random()}>
-                                            <AccordionItemHeading>
-                                                <AccordionItemButton>
-                                                    <div className='accordion__wrap'>
-                                                        <p className='section__text accordion-price'>Сумма заказа: <span className='text-color'>{el.sum} ₽</span></p>
-                                                        <div className='accordion-date'>
-                                                            <span className='section__text date__text'>Дата заказа: </span>
-                                                            <Moment className='section__text date__descr' format="YYYY-MM-DD HH:mm">{new Date(el.date.seconds * 1000)}</Moment>
-                                                        </div>
-                                                    </div>
-                                                </AccordionItemButton>
-                                            </AccordionItemHeading>
-                                            <AccordionItemPanel>
-                                                {el.items.map((elem: any) => (
-                                                    <p className='accordion-text' key={Math.random()} ref={(ref) => setHeight()}>
-                                                        <span className='section__text'>{state.goods.map(element => element.id === elem.id ? element.title : null)}</span>
-                                                        <span className='section__text'> x {elem.count}</span>
-                                                    </p>
-                                                ))}
-                                            </AccordionItemPanel>
-                                        </AccordionItem>
-                                    ))}
-                                </Accordion>
-                                <Button modificator={"cart-btn"} text="Clear history" onClick={clearHistory}></Button>
+                                <AccordionComponent items={orders}></AccordionComponent>
+                                <Button modifier="cart-btn" text="Clear history" onClick={clearHistory}></Button>
                             </>
 
                             : <>
@@ -177,10 +124,10 @@ export const Profile = withAuthenticationRequired(({ db }: { db: any }) => {
                             <input type="text" defaultValue={state.user[0].name} name="userName" className="user__input" placeholder="Имя*" />
                             <PatternFormat value={state.user[0].phone} format="+7 (###) ### ## ##" mask="_" className="user__input" name="userPhone" placeholder="Телефон*" />
                             <textarea value={userAddress} name="userAddress" className="user__input user__input--textarea" placeholder="Адрес*" onChange={e => setUserAddress(e.target.value)} />
-                            <MapComponent setUserAddress={setUserAddress}></MapComponent>
-                            <Button modificator={"edit-btn home-btn"} disabled={isSent ? true : false} text="Save" onClick={(e) => formSubmitHandler(e)}></Button>
+                            <MapComponent setAddress={setUserAddress}></MapComponent>
+                            <Button modifier="edit-btn home-btn" disabled={isSent ? true : false} text="Save" onClick={(e) => formSubmitHandler(e)}></Button>
                             {isSent && <p className="success-text section__text">✅ your data was saved!</p>}
-                            <Button modificator={"cart-btn profile-btn"} text={"Log Out"} onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}></Button>
+                            <Button modifier="cart-btn profile-btn" text="Log Out" onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}></Button>
                         </form>
                     </div>
                 </section>

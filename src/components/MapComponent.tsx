@@ -5,7 +5,7 @@ import {FullscreenControl, GeolocationControl, Map, Placemark, SearchControl, YM
 import {useEffect, useState} from "react";
 import {useAppSelector} from "../store";
 
-function MapComponent({setUserAddress}: {setUserAddress: any}) {
+function MapComponent({setAddress}: {setAddress: any}) {
 
     const state = useAppSelector(state => state);
 
@@ -23,7 +23,7 @@ function MapComponent({setUserAddress}: {setUserAddress: any}) {
                 setMapState({ center: coords, zoom: 16 })
             })
         }
-    }, [mapInstance, state.user[0].address])
+    }, [mapInstance, state.user])
 
     const mapClick = (e: any) => {
         let coords = e.get('coords');
@@ -38,7 +38,7 @@ function MapComponent({setUserAddress}: {setUserAddress: any}) {
 
             let geoObject = res.geoObjects.get(0);
 
-            setUserAddress(geoObject.getAddressLine())
+            setAddress(geoObject.getAddressLine())
 
             placemark.properties.set({
                 iconCaption: [
