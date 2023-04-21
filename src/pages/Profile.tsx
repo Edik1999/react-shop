@@ -6,7 +6,7 @@ import useAnimationState from "../hooks/useAnimationState";
 import {useCallback, useEffect, useMemo, useRef, useState} from "react";
 import { collection, getDocs, query, where, orderBy, doc, updateDoc, deleteDoc } from "firebase/firestore";
 import { useAppDispatch, useAppSelector } from "../store";
-import {getDataFromDB} from "../helpers/check";
+import {getDataFromDB} from "../helpers/getDataFromDB";
 import { updateUserData } from "../store/slice/userSlice";
 
 import Button from "../components/Button";
