@@ -3,10 +3,10 @@ import '../styles/components/accordion.sass';
 
 import { useAuth0, withAuthenticationRequired } from '@auth0/auth0-react';
 import useAnimationState from "../hooks/useAnimationState";
-import { useEffect, useRef, useState } from "react";
+import {useCallback, useEffect, useMemo, useRef, useState} from "react";
 import { collection, getDocs, query, where, orderBy, doc, updateDoc, deleteDoc } from "firebase/firestore";
 import { useAppDispatch, useAppSelector } from "../store";
-import { check } from "../helpers/check";
+import {getDataFromDB} from "../helpers/check";
 import { updateUserData } from "../store/slice/userSlice";
 
 import Button from "../components/Button";
@@ -16,7 +16,6 @@ import Moment from 'react-moment';
 import { PatternFormat } from "react-number-format";
 import { Accordion, AccordionItem, AccordionItemHeading, AccordionItemButton, AccordionItemPanel } from 'react-accessible-accordion';
 import MapComponent from "../components/MapComponent";
-import { YMaps, Map, Placemark, FullscreenControl, SearchControl, GeolocationControl, ZoomControl } from '@pbe/react-yandex-maps';
 
 import emptycart from "../img/empty-cart.webp";
 
@@ -27,66 +26,29 @@ export const Profile = withAuthenticationRequired(({ db }: { db: any }) => {
     const nodeRef = useRef(null);
     const state = useAppSelector(state => state);
     const dispatch = useAppDispatch();
+    const database = useMemo(() => (db), [db])
+    const emailFromStore = state.user[0].email
+    const email = useMemo(() => (emailFromStore), [emailFromStore])
 
     const [orders, setOrders] = useState([]);
-    // const [mapInstance, setMapInstance] = useState<any>();
-    // const [placemark, setPlacemark] = useState<any>();
     const [userAddress, setUserAddress] = useState<string>('');
-    const [isSended, setIsSended] = useState(false);
-    // const [mapState, setMapState] = useState({
-    //     center: [55.75, 37.57],
-    //     zoom: 9
-    // })
+    const [isSent, setIsSent] = useState(false);
 
-    async function checkOrders() {
-        const q = query(collection(db, "orders"), where("user", "==", state.user[0].email), orderBy('date', 'desc'));
-        return check(q)
-    }
+    const checkOrders = useCallback(async () => {
+        const q = query(collection(database, "orders"), where("user", "==", email), orderBy('date', 'desc'));
+        return getDataFromDB(q)
+    }, [database, email])
 
     useEffect(() => {
         checkOrders().then((res: any) => setOrders(res));
-        // eslint-disable-next-line
-    }, [state.user])
+    }, [checkOrders])
 
     useEffect(() => {
-        if (state.user[0].address) {
-            setUserAddress(state.user[0].address)
+        const address = state.user[0].address
+        if (address) {
+            setUserAddress(address)
         }
-    }, [state.user[0].address])
-
-    // useEffect(() => {
-    //     if (mapInstance && state.user[0].address) {
-    //         mapInstance.geocode(state.user[0].address, { results: 1 }).then((res: { geoObjects: { get: (arg0: number) => { (): any; new(): any; geometry: { (): any; new(): any; getCoordinates: { (): any; new(): any; }; }; }; }; }) => {
-    //             let coords = res.geoObjects.get(0).geometry.getCoordinates();
-    //             setMapState({ center: coords, zoom: 16 })
-    //         })
-    //     }
-    // }, [mapInstance, state.user[0].address])
-    //
-    // const mapClick = (e: any) => {
-    //     let coords = e.get('coords');
-    //     setMapState({ zoom: 17, center: coords })
-    //     getAddress(coords)
-    // }
-    //
-    // const getAddress = (coords: any) => {
-    //     placemark.properties.set('iconCaption', 'поиск...');
-    //
-    //     mapInstance.geocode(coords).then(function (res: { geoObjects: { get: (arg0: number) => any; }; }) {
-    //
-    //         let geoObject = res.geoObjects.get(0);
-    //
-    //         setUserAddress(geoObject.getAddressLine())
-    //
-    //         placemark.properties.set({
-    //             iconCaption: [
-    //                 geoObject.getLocalities().length ? geoObject.getLocalities() : geoObject.getAdministrativeAreas(),
-    //                 geoObject.getThoroughfare() || geoObject.getPremise()
-    //             ].filter(Boolean).join(', '),
-    //             balloonContent: geoObject.getAddressLine()
-    //         });
-    //     });
-    // }
+    }, [state.user])
 
     async function sendForm(form: any) {
         const formData = new FormData(form)
@@ -116,10 +78,9 @@ export const Profile = withAuthenticationRequired(({ db }: { db: any }) => {
 
         const form = e.target.closest('form');
 
-        sendForm(form)
-        setIsSended(true)
+        sendForm(form).then(() => setIsSent(true))
         setTimeout(() => {
-            setIsSended(false)
+            setIsSent(false)
         }, 5000)
     }
 
@@ -217,8 +178,8 @@ export const Profile = withAuthenticationRequired(({ db }: { db: any }) => {
                             <PatternFormat value={state.user[0].phone} format="+7 (###) ### ## ##" mask="_" className="user__input" name="userPhone" placeholder="Телефон*" />
                             <textarea value={userAddress} name="userAddress" className="user__input user__input--textarea" placeholder="Адрес*" onChange={e => setUserAddress(e.target.value)} />
                             <MapComponent setUserAddress={setUserAddress}></MapComponent>
-                            <Button modificator={"edit-btn home-btn"} disabled={isSended ? true : false} text="Save" onClick={(e) => formSubmitHandler(e)}></Button>
-                            {isSended && <p className="success-text section__text">✅ your data was saved!</p>}
+                            <Button modificator={"edit-btn home-btn"} disabled={isSent ? true : false} text="Save" onClick={(e) => formSubmitHandler(e)}></Button>
+                            {isSent && <p className="success-text section__text">✅ your data was saved!</p>}
                             <Button modificator={"cart-btn profile-btn"} text={"Log Out"} onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}></Button>
                         </form>
                     </div>

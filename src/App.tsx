@@ -1,27 +1,27 @@
-import {useEffect, useState} from 'react';
-import Home from './pages/Home';
 import './styles/global.sass';
+
+import {useEffect, useState} from 'react';
+import {useLocation, Routes, Route, Navigate} from 'react-router-dom';
+import {useAppDispatch} from "./store";
+import {goods} from "./store/slice/goodsSlice";
+import {collection, getDocs, query, where, setDoc, doc} from "firebase/firestore";
+import {useAuth0} from "@auth0/auth0-react";
+import {setUserData} from "./store/slice/userSlice";
+import {checkUser} from "./helpers/checkUser";
+import {getGoodsFromDB} from "./helpers/getGoodsFromDB";
+
+import Home from './pages/Home';
 import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
-import {useLocation, Routes, Route, Navigate} from 'react-router-dom';
 import {Company} from './pages/Company';
 import {Contacts} from './pages/Contacts';
 import {FAQ} from './pages/FAQ';
 import {Cart} from './pages/Cart';
 import {Fullmenu} from './pages/Fullmenu';
 import {Profile} from "./pages/Profile";
-import {useGetGoodsQuery} from "./store/mockAPI/mockApi";
 import Loader from "./components/Loader";
-import {useAppDispatch} from "./store";
-import {goods} from "./store/slice/goodsSlice";
-import {collection, DocumentData, getDocs, query, where, setDoc, doc} from "firebase/firestore";
-import {useAuth0} from "@auth0/auth0-react";
-import {setUserData} from "./store/slice/userSlice";
-import {checkUser} from "./helpers/checkUser";
 
 function App({db}: { db: any }) {
-
-    // const {isLoading, isError, data} = useGetGoodsQuery("");
 
     const [loading, setLoading] = useState(true)
 
@@ -33,21 +33,12 @@ function App({db}: { db: any }) {
         window.scrollTo(0, 0);
     }, [location.pathname])
 
-    async function getDocsFromDB(){
-        setLoading(true)
-        const querySnapshot = await getDocs(collection(db, "goods"));
-        let appData: DocumentData[] = [];
-        querySnapshot.forEach((doc) => {
-            appData.push(doc.data());
+    useEffect(() => {
+        getGoodsFromDB(db).then(res => {
+            dispatch(goods(res))
+            setLoading(false)
         });
-        setLoading(false)
-        return appData
-    }
-
-    useEffect( () => {
-        getDocsFromDB().then(res => dispatch(goods(res)));
-        // if (data) dispatch(goods(data))
-    }, [])
+    }, [db, dispatch])
 
     async function save(){
         await setDoc(doc(db, "users", user?.email as string), {
@@ -65,7 +56,7 @@ function App({db}: { db: any }) {
         console.log('user saved');
     }
 
-    async function check(){
+    async function checkIsNewUser(){
         const q = query(collection(db, "users"), where("email", "==", user?.email));
 
         let isNewUser = true;
@@ -79,7 +70,7 @@ function App({db}: { db: any }) {
 
     useEffect(() => {
         if (user){
-            check().then(res => {
+            checkIsNewUser().then(res => {
                 if (res){
                     save()
                 }else{

@@ -1,10 +1,10 @@
 export function saveProductLocal(id: string) {
-    if (localStorage.getItem('cart')){
-        let localStorageCart = JSON.parse(localStorage.getItem('cart') || "");
-        let newLocalStorageCart = [...localStorageCart, {id: id, count: 1}];
-        localStorage.setItem('cart', JSON.stringify(newLocalStorageCart));
-    }else{
-        let cart = [{id: id, count: 1}]
-        localStorage.setItem('cart', JSON.stringify(cart));
-    }
+    const saved = localStorage.getItem('cart');
+    const defaultValue = {id: id, count: 1}
+    const initial = !saved || saved === 'undefined' ? null : JSON.parse(saved);
+    const storageValue = initial || defaultValue
+
+    saved
+        ? localStorage.setItem('cart', JSON.stringify([...storageValue, defaultValue]))
+        : localStorage.setItem('cart', JSON.stringify([defaultValue]));
 }
