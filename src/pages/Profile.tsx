@@ -2,8 +2,8 @@ import '../styles/pages/Profile.sass';
 
 import { useAuth0, withAuthenticationRequired } from '@auth0/auth0-react';
 import useAnimationState from "../hooks/useAnimationState";
-import {useCallback, useEffect, useMemo, useRef, useState} from "react";
-import { collection, getDocs, query, where, orderBy, doc, updateDoc, deleteDoc } from "firebase/firestore";
+import {useEffect, useRef, useState} from "react";
+import { collection, getDocs, query, where, doc, updateDoc, deleteDoc } from "firebase/firestore";
 import { useAppDispatch, useAppSelector } from "../store";
 import {getDataFromDB} from "../helpers/getDataFromDB";
 import { updateUserData } from "../store/slice/userSlice";
@@ -24,29 +24,19 @@ export const Profile = withAuthenticationRequired(({ db }: { db: any }) => {
     const nodeRef = useRef(null);
     const state = useAppSelector(state => state);
     const dispatch = useAppDispatch();
-    const database = useMemo(() => (db), [db])
-    const emailFromStore = state.user[0].email
-    const email = useMemo(() => (emailFromStore), [emailFromStore])
 
     const [orders, setOrders] = useState([]);
     const [userAddress, setUserAddress] = useState('');
     const [isSent, setIsSent] = useState(false);
 
-    const getOrdersFromDB = useCallback(async () => {
-        const q = query(collection(database, "orders"), where("user", "==", email), orderBy('date', 'desc'));
-        return getDataFromDB(q)
-    }, [database, email])
-
     useEffect(() => {
-        getOrdersFromDB().then((res: any) => setOrders(res));
-    }, [getOrdersFromDB])
+        getDataFromDB(db, state.user.email, true).then((res: any) => setOrders(res))
 
-    useEffect(() => {
-        const address = state.user[0].address
+        const address = state.user.address
         if (address) {
             setUserAddress(address)
         }
-    }, [state.user])
+    }, [db, state.user])
 
     async function sendForm(form: any) {
         const formData = new FormData(form)
@@ -54,7 +44,7 @@ export const Profile = withAuthenticationRequired(({ db }: { db: any }) => {
         const phone = formData.get('userPhone')
         const address = formData.get('userAddress')
 
-        const userRef = doc(db, "users", state.user[0].email as string);
+        const userRef = doc(db, "users", state.user.email as string);
 
         await updateDoc(userRef, {
             name: name,
@@ -62,11 +52,11 @@ export const Profile = withAuthenticationRequired(({ db }: { db: any }) => {
             address: address,
         });
 
-        dispatch(updateUserData([{
+        dispatch(updateUserData({
             name: name,
             phone: phone,
             address: address,
-        }]))
+        }))
 
         console.log('form sended');
     }
@@ -83,11 +73,11 @@ export const Profile = withAuthenticationRequired(({ db }: { db: any }) => {
     }
 
     const clearHistory = async () => {
-        const q = query(collection(db, "orders"), where("user", "==", state.user[0].email));
+        const q = query(collection(db, "orders"), where("user", "==", state.user.email));
         const querySnapshot = await getDocs(q);
         querySnapshot.forEach((order) => {
             deleteDoc(doc(db, "orders", order.id));
-            getOrdersFromDB().then((res: any) => setOrders(res));
+            getDataFromDB(db, state.user.email, true).then((res: any) => setOrders(res));
         });
     }
 
@@ -118,11 +108,11 @@ export const Profile = withAuthenticationRequired(({ db }: { db: any }) => {
                         }
                     </div>
                     <div className='profile__user'>
-                        <img className='user__photo' src={state.user[0].picture} alt={state.user[0].name} />
-                        <h3 className='user__email'>{state.user[0].email}</h3>
+                        <img className='user__photo' src={state.user.picture} alt={state.user.name} />
+                        <h3 className='user__email'>{state.user.email}</h3>
                         <form className="profile__form">
-                            <input type="text" defaultValue={state.user[0].name} name="userName" className="user__input" placeholder="Имя*" />
-                            <PatternFormat value={state.user[0].phone} format="+7 (###) ### ## ##" mask="_" className="user__input" name="userPhone" placeholder="Телефон*" />
+                            <input type="text" defaultValue={state.user.name} name="userName" className="user__input" placeholder="Имя*" />
+                            <PatternFormat value={state.user.phone} format="+7 (###) ### ## ##" mask="_" className="user__input" name="userPhone" placeholder="Телефон*" />
                             <textarea value={userAddress} name="userAddress" className="user__input user__input--textarea" placeholder="Адрес*" onChange={e => setUserAddress(e.target.value)} />
                             <MapComponent setAddress={setUserAddress}></MapComponent>
                             <Button modifier="edit-btn home-btn" disabled={isSent ? true : false} text="Save" onClick={(e) => formSubmitHandler(e)}></Button>

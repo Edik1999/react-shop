@@ -1,11 +1,10 @@
 import { SetStateAction, useEffect} from 'react';
 import {collection, doc, Firestore, getDocs, query, setDoc, where} from "firebase/firestore";
 import {setUserData} from "../store/slice/userSlice";
-import {getUserFromDB} from "../helpers/getUserFromDB";
-import {getGoodsFromDB} from "../helpers/getGoodsFromDB";
 import {goods} from "../store/slice/goodsSlice";
 import {useAuth0} from "@auth0/auth0-react";
 import {useAppDispatch} from "../store";
+import {getDataFromDB} from "../helpers/getDataFromDB";
 
 function useAppInit(db: Firestore, setLoading: { (value: SetStateAction<boolean>): void; (arg0: boolean): void; }){
     const {user} = useAuth0();
@@ -31,21 +30,21 @@ function useAppInit(db: Firestore, setLoading: { (value: SetStateAction<boolean>
                 picture: user?.picture,
                 sub: user?.sub
             });
-            dispatch(setUserData([{
+            dispatch(setUserData({
                 email: user?.email,
                 name: user?.name !== user?.email ? user?.name : '',
                 picture: user?.picture,
                 sub: user?.sub
-            }]))
+            }))
         }
 
-        user &&  checkIsNewUser().then(isNew => {
+        user && checkIsNewUser().then(isNew => {
             isNew
                 ? saveUser().then(() => console.log('user saved'))
-                : getUserFromDB(db, user.email).then((res: any) => dispatch(setUserData(res))).then(() => console.log('This user already exists'))
+                : getDataFromDB(db, user.email).then((res: any) => dispatch(setUserData(res[0]))).then(() => console.log('This user already exists'))
         })
 
-        getGoodsFromDB(db).then(res => {
+        getDataFromDB(db).then(res => {
             dispatch(goods(res))
             setLoading(false)
         });

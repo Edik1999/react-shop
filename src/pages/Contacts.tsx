@@ -19,7 +19,7 @@ export const Contacts = withAuthenticationRequired(({db}: {db: Firestore}) => {
   const animationState = useAnimationState();
   const nodeRef = useRef(null);
   const secondNodeRef = useRef(null);
-  const state = useAppSelector(state => state.user[0]);
+  const state = useAppSelector(state => state.user);
 
   const [imagesLoading, setImagesLoading] = useState(true);
   const [error, setError] = useState(false);
@@ -54,26 +54,38 @@ export const Contacts = withAuthenticationRequired(({db}: {db: Firestore}) => {
     for (const input of inputs) {
       if (input.value === '') {
         allGood = false
-        setError(true);
-        input.classList.add('error');
+        setError(true)
+        input.classList.add('error')
+        setTimeout(() => {
+          setError(false)
+        }, 5000)
       }
     }
 
     if (!checkbox.checked) {
       allGood = false
-      setError(true);
+      setError(true)
       checkboxLabel.classList.add('error')
+      setTimeout(() => {
+        setError(false)
+      }, 5000)
     }
 
     if (message.value === '') {
       allGood = false
-      setError(true);
-      message.classList.add('error');
+      setError(true)
+      message.classList.add('error')
+      setTimeout(() => {
+        setError(false)
+      }, 5000)
     }
 
     if(allGood) {
       sendForm(form)
       setIsFormSent(true)
+      setTimeout(() => {
+        setError(false)
+      }, 5000)
     }
   }
 

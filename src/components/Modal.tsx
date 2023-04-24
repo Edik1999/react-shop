@@ -27,8 +27,8 @@ function Modal({ isVisible, id, onClose, order, userCart, sum }: IProps) {
 
   const [isInCart, setIsInCart] = useState(false);
   const [fadeIn, setFadeIn] = useState(false);
-  const [userAddress, setUserAddress] = useState(state.user[0].address);
-  const [userPhone, setUserPhone] = useState(state.user[0].phone)
+  const [userAddress, setUserAddress] = useState(state.user.address);
+  const [userPhone, setUserPhone] = useState(state.user.phone)
   const [isMapVisible, setIsMapVisible] = useState(false);
   const [isDataConfirmed, setIsDataConfirmed] = useState(false);
 
@@ -36,8 +36,8 @@ function Modal({ isVisible, id, onClose, order, userCart, sum }: IProps) {
 
   useEffect(() => {
       setFadeIn(true)
-      setUserAddress(state.user[0].address)
-      setUserPhone(state.user[0].phone)
+      setUserAddress(state.user.address)
+      setUserPhone(state.user.phone)
       if (id) state.cart.find((elem: { id: any; }) => elem.id === id) ? setIsInCart(true) : setIsInCart(false)
   }, [isVisible, state.cart, id, state.user])
 

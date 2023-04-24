@@ -47,7 +47,7 @@ export const Cart = withAuthenticationRequired(({db}: {db: any}) => {
 
   async function saveOrder(){
     await addDoc(collection(db, "orders"), {
-      user: state.user[0].email,
+      user: state.user.email,
       date: new Date(),
       sum: sum(),
       items: state.cart

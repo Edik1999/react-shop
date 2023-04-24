@@ -18,11 +18,11 @@ export const Menu = withAuthenticationRequired(() => {
     const state = useAppSelector(state => state);
 
     const [content, setContent] = useState(state.goods)
-    const [activeSort, setActiveSort] = useState(1)
+    const [activeSort, setActiveSort] = useState('all')
     const [priceSort, setPriceSort] = useState(1)
     const [priceSortButtonClass, setPriceSortButtonClass] = useState('menu-btn--disabled')
     const [modalState, setModalState] = useState(false)
-    const [clickedCard, setClickedCard] = useState<number | null>(1)
+    const [clickedCard, setClickedCard] = useState<number | null>(null)
     const [imagesLoading, setImagesLoading] = useState(true)
 
     const animationState = useAnimationState();
@@ -31,7 +31,7 @@ export const Menu = withAuthenticationRequired(() => {
     const filterContent = (filterString: string) => state.goods.filter(el => el.title.toLowerCase().indexOf(filterString.toLowerCase()) > -1)
 
     const searchHandler = (filterString: string) => {
-        setActiveSort(1)
+        setActiveSort('all')
         if (filterString.length > 0) {
             setContent(filterContent(filterString).length > 0 ? filterContent(filterString) : [])
         } else {
@@ -42,20 +42,7 @@ export const Menu = withAuthenticationRequired(() => {
     const sortingHandler = (sortingString: string) => {
         setPriceSort(1);
         setContent(state.goods.filter(el => el.type.toLowerCase().indexOf(sortingString.toLowerCase()) > -1))
-
-        switch (sortingString) {
-            case 'Pizza':
-                setActiveSort(2)
-                break;
-
-            case 'Burger':
-                setActiveSort(3)
-                break;
-
-            default:
-                setActiveSort(4)
-                break;
-        }
+        setActiveSort(sortingString)
     }
 
     const orderByPrice = () => {
@@ -78,26 +65,13 @@ export const Menu = withAuthenticationRequired(() => {
             case 3:
                 setPriceSort(1)
                 setPriceSortButtonClass('menu-btn--disabled')
-                activeSort !== 1
-                    ? sortedContent = state.goods.filter(el => el.type.toLowerCase().indexOf(whichSort()?.toLowerCase()) > -1)
+                activeSort !== 'all'
+                    ? sortedContent = state.goods.filter(el => el.type.toLowerCase().indexOf(activeSort.toLowerCase()) > -1)
                     : sortedContent = state.goods
                 break;
         }
 
         setContent(sortedContent);
-    }
-
-    function whichSort() {
-        switch (activeSort) {
-            case 2:
-                return 'Pizza'
-            case 3:
-                return 'Burger'
-            case 4:
-                return 'Roll'
-            default:
-                break;
-        }
     }
 
     const cardClickHandler = (id: number) => {
@@ -140,10 +114,10 @@ export const Menu = withAuthenticationRequired(() => {
                   pickup order. Fast and fresh food.
                 </p>
                 <div className="menu__filter">
-                  <Button modifier={`menu-btn ${activeSort !== 1 && 'menu-btn--disabled'}`} text="Показать все" onClick={() => {setContent(state.goods); setActiveSort(1); setPriceSort(1)}}></Button>
-                  <Button modifier={`menu-btn ${activeSort !== 2 && 'menu-btn--disabled'}`} text="Пицца" onClick={() => sortingHandler('Pizza')}></Button>
-                  <Button modifier={`menu-btn ${activeSort !== 3 && 'menu-btn--disabled'}`} text="Бургеры" onClick={() => sortingHandler('Burger')}></Button>
-                  <Button modifier={`menu-btn ${activeSort !== 4 && 'menu-btn--disabled'}`} text="Роллы" onClick={() => sortingHandler('Roll')}></Button>
+                  <Button modifier={`menu-btn ${activeSort !== 'all' && 'menu-btn--disabled'}`} text="Показать все" onClick={() => {setContent(state.goods); setActiveSort('all'); setPriceSort(1)}}></Button>
+                  <Button modifier={`menu-btn ${activeSort !== 'Pizza' && 'menu-btn--disabled'}`} text="Пицца" onClick={() => sortingHandler('Pizza')}></Button>
+                  <Button modifier={`menu-btn ${activeSort !== 'Burger' && 'menu-btn--disabled'}`} text="Бургеры" onClick={() => sortingHandler('Burger')}></Button>
+                  <Button modifier={`menu-btn ${activeSort !== 'Roll' && 'menu-btn--disabled'}`} text="Роллы" onClick={() => sortingHandler('Roll')}></Button>
                   <Button modifier={`menu-btn sorting-btn ${priceSortButtonClass}`} text="Price" onClick={() => orderByPrice()}></Button>
                   <Search handler={searchHandler}></Search>
                 </div>

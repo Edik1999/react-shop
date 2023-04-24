@@ -9,21 +9,21 @@ interface IUser {
     picture: string,
 }
 
-const initial: [IUser] = [{
+const initial: IUser = {
     email: '',
     name: '',
     phone: '',
     address: '',
     sub: '',
     picture: '',
-}];
+};
 
 export const userSlice = createSlice({
     name: 'user',
     initialState: initial,
     reducers: {
         setUserData: (state, action) => action.payload,
-        updateUserData: (state, action) => [{...state[0], ...action.payload[0]}],
+        updateUserData: (state, action) => ({...state, ...action.payload}),
     },
 })
 

@@ -39,7 +39,7 @@ function AccordionComponent({items}: {items: object[]}) {
     return (
         <Accordion allowZeroExpanded onChange={(id: any) => accordionClick(id)}>
             {items.map((el: any) => (
-                <AccordionItem key={Math.random()}>
+                el.date && <AccordionItem key={Math.random()}>
                     <AccordionItemHeading>
                         <AccordionItemButton>
                             <div className='accordion__wrap'>

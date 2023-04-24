@@ -17,8 +17,8 @@ function MapComponent({setAddress}: {setAddress: any}) {
     })
 
     useEffect(() => {
-        if (mapInstance && state.user[0].address) {
-            mapInstance.geocode(state.user[0].address, { results: 1 }).then((res: { geoObjects: { get: (arg0: number) => { (): any; new(): any; geometry: { (): any; new(): any; getCoordinates: { (): any; new(): any; }; }; }; }; }) => {
+        if (mapInstance && state.user.address) {
+            mapInstance.geocode(state.user.address, { results: 1 }).then((res: { geoObjects: { get: (arg0: number) => { (): any; new(): any; geometry: { (): any; new(): any; getCoordinates: { (): any; new(): any; }; }; }; }; }) => {
                 let coords = res.geoObjects.get(0).geometry.getCoordinates();
                 setMapState({ center: coords, zoom: 16 })
             })
