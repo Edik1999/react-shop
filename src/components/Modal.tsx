@@ -61,37 +61,37 @@ function Modal({ isVisible, id, onClose, order, userCart, sum }: IProps) {
 
   return isVisible === false ? null : (
     <div className={`modal-wrapper ${fadeIn && 'modal-wrapper--active'}`} onClick={() => close()}>
-      <div className="modal" onClick={e => e.stopPropagation()}>
+      <div className="modal__card card" onClick={e => e.stopPropagation()}>
         {content ? (
           <>
-            <img className="modal__card-image" src={content.image} alt={content.title} />
-            <div className="modal__card-wraper">
-              <div className="modal__card-name">
+            <img className="card__image" src={content.image} alt={content.title} />
+            <div className="card__wraper">
+              <div className="card__header">
                 <p className="card__name">{content.title}</p>
                 <p className="card__weight">вес {content.weight} гр.</p>
               </div>
-              <p className="modal__card-descr">{content.text}</p>
-              <p className="modal__card-text">Пищевая ценность на 100 гр.</p>
-              <div className="card__info">
-                <div className="card__info-wrap">
+              <p className="card__descr">{content.text}</p>
+              <p className="card__text">Пищевая ценность на 100 гр.</p>
+              <div className="card__info info">
+                <div className="info__wrap">
                   <p className="info__name">кКал</p>
                   <p className="info__value">{content.calory}</p>
                 </div>
-                <div className="card__info-wrap">
+                <div className="info__wrap">
                   <p className="info__name">Белки</p>
                   <p className="info__value">{content.protein}</p>
                 </div>
-                <div className="card__info-wrap">
+                <div className="info__wrap">
                   <p className="info__name">Жиры</p>
                   <p className="info__value">{content.fat}</p>
                 </div>
-                <div className="card__info-wrap">
+                <div className="info__wrap">
                   <p className="info__name">Углеводы</p>
                   <p className="info__value">{content.carb}</p>
                 </div>
               </div>
-              <div className="modal__card-footer">
-                <p className="modal__card-price text-color">
+              <div className="card__footer">
+                <p className="card__price text-color">
                   {content.price} &#8381;
                 </p>
                 {!isInCart
@@ -99,7 +99,7 @@ function Modal({ isVisible, id, onClose, order, userCart, sum }: IProps) {
                   : <Counter count={state.cart.find((elem: { id: any; }) => elem.id === id) ? state.cart.find((elem: { id: any; }) => elem.id === id).count : 0} elementId={id}></Counter>
                 }
               </div>
-              <div className="modal__card-delete" onClick={() => close()}><div className="modal__card-delete-inner"></div></div>
+              <div className="card__delete" onClick={() => close()}><div className="card__delete-inner"></div></div>
             </div>
           </>
         ) : (
@@ -107,10 +107,10 @@ function Modal({ isVisible, id, onClose, order, userCart, sum }: IProps) {
                 {!isDataConfirmed
                     ?
                         <>
-                            <h3>Подтверждение данных для заказа</h3>
+                            <h3 className='modal__title'>Подтверждение данных для заказа</h3>
                             <form className="modal__form">
-                                <PatternFormat value={userPhone} format="+7 (###) ### ## ##" mask="_" className="user__input" name="userPhone" placeholder="Телефон*" onChange={e => setUserPhone(e.target.value)}/>
-                                <textarea value={userAddress} name="userAddress" className="user__input user__input--textarea" placeholder="Адрес*" onChange={e => setUserAddress(e.target.value)}/>
+                                <PatternFormat value={userPhone} format="+7 (###) ### ## ##" mask="_" className="modal__form-input user__input" name="userPhone" placeholder="Телефон*" onChange={e => setUserPhone(e.target.value)}/>
+                                <textarea value={userAddress} name="userAddress" className="modal__form-input modal__form-textarea user__input user__input--textarea" placeholder="Адрес*" onChange={e => setUserAddress(e.target.value)}/>
                             </form>
                             {!isMapVisible && <Button text="Выбрать на карте" onClick={showMap}></Button>}
                             {isMapVisible && <MapComponent setAddress={setUserAddress}></MapComponent>}
@@ -119,17 +119,19 @@ function Modal({ isVisible, id, onClose, order, userCart, sum }: IProps) {
 
                     :
                         <>
-                            <ul>
+                            <ul className='modal__list'>
                                 {userCart.map((el: any) =>
-                                    <li key={el.id}>
-                                        <h4>{el.title}</h4>
-                                        <p>Количество: {state.cart.find((elem: { id: any; }) => elem.id === el.id).count}</p>
-                                        <p>Стоимость: {el.price * state.cart.find((elem: { id: any; }) => elem.id === el.id).count} ₽</p>
+                                    <li className='modal__item item' key={el.id}>
+                                        <img className="item__image" src={el.image} alt={el.title} />
+                                        <div className='item__wrap'>
+                                          <h4 className='item__title'>{el.title}</h4>
+                                          <p className='item__number'>Количество: <span className='numeric'>{state.cart.find((elem: { id: any; }) => elem.id === el.id).count}</span></p>
+                                          <p className='item__cost'>Стоимость: <span className='text-color numeric'>{el.price * state.cart.find((elem: { id: any; }) => elem.id === el.id).count} ₽</span></p>
+                                        </div>
                                     </li>
                                 )}
                             </ul>
-                            <br/>
-                            <p>Сумма заказа: <span className="text-color">{sum} ₽</span></p>
+                            <p className="modal__total">Сумма заказа: <span className="text-color">{sum} ₽</span></p>
                             <Button text="Сделать заказ" onClick={order}></Button>
                         </>
                 }

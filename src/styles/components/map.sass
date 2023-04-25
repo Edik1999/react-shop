@@ -4,10 +4,14 @@
   border-radius: 25px
   width: 500px
   height: 500px
-  overflow: hidden
   border: 2px solid $maincolor
   margin-bottom: $gap
   overflow: hidden
+
+.cart-page
+  .map
+    width: 90%
+    height: 400px
 
 @media (max-width: 1400px)
   .map
@@ -21,12 +25,28 @@
   .map
     height: 368px
 
+  .cart-page
+    .map
+      width: 80%
+      height: 400px
+
 @media (max-width: 575px)
   .map
     width: 80%
     height: 268px
 
+  .cart-page
+    .map
+      width: 80%
+      height: 268px
+      margin-bottom: calc( $gap / 2 )
+
 @media (max-width: 370px)
   .map
     width: 90%
     height: 218px
+
+  .cart-page
+    .map
+      width: 90%
+      height: 218px

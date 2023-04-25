@@ -82,18 +82,18 @@ export const Cart = withAuthenticationRequired(({db}: {db: any}) => {
                     ?
                     pageContent.map((el: any) =>
                       <li className="cart__item" key={el.id}>
-                        <div className="cart__product">
-                          <img className="cart__product-img" src={el.image} alt={el.title} />
-                          <div className="cart__product-wrap">
-                            <p className="cart__product-name">{el.title}</p>
-                            <div className={`cart__product-price-wraper ${el.id}`}>
+                        <div className="cart__product product">
+                          <img className="product__img" src={el.image} alt={el.title} />
+                          <div className="product__wrap">
+                            <p className="product__name">{el.title}</p>
+                            <div className={`product__price-wraper ${el.id}`}>
                               <Counter
                                   count={state.cart.find((elem: { id: any; }) => elem.id === el.id) ? state.cart.find((elem: { id: any; }) => elem.id === el.id).count : 0}
                                   elementId={el.id}
                                   deleteHandler={(e, id) => deleteFromCartHandler(e, id)}></Counter>
-                              <p className="cart__product-price text-color">{el.price * (state.cart.find((elem: { id: any; }) => elem.id === el.id) ? state.cart.find((elem: { id: any; }) => elem.id === el.id).count : 0)} ₽</p>
+                              <p className="product__price text-color">{el.price * (state.cart.find((elem: { id: any; }) => elem.id === el.id) ? state.cart.find((elem: { id: any; }) => elem.id === el.id).count : 0)} ₽</p>
                             </div>
-                            <div className="cart__product-delete" onClick={e => deleteFromCartHandler(e, el.id)}><div className="cart__product-delete-inner"></div></div>
+                            <div className="product__delete" onClick={e => deleteFromCartHandler(e, el.id)}><div className="product__delete-inner"></div></div>
                           </div>
                         </div>
                       </li>
@@ -103,18 +103,18 @@ export const Cart = withAuthenticationRequired(({db}: {db: any}) => {
                       <li className="section__text">
                         Корзина пуста, вы можете сделать заказ в нашем меню
                       </li>
-                      <li className="cart__empty-btn">
+                      <li className="cart__btn-wrapper">
                         <Link to="/Home" className="btn cart-btn">На главную</Link>
                         <Link to="/menu" className="btn cart-btn">Order now!</Link>
                       </li>
                     </>
                   }
                 </ul>
-                <div className="cart__total">
-                  <h3 className="cart__title text-color">Order conditions</h3>
-                  <div className="cart__total-count">
-                    <p className="cart__product-count">{state.cart.reduce((acc: number, num: { count: any; }) => acc + Number(num.count), 0)} products</p>
-                    <p className="cart__total-price">Total <span className="text-color">{sum()} ₽</span></p>
+                <div className="cart__total total">
+                  <h3 className="total__title text-color">Order conditions</h3>
+                  <div className="total__wrapper">
+                    <p className="total__count">{state.cart.reduce((acc: number, num: { count: any; }) => acc + Number(num.count), 0)} products</p>
+                    <p className="total__price">Total <span className="text-color">{sum()} ₽</span></p>
                   </div>
                   <Button text="Place order" disabled={pageContent.length > 0 ? false : true} onClick={openModal}></Button>
                 </div>
