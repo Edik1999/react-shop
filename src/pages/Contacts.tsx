@@ -83,6 +83,7 @@ export const Contacts = withAuthenticationRequired(({db}: {db: Firestore}) => {
     if(allGood) {
       sendForm(form)
       setIsFormSent(true)
+      // window.scrollTo(0, window.scrollY - 500);
       setTimeout(() => {
         setError(false)
       }, 5000)
@@ -130,7 +131,7 @@ export const Contacts = withAuthenticationRequired(({db}: {db: Firestore}) => {
           unmountOnExit
           nodeRef={secondNodeRef}
       >
-        <section className="feedback" ref={secondNodeRef}>
+        <section className= {`feedback ${isFormSent && 'feedback--form-sent'}`} ref={secondNodeRef}>
           {!isFormSent
               ? <>
                   <h2 className="section__title text-color">Here you can post your<br/> feedback about us.</h2>
@@ -157,7 +158,7 @@ export const Contacts = withAuthenticationRequired(({db}: {db: Firestore}) => {
                   </form>
                 </>
 
-              : <p className="section__text">Thank you for your feedback</p>
+              : <h1 className="section__title text-color feedback__title">Thank you for your feedback</h1>
           }
         </section>
       </CSSTransition>

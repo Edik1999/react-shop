@@ -16,6 +16,14 @@
 
 .feedback
     margin-bottom: calc( $gap * 5 )
+    height: 618px
+    transition: all .8s
+
+    &--form-sent
+        height: 80px
+
+    &__title
+        animation: opacity 1.4s
 
     &-form
         width: 75%
@@ -40,7 +48,8 @@
     .section__text
         text-align: center
         width: 100%
-        font-size: calc(($baseFZ * 2) + 8px)
+        font-size: 40px
+        line-height: 1
         font-weight: 500
         margin: 0
 
@@ -77,7 +86,7 @@
         justify-content: center
 
     &__check
-        // cursor: pointer REFACTOR
+        cursor: pointer
 
         &.error
             color: red
@@ -173,3 +182,17 @@
     .contacts
         &__right
             padding-left: 90px
+
+
+///  animation  ///
+@keyframes opacity
+    0%
+        opacity: 0
+
+    75%
+        opacity: 0
+
+    100%
+        opacity: 1    
+
+    
