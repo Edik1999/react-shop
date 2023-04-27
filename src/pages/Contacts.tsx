@@ -115,7 +115,7 @@ export const Contacts = withAuthenticationRequired(({db}: {db: Firestore}) => {
             <h2 className="section__title text-color">Call our store and takeaway when it suits you best.</h2>
             <p className="section__text">Leo vel orci porta non pulvinar neque laoreet. Quis risus sed vulputate odio ut enim blandit volutpat maecenas. Fringilla phasellus faucibus scelerisque eleifend donec pretium vulputate sapien. Semper auctor neque vitae tempus quam pellentesque nec.</p>
             <p className="section__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-            <a className="contacts__link btn" href="tel:+79876543210">+7 (987) 654 32-10</a>
+            <a className="contacts__link contacts-btn btn" href="tel:+79876543210">+7 (987) 654 32-10</a>
           </div>
           <div className="contacts__right" ref={elem => parent = elem as HTMLDivElement}>
             <img className="contacts__img" src={contactsdecorate} alt="our place" onLoad={() => handleImageChange(parent)} onError={() => handleImageChange(parent)}/>

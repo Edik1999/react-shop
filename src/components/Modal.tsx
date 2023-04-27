@@ -67,7 +67,7 @@ function Modal({ isVisible, id, onClose, order, userCart, sum }: IProps) {
             <img className="card__image" src={content.image} alt={content.title} />
             <div className="card__wraper">
               <div className="card__header">
-                <p className="card__name">{content.title}</p>
+                <p className="card__title">{content.title}</p>
                 <p className="card__weight">вес {content.weight} гр.</p>
               </div>
               <p className="card__descr">{content.text}</p>
@@ -95,11 +95,11 @@ function Modal({ isVisible, id, onClose, order, userCart, sum }: IProps) {
                   {content.price} &#8381;
                 </p>
                 {!isInCart
-                  ? <Button modifier="card__btn" text="Add to cart" onClick={() => addToCartClick()}></Button>
+                  ? <Button modifier="card-btn" text="Add to cart" onClick={() => addToCartClick()}></Button>
                   : <Counter count={state.cart.find((elem: { id: any; }) => elem.id === id) ? state.cart.find((elem: { id: any; }) => elem.id === id).count : 0} elementId={id}></Counter>
                 }
               </div>
-              <div className="card__delete" onClick={() => close()}><div className="card__delete-inner"></div></div>
+              <div className="card__delete delete" onClick={() => close()}><div className="delete__inner"></div></div>
             </div>
           </>
         ) : (
@@ -108,11 +108,11 @@ function Modal({ isVisible, id, onClose, order, userCart, sum }: IProps) {
                     ?
                         <>
                             <h3 className='modal__title'>Подтверждение данных для заказа</h3>
-                            <form className="modal__form">
-                                <PatternFormat value={userPhone} format="+7 (###) ### ## ##" mask="_" className="modal__form-input user__input" name="userPhone" placeholder="Телефон*" onChange={e => setUserPhone(e.target.value)}/>
-                                <textarea value={userAddress} name="userAddress" className="modal__form-input modal__form-textarea user__input user__input--textarea" placeholder="Адрес*" onChange={e => setUserAddress(e.target.value)}/>
+                            <form className="modal__form form">
+                                <PatternFormat value={userPhone} format="+7 (###) ### ## ##" mask="_" className="form__input user__input" name="userPhone" placeholder="Телефон*" onChange={e => setUserPhone(e.target.value)}/>
+                                <textarea value={userAddress} name="userAddress" className="form__input form__textarea user__input user__input--textarea" placeholder="Адрес*" onChange={e => setUserAddress(e.target.value)}/>
                             </form>
-                            {!isMapVisible && <Button text="Выбрать на карте" onClick={showMap}></Button>}
+                            {!isMapVisible && <Button modifier='modal-btn' text="Выбрать на карте" onClick={showMap}></Button>}
                             {isMapVisible && <MapComponent setAddress={setUserAddress}></MapComponent>}
                             <Button text="Подтвердить" onClick={dataConfirmation} disabled={userPhone && userAddress ? false : true}></Button>
                         </>

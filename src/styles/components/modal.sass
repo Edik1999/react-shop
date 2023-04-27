@@ -37,7 +37,7 @@
             .card__image
                 transform: none
 
-            .card__name
+            .card__title
                 text-shadow: none
 
         .card
@@ -47,7 +47,7 @@
                 height: 100%
                 margin-right: $gap
 
-            &__name
+            &__title
                 margin-right: calc( $gap / 3 )
                 text-align: center
                 font-size: 18px
@@ -99,11 +99,12 @@
                 right: 0
                 padding: 12px
 
-                &-inner
-                    width: 20px
-                    height: 20px
-                    clip-path: polygon(20% 0%, 0% 20%, 30% 50%, 0% 80%, 20% 100%, 50% 70%, 80% 100%, 100% 80%, 70% 50%, 100% 20%, 80% 0%, 50% 30%)
-                    background-color: red
+                .delete
+                    &__inner
+                        width: 20px
+                        height: 20px
+                        clip-path: polygon(20% 0%, 0% 20%, 30% 50%, 0% 80%, 20% 100%, 50% 70%, 80% 100%, 100% 80%, 70% 50%, 100% 20%, 80% 0%, 50% 30%)
+                        background-color: red
 
             &__info
                 display: flex
@@ -145,11 +146,13 @@
                     width: 55%
                     margin-bottom: calc( $gap / 2 )
 
-                    &-input
-                        width: 100%
-                    
-                    &-textarea
-                        margin-bottom: 0
+                    .form
+                        &__input
+                            width: 100%
+                        
+                        &__textarea
+                            height: auto
+                            margin-bottom: 0
 
                 &__total
                     margin-bottom: $gap
@@ -217,7 +220,7 @@
             align-items: normal
 
             .card
-                &__name
+                &__title
                     margin: 0 calc( $gap / 3 ) 0 0
 
 
@@ -287,7 +290,7 @@
                     flex-wrap: wrap
                     align-items: center
 
-                &__name
+                &__title
                     font-size: $baseFZ
 
                 &__weight
@@ -315,12 +318,13 @@
                     &__form
                         width: 80%
 
-                        &-input
-                            margin-bottom: calc( $gap / 6 )
-                        
-                        &-textarea
-                            height: 100px
-                            margin-bottom: 0
+                        .form
+                            &__input
+                                margin-bottom: calc( $gap / 6 )
+                            
+                            &__textarea
+                                height: 100px
+                                margin-bottom: 0
 
                     &__item
                         .item

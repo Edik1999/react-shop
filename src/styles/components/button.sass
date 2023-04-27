@@ -2,8 +2,9 @@
 
 .btn
     display: inline-block
+    width: 200px
     cursor: pointer
-    padding: 20px 35px
+    padding: 20px 0
     border: none
     border-radius: 12px
     background-color: $maincolor
@@ -31,10 +32,10 @@
             transform: none
 
 .home-btn
-    width: 216px
     margin-bottom: calc( $gap + 10px )
 
 .menu-btn
+    width: auto
     margin-right: $gap
     padding: 19px 35px
     border: 2px solid #35B8BE
@@ -49,11 +50,11 @@
             color: white
             border: 2px solid $maincolor
 
-.card__btn
-    padding: 10px 12px
+.card-btn
+    width: 106px
+    padding: 13.5px 0
     color: $smalTextColor
     font-size: $baseFZ
-    line-height: calc( $baseFZ + 11px)
     background-color: #FFFFFF
     border: 2px solid $smalTextColor
 
@@ -90,7 +91,7 @@
             top: 34%
 
 .form-btn
-    margin-bottom: calc($gap / 2)
+    margin-bottom: calc( $gap / 2 )
 
 .cart-btn
     border: 2px solid $smalTextColor
@@ -103,6 +104,7 @@
         border: 2px solid $maincolor
 
 .login-btn
+    width: 90px
     margin-right: $gap
     color: black
     font-size: $baseFZ
@@ -111,6 +113,9 @@
 
 .edit-btn
     margin-bottom: $gap
+
+.modal-btn
+        margin-bottom: calc( $gap / 3 )
 
 
 @media (max-width: 1600px)
@@ -129,9 +134,6 @@
 
 
 @media (max-width: 1023.9px)
-    .edit-btn
-        width: 216px
-
     .menu-btn
         width: 49%
         font-size: 16px
@@ -161,23 +163,24 @@
             margin-bottom: 10px
 
 @media (max-width: 575px)
-    .cart-btn
-        width: 45%
-        padding: 15px 0
+    .btn
+        width: 160px
+        padding: 20px 0
         font-size: 16px
 
-        // REFACTOR  не используется
-        &-total
-            width: 60%
-            padding: 15px 0
-            font-size: 16px
+    .cart-btn
+        width: 45%
+        padding: 18px 0
 
-    .card__btn
+    .card-btn
+        width: 94px
         font-size: 14px
-        padding: 8px 10px
+        padding: 9px 0
 
     .login-btn
+        width: auto
         margin-right: calc($gap / 2)
+        padding: 12px
 
     .menu-btn
         font-size: 14px
@@ -189,10 +192,12 @@
         &:nth-last-child(-n+3)
             width: 49.2%
 
+    .contacts-btn
+                padding: 20px 0
 
 @media (max-width: 370px)
     .cart-btn
-        width: 75%
+        width: 160px
 
         &:first-of-type
             margin-bottom: calc( $gap / 3 )
@@ -207,7 +212,3 @@
         &:nth-last-child(-n+2)
             width: 100%
             margin: 0
-
-    .form-btn
-        font-size: 16px
-        padding: 16px 0

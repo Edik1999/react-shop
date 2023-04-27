@@ -103,7 +103,7 @@ export const Profile = withAuthenticationRequired(({ db }: { db: any }) => {
                             : <>
                                 <img className="history__img" src={emptycart} alt="Cart is empty" />
                                 <p className="section__text">Ваша история заказов пуста!</p>
-                                <Link to="/menu" className="btn home-btn">Сделать заказ</Link>
+                                <Link to="/menu" className="btn">Сделать заказ</Link>
                             </>
                         }
                     </div>
@@ -115,7 +115,7 @@ export const Profile = withAuthenticationRequired(({ db }: { db: any }) => {
                             <PatternFormat value={state.user.phone} format="+7 (###) ### ## ##" mask="_" className="user__input" name="userPhone" placeholder="Телефон*" />
                             <textarea value={userAddress} name="userAddress" className="user__input user__input--textarea" placeholder="Адрес*" onChange={e => setUserAddress(e.target.value)} />
                             <MapComponent setAddress={setUserAddress}></MapComponent>
-                            <Button modifier="edit-btn home-btn" disabled={isSent ? true : false} text="Save" onClick={(e) => formSubmitHandler(e)}></Button>
+                            <Button modifier="edit-btn" disabled={isSent ? true : false} text="Save" onClick={(e) => formSubmitHandler(e)}></Button>
                             {isSent && <p className="success-text section__text">✅ your data was saved!</p>}
                             <Button modifier="cart-btn profile-btn" text="Log Out" onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}></Button>
                         </form>
