@@ -10,6 +10,7 @@ import {useAppSelector} from "../store";
 import { CSSTransition } from 'react-transition-group';
 import { PatternFormat } from 'react-number-format';
 import Button from '../components/Button';
+import Input from '../components/Input';
 import Loader from "../components/Loader";
 
 import contactsdecorate from "../img/contacts-decorate.webp";
@@ -131,27 +132,27 @@ export const Contacts = withAuthenticationRequired(({db}: {db: Firestore}) => {
           unmountOnExit
           nodeRef={secondNodeRef}
       >
-        <section className= {`feedback ${isFormSent && 'feedback--form-sent'}`} ref={secondNodeRef}>
+        <section className={`feedback ${isFormSent && 'feedback--form-sent'} ${error && 'feedback--form-error'}`} ref={secondNodeRef}>
           {!isFormSent
               ? <>
                   <h2 className="section__title text-color">Here you can post your<br/> feedback about us.</h2>
-                  <form className="form">
+                  <form className={`feedback__form form ${error && 'feedback__form--error'}`}>
                     <div className="form__top">
                       <div className="form__left">
-                        <input className="form__input feedback-form" name="name" type="text" placeholder="Name" defaultValue={state.name ? state.name : ''} required onFocus={(e) => clickHandler(e)} />
-                        <input className="form__input feedback-form" name="email" type="email" placeholder="E-mail" defaultValue={state.email ? state.email : ''} onFocus={(e) => clickHandler(e)}/>
-                        <PatternFormat value={state.phone ? state.phone : ''} format="+7 (###) ### ## ##" mask="_" className="form__input feedback-form" type="tel" placeholder="Phone" onFocus={(e) => clickHandler(e)}/>
+                        <Input name="name" type="text" placeholder="Name" defaultValue={state.name ? state.name : ''} modifier='form__input' onFocus={(e: any) => clickHandler(e)}/>
+                        <Input name="email" type="email" placeholder="E-mail" defaultValue={state.email ? state.email : ''} modifier='form__input' onFocus={(e: any) => clickHandler(e)}/>
+                        <PatternFormat value={state.phone ? state.phone : ''} format="+7 (###) ### ## ##" mask="_" className="form__input input" type="tel" placeholder="Phone" onFocus={(e) => clickHandler(e)}/>
                       </div>
                       <div className="form__right">
-                        <textarea className="form__textarea feedback-form" name="message" placeholder="Comment" required onFocus={(e) => clickHandler(e)}></textarea>
+                        <textarea className="form__textarea input input--textarea" name="message" placeholder="Comment" rows={3} onFocus={(e) => clickHandler(e)}></textarea>
                       </div>
                     </div>
-                    {error && <p className="error-message">Все поля должны быть заполнены</p>}
+                    {error && <p className="form__error section__text">Все поля должны быть заполнены !</p>}
                     <div className="form__bottom">
                       <div className="form__wrapper">
                         <Button text="Post" modifier="form-btn" onClick={(e) => formSubmitHandler(e)}></Button>
-                        <label className="form__check" onClick={(e) => clickHandler(e)}>
-                          <input className="form__checkbox" type="checkbox" required /> I agree with the <span className="text-color">user agreement</span>
+                        <label className="form__check section__text" onClick={(e) => clickHandler(e)}>
+                          <input className="form__checkbox" type="checkbox"/> I agree with the <span className="text-color">user agreement</span>
                         </label>
                       </div>
                     </div>

@@ -15,69 +15,66 @@
         align-items: center
         padding-top: calc( $gap * 3 )
 
-    &__form
-        display: flex
-        flex-direction: column
-        align-items: center
-        width: 100%
-
-        .section__text
-            text-align: center
-            margin: 0
-
-        .form
-            &__success
+    &__user
+        .user
+            &__photo
+                display: block
+                border-radius: 100%
+                width: 120px
+                height: 120px
                 margin-bottom: $gap
 
-    &__history
+            &__email
+                margin-bottom: $gap
 
+            &__form
+                position: relative
+                display: flex
+                flex-direction: column
+                align-items: center
+                width: 100%
+                height: 872px
+                transition: all .8s
+
+                &--saved
+                    height: 932px
+
+                    .edit-btn
+                        margin-bottom: calc( $gap * 3 )
+
+                .section__text
+                    text-align: center
+                    margin: 0
+
+                .form
+                    &__success
+                        position: absolute
+                        width: fit-content
+                        color: $success
+                        bottom: 90px
+                        animation: opacity .7s
+
+                    &__input, &__textarea
+                        width: 70%
+                        text-align: center
+
+                    &__input
+                        margin-bottom: calc( $gap / 2 )
+
+                    &__textarea
+                        margin-bottom: $gap
+
+    &__history
         .section__text
+            width: 100%
             text-align: center
             margin-bottom: $gap
 
+        .history
+            &__img
+                width: 378px
+                margin-bottom: $gap
     
-
-.user
-    &__photo
-        display: block
-        border-radius: 100%
-        width: 120px
-        height: 120px
-        margin-bottom: $gap
-
-    &__email
-        margin-bottom: $gap
-
-    &__input
-        display: flex
-        width: 70%
-        border: 2px solid transparent
-        color: $smalTextColor
-        font-size: 16px
-        text-align: center
-        padding: 12px 16px
-        border-radius: 12px
-        margin-bottom: calc( $gap / 2 )
-        overflow: hidden
-        transition: all .3s ease-out
-
-        &:hover
-            border: 2px solid $counterBorderColor
-
-        &:focus
-            background-color: $counterBgColor
-            border-color: $maincolor
-
-        &--textarea
-            resize: none
-
-            &::placeholder
-                padding-top: 8px
-
-.history__img
-    width: 378px
-    margin-bottom: $gap
-
 
 @media (max-width: 1400px)
     .profile__history,
@@ -85,28 +82,33 @@
         flex: 100%
         padding: 0
 
+    .profile__history
+        margin-bottom: calc( $gap * 2 )
+        
     .profile__user
         order: -1
         margin-bottom: calc( $gap * 5 )
-        // border-bottom: 1px solid $counterBorderColor
 
-    .profile__form
-        width: 100%
+        .user__form
+            width: 100%
 
-    .user__input
-        width: 50%
-
-    .profile__history
-        margin-bottom: calc( $gap * 2 )
+            .form
+                &__input, &__textarea
+                    width: 50%
 
 @media (max-width: 1200px)
-    .user__input
-        width: 60%
+    .profile__user
+        .user__form
+            .form
+                &__input, &__textarea
+                    width: 60%
 
-@media (max-width: 1023.9px)
-    .user__input
-        width: 80%
-
+@media (max-width: 991px)
+    .profile__user
+        .user__form
+            .form
+                &__input, &__textarea
+                    width: 80%
 
 @media (max-width: 768px)
     .profile__user
@@ -114,20 +116,23 @@
         padding-bottom: $gap
         border-bottom: 1px solid #DDDDDD
 
-    .user
-        &__input
-            width: 80%
-
 @media (max-width: 575px)
-    .profile
-        &__form
-            .user__input--textarea
-                height: 100px
+    .profile__user
+        .user__form
+            .form
+                &__input
+                    margin-bottom: calc( $gap / 3 ) 
+
+                &__textarea
+                    margin-bottom: calc( $gap / 2 ) 
 
 @media (max-width: 370px)
-    .user
-        &__input
-            width: 90%
+    .profile__user
+        .user
+            &__email
+                font-size: 16px
 
-        &__email
-            font-size: 16px
+            &__form
+                .form
+                    &__input, &__textarea
+                        width: 90%

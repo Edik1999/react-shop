@@ -1,0 +1,23 @@
+@import "../variables/index"
+
+.input
+    padding: calc( $gap / 2 )
+    border: 2px solid $counterBorderColor
+    border-radius: 12px
+    background-color: $counterBgColor
+    font-size: $baseFZ
+    color: $smalTextColor
+    overflow: hidden
+    transition: all .3s
+
+    &::placeholder
+        color:  darken($counterBorderColor, 15)
+
+    &:hover, &:focus
+        border-color: $maincolor
+
+    &.error
+        border-color: $error
+
+    &--textarea
+        resize: none

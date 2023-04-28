@@ -121,7 +121,7 @@ export const Cart = withAuthenticationRequired(({db}: {db: any}) => {
                 <Modal isVisible={showModal} onClose={closeModal} order={order} userCart={pageContent} sum={sum()}></Modal>
               </>
             :
-              <p className="section__title">Thank you for your Order!</p>
+              <h2 className="section__title">Thank you for Order !</h2>
           }
         </div>
       </div>

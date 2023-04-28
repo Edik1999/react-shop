@@ -6,6 +6,7 @@
     margin-bottom: calc( $gap * 8 )
 
     &__left
+        align-items: center
         flex-basis: 50%
         margin-top: 60px
 
@@ -14,98 +15,103 @@
         top: 0
         right: 40px
 
-.feedback
+.feedback 
+    display: flex
+    flex-direction: column
+    align-items: center
     margin-bottom: calc( $gap * 5 )
-    height: 618px
-    transition: all .8s
+    height: 491px
 
     &--form-sent
-        height: 80px
-
-    &__title
-        animation: opacity 1.4s
-
-    &-form
-        width: 75%
-        padding: calc( $gap / 2 )
-        border: 2px solid $counterBorderColor
-        border-radius: 12px
-        background-color: $counterBgColor
-        font-size: $baseFZ
-        color: $smalTextColor
-        transition: all .2s
-
-        &:hover, &:focus
-            border-color: $maincolor
-
-        &.error
-            border-color: red
+        height: 55px!important
+        transition: all .8s
 
     .section__title
         text-align: center
         margin-bottom: calc( $gap * 2 )
 
-    .section__text
-        text-align: center
-        width: 100%
-        font-size: 40px
-        line-height: 1
-        font-weight: 500
+    .feedback__title
         margin: 0
+        animation: opacity 1.4s
 
-.form
-    &__top
-        display: flex
-        align-items: center
-        justify-content: center
-        margin-bottom: $gap
-
-    &__left
-        display: flex
-        flex-direction: column
-        align-items: flex-end
-        width: 50%
-        margin-right: calc( $gap / 2 )
-
-    &__input:not(:last-of-type)
-        margin-bottom: calc( $gap / 2 )
-
-    &__right
-        display: flex
-        justify-content: flex-start
-        width: 50%
-
-    &__textarea
-        max-height: 189px
-        height: 189px
-        resize: none
-
-    &__bottom
-        display: flex
-        justify-content: center
-
-    &__check
-        cursor: pointer
-
-        &.error
-            color: red
-
-    &__wrapper
-        display: flex
-        flex-direction: column
-        align-items: center
-
-    &__checkbox
+    .form
         position: relative
-        top: 1px
-        margin-right: 5px
-        cursor: pointer
+        width: 100%
+        
+        &__top
+            display: flex
+            align-items: center
+            justify-content: center
+            margin-bottom: $gap
+            transition: all .5s
 
-.error-message
-    margin-left: 12.5%
-    margin-bottom: $gap
-    color: red
+        &__left
+            display: flex
+            flex-direction: column
+            align-items: flex-end
+            width: 50%
+            margin-right: calc( $gap / 2 )
 
+        &__input:not(:last-of-type)
+            margin-bottom: calc( $gap / 2 )
+
+        &__input
+            width: 75%
+            padding: calc( $gap / 2 )
+            border: 2px solid $counterBorderColor
+            border-radius: 12px
+            background-color: $counterBgColor
+            font-size: $baseFZ
+            color: $smalTextColor
+            transition: all .2s
+
+        &__textarea
+            width: 75%
+            height: 189px
+
+        &__right
+            display: flex
+            justify-content: flex-start
+            width: 50%
+
+        &__bottom
+            display: flex
+            justify-content: center
+
+        &__check
+            width: 100%
+            margin: 0
+            cursor: pointer
+            transition: all .5s
+
+            &.error
+                color: $error
+
+        &__wrapper
+            display: flex
+            flex-direction: column
+            align-items: center
+
+        &__checkbox
+            position: relative
+            top: 1px
+            margin-right: 5px
+            cursor: pointer
+
+        &__error
+            position: absolute
+            text-align: center
+            width: 100%
+            margin: 0
+            bottom: 132px
+            color: $error
+            animation: opacity .5s
+
+    &--form-error
+        transition: all .5s
+
+        .form__top
+            margin-bottom: 87px
 
 @media (max-width: 1600px)
     .contacts__left
@@ -142,8 +148,31 @@
 
         .section__title,
         .section__text
-            width: 100%
+            width: 80%
             text-align: center
+
+    .feedback
+        height: 461px
+
+        &--form-error
+            height: 518px
+
+        .section__title
+            width: 80%
+            margin-bottom: $gap
+
+        .feedback__title
+            margin: 0
+
+@media (max-width: 991px)
+    .feedback
+        &__form
+            .form
+                &__input, &__textarea
+                    width: 100%
+
+        &--form-sent
+            height: 110px!important
 
 @media (max-width: 768px)
     .contacts
@@ -154,44 +183,72 @@
         .section__title
             margin-bottom: $gap
 
-    .feedback-form
-        width: 100%
-
-
-@media (max-width: 575px)
     .feedback
-        margin-bottom: calc($gap * 2)
+        height: 441px
+        margin-bottom: calc( $gap * 3 )
 
-        .section__title
+        &--form-error
+            height: 498px
+
+        &--form-sent
+            height: 90px!important
             margin-bottom: $gap
 
-    .form
-        &__top
-            flex-direction: column
+@media (max-width: 575px)
+    .contacts
+        .section__text
+            margin-bottom: $gap
 
-        &__left
-            width: 100%
-            margin: 0 0 10px
+    .feedback
+        height: 542px
 
-        &__right
-            width: 100%
+        &--form-sent
+            height: 80px!important
 
+        &--form-error
+            height: 599px
+
+        .form
+            &__top
+                flex-direction: column
+
+            &__left
+                width: 100%
+                margin: 0 0 10px
+
+            &__right
+                width: 100%
+
+            &__textarea
+                height: 104px
+
+@media (max-width: 513px)
+    .feedback
+        height: 582px
+
+        &--form-error
+            height: 639px
+
+@media (max-width: 431px)
+    .feedback
+        height: 622px
+
+        &--form-error
+            height: 679px
 
 @media (max-width: 370px)
     .contacts
         &__right
             padding-left: 90px
 
+    .feedback
+        height: 602px
+        margin-bottom: calc( $gap * 2 )
 
-///  animation  ///
-@keyframes opacity
-    0%
-        opacity: 0
+        &--form-error
+            height: 659px
 
-    75%
-        opacity: 0
-
-    100%
-        opacity: 1    
+        &--form-sent
+            height: 70px!important  
 
     

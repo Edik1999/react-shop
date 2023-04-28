@@ -9,6 +9,7 @@ import {getDataFromDB} from "../helpers/getDataFromDB";
 import { updateUserData } from "../store/slice/userSlice";
 
 import Button from "../components/Button";
+import Input from "../components/Input";
 import { CSSTransition } from 'react-transition-group';
 import { Link } from 'react-router-dom';
 import { PatternFormat } from "react-number-format";
@@ -92,7 +93,7 @@ export const Profile = withAuthenticationRequired(({ db }: { db: any }) => {
         >
             <>
                 <section className='profile' ref={nodeRef}>
-                    <div className='profile__history'>
+                    <div className='profile__history history'>
                         <h2 className='section__title text-color'>История заказов</h2>
                         {orders.length > 0
                             ? <>
@@ -102,21 +103,21 @@ export const Profile = withAuthenticationRequired(({ db }: { db: any }) => {
 
                             : <>
                                 <img className="history__img" src={emptycart} alt="Cart is empty" />
-                                <p className="section__text">Ваша история заказов пуста!</p>
+                                <p className="section__text">Ваша история заказов пуста !</p>
                                 <Link to="/menu" className="btn">Сделать заказ</Link>
                             </>
                         }
                     </div>
-                    <div className='profile__user'>
+                    <div className='profile__user user'>
                         <img className='user__photo' src={state.user.picture} alt={state.user.name} />
                         <h3 className='user__email'>{state.user.email}</h3>
-                        <form className="profile__form form">
-                            <input type="text" defaultValue={state.user.name} name="userName" className="user__input" placeholder="Имя*" />
-                            <PatternFormat value={state.user.phone} format="+7 (###) ### ## ##" mask="_" className="user__input" name="userPhone" placeholder="Телефон*" />
-                            <textarea value={userAddress} name="userAddress" className="user__input user__input--textarea" placeholder="Адрес*" onChange={e => setUserAddress(e.target.value)} />
+                        <form className={`user__form form ${isSent && 'user__form--saved'}`}>
+                            <Input name="userName" type="text" placeholder="Имя" defaultValue={state.user.name} modifier='form__input'/>
+                            <PatternFormat value={state.user.phone} format="+7 (###) ### ## ##" mask="_" className="form__input input" name="userPhone" placeholder="Телефон" />
+                            <textarea value={userAddress} name="userAddress" className="form__textarea input input--textarea" placeholder="Адрес" rows={3} onChange={e => setUserAddress(e.target.value)} />
                             <MapComponent setAddress={setUserAddress}></MapComponent>
                             <Button modifier="edit-btn" disabled={isSent ? true : false} text="Save" onClick={(e) => formSubmitHandler(e)}></Button>
-                            {isSent && <p className="form__success section__text">✅ your data was saved!</p>}
+                            {isSent && <p className="form__success section__text">✅ Your data was saved !</p>}
                             <Button modifier="cart-btn profile-btn" text="Log Out" onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}></Button>
                         </form>
                     </div>

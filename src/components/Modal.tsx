@@ -109,8 +109,8 @@ function Modal({ isVisible, id, onClose, order, userCart, sum }: IProps) {
                         <>
                             <h3 className='modal__title'>Подтверждение данных для заказа</h3>
                             <form className="modal__form form">
-                                <PatternFormat value={userPhone} format="+7 (###) ### ## ##" mask="_" className="form__input user__input" name="userPhone" placeholder="Телефон*" onChange={e => setUserPhone(e.target.value)}/>
-                                <textarea value={userAddress} name="userAddress" className="form__input form__textarea user__input user__input--textarea" placeholder="Адрес*" onChange={e => setUserAddress(e.target.value)}/>
+                                <PatternFormat value={userPhone} format="+7 (###) ### ## ##" mask="_" className="form__input input" name="userPhone" placeholder="Телефон*" onChange={e => setUserPhone(e.target.value)}/>
+                                <textarea value={userAddress} name="userAddress" className="form__textarea input input--textarea" placeholder="Адрес*" rows={3} onChange={e => setUserAddress(e.target.value)}/>
                             </form>
                             {!isMapVisible && <Button modifier='modal-btn' text="Выбрать на карте" onClick={showMap}></Button>}
                             {isMapVisible && <MapComponent setAddress={setUserAddress}></MapComponent>}
