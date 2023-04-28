@@ -99,12 +99,11 @@
                 right: 0
                 padding: 12px
 
-                .delete
-                    &__inner
-                        width: 20px
-                        height: 20px
-                        clip-path: polygon(20% 0%, 0% 20%, 30% 50%, 0% 80%, 20% 100%, 50% 70%, 80% 100%, 100% 80%, 70% 50%, 100% 20%, 80% 0%, 50% 30%)
-                        background-color: red
+                .delete__inner
+                    width: 20px
+                    height: 20px
+                    clip-path: polygon(20% 0%, 0% 20%, 30% 50%, 0% 80%, 20% 100%, 50% 70%, 80% 100%, 100% 80%, 70% 50%, 100% 20%, 80% 0%, 50% 30%)
+                    background-color: red
 
             &__info
                 display: flex
@@ -163,9 +162,6 @@
                     width: 100%
                     margin-bottom: $gap
 
-                &__item:last-child
-                    margin-bottom: 0
-
                 &__item
                     display: flex
                     justify-content: space-around
@@ -174,6 +170,9 @@
                     border-bottom: 2px solid $maincolor
                     border-bottom-right-radius: 8px
                     border-bottom-left-radius: 8px
+
+                    &:last-child
+                        margin-bottom: 0
 
                     .item
                         &__image
@@ -219,8 +218,7 @@
             flex-direction: row
             align-items: normal
 
-            .card
-                &__title
+            .card__title
                     margin: 0 calc( $gap / 3 ) 0 0
 
 
@@ -344,15 +342,13 @@
 @media (max-width: 486px)
     .modal-wrapper
         .modal__card.card
-            .card
-                &__image
+            .card__image
                     width: 180px
 
 @media (max-width: 400px)
     .modal-wrapper
         .modal__card.card
-            .card
-                &__image
+            .card__image
                     width: 160px
 
 @media (max-width: 370px)
@@ -371,8 +367,7 @@
     .cart-page
         .modal-wrapper
             .modal__card.card
-                .modal
-                    &__title
+                .modal__title
                         font-size: $baseFZ
 
 @media (max-width: 320px)
