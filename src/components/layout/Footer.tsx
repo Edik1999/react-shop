@@ -10,7 +10,7 @@ function Footer() {
       <div className="container">
         <div className="footer__container">
           <div className="footer__aside">
-            <Link to="/" className="footer__logo"><img className="logo-img" src={logo} alt="Logo" /></Link>
+            <Link to="/" className="footer__logo logo"><img className="logo-img" src={logo} alt="Logo" /></Link>
             <p className="footer__descr">Takeaway & Delivery template for small - medium businesses.</p>
           </div>
           <div className="footer-nav">

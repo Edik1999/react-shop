@@ -104,13 +104,16 @@
         color: white
         border: 2px solid $maincolor
 
-.login-btn
+.logout-btn
     width: 90px
     margin-right: $gap
     color: black
     font-size: $baseFZ
     font-weight: 400
     padding: calc( $gap / 3 ) calc( $gap / 2 )
+
+.login-btn
+    width: 140px
 
 .edit-btn
     margin-bottom: $gap
@@ -147,12 +150,12 @@
 
 
 @media (max-width: 991px)
-    .login-btn
+    .logout-btn
         margin-right: calc($gap / 2)
 
 
 @media (max-width: 768px)
-    .login-btn
+    .logout-btn
         margin-right: $gap
 
     .menu-btn
@@ -180,10 +183,14 @@
         font-size: 14px
         padding: 9px 0
 
-    .login-btn
+    .logout-btn
         width: auto
         margin-right: calc($gap / 2)
-        padding: 12px
+        padding: 11px
+
+    .login-btn
+        width: 90px
+        padding: 10px 0
 
     .menu-btn
         font-size: 14px

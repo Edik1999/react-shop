@@ -82,6 +82,18 @@ h1, h2
     position: relative
     top: 1px
 
+.logo
+    display: block
+    width: max-content
+    transition: all 0.2s
+
+    &:hover
+        transform: scale(1.03)
+
+    @media (max-width: 575px)
+        .logo-img
+            height: 40px
+
 .section
     &__title
         font-size: $titleFZ

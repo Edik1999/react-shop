@@ -15,124 +15,124 @@
         align-items: center
         padding-top: calc( $gap * 3 )
 
-    &__user
-        .user
-            &__photo
-                display: block
-                border-radius: 100%
-                width: 120px
-                height: 120px
+    .user
+        &__photo
+            display: block
+            border-radius: 100%
+            width: 120px
+            height: 120px
+            margin-bottom: $gap
+
+        &__email
+            margin-bottom: $gap
+
+        .form
+            position: relative
+            display: flex
+            flex-direction: column
+            align-items: center
+            width: 100%
+            height: 872px
+            transition: all .8s
+
+            &--saved
+                height: 932px
+
+                .edit-btn
+                    margin-bottom: calc( $gap * 3 )
+
+            .section__text
+                text-align: center
+                margin: 0
+
+            &__success
+                position: absolute
+                width: fit-content
+                color: $success
+                bottom: 90px
+                animation: opacity .7s
+
+            &__input, &__textarea
+                width: 70%
+                text-align: center
+
+            &__input
+                margin-bottom: calc( $gap / 2 )
+
+            &__textarea
                 margin-bottom: $gap
 
-            &__email
-                margin-bottom: $gap
+                &::placeholder
+                    position: relative
+                    top: 50%
+                    transform: translateY(-50%)
 
-            &__form
-                position: relative
-                display: flex
-                flex-direction: column
-                align-items: center
-                width: 100%
-                height: 872px
-                transition: all .8s
-
-                &--saved
-                    height: 932px
-
-                    .edit-btn
-                        margin-bottom: calc( $gap * 3 )
-
-                .section__text
-                    text-align: center
-                    margin: 0
-
-                .form
-                    &__success
-                        position: absolute
-                        width: fit-content
-                        color: $success
-                        bottom: 90px
-                        animation: opacity .7s
-
-                    &__input, &__textarea
-                        width: 70%
-                        text-align: center
-
-                    &__input
-                        margin-bottom: calc( $gap / 2 )
-
-                    &__textarea
-                        margin-bottom: $gap
-
-    &__history
+    .history
         .section__text
             width: 100%
             text-align: center
             margin-bottom: $gap
 
-        .history
-            &__img
-                width: 378px
-                margin-bottom: $gap
+        &__img
+            width: 378px
+            margin-bottom: $gap
     
 
 @media (max-width: 1400px)
-    .profile__history,
-    .profile__user
-        flex: 100%
-        padding: 0
+    .profile
+        .history, .user
+            flex: 100%
+            padding: 0
 
-    .profile__history
-        margin-bottom: calc( $gap * 2 )
-        
-    .profile__user
-        order: -1
-        margin-bottom: calc( $gap * 5 )
-
-        .user__form
-            width: 100%
+        .history
+            margin-bottom: calc( $gap * 2 )
+            
+        .user
+            order: -1
+            margin-bottom: calc( $gap * 5 )
 
             .form
+                width: 100%
+
                 &__input, &__textarea
                     width: 50%
 
 @media (max-width: 1200px)
-    .profile__user
-        .user__form
+    .profile
+        .user
             .form
                 &__input, &__textarea
                     width: 60%
 
 @media (max-width: 991px)
-    .profile__user
-        .user__form
+    .profile
+        .user
             .form
                 &__input, &__textarea
                     width: 80%
 
 @media (max-width: 768px)
-    .profile__user
-        margin-bottom: $gap
-        padding-bottom: $gap
-        border-bottom: 1px solid #DDDDDD
+    .profile
+        .user
+            margin-bottom: $gap
+            padding-bottom: $gap
+            border-bottom: 1px solid #DDDDDD
 
 @media (max-width: 575px)
-    .profile__user
-        .user__form
-            .form
-                &__input
-                    margin-bottom: calc( $gap / 3 ) 
+    .profile
+        .form
+            &__input
+                margin-bottom: calc( $gap / 3 ) 
 
-                &__textarea
-                    margin-bottom: calc( $gap / 2 ) 
+            &__textarea
+                margin-bottom: calc( $gap / 2 ) 
 
 @media (max-width: 370px)
-    .profile__user
+    .profile
         .user
             &__email
                 font-size: 16px
 
-            &__form
-                .form
-                    &__input, &__textarea
-                        width: 90%
+            .form
+                &__input, &__textarea
+                    width: 90%

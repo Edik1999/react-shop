@@ -11,124 +11,109 @@
     padding-bottom: 20px
     transition: height .25s
 
-    &__wrap
-        position: relative
-        display: flex
-        align-items: center
-        justify-content: center
-        height: 100%
+    .top
+        height: 70px
+        padding: 14px 0
+        background-color: $maincolor
 
-    &-link
-        height: 42px
-
-    &-photo
-        display: block
-        border-radius: 100%
-        width: 42px
-        height: 42px
-        margin: 0
-
-    &__logo
-        width: 40%
-
-.top
-    height: 70px
-    padding: 14px 0
-    background-color: $maincolor
-
-    &-right-wrap
-        position: absolute
-        right: 0
-        display: flex
-
-.bottom
-    display: flex
-    padding: 20px 0 0
-    justify-content: space-between
-
-
-.logo
-    display: block
-    width: max-content
-    transition: all 0.2s
-
-    &:hover
-        transform: scale(1.03)
-
-.nav
-    &__list
-        display: flex
-        flex-direction: row
-        align-items: center
-        justify-content: space-between
-
-    &__burger
-        display: none
-        flex-direction: column
-        align-items: center
-        justify-content: space-between
-        padding: 15px 0
-        margin-left: auto
-        width: 55px
-        height: 55px
-        border: 2px solid $maincolor
-        border-radius: 5px
-
-    &__item
-        margin-right: 30px
-
-        &--cart
-            background-color: $maincolor
-            border-radius: 5px
-            margin-right: 0
-
-        &--short-list
-            margin-right: 0
-
-    &-link
-        padding: 7px
-        border-radius: 5px
-        transition: all .2s
-
-        &:hover
-            background-color: #35B8BE
-            color: white
-
-            img
-                animation: 2s ease-in-out infinite forwards cartImage
-
-        &--cart
+        &__wrap
+            position: relative
             display: flex
             align-items: center
             justify-content: center
-            position: relative
+            height: 100%
+
+        &__right
+            position: absolute
+            right: 0
+            display: flex
+
+        &__link
+            height: 42px
+
+        &__photo
+            display: block
+            border-radius: 100%
+            width: 42px
+            height: 42px
+            margin: 0
+
+    .bottom
+        display: flex
+        padding: 20px 0 0
+        justify-content: space-between
+
+    .nav
+        &__burger
+            display: none
+            flex-direction: column
+            align-items: center
+            justify-content: space-between
+            padding: 15px 0
+            margin-left: auto
             width: 55px
             height: 55px
+            border: 2px solid $maincolor
+            border-radius: 5px
 
-        .cart__badge
-            position: absolute
-            top: -13px
-            right: -13px
-            width: 26px
-            text-align: center
-            padding: 5px
-            color: $maincolor
-            background-color: #fff
-            border-radius: 100%
-            font-size: $baseFZ - 2px
-            box-shadow: 0px 0px 5px 1px rgba(34, 60, 80, 0.1)
+            .burger
+                &__line
+                    display: block
+                    width: 28px
+                    height: 2px
+                    background-color: $maincolor
+                    border-radius: inherit
+                    transition: .2s ease-in-out            
 
-        &--active
-            background: #35B8BE
-            color: white
+        &__list
+            display: flex
+            flex-direction: row
+            align-items: center
+            justify-content: space-between
 
-.burger__line
-    display: block
-    width: 28px
-    height: 2px
-    background-color: $maincolor
-    border-radius: inherit
-    transition: .2s ease-in-out
+        &__item
+            margin-right: 30px
+
+            &--cart
+                background-color: $maincolor
+                border-radius: 5px
+                margin-right: 0
+
+            &--short-list
+                margin-right: 0
+
+        &__link
+            padding: 7px
+            border-radius: 5px
+            transition: all .2s
+
+            &--cart
+                display: flex
+                align-items: center
+                justify-content: center
+                position: relative
+                width: 55px
+                height: 55px
+
+            .cart__badge
+                position: absolute
+                top: -13px
+                right: -13px
+                width: 26px
+                text-align: center
+                padding: 5px
+                color: $maincolor
+                background-color: #fff
+                border-radius: 100%
+                font-size: $baseFZ - 2px
+                box-shadow: 0px 0px 5px 1px rgba(34, 60, 80, 0.1)
+
+            &:hover, &--active
+                background-color: #35B8BE
+                color: white
+
+                .cart-image
+                    animation: 2s ease-in-out infinite forwards cartImage
 
 .theme-switcher
     box-sizing: content-box
@@ -145,84 +130,67 @@
         filter: brightness(112%)
         transform: scale(1.03)
 
-@keyframes cartImage
-    0%
-        transform: rotate(0deg)
-    10%
-        transform: rotate(30deg)
-    40%
-        transform: rotate(-360deg)
-    100%
-        transform: rotate(-360deg)
-
-
 @media (max-width: 768px)
     .header
-        &__text
-            display: none
+        .top
+            &__text
+                display: none
+
+        .nav
+            &__list
+                visibility: hidden
+                opacity: 0
+                display: flex
+                flex-direction: column
+                align-items: flex-end
+                height: 0px
+                transition: all .15s ease-out
+
+            &__burger
+                display: flex
+
+            &__item
+                margin-right: 0
+                margin-bottom: 15px
+
+                &--cart
+                    margin-bottom: 0
+
+                &--short-list
+                    margin-bottom: 0
 
         &--active
+                .nav
+                    &__list
+                        visibility: visible
+                        opacity: 1
+                        padding-top: 15px
+                        height: auto
+
+                    &__burger
+                        .line
+                            &-1
+                                transform: rotate(45deg) translate(7px, 6px)
+                                width: 38px
+
+                            &-2
+                                transform: scaleY(0)
+
+                            &-3
+                                transform: rotate(-45deg) translate(7px, -6px)
+                                width: 38px
+
+        .guest
             .nav
+                &__burger
+                    display: none
+
                 &__list
                     visibility: visible
                     opacity: 1
-                    padding-top: 15px
                     height: auto
 
-                &__burger
-                    .line
-                        &-1
-                            transform: rotate(45deg) translate(7px, 6px)
-                            width: 38px
-
-                        &-2
-                            transform: scaleY(0)
-
-                        &-3
-                            transform: rotate(-45deg) translate(7px, -6px)
-                            width: 38px
-
-    .nav
-        &__list
-            visibility: hidden
-            opacity: 0
-            display: flex
-            flex-direction: column
-            align-items: flex-end
-            height: 0px
-            transition: all .15s ease-out
-
-        &__burger
-            display: flex
-
-        &__item
-            margin-right: 0
-            margin-bottom: 15px
-
-            &--cart
-                margin-bottom: 0
-
-            &--short-list
-                margin-bottom: 0
-
-    .guest
-        .nav
-            &__burger
-                display: none
-
-            &__list
-                visibility: visible
-                opacity: 1
-                height: auto
-
-
 @media (max-width: 575px)
-    .theme-switcher
-        left: 10px
-
-    .logo-img
-        height: 40px
-
     .header
         padding-bottom: calc( $gap / 2 )
 
@@ -234,18 +202,20 @@
                 width: 40px
                 height: 40px
                 padding: 10px 0
+
+                .burger    
+                    &__line
+                        width: 22px
             
-            &-link
+            &__link
+                font-size: 15px
+
                 &--cart
                     width: 40px
                     height: 40px
 
                     .cart-image
                         max-width: 85%
-
-        .burger    
-            &__line
-                width: 22px
 
         &--active
             .nav
@@ -270,12 +240,31 @@
                             left: -1px
                             transform: rotate(-45deg) translate(6px, -4px)
 
+    .theme-switcher
+        left: 10px
+
 @media (max-height: 500px) and (max-width: 575px)
     .header
-        .bottom
-            .nav
-                &__list
-                    position: relative
-                    right: calc( 50vw - 15px )
-                    transform: translateX(50%)
-                    align-items: center
+        .nav
+            &__list
+                position: relative
+                right: calc( 50vw - 15px )
+                transform: translateX(50%)
+                align-items: center
+
+    .guest
+        .nav
+            &__list
+                right: 0
+                transform: translateX(0)
+
+// animation //
+@keyframes cartImage
+    0%
+        transform: rotate(0deg)
+    10%
+        transform: rotate(30deg)
+    40%
+        transform: rotate(-360deg)
+    100%
+        transform: rotate(-360deg)

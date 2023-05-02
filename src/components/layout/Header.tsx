@@ -51,16 +51,16 @@ function Header() {
 
   return (
     <header className={`header ${isOpen && 'header--active'}`}>
-      <div className="top">
+      <div className="header__top top">
         <div className="container container--height-full">
-          <div className="header__wrap">
-            <p className="header__text">
+          <div className="top__wrap">
+            <p className="top__text">
               We're open and available for takeaway & delivery.
             </p>
             {isAuthenticated &&
-                <div className="top-right-wrap">
-                    <Button text="Log Out" modifier="login-btn" onClick={() => logout({logoutParams: {returnTo: window.location.origin}})}></Button>
-                    <Link to="/profile" className="header-link"><img className='header-photo' src={user?.picture} alt={user?.name}/></Link>
+                <div className="top__right">
+                    <Button text="Log Out" modifier="logout-btn" onClick={() => logout({logoutParams: {returnTo: window.location.origin}})}></Button>
+                    <Link to="/profile" className="top__link"><img className='top__photo' src={user?.picture} alt={user?.name}/></Link>
                 </div>
             }
           </div>
@@ -71,52 +71,52 @@ function Header() {
         </div>
       </div>
       <div className="container">
-        <div className="bottom">
+        <div className="header__bottom bottom">
           <div className="header__logo">
             <Link to="/" className="logo"><img className='logo-img' src={logo} alt="Logo" /></Link>
           </div>
-          <nav className={`header__nav ${!isAuthenticated && 'guest'}`}>
-            <div className="nav__burger" onClick={() => clickHandler()}>
+          <nav className={`header__nav nav ${!isAuthenticated && 'guest'}`}>
+            <div className="nav__burger burger" onClick={() => clickHandler()}>
               <span className="burger__line line-1"></span>
               <span className="burger__line line-2"></span>
               <span className="burger__line line-3"></span>
             </div>
             <ul className="nav__list">
               {!isAuthenticated
-                ? <li className="nav__item nav__item--short-list"><Button text="Log In" onClick={() => loginWithRedirect()}></Button></li>
+                ? <li className="nav__item nav__item--short-list"><Button text="Log In" modifier="login-btn" onClick={() => loginWithRedirect()}></Button></li>
                 : <>
                     <li className="nav__item">
-                      <NavLink to="/" className={({ isActive }) => isActive ? "nav-link nav-link--active" : "nav-link"} onClick={() => closeMenu()}>
+                      <NavLink to="/" className={({ isActive }) => isActive ? "nav__link nav__link--active" : "nav__link"} onClick={() => closeMenu()}>
                           Home
                       </NavLink>
                     </li>
                     <li className="nav__item">
-                      <NavLink to="/menu" className={({ isActive }) => isActive ? "nav-link nav-link--active" : "nav-link"} onClick={() => closeMenu()}>
+                      <NavLink to="/menu" className={({ isActive }) => isActive ? "nav__link nav__link--active" : "nav__link"} onClick={() => closeMenu()}>
                         Menu
                       </NavLink>
                     </li>
                     <li className="nav__item">
-                      <NavLink to="/company" className={({ isActive }) => isActive ? "nav-link nav-link--active" : "nav-link"} onClick={() => closeMenu()}>
+                      <NavLink to="/company" className={({ isActive }) => isActive ? "nav__link nav__link--active" : "nav__link"} onClick={() => closeMenu()}>
                         Company
                       </NavLink>
                     </li>
                     <li className="nav__item">
-                      <NavLink to="/faq" className={({ isActive }) => isActive ? "nav-link nav-link--active" : "nav-link"} onClick={() => closeMenu()}>
+                      <NavLink to="/faq" className={({ isActive }) => isActive ? "nav__link nav__link--active" : "nav__link"} onClick={() => closeMenu()}>
                         FAQ
                       </NavLink>
                     </li>
                     <li className="nav__item">
-                      <NavLink to="/contacts" className={({ isActive }) => isActive ? "nav-link nav-link--active" : "nav-link"} onClick={() => closeMenu()}>
+                      <NavLink to="/contacts" className={({ isActive }) => isActive ? "nav__link nav__link--active" : "nav__link"} onClick={() => closeMenu()}>
                         Contacts
                       </NavLink>
                     </li>
                     <li className="nav__item">
-                      <NavLink to="/profile" className={({ isActive }) => isActive ? "nav-link nav-link--active" : "nav-link"} onClick={() => closeMenu()}>
+                      <NavLink to="/profile" className={({ isActive }) => isActive ? "nav__link nav__link--active" : "nav__link"} onClick={() => closeMenu()}>
                         Profile
                       </NavLink>
                     </li>
                     <li className="nav__item nav__item--cart">
-                      <Link to="/cart" className="nav-link nav-link--cart" onClick={() => closeMenu()}>
+                      <Link to="/cart" className="nav__link nav__link--cart" onClick={() => closeMenu()}>
                         <img className='cart-image' src={cart} alt="Cart" />
                         {state.cart.length > 0 && <div className="cart__badge">{state.cart.reduce((acc: number, num: { count: any; }) => acc + Number(num.count), 0)}</div>}
                       </Link>
