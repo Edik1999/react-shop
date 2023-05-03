@@ -22,7 +22,7 @@
         line-height: 26px
         color: $smalTextColor
 
-    &-nav
+    .nav
         width: 30%
 
         &__list
@@ -33,54 +33,60 @@
         &__item
             color: $smalTextColor
 
-        &-title
-            padding-left: calc( ($gap / 3) - 3px)
-            text-transform: uppercase
+        &__link
+            border-radius: 5px
+            padding: 7px
+            transition: all .2s
 
-    &__link
+            &:hover, &:active
+                background-color: #35B8BE
+                color: white
+
+    .link
         display: flex
         align-items: center
         justify-content: space-between
+        
+        &__text
+            font-size: $baseFZ
+            color: $smalTextColor
 
-.link
-    &__text
-        font-size: $baseFZ
-        color: $smalTextColor
+        &__dev
+            transition: all .2s
 
-    &__dev
-        transition: all .2s
+            &:hover
+                filter: brightness(112%)
 
-        &:hover
-            filter: brightness(112%)
+        &__list
+            display: flex
+            justify-content: space-between
 
-    &__list
-        display: flex
-        justify-content: space-between
+        &__item
+            margin-right: $gap
 
-    &__item
-        margin-right: $gap
+            &:hover
+                .ico__path
+                    transition: all .2s
+                    stroke: $maincolor
 
-        &:hover
-            .ico__path
-                transition: all .2s
-                stroke: $maincolor
+                .ico__g
+                    transition: all .2s
+                    fill: $maincolor
 
-            .ico__g
-                transition: all .2s
-                fill: $maincolor
-
-        &.link-youtube
+        &__youtube
             margin-right: 0
 
 
 @media (max-width: 1540px)
-    .footer__aside
-        width: 40%
+    .footer
+        &__aside
+            width: 40%
 
 
 @media (max-width: 1400px)
-    .footer__aside
-        width: 45%
+    .footer
+        &__aside
+            width: 45%
 
 
 @media (max-width: 1360px)
@@ -88,7 +94,7 @@
         &__aside
             width: 53%
 
-        &-nav
+        .nav
             width: 35%
 
 
@@ -105,7 +111,7 @@
         &__descr
             margin: 0 auto 0 auto
 
-        &-nav
+        .nav
             width: 75%
 
 
@@ -126,16 +132,16 @@
         &__descr
             width: 75%
 
-        &-nav
+        .nav
             width: 100%
 
-    .link
-        &__text
-            max-width: 40%
-            font-size: 14px
+        .link
+            &__text
+                max-width: 40%
+                font-size: 14px
 
-        &__item
-            margin-right: 18px
+            &__item
+                margin-right: 18px
 
 
 @media (max-width: 370px)
@@ -143,7 +149,7 @@
         &__logo
             margin-right: 10px
 
-        &-nav
+        .nav
             padding-top: $gap
             border-top: 1px solid $counterBorderColor
 
@@ -156,12 +162,12 @@
                 &:last-child
                     margin-top: calc( $gap / 2 )
 
-    .link
-        &__text
-            font-size: 13px
+            &__link
+                font-size: 14px
 
-        &__item
-            margin-right: 12px
+        .link
+            &__text
+                font-size: 13px
 
-    .nav-link
-        font-size: 14px
+            &__item
+                margin-right: 12px

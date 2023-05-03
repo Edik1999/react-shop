@@ -13,31 +13,31 @@ function Footer() {
             <Link to="/" className="footer__logo logo"><img className="logo-img" src={logo} alt="Logo" /></Link>
             <p className="footer__descr">Takeaway & Delivery template for small - medium businesses.</p>
           </div>
-          <div className="footer-nav">
-            <ul className="footer-nav__list">
-              <li className="footer-nav__item">
-                <Link to="/home" className="nav-link">Home</Link>
+          <div className="footer__nav nav">
+            <ul className="nav__list">
+              <li className="nav__item">
+                <Link to="/home" className="nav__link">Home</Link>
               </li>
-              <li className="footer-nav__item">
-                <Link to="/menu" className="nav-link">Menu</Link>
+              <li className="nav__item">
+                <Link to="/menu" className="nav__link">Menu</Link>
               </li>
-              <li className="footer-nav__item">
-                <Link to="/faq" className="nav-link">FAQ</Link>
+              <li className="nav__item">
+                <Link to="/faq" className="nav__link">FAQ</Link>
               </li>
-              <li className="footer-nav__item">
-                <Link to="/contacts" className="nav-link">Contact</Link>
+              <li className="nav__item">
+                <Link to="/contacts" className="nav__link">Contact</Link>
               </li>
-              <li className="footer-nav__item">
-                <a href="https://github.com/Edik1999/react-shop" target="_blank" rel="noreferrer" className="nav-link">Changelog</a>
+              <li className="nav__item">
+                <a href="https://github.com/Edik1999/react-shop" target="_blank" rel="noreferrer" className="nav__link">Changelog</a>
               </li>
             </ul>
           </div>
         </div>
-        <div className="footer__link">
+        <div className="footer__link link">
           <p className="link__text">Built by: <a href="https://github.com/Edik1999" target='_blank' rel="noreferrer"><span className="link__dev text-color">Edik1999</span></a> and <a href="https://github.com/BalVan18" target="_blank" rel="noreferrer"><span className="link__dev text-color">BalVan18</span></a></p>
           <ul className="link__list">
-            <li className="link-instagram">
-              <a className='link__item' href="https://www.instagram.com/" target="_blank" rel="noreferrer">
+            <li className="link__item">
+              <a className='link__instagram' href="https://www.instagram.com/" target="_blank" rel="noreferrer">
                 <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path className="ico__path" d="M0.5 20C0.5 9.23045 9.23045 0.5 20 0.5C30.7696 0.5 39.5 9.23045 39.5 20C39.5 30.7696 30.7696 39.5 20 39.5C9.23045 39.5 0.5 30.7696 0.5 20Z" stroke="#7E828F" strokeOpacity="0.3" />
                   <g opacity="0.5">
@@ -46,8 +46,8 @@ function Footer() {
                 </svg>
               </a>
             </li>
-            <li className="link-twitter">
-              <a className='link__item' href="https://twitter.com/" target="_blank" rel="noreferrer">
+            <li className="link__item">
+              <a className='link__twitter' href="https://twitter.com/" target="_blank" rel="noreferrer">
                 <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path className="ico__path" d="M0.5 20C0.5 9.23045 9.23045 0.5 20 0.5C30.7696 0.5 39.5 9.23045 39.5 20C39.5 30.7696 30.7696 39.5 20 39.5C9.23045 39.5 0.5 30.7696 0.5 20Z" stroke="#7E828F" strokeOpacity="0.3" />
                   <g opacity="0.5">
@@ -56,8 +56,8 @@ function Footer() {
                 </svg>
               </a>
             </li>
-            <li className="link-youtube">
-              <a className='link__item' href="https://www.youtube.com/" target="_blank" rel="noreferrer">
+            <li className="link__item">
+              <a className='link__youtube' href="https://www.youtube.com/" target="_blank" rel="noreferrer">
                 <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path className="ico__path" d="M0.5 20C0.5 9.23045 9.23045 0.5 20 0.5C30.7696 0.5 39.5 9.23045 39.5 20C39.5 30.7696 30.7696 39.5 20 39.5C9.23045 39.5 0.5 30.7696 0.5 20Z" stroke="#7E828F" strokeOpacity="0.3" />
                   <g opacity="0.5">
