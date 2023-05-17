@@ -13,6 +13,17 @@
     &:hover
       border: 2px solid $maincolor
 
+    &.open
+      border: 2px solid $maincolor
+
+      &:hover
+        border-color: $maincolorlight
+
+      .accordion__button
+        border-bottom-left-radius: 0
+        border-bottom-right-radius: 0
+        background-color: #f4f4f4
+
   &__button
     background-color: #f4f4f4
     cursor: pointer
@@ -42,33 +53,33 @@
 
     &[aria-expanded='true']::before, &[aria-selected='true']::before
       transform: translateY(-60%) rotateZ(-135deg)
-  
+
+  &__panelItem
+    opacity: 1
+    transform: translateY(0)
+    padding: 10px 0
+    border-bottom: 1px solid $maincolor
+    transition: all .35s
+
+    &:first-of-type
+      padding-top: 0
+
+    &:last-of-type
+      border-bottom: none
+      padding-bottom: 0
+
   &__panel
     display: block
     padding: 20px
     overflow: hidden
     transition: all .5s
 
-    .accordion-text
-      opacity: 1
-      transform: translateY(0)
-      padding: 10px 0
-      border-bottom: 1px solid $maincolor
-      transition: all .35s
-
-      &:first-of-type
-        padding-top: 0
-
-      &:last-of-type
-        border-bottom: none
-        padding-bottom: 0
-
     &[hidden]
       padding-top: 0
       padding-bottom: 0
       height: 0!important
 
-      .accordion-text
+      .accordion__panelItem
         pointer-events: none
         transform: translateY(-100%)
         opacity: 0
@@ -77,34 +88,12 @@
     display: flex
     align-items: center
 
-    .section__text
-      margin: 0
-
-  &-price
+  &__price
     flex: 35%
 
-  &-date
+  .date
     display: flex
     flex: 65%
-
-    .date__text
-      text-align: end
-      margin-right: calc( $gap / 2 )
-
-    .date__descr
-      text-align: start
-
-.open 
-    border: 2px solid $maincolor
-
-    &:hover
-        border-color: $maincolorlight
-
-    .accordion__button
-      border-bottom-left-radius: 0
-      border-bottom-right-radius: 0
-      background-color: #f4f4f4
-
 
 @media (max-width: 1400px)
   .accordion
@@ -128,15 +117,14 @@
     &__wrap
       flex-direction: column
 
-    &-date
+    .date
       width: 100%
-
 
 @media (max-width: 470px)
   .accordion
     width: 90%
     
-    &-date
+    .date
       display: none
 
 @media (max-width: 370px)
@@ -144,5 +132,5 @@
     &__button
       padding-left: $gap
 
-    &-price
+    &__price
       width: 100%

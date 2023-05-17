@@ -71,8 +71,8 @@ export const Cart = withAuthenticationRequired(({db}: {db: any}) => {
 
   return (
     <>
-      <div className="cart-page">
-        <h2 className="section__title text-color">Cart</h2>
+      <div className="cart">
+        <h2 className="cart__title section__title text-color">Cart</h2>
         <div className="cart__main">
           {!isOrdered
             ?
@@ -100,7 +100,7 @@ export const Cart = withAuthenticationRequired(({db}: {db: any}) => {
                     )
                     :
                     <>
-                      <li className="section__text">
+                      <li className="cart__text section__text">
                         Корзина пуста, вы можете сделать заказ в нашем меню
                       </li>
                       <li className="cart__btn-wrapper">
@@ -121,7 +121,7 @@ export const Cart = withAuthenticationRequired(({db}: {db: any}) => {
                 <Modal isVisible={showModal} onClose={closeModal} order={order} userCart={pageContent} sum={sum()}></Modal>
               </>
             :
-              <h2 className="section__title">Thank you for Order !</h2>
+              <h2 className="cart__title cart__title--success section__title">Thank you for Order !</h2>
           }
         </div>
       </div>

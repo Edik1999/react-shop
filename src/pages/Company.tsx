@@ -37,9 +37,9 @@ export const Company = withAuthenticationRequired(() => {
             >
                 <div className="company" ref={nodeRef}>
                     <div className="company__left">
-                        <h2 className="section__title text-color">The home of fresh products.</h2>
-                        <p className="section__text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500.</p>
-                        <p className="section__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        <h2 className="company__title section__title text-color">The home of fresh products.</h2>
+                        <p className="company__text section__text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500.</p>
+                        <p className="company__text section__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
                         <Link to="/menu" className="btn home-btn">Menu</Link>
                     </div>
                     <div className="company__right" ref={elem => parent = elem as HTMLDivElement}>

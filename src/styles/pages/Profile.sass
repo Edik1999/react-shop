@@ -41,13 +41,11 @@
                 .edit-btn
                     margin-bottom: calc( $gap * 3 )
 
-            .section__text
-                text-align: center
-                margin: 0
-
-            &__success
+            &__text
                 position: absolute
                 width: fit-content
+                text-align: center
+                margin: 0
                 color: $success
                 bottom: 90px
                 animation: opacity .7s
@@ -68,15 +66,25 @@
                     transform: translateY(-50%)
 
     .history
-        .section__text
-            width: 100%
+        &__text
             text-align: center
             margin-bottom: $gap
 
         &__img
             width: 378px
             margin-bottom: $gap
-    
+
+        .accordion
+            .section__text
+                margin-bottom: 0
+
+            .date
+                &__text
+                    text-align: end
+                    margin-right: calc( $gap / 2 )
+
+                &__descr
+                    text-align: start
 
 @media (max-width: 1400px)
     .profile

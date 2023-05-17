@@ -23,11 +23,6 @@
     &:nth-of-type(3n+2)
         margin: 0 1.5% 1.5%
 
-    &__wrap
-        display: flex
-        flex-wrap: wrap
-        margin-bottom: calc( $gap * 5 )
-
     &__image
         height: 180px
         margin-right: 15px
@@ -35,11 +30,8 @@
         transition: all .5s
 
     &__content
-        // REFACTOR
-        //flex-wrap тут не нужен
         display: flex
         flex-direction: column
-        flex-wrap: wrap
         width: 70%
         padding-top: 20px
         justify-content: space-between
@@ -96,10 +88,6 @@
             font-size: 20px
             padding: 0
 
-        &__wrap
-            margin-bottom: calc($gap * 2)
-            justify-content: space-between
-
         &:last-of-type
             margin-bottom: 0!important
 
@@ -150,10 +138,6 @@
         &__price
             font-size: 20px
             padding: 0
-
-        &__wrap
-            margin-bottom: calc($gap * 2)
-            justify-content: center
 
         &:last-of-type
             margin-bottom: 0!important

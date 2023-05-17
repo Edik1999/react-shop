@@ -108,8 +108,8 @@ export const Menu = withAuthenticationRequired(() => {
               nodeRef={nodeRef}
           >
               <section className="menu" ref={nodeRef}>
-                <h2 className="section__title text-color">Browse our menu</h2>
-                <p className="section__text">
+                <h2 className="menu__title section__title text-color">Browse our menu</h2>
+                <p className="menu__text section__text">
                   Use our menu to place an order online, or <span className="text-color">phone</span> our store <br className="breakLine"/> to place a
                   pickup order. Fast and fresh food.
                 </p>
@@ -121,12 +121,12 @@ export const Menu = withAuthenticationRequired(() => {
                   <Button modifier={`menu-btn sorting-btn ${priceSortButtonClass}`} text="Price" onClick={() => orderByPrice()}></Button>
                   <Search handler={searchHandler}></Search>
                 </div>
-                <ul className="card__wrap" ref={element => imagesParent = element as HTMLUListElement}>
+                <ul className="menu__wrap" ref={element => imagesParent = element as HTMLUListElement}>
                   {content.length > 0
                       ? content.map((el) =>
                           <Card key={el.id} id={el.id} title={el.title} image={el.image} renderImg={(image) => renderImage(image)} price={el.price} type={el.type} click={(id) => cardClickHandler(id)} />
                         )
-                      : <p className="section__text">Oops, try another search</p>
+                      : <p className="menu__text section__text">Oops, try another search</p>
                   }
                 </ul>
                 {clickedCard && <Modal isVisible={modalState} id={clickedCard} onClose={closeModal}></Modal>}

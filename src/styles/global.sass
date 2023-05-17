@@ -99,29 +99,36 @@ h1, h2
     &__title
         font-size: $titleFZ
         line-height: calc( $titleFZ + 5px )
-        margin-bottom: $gap
+        margin-bottom: calc( $gap * 2 )
 
-        @media (max-width: 768px)
-            text-align: center
+        @media (max-width: 991px)
             font-size: 40px
             line-height: 45px
 
-        @media (max-width: 576px)
-            text-align: center
-            font-size: 35px
-            line-height: 40px
-
-        @media (max-width: 370px)
+        @media (max-width: 768px)
             text-align: center
             font-size: 30px
             line-height: 35px
+
+        @media (max-width: 576px)
+            text-align: center
+            font-size: 27px
+            line-height: 32px
+
+        @media (max-width: 370px)
+            text-align: center
+            font-size: 22px
 
     &__text
         width: 80%
         font-size: $textFZ
         line-height: calc( $textFZ + 9px )
         color: $smalTextColor
-        margin-bottom: calc( $gap * 2 )
+        margin-bottom: $gap
+
+        @media (max-width: 575px)
+            font-size: 16px
+            line-height: 24px
 
         @media (max-width: 370px)
             font-size: $baseFZ

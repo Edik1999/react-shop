@@ -3,36 +3,35 @@
 .contacts
     position: relative
     display: flex
+    justify-content: space-around
     margin-bottom: calc( $gap * 8 )
 
     &__left
-        align-items: center
         flex-basis: 50%
         margin-top: 60px
 
-    &__right
-        position: absolute
-        top: 0
-        right: 40px
-
-.feedback 
+.feedback
     display: flex
     flex-direction: column
     align-items: center
     margin-bottom: calc( $gap * 5 )
-    height: 491px
 
     &--form-sent
         height: 55px!important
         transition: all .8s
 
-    .section__title
+    &--form-error
+        .form
+            .form__top
+                margin-bottom: calc( $gap * 3 )
+
+    &__title
         text-align: center
         margin-bottom: calc( $gap * 2 )
 
-    .feedback__title
-        margin: 0
-        animation: opacity 1.4s
+        &--success
+            margin: 0
+            animation: opacity 1.4s
 
     .form
         position: relative
@@ -52,9 +51,6 @@
             width: 50%
             margin-right: calc( $gap / 2 )
 
-        &__input:not(:last-of-type)
-            margin-bottom: calc( $gap / 2 )
-
         &__input
             width: 75%
             padding: calc( $gap / 2 )
@@ -64,6 +60,9 @@
             font-size: $baseFZ
             color: $smalTextColor
             transition: all .2s
+
+            &:not(:last-of-type)
+                margin-bottom: calc( $gap / 2 )
 
         &__textarea
             width: 75%
@@ -102,20 +101,10 @@
             position: absolute
             text-align: center
             width: 100%
-            margin: 0
+            margin-bottom: 0
             bottom: 132px
             color: $error
             animation: opacity .5s
-
-    &--form-error
-        transition: all .5s
-
-        .form__top
-            margin-bottom: 87px
-
-@media (max-width: 1600px)
-    .contacts__left
-        padding-left: $gap
 
 
 @media (max-width: 1360px)
@@ -134,37 +123,32 @@
 
         &__left
             display: flex
+            align-items: center
             flex-direction: column
             margin-top: 0
-            padding-left: 0
 
         &__right
-            position: relative
-            margin-bottom: $gap
-            padding-left: calc( $gap * 2 )
+            margin-bottom: calc( $gap * 3 )
 
         &__link
             margin: 0 auto
 
-        .section__title,
-        .section__text
+        &__title, &__text
             width: 80%
             text-align: center
 
-    .feedback
-        height: 461px
+    .feedback__title
+        width: 80%
+        margin-bottom: $gap
 
-        &--form-error
-            height: 518px
-
-        .section__title
-            width: 80%
-            margin-bottom: $gap
-
-        .feedback__title
+        &--success
             margin: 0
 
+
 @media (max-width: 991px)
+    .contacts__title, .contacts__text
+        width: 100%
+
     .feedback
         &__form
             .form
@@ -180,15 +164,14 @@
         padding-bottom: $gap
         border-bottom: 1px solid $counterBorderColor
 
-        .section__title
+        &__right
+            margin-bottom: calc( $gap * 2 )
+
+        &__title
             margin-bottom: $gap
 
     .feedback
-        height: 441px
         margin-bottom: calc( $gap * 3 )
-
-        &--form-error
-            height: 498px
 
         &--form-sent
             height: 90px!important
@@ -196,17 +179,18 @@
 
 @media (max-width: 575px)
     .contacts
-        .section__text
+        &__text
             margin-bottom: $gap
 
-    .feedback
-        height: 542px
+        &__right
+            text-align: center
 
+        &__img
+            width: 80%
+
+    .feedback
         &--form-sent
             height: 80px!important
-
-        &--form-error
-            height: 599px
 
         .form
             &__top
@@ -222,33 +206,10 @@
             &__textarea
                 height: 104px
 
-@media (max-width: 513px)
-    .feedback
-        height: 582px
-
-        &--form-error
-            height: 639px
-
-@media (max-width: 431px)
-    .feedback
-        height: 622px
-
-        &--form-error
-            height: 679px
 
 @media (max-width: 370px)
-    .contacts
-        &__right
-            padding-left: 90px
-
     .feedback
-        height: 602px
         margin-bottom: calc( $gap * 2 )
 
-        &--form-error
-            height: 659px
-
         &--form-sent
-            height: 70px!important  
-
-    
+            height: 70px!important

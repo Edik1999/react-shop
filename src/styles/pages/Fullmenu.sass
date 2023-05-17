@@ -7,23 +7,34 @@
         align-items: center
         margin-bottom: calc($gap * 2)
 
-    .section__title
+    &__title
         text-align: center
 
-    .section__text 
+    &__text
         width: 100%
         text-align: center
+
+    &__wrap
+        display: flex
+        flex-wrap: wrap
+        margin-bottom: calc( $gap * 5 )
 
 
 @media (max-width: 1400px)
     .menu__filter
-            justify-content: space-evenly
-            flex-wrap: wrap
+        justify-content: space-evenly
+        flex-wrap: wrap
 
 
 @media (max-width: 1023.9px)
     .menu__filter
-            justify-content: space-between
+        justify-content: space-between
+
+
+@media (max-width: 991px)
+    .menu__wrap
+        margin-bottom: calc($gap * 2)
+        justify-content: space-between
 
 
 @media (max-width: 575px)
@@ -31,8 +42,11 @@
         &__filter
             margin-bottom: $gap
 
-        .section__text
+        &__text
             margin-bottom: calc($gap * 1.5)
 
-    .breakLine
-        display: none
+        &__wrap
+            justify-content: center
+
+        .breakLine
+            display: none

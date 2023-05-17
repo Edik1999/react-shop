@@ -43,8 +43,8 @@ function AccordionComponent({items}: {items: object[]}) {
                     <AccordionItemHeading>
                         <AccordionItemButton>
                             <div className='accordion__wrap'>
-                                <p className='section__text accordion-price'>Сумма заказа: <span className='text-color'>{el.sum} ₽</span></p>
-                                <div className='accordion-date'>
+                                <p className='section__text accordion__price'>Сумма заказа: <span className='text-color'>{el.sum} ₽</span></p>
+                                <div className='accordion__date date'>
                                     <span className='section__text date__text'>Дата заказа: </span>
                                     <Moment className='section__text date__descr' format="YYYY-MM-DD HH:mm">{new Date(el.date.seconds * 1000)}</Moment>
                                 </div>
@@ -53,9 +53,9 @@ function AccordionComponent({items}: {items: object[]}) {
                     </AccordionItemHeading>
                     <AccordionItemPanel>
                         {el.items.map((elem: any) => (
-                            <p className='accordion-text' key={Math.random()} ref={(ref) => setHeight()}>
-                                <span className='section__text'>{state.goods.map(element => element.id === elem.id ? element.title : null)}</span>
-                                <span className='section__text'> x {elem.count}</span>
+                            <p className='accordion__panelItem panelItem' key={Math.random()} ref={(ref) => setHeight()}>
+                                <span className='section__text panelItem__text'>{state.goods.map(element => element.id === elem.id ? element.title : null)}</span>
+                                <span className='section__text panelItem__text'> x {elem.count}</span>
                             </p>
                         ))}
                     </AccordionItemPanel>

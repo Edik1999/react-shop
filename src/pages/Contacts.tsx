@@ -114,9 +114,9 @@ export const Contacts = withAuthenticationRequired(({db}: {db: Firestore}) => {
       >
         <section className="contacts" ref={nodeRef}>
           <div className="contacts__left">
-            <h2 className="section__title text-color">Call our store and takeaway when it suits you best.</h2>
-            <p className="section__text">Leo vel orci porta non pulvinar neque laoreet. Quis risus sed vulputate odio ut enim blandit volutpat maecenas. Fringilla phasellus faucibus scelerisque eleifend donec pretium vulputate sapien. Semper auctor neque vitae tempus quam pellentesque nec.</p>
-            <p className="section__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            <h2 className="contacts__title section__title text-color">Call our store and takeaway when it suits you best.</h2>
+            <p className="contacts__text section__text">Leo vel orci porta non pulvinar neque laoreet. Quis risus sed vulputate odio ut enim blandit volutpat maecenas. Fringilla phasellus faucibus scelerisque eleifend donec pretium vulputate sapien. Semper auctor neque vitae tempus quam pellentesque nec.</p>
+            <p className="contacts__text section__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
             <a className="contacts__link contacts-btn btn" href="tel:+79876543210">+7 (987) 654 32-10</a>
           </div>
           <div className="contacts__right" ref={elem => parent = elem as HTMLDivElement}>
@@ -135,7 +135,7 @@ export const Contacts = withAuthenticationRequired(({db}: {db: Firestore}) => {
         <section className={`feedback ${isFormSent && 'feedback--form-sent'} ${error && 'feedback--form-error'}`} ref={secondNodeRef}>
           {!isFormSent
               ? <>
-                  <h2 className="section__title text-color">Here you can post your<br/> feedback about us.</h2>
+                  <h2 className="feedback__title section__title text-color">Here you can post your<br/> feedback about us.</h2>
                   <form className={`feedback__form form ${error && 'feedback__form--error'}`}>
                     <div className="form__top">
                       <div className="form__left">
@@ -147,11 +147,11 @@ export const Contacts = withAuthenticationRequired(({db}: {db: Firestore}) => {
                         <textarea className="form__textarea input input--textarea" name="message" placeholder="Comment" rows={3} onFocus={(e) => clickHandler(e)}></textarea>
                       </div>
                     </div>
-                    {error && <p className="form__error section__text">Все поля должны быть заполнены !</p>}
+                    {error && <p className="form__error form__text section__text">Все поля должны быть заполнены !</p>}
                     <div className="form__bottom">
                       <div className="form__wrapper">
                         <Button text="Post" modifier="form-btn" onClick={(e) => formSubmitHandler(e)}></Button>
-                        <label className="form__check section__text" onClick={(e) => clickHandler(e)}>
+                        <label className="form__check form__text section__text" onClick={(e) => clickHandler(e)}>
                           <input className="form__checkbox" type="checkbox"/> I agree with the <span className="text-color">user agreement</span>
                         </label>
                       </div>
@@ -159,7 +159,7 @@ export const Contacts = withAuthenticationRequired(({db}: {db: Firestore}) => {
                   </form>
                 </>
 
-              : <h1 className="section__title text-color feedback__title">Thank you for your feedback</h1>
+              : <h1 className="feedback__title feedback__title--success section__title text-color">Thank you for your feedback</h1>
           }
         </section>
       </CSSTransition>

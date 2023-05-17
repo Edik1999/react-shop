@@ -1,24 +1,23 @@
 @import '../variables/index'
 
 .cart
-    &-page
-        margin-bottom: calc( $gap * 5 )
+    margin-bottom: calc( $gap * 5 )
 
-        .section__title
-            text-align: center
-            margin-bottom: calc( $gap * 2 )
+    &__title
+        text-align: center
+        margin-bottom: calc( $gap * 2 )
 
-        .section__text
-            text-align: center
-            width: 100%
-            margin-bottom: $gap
+        &--success
+            color: $success
+
+    &__text
+        text-align: center
+        width: 100%
+        margin-bottom: $gap
 
     &__main
         display: flex
         justify-content: space-around
-
-        .section__title
-            color: $success
 
     &__list
         display: flex
@@ -134,7 +133,7 @@
             width: 70%
 
         &__list
-            margin-bottom: $gap
+            margin-bottom: calc( $gap * 3 )
             width: 70%
 
         &__product
@@ -156,11 +155,10 @@
 
 @media (max-width: 575px)
     .cart
-        &-page
-            margin-bottom: calc($gap * 2)
+        margin-bottom: calc($gap * 2)
 
-            .section__title
-                margin-bottom: calc( $gap + 10px )
+        &__title
+            margin-bottom: calc( $gap + 10px )
 
         &__list
             width: 85%
@@ -200,7 +198,6 @@
                 &__price-wraper
                     flex-wrap: wrap
                     width: 90%
-
 
 
 @media (max-width: 370px)
