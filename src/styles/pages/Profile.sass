@@ -2,10 +2,6 @@
 
 .profile
     display: flex
-    flex-wrap: wrap
-    align-items: flex-start
-    justify-content: center
-    margin-bottom: calc( $gap * 5 )
 
     &__user,
     &__history
@@ -13,7 +9,6 @@
         flex: 50%
         flex-direction: column
         align-items: center
-        padding-top: calc( $gap * 3 )
 
     .user
         &__photo
@@ -31,27 +26,21 @@
             display: flex
             flex-direction: column
             align-items: center
-            width: 100%
-            height: 872px
-            transition: all .8s
 
             &--saved
-                height: 932px
-
                 .edit-btn
                     margin-bottom: calc( $gap * 3 )
 
             &__text
                 position: absolute
-                width: fit-content
                 text-align: center
                 margin: 0
                 color: $success
                 bottom: 90px
                 animation: opacity .7s
 
-            &__input, &__textarea
-                width: 70%
+            .input
+                width: 100%
                 text-align: center
 
             &__input
@@ -66,74 +55,54 @@
                     transform: translateY(-50%)
 
     .history
-        &__text
-            text-align: center
-            margin-bottom: $gap
-
         &__img
             width: 378px
             margin-bottom: $gap
 
-        .accordion
-            .section__text
-                margin-bottom: 0
-
-            .date
-                &__text
-                    text-align: end
-                    margin-right: calc( $gap / 2 )
-
-                &__descr
-                    text-align: start
 
 @media (max-width: 1400px)
     .profile
-        .history, .user
-            flex: 100%
-            padding: 0
-
         .history
-            margin-bottom: calc( $gap * 2 )
-            
+            flex: 55%
+
         .user
-            order: -1
-            margin-bottom: calc( $gap * 5 )
+            flex: 45%
 
-            .form
-                width: 100%
-
-                &__input, &__textarea
-                    width: 50%
 
 @media (max-width: 1200px)
     .profile
+        flex-direction: column
+
         .user
-            .form
-                &__input, &__textarea
-                    width: 60%
+            order: -1
+            margin-bottom: calc( $gap * 3 )
+
 
 @media (max-width: 991px)
     .profile
         .user
             .form
                 &__input, &__textarea
-                    width: 80%
+                    //width: 80%
 
 @media (max-width: 768px)
     .profile
         .user
-            margin-bottom: $gap
-            padding-bottom: $gap
+            margin-bottom: calc( $gap * 1.5 )
+            padding-bottom: calc( $gap * 1.5 )
             border-bottom: 1px solid #DDDDDD
 
 @media (max-width: 575px)
     .profile
-        .form
-            &__input
-                margin-bottom: calc( $gap / 3 ) 
+        .user
+            .form
+                width: 100%
 
-            &__textarea
-                margin-bottom: calc( $gap / 2 ) 
+                &__input
+                    margin-bottom: calc( $gap / 3 )
+
+                &__textarea
+                    margin-bottom: calc( $gap / 2 )
 
 @media (max-width: 370px)
     .profile
@@ -143,4 +112,4 @@
 
             .form
                 &__input, &__textarea
-                    width: 90%
+                    //width: 90%

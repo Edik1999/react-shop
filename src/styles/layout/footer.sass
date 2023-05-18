@@ -64,13 +64,28 @@
         &__item
             margin-right: $gap
 
+            .ico
+                width: 40px
+                height: 40px
+                fill: transparent
+
+                &__border
+                    stroke: #7E828F
+                    stroke-opacity: 0.6
+                    transition: all .3s
+
+                &__inner
+                    fill: #0C2050
+                    opacity: 0.4
+                    transition: all .3s
+
             &:hover
-                .ico__path
-                    transition: all .2s
+                .ico__border
+                    stroke-opacity: 1
                     stroke: $maincolor
 
-                .ico__g
-                    transition: all .2s
+                .ico__inner
+                    opacity: 1
                     fill: $maincolor
 
             &:last-child

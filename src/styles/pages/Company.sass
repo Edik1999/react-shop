@@ -3,16 +3,11 @@
 .company
     position: relative
     display: flex
-    margin-bottom: calc( $gap * 10 )
+    justify-content: space-around
 
     &__left
         flex-basis: 50%
         margin-top: calc( $gap * 2 )
-
-    &__right
-        position: absolute
-        top: 0
-        right: calc( ($gap * 2) - 20px)
 
     &__title
        width: 80%
@@ -29,13 +24,10 @@
 @media (max-width: 1023.9px)
     .company
         flex-direction: column-reverse
-        margin-bottom: calc( $gap * 4 )
+        align-items: center
 
         &__right
-            position: relative
-            align-self: center
-            margin-bottom: $gap
-            padding-left: 80px
+            margin-bottom: calc( $gap * 2 )
 
         &__left
             display: flex
@@ -50,19 +42,12 @@
         &__title
             width: 100%
 
-        &__text
-            width: 80%
-
 
 @media (max-width: 575px)
-    .company
-        margin-bottom: calc($gap * 2)
-
-        .btn
-            margin-bottom: 0
+    .company .btn
+        margin-bottom: 0
 
 
 @media (max-width: 370px)
-    .company
-        &__text
-            margin-bottom: $gap
+    .company__text
+        margin-bottom: $gap

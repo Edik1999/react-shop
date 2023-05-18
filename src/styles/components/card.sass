@@ -23,6 +23,9 @@
     &:nth-of-type(3n+2)
         margin: 0 1.5% 1.5%
 
+    &:nth-last-child(-n+3)
+        margin-bottom: 0
+
     &__image
         height: 180px
         margin-right: 15px
@@ -67,6 +70,9 @@
 
         &:nth-child(odd)
             margin: 0 0 1.5%
+
+        &:nth-last-child(-n+2)
+            margin-bottom: 0
 
 @media (max-width: 991px)
     .card
@@ -133,7 +139,7 @@
             margin: 0 5px 10px 10px
 
         &__footer
-            justify-content: space-evenly
+            justify-content: space-around
 
         &__price
             font-size: 20px

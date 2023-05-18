@@ -1,7 +1,7 @@
 @import "../variables/index"
 
 .accordion
-  width: 90%
+  width: 100%
   margin-bottom: calc( $gap / 2 )
 
   &__item
@@ -87,50 +87,41 @@
   &__wrap
     display: flex
     align-items: center
+    justify-content: space-between
 
   &__price
-    flex: 35%
+    width: auto
 
   .date
     display: flex
-    flex: 65%
 
-@media (max-width: 1400px)
-  .accordion
-    width: 60%
+    &__text
+      width: unset
+      margin-right: 10px
+
+    &__descr
+      width: unset
+
+  .section__text
+    margin-bottom: 0
+
 
 @media (max-width: 1200px)
   .accordion
     width: 70%
 
-@media (max-width: 1023.9px)
-  .accordion
-    width: 83%
 
-@media (max-width: 768px)
+@media (max-width: 991px)
   .accordion
     width: 100%
 
+
+@media (max-width: 768px)
+  .accordion
     &__button
       padding-left: calc( $gap + 10px )
 
-    &__wrap
-      flex-direction: column
 
-    .date
-      width: 100%
-
-@media (max-width: 470px)
-  .accordion
-    width: 90%
-    
-    .date
-      display: none
-
-@media (max-width: 370px)
-  .accordion
-    &__button
-      padding-left: $gap
-
-    &__price
-      width: 100%
+@media (max-width: 520px)
+  .accordion .date
+    display: none

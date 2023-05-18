@@ -9,6 +9,7 @@
 
     &__title
         text-align: center
+        margin-bottom: $gap
 
     &__text
         width: 100%
@@ -17,7 +18,6 @@
     &__wrap
         display: flex
         flex-wrap: wrap
-        margin-bottom: calc( $gap * 5 )
 
 
 @media (max-width: 1400px)
@@ -33,7 +33,6 @@
 
 @media (max-width: 991px)
     .menu__wrap
-        margin-bottom: calc($gap * 2)
         justify-content: space-between
 
 
@@ -41,9 +40,6 @@
     .menu
         &__filter
             margin-bottom: $gap
-
-        &__text
-            margin-bottom: calc($gap * 1.5)
 
         &__wrap
             justify-content: center

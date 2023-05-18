@@ -35,7 +35,7 @@ export const Company = withAuthenticationRequired(() => {
                 unmountOnExit
                 nodeRef={nodeRef}
             >
-                <div className="company" ref={nodeRef}>
+                <section className="company" ref={nodeRef}>
                     <div className="company__left">
                         <h2 className="company__title section__title text-color">The home of fresh products.</h2>
                         <p className="company__text section__text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500.</p>
@@ -45,7 +45,7 @@ export const Company = withAuthenticationRequired(() => {
                     <div className="company__right" ref={elem => parent = elem as HTMLDivElement}>
                         <img className="company__img" src={companydecorate} alt="girl eating our food" onLoad={() => handleImageChange(parent)} onError={() => handleImageChange(parent)}/>
                     </div>
-                </div>
+                </section>
             </CSSTransition>
         </>
     )

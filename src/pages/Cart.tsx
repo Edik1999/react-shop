@@ -10,6 +10,7 @@ import { Link } from 'react-router-dom';
 import Counter from '../components/Counter';
 import Button from '../components/Button';
 import Modal from "../components/Modal";
+import Delete from "../components/Delete";
 
 export const Cart = withAuthenticationRequired(({db}: {db: any}) => {
 
@@ -93,7 +94,7 @@ export const Cart = withAuthenticationRequired(({db}: {db: any}) => {
                                   deleteHandler={(e, id) => deleteFromCartHandler(e, id)}></Counter>
                               <p className="product__price text-color">{el.price * (state.cart.find((elem: { id: any; }) => elem.id === el.id) ? state.cart.find((elem: { id: any; }) => elem.id === el.id).count : 0)} ₽</p>
                             </div>
-                            <div className="product__delete delete" onClick={e => deleteFromCartHandler(e, el.id)}><div className="delete__inner"></div></div>
+                            <Delete parentClass="product__delete" onClick={e => deleteFromCartHandler(e, el.id)}/>
                           </div>
                         </div>
                       </li>

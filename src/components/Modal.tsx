@@ -7,6 +7,7 @@ import {saveProductLocal} from "../helpers/saveProductLocal";
 import {useAppSelector} from "../store";
 
 import Button from "./Button";
+import Delete from "./Delete";
 import Counter from "./Counter";
 import {PatternFormat} from "react-number-format";
 import MapComponent from "./MapComponent";
@@ -99,7 +100,7 @@ function Modal({ isVisible, id, onClose, order, userCart, sum }: IProps) {
                   : <Counter count={state.cart.find((elem: { id: any; }) => elem.id === id) ? state.cart.find((elem: { id: any; }) => elem.id === id).count : 0} elementId={id}></Counter>
                 }
               </div>
-              <div className="card__delete delete" onClick={() => close()}><div className="delete__inner"></div></div>
+              <Delete parentClass="card__delete" onClick={close}/>
             </div>
           </>
         ) : (

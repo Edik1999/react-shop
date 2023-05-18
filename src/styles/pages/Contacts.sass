@@ -4,7 +4,7 @@
     position: relative
     display: flex
     justify-content: space-around
-    margin-bottom: calc( $gap * 8 )
+    margin-bottom: calc( $gap * 5 )
 
     &__left
         flex-basis: 50%
@@ -14,7 +14,6 @@
     display: flex
     flex-direction: column
     align-items: center
-    margin-bottom: calc( $gap * 5 )
 
     &--form-sent
         height: 55px!important
@@ -134,7 +133,6 @@
             margin: 0 auto
 
         &__title, &__text
-            width: 80%
             text-align: center
 
     .feedback__title
@@ -170,12 +168,9 @@
         &__title
             margin-bottom: $gap
 
-    .feedback
-        margin-bottom: calc( $gap * 3 )
-
-        &--form-sent
-            height: 90px!important
-            margin-bottom: $gap
+    .feedback--form-sent
+        height: 90px!important
+        margin-bottom: $gap
 
 @media (max-width: 575px)
     .contacts
@@ -208,8 +203,5 @@
 
 
 @media (max-width: 370px)
-    .feedback
-        margin-bottom: calc( $gap * 2 )
-
-        &--form-sent
-            height: 70px!important
+    .feedback--form-sent
+        height: 70px!important
