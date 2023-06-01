@@ -1,5 +1,5 @@
 import { SetStateAction, useEffect} from 'react';
-import {collection, doc, Firestore, getDocs, query, setDoc, where} from "firebase/firestore";
+import {collection, doc, DocumentData, Firestore, getDocs, query, setDoc, where} from "firebase/firestore";
 import {setUserData} from "../store/slice/userSlice";
 import {goods} from "../store/slice/goodsSlice";
 import {useAuth0} from "@auth0/auth0-react";
@@ -40,8 +40,12 @@ function useAppInit(db: Firestore, setLoading: { (value: SetStateAction<boolean>
 
         user && checkIsNewUser().then(isNew => {
             isNew
-                ? saveUser().then(() => console.log('user saved'))
-                : getDataFromDB(db, user.email).then((res: any) => dispatch(setUserData(res[0]))).then(() => console.log('This user already exists'))
+                ? saveUser()
+                    .then(() => console.log('user saved'))
+
+                : getDataFromDB(db, user.email)
+                    .then((res: DocumentData[]) => dispatch(setUserData(res[0])))
+                    .then(() => console.log('This user already exists'))
         })
 
         getDataFromDB(db).then(res => {

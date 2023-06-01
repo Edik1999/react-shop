@@ -3,15 +3,14 @@ import '../styles/components/search.sass';
 import { useEffect, useState } from "react";
 import { useDebounce } from "../hooks/useDebounce";
 
-function Search({handler}: {handler: any}) {
+function Search({handler}: {handler: (arg0: string) => void}) {
 
   const [search, setSearch] = useState("");
   const debounced = useDebounce(search, 300);
 
   useEffect(() => {
     handler(debounced)
-    // eslint-disable-next-line
-  }, [debounced])
+  }, [debounced, handler])
 
   return (
     <input className="search"

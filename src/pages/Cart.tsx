@@ -4,7 +4,7 @@ import { MouseEvent, useEffect, useState} from "react";
 import {deleteFromCart, clearCart} from '../store/slice/cartSlice';
 import {useAppDispatch, useAppSelector} from "../store";
 import {withAuthenticationRequired} from '@auth0/auth0-react';
-import {addDoc, collection} from "firebase/firestore";
+import {addDoc, collection, Firestore} from "firebase/firestore";
 
 import { Link } from 'react-router-dom';
 import Counter from '../components/Counter';
@@ -12,9 +12,23 @@ import Button from '../components/Button';
 import Modal from "../components/Modal";
 import Delete from "../components/Delete";
 
-export const Cart = withAuthenticationRequired(({db}: {db: any}) => {
+export interface IpageContent {
+  calory: string,
+  carb: string,
+  fat: string,
+  id: number,
+  image: string,
+  price: number,
+  protein: string,
+  text: string,
+  title: string,
+  type: string,
+  weight: string,
+}
 
-  const [pageContent, setPageContent] = useState([])
+export const Cart = withAuthenticationRequired(({db}: {db: Firestore}) => {
+
+  const [pageContent, setPageContent] = useState<IpageContent[] | []>([])
   const [isOrdered, setIsOrdered] = useState(false)
   const [showModal, setShowModal] = useState(false)
 
@@ -22,12 +36,12 @@ export const Cart = withAuthenticationRequired(({db}: {db: any}) => {
   const dispatch = useAppDispatch();
 
   const sum = () => {
-    let prices = state.cart.map((el: { id: any; count: number; }) => (state.goods.find(elem => elem.id === el.id).price * el.count))
-    const count = (arr: any[]) => arr.reduce((acc, num) => acc + Number(num), 0);
+    let prices = state.cart.map((el: { id: number; count: number; }) => (state.goods.find(elem => elem.id === el.id).price * el.count))
+    const count = (arr: number[]) => arr.reduce((acc, num) => acc + Number(num), 0);
     return count(prices)
   }
 
-  const deleteFromCartHandler = (e: MouseEvent<HTMLDivElement, globalThis.MouseEvent>, id: any) => {
+  const deleteFromCartHandler = (e: MouseEvent<HTMLDivElement, globalThis.MouseEvent>, id: number) => {
     if(e.target instanceof Element){
       e.target.closest<HTMLElement>('.cart__item')!.style.opacity = '0';
       setTimeout(() => {
@@ -56,6 +70,7 @@ export const Cart = withAuthenticationRequired(({db}: {db: any}) => {
   }
 
   const order = () => {
+    closeModal()
     setIsOrdered(true)
     saveOrder().then(() => console.log('order saved'))
     localStorage.removeItem('cart')
@@ -81,7 +96,7 @@ export const Cart = withAuthenticationRequired(({db}: {db: any}) => {
                 <ul className="cart__list">
                   {pageContent.length > 0
                     ?
-                    pageContent.map((el: any) =>
+                    pageContent.map((el) =>
                       <li className="cart__item" key={el.id}>
                         <div className="cart__product product">
                           <img className="product__img" src={el.image} alt={el.title} />
@@ -89,10 +104,10 @@ export const Cart = withAuthenticationRequired(({db}: {db: any}) => {
                             <p className="product__name">{el.title}</p>
                             <div className={`product__price-wraper ${el.id}`}>
                               <Counter
-                                  count={state.cart.find((elem: { id: any; }) => elem.id === el.id) ? state.cart.find((elem: { id: any; }) => elem.id === el.id).count : 0}
+                                  count={state.cart.find((elem: { id: number }) => elem.id === el.id) ? state.cart.find((elem: { id: number }) => elem.id === el.id).count : 0}
                                   elementId={el.id}
                                   deleteHandler={(e, id) => deleteFromCartHandler(e, id)}></Counter>
-                              <p className="product__price text-color">{el.price * (state.cart.find((elem: { id: any; }) => elem.id === el.id) ? state.cart.find((elem: { id: any; }) => elem.id === el.id).count : 0)} ₽</p>
+                              <p className="product__price text-color">{el.price * (state.cart.find((elem: { id: number }) => elem.id === el.id) ? state.cart.find((elem: { id: number }) => elem.id === el.id).count : 0)} ₽</p>
                             </div>
                             <Delete parentClass="product__delete" onClick={e => deleteFromCartHandler(e, el.id)}/>
                           </div>
@@ -114,17 +129,17 @@ export const Cart = withAuthenticationRequired(({db}: {db: any}) => {
                 <div className="cart__total total">
                   <h3 className="total__title text-color">Order conditions</h3>
                   <div className="total__wrapper">
-                    <p className="total__count">{state.cart.reduce((acc: number, num: { count: any; }) => acc + Number(num.count), 0)} products</p>
+                    <p className="total__count">{state.cart.reduce((acc: number, num: { count: number }) => acc + Number(num.count), 0)} products</p>
                     <p className="total__price">Total <span className="text-color">{sum()} ₽</span></p>
                   </div>
                   <Button text="Place order" disabled={pageContent.length > 0 ? false : true} onClick={openModal}></Button>
                 </div>
-                <Modal isVisible={showModal} onClose={closeModal} order={order} userCart={pageContent} sum={sum()}></Modal>
               </>
             :
               <h2 className="cart__title cart__title--success section__title">Thank you for Order !</h2>
           }
         </div>
+        <Modal isVisible={showModal} onClose={closeModal} order={order} userCart={pageContent} sum={sum()}></Modal>
       </div>
     </>
   )

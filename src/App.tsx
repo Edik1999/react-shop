@@ -14,8 +14,9 @@ import {FAQ} from './pages/FAQ';
 import {Cart} from './pages/Cart';
 import {Menu} from './pages/Menu';
 import {Profile} from "./pages/Profile";
+import {Firestore} from "firebase/firestore";
 
-function App({db}: { db: any }) {
+function App({db}: { db: Firestore }) {
 
     const [loading, setLoading] = useState(true)
 

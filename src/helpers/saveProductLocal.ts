@@ -1,4 +1,4 @@
-export function saveProductLocal(id: string) {
+export function saveProductLocal(id: number) {
     const saved = localStorage.getItem('cart');
     const defaultValue = {id: id, count: 1}
     const initial = !saved || saved === 'undefined' ? null : JSON.parse(saved);

@@ -26,7 +26,7 @@ export const Contacts = withAuthenticationRequired(({db}: {db: Firestore}) => {
   const [error, setError] = useState(false);
   const [isFormSent, setIsFormSent] = useState(false);
 
-  function sendForm(form: any){
+  function sendForm(form: HTMLFormElement){
     const formData = new FormData(form)
     const name = formData.get('name')
     const email = formData.get('email')
@@ -139,8 +139,8 @@ export const Contacts = withAuthenticationRequired(({db}: {db: Firestore}) => {
                   <form className={`feedback__form form ${error && 'feedback__form--error'}`}>
                     <div className="form__top">
                       <div className="form__left">
-                        <Input name="name" type="text" placeholder="Name" defaultValue={state.name ? state.name : ''} modifier='form__input' onFocus={(e: any) => clickHandler(e)}/>
-                        <Input name="email" type="email" placeholder="E-mail" defaultValue={state.email ? state.email : ''} modifier='form__input' onFocus={(e: any) => clickHandler(e)}/>
+                        <Input name="name" type="text" placeholder="Name" defaultValue={state.name ? state.name : ''} modifier='form__input' onFocus={(e) => clickHandler(e)}/>
+                        <Input name="email" type="email" placeholder="E-mail" defaultValue={state.email ? state.email : ''} modifier='form__input' onFocus={(e) => clickHandler(e)}/>
                         <PatternFormat value={state.phone ? state.phone : ''} format="+7 (###) ### ## ##" mask="_" className="form__input input" type="tel" placeholder="Phone" onFocus={(e) => clickHandler(e)}/>
                       </div>
                       <div className="form__right">

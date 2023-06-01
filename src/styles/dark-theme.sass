@@ -3,38 +3,36 @@
     background: hsl(0deg 0% 0% / 5%)
 
   .section__title,
-  .nav-link,
-  .footer .nav-link:hover,
+  .nav__link,
+  .footer .nav__link:hover,
   .search,
   .menu-btn--disabled:hover,
   .card__name,
-  .modal__card-text,
   .howitworks__subtitle,
-  .cart__empty,
-  .cart__product-name,
-  .form__input,
-  .form__textarea,
-  .user__input,
-  .user__name,
-  .company-title,
-  .template-title
+  .product__name,
+  .user__email,
+  .input,
+  .modal__card.card .card__title,
+  .modal__card.card .card__text,
+  .modal__title,
+  .accordion .panelItem__text
     color: $baseBgColor
 
   .section__text,
-  .clients__role,
+  .client-card__role,
   .footer__descr,
-  .footer .nav-link,
-  .card__weight,
-  .modal__card-descr,
-  .info__name,
-  .user__email,
-  .form__check,
-  .cart__product-count,
-  .cart__total-price,
+  .footer .nav__link,
+  .footer .social__text,
+  .modal__card.card .card__weight,
+  .modal__card.card .card__descr,
+  .modal__card.card .card__info .info__name,
+  .total__count,
+  .total__price,
   .rate__text
     color: $darkSmalTextColor
 
-  .client__card
+  .client-card
+    border: 1px solid rgb(255 255 255 / 30%)
     box-shadow: 0px 0px 12px 5px rgb(255 255 255 / 11%)
 
   .rate__img
@@ -45,7 +43,7 @@
   .footer .social__item .ico__inner
     fill: $baseBgColor
 
-  .card, .cart__product, .client__card
+  .modal__card.card, .card, .cart__product, .client-card
     background-color: lighten($darkBgColor, 12%)
     border-radius: calc( $gap / 3 )
 
@@ -53,15 +51,15 @@
     .card__name
       text-shadow: 5px 5px 3px rgb(255 255 255 / 30%)
 
-  .menu-btn--disabled, .search, .card__btn, .cart-btn, .form__input, .form__textarea, .user__input
+  .menu-btn--disabled, .search, .card-btn, .cart-btn, .input, .accordion__button, .accordion__button:hover, .accordion__item.open .accordion__button
     background-color: lighten($darkBgColor, 20%)
 
-  .card__image, .modal__card-image, .cart__product-img
+  .card__image, .product__img
     background-color: $baseBgColor
     filter: brightness(0.85)
     border-radius: 6px
 
-  .menu-btn--disabled, .card__btn, .cart-btn
+  .menu-btn--disabled, .card-btn, .cart-btn
     border: 2px solid lighten($darkBgColor, 30%)
     color: $darkSmalTextColor
 
@@ -106,7 +104,7 @@
   .footer
     background-color: lighten($darkBgColor, 4%)
 
-  .form__input, .form__textarea, .user__input
+  .input, .accordion__item
     border: 2px solid lighten($darkBgColor, 30%)
 
     &:hover, &:focus, &:active

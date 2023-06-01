@@ -3,7 +3,17 @@ import '../styles/pages/Profile.sass';
 import { useAuth0, withAuthenticationRequired } from '@auth0/auth0-react';
 import useAnimationState from "../hooks/useAnimationState";
 import {useEffect, useRef, useState} from "react";
-import { collection, getDocs, query, where, doc, updateDoc, deleteDoc } from "firebase/firestore";
+import {
+    collection,
+    getDocs,
+    query,
+    where,
+    doc,
+    updateDoc,
+    deleteDoc,
+    Firestore,
+    DocumentData
+} from "firebase/firestore";
 import { useAppDispatch, useAppSelector } from "../store";
 import {getDataFromDB} from "../helpers/getDataFromDB";
 import { updateUserData } from "../store/slice/userSlice";
@@ -18,7 +28,7 @@ import AccordionComponent from "../components/AccordionComponent";
 
 import emptycart from "../img/empty-cart.webp";
 
-export const Profile = withAuthenticationRequired(({ db }: { db: any }) => {
+export const Profile = withAuthenticationRequired(({ db }: { db: Firestore }) => {
 
     const { logout } = useAuth0();
     const animationState = useAnimationState();
@@ -26,12 +36,12 @@ export const Profile = withAuthenticationRequired(({ db }: { db: any }) => {
     const state = useAppSelector(state => state);
     const dispatch = useAppDispatch();
 
-    const [orders, setOrders] = useState([]);
+    const [orders, setOrders] = useState<DocumentData[]>([]);
     const [userAddress, setUserAddress] = useState('');
     const [isSent, setIsSent] = useState(false);
 
     useEffect(() => {
-        getDataFromDB(db, state.user.email, true).then((res: any) => setOrders(res))
+        getDataFromDB(db, state.user.email, true).then((res: DocumentData[]) => setOrders(res))
 
         const address = state.user.address
         if (address) {
@@ -39,7 +49,7 @@ export const Profile = withAuthenticationRequired(({ db }: { db: any }) => {
         }
     }, [db, state.user])
 
-    async function sendForm(form: any) {
+    async function sendForm(form: HTMLFormElement) {
         const formData = new FormData(form)
         const name = formData.get('userName')
         const phone = formData.get('userPhone')
@@ -78,7 +88,7 @@ export const Profile = withAuthenticationRequired(({ db }: { db: any }) => {
         const querySnapshot = await getDocs(q);
         querySnapshot.forEach((order) => {
             deleteDoc(doc(db, "orders", order.id));
-            getDataFromDB(db, state.user.email, true).then((res: any) => setOrders(res));
+            getDataFromDB(db, state.user.email, true).then((res: DocumentData[]) => setOrders(res));
         });
     }
 

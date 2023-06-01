@@ -1,6 +1,6 @@
 import '../styles/pages/Fullmenu.sass';
 
-import {useRef, useState} from "react";
+import {useCallback, useRef, useState} from "react";
 import {withAuthenticationRequired} from '@auth0/auth0-react';
 import {imagesLoaded} from "../helpers/imagesLoaded";
 import {useAppSelector} from "../store";
@@ -28,16 +28,16 @@ export const Menu = withAuthenticationRequired(() => {
     const animationState = useAnimationState();
     const nodeRef = useRef(null);
 
-    const filterContent = (filterString: string) => state.goods.filter(el => el.title.toLowerCase().indexOf(filterString.toLowerCase()) > -1)
+    const searchHandler = useCallback((filterString: string) => {
+        const filterContent = (filterString: string) => state.goods.filter((el: {title: string}) => el.title.toLowerCase().indexOf(filterString.toLowerCase()) > -1)
 
-    const searchHandler = (filterString: string) => {
         setActiveSort('all')
         if (filterString.length > 0) {
             setContent(filterContent(filterString).length > 0 ? filterContent(filterString) : [])
         } else {
             setContent(state.goods)
         }
-    }
+    }, [state.goods])
 
     const sortingHandler = (sortingString: string) => {
         setPriceSort(1);

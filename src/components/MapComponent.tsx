@@ -2,10 +2,10 @@ import '../styles/components/map.sass';
 
 import {FullscreenControl, GeolocationControl, Map, Placemark, SearchControl, YMaps, ZoomControl} from "@pbe/react-yandex-maps";
 
-import {useEffect, useState} from "react";
+import {Dispatch, SetStateAction, useEffect, useState} from "react";
 import {useAppSelector} from "../store";
 
-function MapComponent({setAddress}: {setAddress: any}) {
+function MapComponent({setAddress}: {setAddress: Dispatch<SetStateAction<string>>}) {
 
     const state = useAppSelector(state => state);
 
@@ -31,7 +31,7 @@ function MapComponent({setAddress}: {setAddress: any}) {
         getAddress(coords)
     }
 
-    const getAddress = (coords: any) => {
+    const getAddress = (coords: number[]) => {
         placemark.properties.set('iconCaption', 'поиск...');
 
         mapInstance.geocode(coords).then(function (res: { geoObjects: { get: (arg0: number) => any; }; }) {

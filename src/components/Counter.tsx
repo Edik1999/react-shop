@@ -6,14 +6,19 @@ import {deleteSingleGood, addSingleGood, deleteFromCart} from '../store/slice/ca
 
 interface IProps {
     count: number,
-    elementId: number,
+    elementId: number | undefined,
     deleteHandler?: (arg0: any, arg1: number) => void
+}
+
+interface IStorage {
+    id: number,
+    count: number
 }
 
 function Counter({count, elementId, deleteHandler}: IProps) {
     const dispatch = useAppDispatch();
 
-    let localStorageCart: any[],
+    let localStorageCart: IStorage[],
         elem: { count: number; };
 
     if (localStorage.getItem('cart')) {
@@ -31,7 +36,7 @@ function Counter({count, elementId, deleteHandler}: IProps) {
             localStorage.setItem('cart', JSON.stringify(localStorageCart.filter(el => el.id !== elementId)));
             if(localStorage.getItem('cart') === '[]') localStorage.removeItem('cart')
 
-            if(deleteHandler){
+            if(deleteHandler && elementId){
                 deleteHandler(e, elementId)
             }else{
                 dispatch(deleteFromCart(elementId))

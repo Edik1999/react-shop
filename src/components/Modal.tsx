@@ -11,14 +11,15 @@ import Delete from "./Delete";
 import Counter from "./Counter";
 import {PatternFormat} from "react-number-format";
 import MapComponent from "./MapComponent";
+import {IpageContent} from "../pages/Cart";
 
 interface IProps {
     isVisible: boolean,
-    id?: any,
+    id?: number | undefined,
     onClose: () => void,
     order?: () => void,
-    userCart?: any,
-    sum?: any
+    userCart?: IpageContent[],
+    sum?: number
 }
 
 function Modal({ isVisible, id, onClose, order, userCart, sum }: IProps) {
@@ -39,12 +40,12 @@ function Modal({ isVisible, id, onClose, order, userCart, sum }: IProps) {
       setFadeIn(true)
       setUserAddress(state.user.address)
       setUserPhone(state.user.phone)
-      if (id) state.cart.find((elem: { id: any; }) => elem.id === id) ? setIsInCart(true) : setIsInCart(false)
+      if (id) state.cart.find((elem: { id: number }) => elem.id === id) ? setIsInCart(true) : setIsInCart(false)
   }, [isVisible, state.cart, id, state.user])
 
   const addToCartClick = () => {
       dispatch(cart(id));
-      saveProductLocal(id);
+      if (id) saveProductLocal(id);
   }
 
   const close = () => {
@@ -61,7 +62,7 @@ function Modal({ isVisible, id, onClose, order, userCart, sum }: IProps) {
   }
 
   return isVisible === false ? null : (
-    <div className={`modal-wrapper ${fadeIn && 'modal-wrapper--active'}`} onClick={() => close()}>
+    <div className={`modal-wrapper ${fadeIn && 'modal-wrapper--active'}`} onClick={close}>
       <div className="modal__card card" onClick={e => e.stopPropagation()}>
         {content ? (
           <>
@@ -96,11 +97,10 @@ function Modal({ isVisible, id, onClose, order, userCart, sum }: IProps) {
                   {content.price} &#8381;
                 </p>
                 {!isInCart
-                  ? <Button modifier="card-btn" text="Add to cart" onClick={() => addToCartClick()}></Button>
-                  : <Counter count={state.cart.find((elem: { id: any; }) => elem.id === id) ? state.cart.find((elem: { id: any; }) => elem.id === id).count : 0} elementId={id}></Counter>
+                  ? <Button modifier="card-btn" text="Add to cart" onClick={addToCartClick}></Button>
+                  : <Counter count={state.cart.find((elem: { id: number }) => elem.id === id) ? state.cart.find((elem: { id: number }) => elem.id === id).count : 0} elementId={id}></Counter>
                 }
               </div>
-              <Delete parentClass="card__delete" onClick={close}/>
             </div>
           </>
         ) : (
@@ -121,13 +121,13 @@ function Modal({ isVisible, id, onClose, order, userCart, sum }: IProps) {
                     :
                         <>
                             <ul className='modal__list'>
-                                {userCart.map((el: any) =>
+                                {userCart?.map((el) =>
                                     <li className='modal__item item' key={el.id}>
                                         <img className="item__image" src={el.image} alt={el.title} />
                                         <div className='item__wrap'>
                                           <h4 className='item__title'>{el.title}</h4>
-                                          <p className='item__number'>Количество: <span className='numeric'>{state.cart.find((elem: { id: any; }) => elem.id === el.id).count}</span></p>
-                                          <p className='item__cost'>Стоимость: <span className='text-color numeric'>{el.price * state.cart.find((elem: { id: any; }) => elem.id === el.id).count} ₽</span></p>
+                                          <p className='item__number'>Количество: <span className='numeric'>{state.cart.find((elem: { id: number }) => elem.id === el.id)?.count}</span></p>
+                                          <p className='item__cost'>Стоимость: <span className='text-color numeric'>{Number(el.price) * state.cart.find((elem: { id: number }) => elem.id === el.id)?.count} ₽</span></p>
                                         </div>
                                     </li>
                                 )}
@@ -138,6 +138,7 @@ function Modal({ isVisible, id, onClose, order, userCart, sum }: IProps) {
                 }
             </>
         )}
+        <Delete parentClass="card__delete" onClick={close}/>
       </div>
     </div>
   );

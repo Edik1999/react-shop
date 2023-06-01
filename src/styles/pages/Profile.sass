@@ -59,6 +59,9 @@
             width: 378px
             margin-bottom: $gap
 
+        &__text
+            text-align: center
+
 
 @media (max-width: 1400px)
     .profile
@@ -78,13 +81,6 @@
             margin-bottom: calc( $gap * 3 )
 
 
-@media (max-width: 991px)
-    .profile
-        .user
-            .form
-                &__input, &__textarea
-                    //width: 80%
-
 @media (max-width: 768px)
     .profile
         .user
@@ -92,24 +88,20 @@
             padding-bottom: calc( $gap * 1.5 )
             border-bottom: 1px solid #DDDDDD
 
+
 @media (max-width: 575px)
-    .profile
-        .user
-            .form
-                width: 100%
+    .profile .user
+        .form
+            width: 100%
 
-                &__input
-                    margin-bottom: calc( $gap / 3 )
+            &__input
+                margin-bottom: calc( $gap / 3 )
 
-                &__textarea
-                    margin-bottom: calc( $gap / 2 )
+            &__textarea
+                margin-bottom: calc( $gap / 2 )
+
 
 @media (max-width: 370px)
     .profile
-        .user
-            &__email
-                font-size: 16px
-
-            .form
-                &__input, &__textarea
-                    //width: 90%
+        .user__email
+            font-size: 16px

@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import { store } from './store';
 import { initializeApp } from "firebase/app";
 // import { getAnalytics } from "firebase/analytics";
-import { getFirestore } from "firebase/firestore";
+import {Firestore, getFirestore} from "firebase/firestore";
 
 import App from './App';
 import { Provider } from 'react-redux';
@@ -22,7 +22,7 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 // const analytics = getAnalytics(app);
-const db = getFirestore(app);
+const db: Firestore = getFirestore(app);
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
