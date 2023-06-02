@@ -42,7 +42,7 @@ export const Contacts = withAuthenticationRequired(({db}: {db: Firestore}) => {
     }).then(() => console.log('form was sent'))
   }
 
-  const formSubmitHandler = (e: { preventDefault: () => void; target: { closest: (arg0: string) => any; }; }) => {
+  const formSubmitHandler = (e: { preventDefault: () => void; target: { closest: (arg0: string) => any }}) => {
     e.preventDefault();
     setError(false);
     const form = e.target.closest('form');
@@ -66,7 +66,7 @@ export const Contacts = withAuthenticationRequired(({db}: {db: Firestore}) => {
     if (!checkbox.checked) {
       allGood = false
       setError(true)
-      checkboxLabel.classList.add('error')
+      checkboxLabel?.classList.add('error')
       setTimeout(() => {
         setError(false)
       }, 5000)
@@ -75,7 +75,7 @@ export const Contacts = withAuthenticationRequired(({db}: {db: Firestore}) => {
     if (message.value === '') {
       allGood = false
       setError(true)
-      message.classList.add('error')
+      message?.classList.add('error')
       setTimeout(() => {
         setError(false)
       }, 5000)
@@ -112,7 +112,7 @@ export const Contacts = withAuthenticationRequired(({db}: {db: Firestore}) => {
           unmountOnExit
           nodeRef={nodeRef}
       >
-        <section className="contacts" ref={nodeRef}>
+        <section className="contacts flex-x-around-y-center" ref={nodeRef}>
           <div className="contacts__left">
             <h2 className="contacts__title section__title text-color">Call our store and takeaway when it suits you best.</h2>
             <p className="contacts__text section__text">Leo vel orci porta non pulvinar neque laoreet. Quis risus sed vulputate odio ut enim blandit volutpat maecenas. Fringilla phasellus faucibus scelerisque eleifend donec pretium vulputate sapien. Semper auctor neque vitae tempus quam pellentesque nec.</p>
@@ -132,26 +132,26 @@ export const Contacts = withAuthenticationRequired(({db}: {db: Firestore}) => {
           unmountOnExit
           nodeRef={secondNodeRef}
       >
-        <section className={`feedback ${isFormSent && 'feedback--form-sent'} ${error && 'feedback--form-error'}`} ref={secondNodeRef}>
+        <section className={`feedback ${error && 'feedback--form-error'}`} ref={secondNodeRef}>
           {!isFormSent
               ? <>
                   <h2 className="feedback__title section__title text-color">Here you can post your<br/> feedback about us.</h2>
                   <form className={`feedback__form form ${error && 'feedback__form--error'}`}>
                     <div className="form__top">
                       <div className="form__left">
-                        <Input name="name" type="text" placeholder="Name" defaultValue={state.name ? state.name : ''} modifier='form__input' onFocus={(e) => clickHandler(e)}/>
-                        <Input name="email" type="email" placeholder="E-mail" defaultValue={state.email ? state.email : ''} modifier='form__input' onFocus={(e) => clickHandler(e)}/>
-                        <PatternFormat value={state.phone ? state.phone : ''} format="+7 (###) ### ## ##" mask="_" className="form__input input" type="tel" placeholder="Phone" onFocus={(e) => clickHandler(e)}/>
+                        <Input name="name" type="text" placeholder="Name" defaultValue={state.name ? state.name : ''} modifier='form__input' onFocus={e => clickHandler(e)}/>
+                        <Input name="email" type="email" placeholder="E-mail" defaultValue={state.email ? state.email : ''} modifier='form__input' onFocus={e => clickHandler(e)}/>
+                        <PatternFormat value={state.phone ? state.phone : ''} format="+7 (###) ### ## ##" mask="_" className="form__input input" type="tel" placeholder="Phone" onFocus={e => clickHandler(e)}/>
                       </div>
                       <div className="form__right">
-                        <textarea className="form__textarea input input--textarea" name="message" placeholder="Comment" rows={3} onFocus={(e) => clickHandler(e)}></textarea>
+                        <textarea className="form__textarea input input--textarea" name="message" placeholder="Comment" rows={3} onFocus={e => clickHandler(e)}></textarea>
                       </div>
                     </div>
                     {error && <p className="form__error form__text section__text">Все поля должны быть заполнены !</p>}
                     <div className="form__bottom">
                       <div className="form__wrapper">
-                        <Button text="Post" modifier="form-btn" onClick={(e) => formSubmitHandler(e)}></Button>
-                        <label className="form__check form__text section__text" onClick={(e) => clickHandler(e)}>
+                        <Button text="Post" modifier="form-btn" onClick={e => formSubmitHandler(e)}></Button>
+                        <label className="form__check form__text section__text" onClick={e => clickHandler(e)}>
                           <input className="form__checkbox" type="checkbox"/> I agree with the <span className="text-color">user agreement</span>
                         </label>
                       </div>
@@ -159,7 +159,7 @@ export const Contacts = withAuthenticationRequired(({db}: {db: Firestore}) => {
                   </form>
                 </>
 
-              : <h1 className="feedback__title feedback__title--success section__title text-color">Thank you for your feedback</h1>
+              : <h1 className="feedback__title section__title section__title--success">Thank you for your feedback</h1>
           }
         </section>
       </CSSTransition>

@@ -10,14 +10,14 @@
     width: 100%
     margin-bottom: $gap
     padding-bottom: $gap
-    border-bottom: 1px solid $counterBorderColor
+    border-bottom: 1px solid $gray
 
   &__info
     display: flex
 
   &__avatar
     margin-right: $gap
-    border: 2px solid $maincolor
+    border: 2px solid $mainColor
     border-radius: 100%
 
   &__descr
@@ -31,7 +31,7 @@
   &__role
     font-size: $baseFZ
     line-height: calc( $textFZ + 2px)
-    color: $smalTextColor
+    color: $textColor
 
 
 @media (max-width: 1023.9px)
@@ -40,7 +40,7 @@
     margin-left: auto
     margin-right: auto
     box-shadow: unset
-    border: 2px solid $maincolor
+    border: 2px solid $mainColor
 
 
 @media (max-width: 991px)
@@ -70,4 +70,4 @@
     &__info
       margin-bottom: calc( $gap / 2 )
       padding-bottom: calc( $gap / 2 )
-      border-bottom: 1px solid $counterBorderColor
+      border-bottom: 1px solid $gray

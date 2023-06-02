@@ -52,10 +52,10 @@ function Counter({count, elementId, deleteHandler}: IProps) {
     }
 
     return (
-        <div className="counter" onClick={(e) => e.stopPropagation()}>
-            <span className="counter__minus" onClick={(e: MouseEvent<HTMLSpanElement>) => dec(e)}>&minus;</span>
+        <div className="counter" onClick={e => e.stopPropagation()}>
+            <span className="counter__minus" onClick={e => dec(e)}>&minus;</span>
             <span className="counter__number">{count}</span>
-            <span className="counter__plus" onClick={() => inc()}>+</span>
+            <span className="counter__plus" onClick={inc}>+</span>
         </div>
     )
 }

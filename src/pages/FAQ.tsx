@@ -22,7 +22,7 @@ export const FAQ = withAuthenticationRequired(() => {
 
   const [imagesLoading, setImagesLoading] = useState(true)
 
-  const handleImageChange = (imagesParent: HTMLDivElement | HTMLUListElement): void => {
+  const handleImageChange = (imagesParent: HTMLDivElement | HTMLUListElement) => {
     setImagesLoading(!imagesLoaded(imagesParent))
   }
 
@@ -40,7 +40,7 @@ export const FAQ = withAuthenticationRequired(() => {
             unmountOnExit
             nodeRef={nodeRef}
         >
-          <section className="faq" ref={nodeRef}>
+          <section className="faq flex-x-space-y-center" ref={nodeRef}>
             <div className="faq__left" ref={elem => parent = elem as HTMLDivElement}>
               <img className="faq__img" src={faqdecorate} alt="online order" onLoad={() => handleImageChange(parent)} onError={() => handleImageChange(parent)}/>
             </div>

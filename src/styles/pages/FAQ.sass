@@ -1,11 +1,6 @@
 @import '../variables/index'
 
 .faq
-    position: relative
-    display: flex
-    justify-content: space-between
-    align-items: center 
-
     &__title
         width: 74%
 
@@ -17,22 +12,26 @@
 
     &__list
         display: flex
-        margin-bottom: $gap * 2
+        margin-bottom: calc( $gap * 2 )
 
     &__item
         display: flex
         flex-direction: column
         align-items: center
-        text-align: center
+        width: 28%
+
+        &:nth-of-type(even)
+            width: 8%
 
     &__line
         margin-top: 130px
-        width: calc( ($gap * 3) + 10px )
+        width: 100%
         height: 2px
-        background-color: $counterBorderColor
+        background-color: $gray
 
     &__img
-        margin-bottom: calc( ($gap * 2) - 10px )
+        max-height: 230px
+        margin-bottom: 50px
 
     &__subtitle
         font-size: calc($textFZ + 2px)
@@ -47,15 +46,17 @@
         margin: 0
 
 
-@media (max-width: 1360px)
+@media (max-width: 1199px)
     .howitworks
         &__img
-            height: 196px
+            max-height: 200px
 
         &__line
-            width: 80px
+            width: 80%
             margin-top: 100px
 
+        &__text
+            width: 100%
 
 @media (max-width: 1023.9px)
     .faq
@@ -75,43 +76,45 @@
         &__title
             width: 100%
 
+    .howitworks__text
+        font-size: 16px
+
+
+@media (max-width: 991px)
     .howitworks
         &__img
-            height: 146px
+            max-height: 156px
+            margin-bottom: $gap
 
         &__line
-            width: 60px
-            margin-top: 70px
-
-        &__text
-            width: 100%
-            font-size: 16px
+            margin-top: 75px
 
 
 @media (max-width: 768px)
     .faq
         margin-bottom: $gap
         padding-bottom: $gap
-        border-bottom: 1px solid $counterBorderColor
+        border-bottom: 1px solid $gray
 
     .howitworks
         &__list
             flex-direction: column
             align-items: center
-            margin-bottom: $gap
+            margin-bottom: calc( $gap * 1.5 )
 
         &__img
-            height: 211px
-            margin-bottom: $gap
+            max-height: 230px
 
         &__item
+            width: 60%
             margin-bottom: $gap
 
-            &:nth-of-type(odd)
-                width: 50%
+            &:last-of-type
+                margin-bottom: 0
 
         &__line
-            width: 290px
+            width: 2px
+            height: 75px
             margin-top: 0
 
 
@@ -120,21 +123,14 @@
         margin-bottom: calc( $gap * 3 )
 
     .howitworks
-        margin-bottom: calc($gap * 2)
-
-        &__item:nth-of-type(odd)
+        &__item
             width: 100%
 
         &__img
-            height: 258px
+            max-height: 190px
 
-        &__list
-            margin-bottom: 0
+        &__line
+            height: 55px
 
         .btn
             margin-bottom: 0
-
-
-@media (max-width: 370px)
-    .howitworks__img
-        height: 212px

@@ -1,14 +1,10 @@
 @import '../variables/index'
 
 .home
-    position: relative
-    display: flex
-
     &__left
         flex-basis: 50%
         display: flex
         flex-direction: column
-        margin-top: 60px
 
     &__title
         width: 80%
@@ -18,7 +14,7 @@
     &__text
         font-size: $textFZ
         line-height: calc( $textFZ + 9px)
-        color: $smalTextColor
+        color: $textColor
         margin-bottom: $gap
 
     &__img
@@ -82,7 +78,7 @@
     .home
         margin-bottom: $gap
         padding-bottom: $gap
-        border-bottom: 1px solid $counterBorderColor
+        border-bottom: 1px solid $gray
 
         &__left
             padding: 0
@@ -100,7 +96,7 @@
     .home
         margin-bottom: $gap
         padding-bottom: $gap
-        border-bottom: 1px solid $counterBorderColor
+        border-bottom: 1px solid $gray
 
         &__rate
             display: none

@@ -52,7 +52,7 @@ function Home() {
         unmountOnExit
         nodeRef={nodeRef}
       >
-        <section className="home" ref={nodeRef}>
+        <section className="home flex-x-space-y-center" ref={nodeRef}>
           <div className="home__left">
             <h1 className="home__title section__title">
               Beautiful food & takeaway, <span className="text-color">delivered</span> to your door.

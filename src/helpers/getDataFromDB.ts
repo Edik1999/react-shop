@@ -11,7 +11,7 @@ export const getDataFromDB = async (db: Firestore, email?: string, orders?: bool
     }
 
     const querySnapshot = await getDocs(q);
-    querySnapshot.forEach((doc) => {
+    querySnapshot.forEach(doc => {
         appData.push(doc.data() as DocumentData);
     });
 

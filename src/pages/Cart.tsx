@@ -87,7 +87,7 @@ export const Cart = withAuthenticationRequired(({db}: {db: Firestore}) => {
 
   return (
     <>
-      <div className="cart">
+      <section className="cart">
         <h2 className="cart__title section__title text-color">Cart</h2>
         <div className="cart__main">
           {!isOrdered
@@ -96,7 +96,7 @@ export const Cart = withAuthenticationRequired(({db}: {db: Firestore}) => {
                 <ul className="cart__list">
                   {pageContent.length > 0
                     ?
-                    pageContent.map((el) =>
+                    pageContent.map(el =>
                       <li className="cart__item" key={el.id}>
                         <div className="cart__product product">
                           <img className="product__img" src={el.image} alt={el.title} />
@@ -136,11 +136,11 @@ export const Cart = withAuthenticationRequired(({db}: {db: Firestore}) => {
                 </div>
               </>
             :
-              <h2 className="cart__title cart__title--success section__title">Thank you for Order !</h2>
+              <h2 className="cart__title section__title section__title--success">Thank you for Order !</h2>
           }
         </div>
         <Modal isVisible={showModal} onClose={closeModal} order={order} userCart={pageContent} sum={sum()}></Modal>
-      </div>
+      </section>
     </>
   )
 })

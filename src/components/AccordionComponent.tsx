@@ -39,7 +39,7 @@ function AccordionComponent({items}: { items: DocumentData[] }) {
 
     return (
         <Accordion allowZeroExpanded onChange={(id: string[]) => accordionClick(id)}>
-            {items.map((el) => (
+            {items.map(el => (
                 el.date && <AccordionItem key={Math.random()}>
                     <AccordionItemHeading>
                         <AccordionItemButton>
@@ -56,7 +56,7 @@ function AccordionComponent({items}: { items: DocumentData[] }) {
                     </AccordionItemHeading>
                     <AccordionItemPanel>
                         {el.items.map((elem: { id: number; count: number}) => (
-                            <p className='accordion__panelItem panelItem' key={Math.random()} ref={(ref) => setHeight()}>
+                            <p className='accordion__panelItem panelItem' key={Math.random()} ref={setHeight}>
                                 <span className='section__text panelItem__text'>{state.goods.map(element => element.id === elem.id ? element.title : null)}</span>
                                 <span className='section__text panelItem__text'> x {elem.count}</span>
                             </p>

@@ -1,7 +1,7 @@
 import '../styles/components/card.sass';
 
 import {useState, useEffect} from 'react'
-import { useAppDispatch } from "../store";
+import {useAppDispatch} from "../store";
 import {cart} from '../store/slice/cartSlice';
 import {saveProductLocal} from "../helpers/saveProductLocal";
 import {useAppSelector} from "../store";
@@ -43,9 +43,9 @@ function Card({id, title, image, renderImg, price, type, click}: IProps) {
                 <p className="card__name">{title}</p>
                 <div className='card__footer'>
                     <p className="card__price text-color">{price} &#8381;</p>
-                    {!isInCart 
+                    {!isInCart
                         ?
-                            <Button modifier="card-btn" text="Add to cart" onClick={(e) => addToCartClick(e)}></Button>
+                            <Button modifier="card-btn" text="Add to cart" onClick={e => addToCartClick(e)}></Button>
                         :
                             <Counter count={state.cart.find((elem: { id: number; }) => elem.id === id) ? state.cart.find((elem: { id: number; }) => elem.id === id).count : 0} elementId={id}></Counter>
                     }   

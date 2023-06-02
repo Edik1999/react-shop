@@ -18,7 +18,7 @@ function Search({handler}: {handler: (arg0: string) => void}) {
       name="search"
       placeholder="type your search here..."
       value={search}
-      onChange={(e) => setSearch(e.target.value)}
+      onChange={e => setSearch(e.target.value)}
     />
   );
 }

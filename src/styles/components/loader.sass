@@ -1,10 +1,12 @@
+@import "../variables/index"
+
 .loader
   position: fixed
   top: 0
   bottom: 0
   right: 0
   left: 0
-  background: #fff
+  background: $bgColor
   z-index: 10
 
   &__body
@@ -13,7 +15,7 @@
     left: 50%
     width: 45px
     height: 45px
-    border: 5px solid #35B8BE
+    border: 5px solid $mainColor
     border-right: 5px solid transparent
     border-radius: 50%
     animation: rotate 1.5s infinite

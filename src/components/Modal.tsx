@@ -121,7 +121,7 @@ function Modal({ isVisible, id, onClose, order, userCart, sum }: IProps) {
                     :
                         <>
                             <ul className='modal__list'>
-                                {userCart?.map((el) =>
+                                {userCart?.map(el =>
                                     <li className='modal__item item' key={el.id}>
                                         <img className="item__image" src={el.image} alt={el.title} />
                                         <div className='item__wrap'>

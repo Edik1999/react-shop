@@ -14,7 +14,7 @@
     .top
         height: 70px
         padding: 14px 0
-        background-color: $maincolor
+        background-color: $mainColor
 
         &__wrap
             position: relative
@@ -53,7 +53,7 @@
             margin-left: auto
             width: 55px
             height: 55px
-            border: 2px solid $maincolor
+            border: 2px solid $mainColor
             border-radius: 5px
 
             .burger
@@ -61,7 +61,7 @@
                     display: block
                     width: 28px
                     height: 2px
-                    background-color: $maincolor
+                    background-color: $mainColor
                     border-radius: inherit
                     transition: .2s ease-in-out            
 
@@ -75,7 +75,7 @@
             margin-right: 30px
 
             &--cart
-                background-color: $maincolor
+                background-color: $mainColor
                 border-radius: 5px
                 margin-right: 0
 
@@ -102,14 +102,14 @@
                 width: 26px
                 text-align: center
                 padding: 5px
-                color: $maincolor
-                background-color: #fff
+                color: $mainColor
+                background-color: $bgColor
                 border-radius: 100%
-                font-size: $baseFZ - 2px
+                font-size: calc( $baseFZ - 2px )
                 box-shadow: 0px 0px 5px 1px rgba(34, 60, 80, 0.1)
 
             &:hover, &--active
-                background-color: #35B8BE
+                background-color: $mainColor
                 color: white
 
                 .cart-image
@@ -123,7 +123,7 @@
     cursor: pointer
     border-radius: 50%
     padding: 7px
-    background-color: #35B8BE
+    background-color: $mainColor
     transition: all 0.2s
 
     &:hover

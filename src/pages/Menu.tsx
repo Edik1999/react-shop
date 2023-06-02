@@ -118,7 +118,7 @@ export const Menu = withAuthenticationRequired(() => {
                   <Button modifier={`menu-btn ${activeSort !== 'Pizza' && 'menu-btn--disabled'}`} text="Пицца" onClick={() => sortingHandler('Pizza')}></Button>
                   <Button modifier={`menu-btn ${activeSort !== 'Burger' && 'menu-btn--disabled'}`} text="Бургеры" onClick={() => sortingHandler('Burger')}></Button>
                   <Button modifier={`menu-btn ${activeSort !== 'Roll' && 'menu-btn--disabled'}`} text="Роллы" onClick={() => sortingHandler('Roll')}></Button>
-                  <Button modifier={`menu-btn sorting-btn ${priceSortButtonClass}`} text="Price" onClick={() => orderByPrice()}></Button>
+                  <Button modifier={`menu-btn sorting-btn ${priceSortButtonClass}`} text="Price" onClick={orderByPrice}></Button>
                   <Search handler={searchHandler}></Search>
                 </div>
                 <ul className="menu__wrap" ref={element => imagesParent = element as HTMLUListElement}>

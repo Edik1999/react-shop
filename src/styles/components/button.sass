@@ -7,7 +7,7 @@
     padding: 20px 0
     border: none
     border-radius: 12px
-    background-color: $maincolor
+    background-color: $mainColor
     color: white
     font-weight: 500
     text-align: center
@@ -38,30 +38,30 @@
     width: auto
     margin-right: $gap
     padding: 19px 35px
-    border: 2px solid #35B8BE
+    border: 2px solid $mainColor
 
     &--disabled
-        border: 2px solid $smalTextColor
-        color: $smalTextColor
-        background-color: $baseBgColor
+        border: 2px solid currentColor
+        color: $textColor
+        background-color: $bgColor
 
         &:hover
-            background-color: $maincolor
-            color: white
-            border: 2px solid $maincolor
+            background-color: $mainColor
+            color: $bgColor
+            border: 2px solid $mainColor
 
 .card-btn
     width: 106px
     padding: 13.5px 0
-    color: $smalTextColor
+    color: $textColor
     font-size: $baseFZ
-    background-color: #FFFFFF
-    border: 2px solid $smalTextColor
+    background-color: $bgColor
+    border: 2px solid currentColor
 
     &:hover
-        background-color: $maincolor
-        color: white
-        border: 2px solid $maincolor
+        background-color: $mainColor
+        color: $bgColor
+        border: 2px solid $mainColor
 
 .sorting-btn
     position: relative
@@ -94,15 +94,15 @@
     margin-bottom: calc( $gap / 2 )
 
 .cart-btn
-    border: 2px solid $smalTextColor
-    color: $smalTextColor
-    background-color: $baseBgColor
+    border: 2px solid currentColor
+    color: $textColor
+    background-color: $bgColor
     padding: 18px 0
     
     &:hover
-        background-color: $maincolor
-        color: white
-        border: 2px solid $maincolor
+        background-color: $mainColor
+        color: $bgColor
+        border: 2px solid $mainColor
 
 .logout-btn
     width: 90px

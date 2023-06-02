@@ -1,23 +1,13 @@
 @import '../variables/index'
 
 .contacts
-    position: relative
-    display: flex
-    justify-content: space-around
-    margin-bottom: calc( $gap * 5 )
-
     &__left
         flex-basis: 50%
-        margin-top: 60px
 
 .feedback
     display: flex
     flex-direction: column
     align-items: center
-
-    &--form-sent
-        height: 55px!important
-        transition: all .8s
 
     &--form-error
         .form
@@ -26,11 +16,6 @@
 
     &__title
         text-align: center
-        margin-bottom: calc( $gap * 2 )
-
-        &--success
-            margin: 0
-            animation: opacity 1.4s
 
     .form
         position: relative
@@ -100,18 +85,14 @@
 
 
 @media (max-width: 1360px)
-    .contacts
-        margin-bottom: calc( $gap * 5 )
-
-        &__title
-            width: 80%
+    .contacts__title
+        width: 80%
 
 
 @media (max-width: 1023.9px)
     .contacts
         flex-direction: column-reverse
         align-items: center
-        margin-bottom: calc( $gap * 5 )
 
         &__left
             display: flex
@@ -153,7 +134,7 @@
     .contacts
         margin-bottom: $gap
         padding-bottom: $gap
-        border-bottom: 1px solid $counterBorderColor
+        border-bottom: 1px solid $gray
 
         &__right
             margin-bottom: calc( $gap * 2 )

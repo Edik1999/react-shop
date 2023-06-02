@@ -9,8 +9,8 @@ function MapComponent({setAddress}: {setAddress: Dispatch<SetStateAction<string>
 
     const state = useAppSelector(state => state);
 
-    const [mapInstance, setMapInstance] = useState<any>();
-    const [placemark, setPlacemark] = useState<any>();
+    const [mapInstance, setMapInstance] = useState<any>(null);
+    const [placemark, setPlacemark] = useState<any>(null);
     const [mapState, setMapState] = useState({
         center: [55.75, 37.57],
         zoom: 9
@@ -56,7 +56,7 @@ function MapComponent({setAddress}: {setAddress: Dispatch<SetStateAction<string>
                 state={{ center: mapState.center, zoom: mapState.zoom, controls: [] }}
                 className="map"
                 onLoad={ymaps => setMapInstance(ymaps)}
-                onClick={(e: any) => mapClick(e)}
+                onClick={(e: MouseEvent) => mapClick(e)}
             >
                 <Placemark geometry={mapState.center} instanceRef={(instance) => setPlacemark(instance)}/>
                 <FullscreenControl />

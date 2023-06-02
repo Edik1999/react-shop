@@ -1,6 +1,6 @@
 import '../styles/pages/Profile.sass';
 
-import { useAuth0, withAuthenticationRequired } from '@auth0/auth0-react';
+import { useAuth0, withAuthenticationRequired} from '@auth0/auth0-react';
 import useAnimationState from "../hooks/useAnimationState";
 import {useEffect, useRef, useState} from "react";
 import {
@@ -14,23 +14,24 @@ import {
     Firestore,
     DocumentData
 } from "firebase/firestore";
-import { useAppDispatch, useAppSelector } from "../store";
+import {useAppDispatch, useAppSelector} from "../store";
 import {getDataFromDB} from "../helpers/getDataFromDB";
-import { updateUserData } from "../store/slice/userSlice";
+import {updateUserData} from "../store/slice/userSlice";
 
 import Button from "../components/Button";
 import Input from "../components/Input";
-import { CSSTransition } from 'react-transition-group';
-import { Link } from 'react-router-dom';
-import { PatternFormat } from "react-number-format";
+import {CSSTransition} from 'react-transition-group';
+import {Link} from 'react-router-dom';
+import {PatternFormat} from "react-number-format";
 import MapComponent from "../components/MapComponent";
 import AccordionComponent from "../components/AccordionComponent";
 
 import emptycart from "../img/empty-cart.webp";
+import Loader from "../components/Loader";
 
-export const Profile = withAuthenticationRequired(({ db }: { db: Firestore }) => {
+export const Profile = withAuthenticationRequired(({db}: { db: Firestore }) => {
 
-    const { logout } = useAuth0();
+    const {logout} = useAuth0();
     const animationState = useAnimationState();
     const nodeRef = useRef(null);
     const state = useAppSelector(state => state);
@@ -39,11 +40,17 @@ export const Profile = withAuthenticationRequired(({ db }: { db: Firestore }) =>
     const [orders, setOrders] = useState<DocumentData[]>([]);
     const [userAddress, setUserAddress] = useState('');
     const [isSent, setIsSent] = useState(false);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        getDataFromDB(db, state.user.email, true).then((res: DocumentData[]) => setOrders(res))
+        getDataFromDB(db, state.user.email, true)
+            .then((res: DocumentData[]) => {
+                setOrders(res)
+                setLoading(false)
+            })
 
         const address = state.user.address
+
         if (address) {
             setUserAddress(address)
         }
@@ -72,7 +79,7 @@ export const Profile = withAuthenticationRequired(({ db }: { db: Firestore }) =>
         console.log('form sended');
     }
 
-    const formSubmitHandler = (e: { preventDefault: () => void; target: { closest: (arg0: string) => any; }; }) => {
+    const formSubmitHandler = (e: { preventDefault: () => void; target: { closest: (arg0: string) => HTMLFormElement }; }) => {
         e.preventDefault();
 
         const form = e.target.closest('form');
@@ -86,22 +93,23 @@ export const Profile = withAuthenticationRequired(({ db }: { db: Firestore }) =>
     const clearHistory = async () => {
         const q = query(collection(db, "orders"), where("user", "==", state.user.email));
         const querySnapshot = await getDocs(q);
-        querySnapshot.forEach((order) => {
+        querySnapshot.forEach(order => {
             deleteDoc(doc(db, "orders", order.id));
-            getDataFromDB(db, state.user.email, true).then((res: DocumentData[]) => setOrders(res));
         });
+        setOrders([])
     }
 
     return (
-        <CSSTransition
-            classNames="animation"
-            in={animationState}
-            timeout={700}
-            mountOnEnter
-            unmountOnExit
-            nodeRef={nodeRef}
-        >
-            <>
+        <>
+            {loading && <Loader></Loader>}
+            <CSSTransition
+                classNames="animation"
+                in={animationState}
+                timeout={700}
+                mountOnEnter
+                unmountOnExit
+                nodeRef={nodeRef}
+            >
                 <section className='profile' ref={nodeRef}>
                     <div className='profile__history history'>
                         <h2 className='history__title section__title text-color'>История заказов</h2>
@@ -126,13 +134,13 @@ export const Profile = withAuthenticationRequired(({ db }: { db: Firestore }) =>
                             <PatternFormat value={state.user.phone} format="+7 (###) ### ## ##" mask="_" className="form__input input" name="userPhone" placeholder="Телефон" />
                             <textarea value={userAddress} name="userAddress" className="form__textarea input input--textarea" placeholder="Адрес" rows={3} onChange={e => setUserAddress(e.target.value)} />
                             <MapComponent setAddress={setUserAddress}></MapComponent>
-                            <Button modifier="edit-btn" disabled={isSent ? true : false} text="Save" onClick={(e) => formSubmitHandler(e)}></Button>
+                            <Button modifier="edit-btn" disabled={isSent ? true : false} text="Save" onClick={e => formSubmitHandler(e)}></Button>
                             {isSent && <p className="form__text section__text">✅ Your data was saved !</p>}
-                            <Button modifier="cart-btn profile-btn" text="Log Out" onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}></Button>
+                            <Button modifier="cart-btn profile-btn" text="Log Out" onClick={logout}></Button>
                         </form>
                     </div>
                 </section>
-            </>
-        </CSSTransition>
+            </CSSTransition>
+        </>
     )
 })

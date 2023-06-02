@@ -2,19 +2,19 @@
 
 .input
     padding: calc( $gap / 2 )
-    border: 2px solid $counterBorderColor
+    border: 2px solid $gray
     border-radius: 12px
-    background-color: $counterBgColor
+    background-color: $lightGray
     font-size: $baseFZ
-    color: $smalTextColor
+    color: $textColor
     overflow: hidden
     transition: all .3s
 
     &::placeholder
-        color:  darken($counterBorderColor, 15)
+        color:  darken($gray, 15)
 
     &:hover, &:focus
-        border-color: $maincolor
+        border-color: $mainColor
 
     &.error
         border-color: $error

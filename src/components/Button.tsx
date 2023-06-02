@@ -3,7 +3,7 @@ import '../styles/components/button.sass';
 interface IProps {
   text: string,
   modifier?: string,
-  onClick?: (arg0: any) => void,
+  onClick?: (arg0?: any ) => void,
   disabled?: boolean
 }
 

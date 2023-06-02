@@ -1,3 +1,5 @@
+@import 'variables/index.sass'
+
 .themeDark
   .header
     background: hsl(0deg 0% 0% / 5%)
@@ -16,7 +18,7 @@
   .modal__card.card .card__text,
   .modal__title,
   .accordion .panelItem__text
-    color: $baseBgColor
+    color: $bgColor
 
   .section__text,
   .client-card__role,
@@ -29,7 +31,7 @@
   .total__count,
   .total__price,
   .rate__text
-    color: $darkSmalTextColor
+    color: $lightTextColor
 
   .client-card
     border: 1px solid rgb(255 255 255 / 30%)
@@ -41,7 +43,7 @@
     border-radius: calc( ($gap / 3) - 3px )
 
   .footer .social__item .ico__inner
-    fill: $baseBgColor
+    fill: $bgColor
 
   .modal__card.card, .card, .cart__product, .client-card
     background-color: lighten($darkBgColor, 12%)
@@ -55,18 +57,18 @@
     background-color: lighten($darkBgColor, 20%)
 
   .card__image, .product__img
-    background-color: $baseBgColor
+    background-color: $bgColor
     filter: brightness(0.85)
     border-radius: 6px
 
   .menu-btn--disabled, .card-btn, .cart-btn
     border: 2px solid lighten($darkBgColor, 30%)
-    color: $darkSmalTextColor
+    color: $lightTextColor
 
     &:hover
-      color: $baseBgColor
-      background-color: $maincolor
-      border: 2px solid $maincolor
+      color: $bgColor
+      background-color: $mainColor
+      border: 2px solid $mainColor
 
   .counter
     border: 2px solid lighten($darkBgColor, 30%)
@@ -74,7 +76,7 @@
     &__minus,
     &__number,
     &__plus
-      color: $darkSmalTextColor
+      color: $lightTextColor
 
     &__number
       border-right: 1px solid lighten($darkBgColor, 30%)
@@ -84,19 +86,15 @@
     border: 2px solid lighten($darkBgColor, 30%)
 
     &:focus, &:hover
-      border-color: $maincolor
+      border-color: $mainColor
 
   .loader
     background-color: $darkBgColor
 
-  .modal
-    background-color: lighten($darkBgColor, 8%)
-    box-shadow: 0px 0px 80px 70px rgb(255 255 255 / 10%)
-
   .cart__total
     box-shadow: unset
     border-radius: calc( $gap / 2 )
-    border: 2px solid $maincolor
+    border: 2px solid $mainColor
 
   .cart__product
     padding: calc( $gap / 3 )
@@ -108,10 +106,10 @@
     border: 2px solid lighten($darkBgColor, 30%)
 
     &:hover, &:focus, &:active
-      border: 2px solid $maincolor
+      border: 2px solid $mainColor
 
   .text-color
-    color: $maincolor
+    color: $mainColor
 
   .sorting-btn::before
     background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAZ0lEQVR4nO3QIQ6AMBBE0V6ChvvfAzQEh+E4HwOVZNtOg5mfjFrxkk3JOedca8CKviUC7wPgLQJPwClEL2COvluFx1EhXo8K8Ha0A+9HG3AdWoHr0QA+Dv3Ax6NvQAaOZ7kcnHPph24z1p7nrmJPCQAAAABJRU5ErkJggg==') bottom
