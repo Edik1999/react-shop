@@ -52,8 +52,8 @@ function Home() {
         unmountOnExit
         nodeRef={nodeRef}
       >
-        <section className="home flex-x-space-y-center" ref={nodeRef}>
-          <div className="home__left">
+        <section className="home flex-x-between-y-center" ref={nodeRef}>
+          <div className="home__left flex--column">
             <h1 className="home__title section__title">
               Beautiful food & takeaway, <span className="text-color">delivered</span> to your door.
             </h1>
@@ -83,7 +83,7 @@ function Home() {
       >
         <section className="clients" ref={secondNodeRef}>
           <h2 className="clients__title section__title text-color">Clients</h2>
-          <ul className="clients__wrap" ref={elem => parent3 = elem as HTMLUListElement}>
+          <ul className="clients__wrap flex-x-between" ref={elem => parent3 = elem as HTMLUListElement}>
             <ClientsCard tag="li" handleImageChange={() => handleImageChange(parent3)} parentClass='clients__card'/>
             <ClientsCard tag="li" handleImageChange={() => handleImageChange(parent3)} parentClass='clients__card'/>
             <ClientsCard tag="li" handleImageChange={() => handleImageChange(parent3)} parentClass='clients__card'/>

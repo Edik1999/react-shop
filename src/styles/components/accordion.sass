@@ -27,9 +27,8 @@
   &__button
     background-color: #f4f4f4
     cursor: pointer
-    padding: 18px
     width: 100%
-    padding-left: 45px
+    padding: 18px 18px 18px calc( $gap * 1.5 )
     position: relative
     text-align: left
     border-radius: 9px
@@ -57,7 +56,7 @@
   &__panelItem
     opacity: 1
     transform: translateY(0)
-    padding: 10px 0
+    padding: calc( $gap / 3 ) 0
     border-bottom: 1px solid $mainColor
     transition: all .35s
 
@@ -84,20 +83,13 @@
         transform: translateY(-100%)
         opacity: 0
 
-  &__wrap
-    display: flex
-    align-items: center
-    justify-content: space-between
-
   &__price
     width: auto
 
   .date
-    display: flex
-
     &__text
       width: unset
-      margin-right: 10px
+      margin-right: calc( $gap / 3 )
 
     &__descr
       width: unset
@@ -119,7 +111,7 @@
 @media (max-width: 768px)
   .accordion
     &__button
-      padding-left: calc( $gap + 10px )
+      padding-left: calc( $gap * 1.5 )
 
 
 @media (max-width: 520px)

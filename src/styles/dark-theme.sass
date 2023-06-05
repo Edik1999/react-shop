@@ -16,7 +16,12 @@
   .input,
   .modal__card.card .card__title,
   .modal__card.card .card__text,
+  .modal__card.card .modal__item .item__title,
+  .modal__card.card .modal__item .item__number,
+  .modal__card.card .modal__item .item__cost,
+  .modal__card.card .modal__total,
   .modal__title,
+  .number,
   .accordion .panelItem__text
     color: $bgColor
 
@@ -34,13 +39,12 @@
     color: $lightTextColor
 
   .client-card
-    border: 1px solid rgb(255 255 255 / 30%)
-    box-shadow: 0px 0px 12px 5px rgb(255 255 255 / 11%)
+    border: 1px solid rgba(255, 255, 255, 0.3)
 
   .rate__img
-    background-color: rgba(53,184,190, 0.6)
+    background-color: rgba(53, 184, 190, 0.6)
     padding: 3px 8px 8px 4px
-    border-radius: calc( ($gap / 3) - 3px )
+    border-radius: 7px
 
   .footer .social__item .ico__inner
     fill: $bgColor
@@ -51,12 +55,12 @@
 
   .card:hover
     .card__name
-      text-shadow: 5px 5px 3px rgb(255 255 255 / 30%)
+      text-shadow: 5px 5px 3px rgba(255, 255, 255, 0.3)
 
   .menu-btn--disabled, .search, .card-btn, .cart-btn, .input, .accordion__button, .accordion__button:hover, .accordion__item.open .accordion__button
     background-color: lighten($darkBgColor, 20%)
 
-  .card__image, .product__img
+  .card__image, .product__img, .item__image
     background-color: $bgColor
     filter: brightness(0.85)
     border-radius: 6px
@@ -121,3 +125,6 @@
 
   .form__error
     color: $error
+
+  .section__title--success
+    color: $success

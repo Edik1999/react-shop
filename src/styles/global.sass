@@ -81,10 +81,13 @@ section
         position: relative
         height: 100%
 
+        @media (max-width: 575px)
+            padding: 0
+
 .text-color
     color: $mainColor
 
-.numeric
+.number
     position: relative
     top: 1px
 
@@ -146,15 +149,51 @@ section
         @media (max-width: 370px)
             font-size: $baseFZ
 
-.flex-x-space-y-center
+.flex
     display: flex
-    justify-content: space-between
-    align-items: center
 
-.flex-x-around-y-center
-    display: flex
-    justify-content: space-around
-    align-items: center
+    &-x-center
+        @extend .flex
+        justify-content: center
+
+        &-y-center
+            @extend .flex-x-center
+            align-items: center
+
+        &-y-end
+            @extend .flex-x-center
+            align-items: flex-end
+
+    &-x-between
+        @extend .flex
+        justify-content: space-between
+
+        &-y-center
+            @extend .flex-x-between
+            align-items: center
+
+    &-x-around
+        @extend .flex
+        justify-content: space-around
+
+        &-y-center
+            @extend .flex-x-around
+            align-items: center
+
+    &-y-center
+        @extend .flex
+        align-items: center
+
+    &-y-end
+        align-items: flex-end
+
+    &--column
+        @extend .flex
+        flex-direction: column
+
+    &--wrap
+        @extend .flex
+        flex-wrap: wrap
 
 
 ///  animation  ///

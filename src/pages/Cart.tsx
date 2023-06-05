@@ -89,20 +89,20 @@ export const Cart = withAuthenticationRequired(({db}: {db: Firestore}) => {
     <>
       <section className="cart">
         <h2 className="cart__title section__title text-color">Cart</h2>
-        <div className="cart__main">
+        <div className="cart__main flex-x-around">
           {!isOrdered
             ?
               <>
-                <ul className="cart__list">
+                <ul className="cart__list flex--column flex-x-between">
                   {pageContent.length > 0
                     ?
                     pageContent.map(el =>
-                      <li className="cart__item" key={el.id}>
-                        <div className="cart__product product">
+                      <li className="cart__item flex" key={el.id}>
+                        <div className="cart__product product flex-x-between">
                           <img className="product__img" src={el.image} alt={el.title} />
-                          <div className="product__wrap">
+                          <div className="product__wrap flex--column flex-x-around-y-center">
                             <p className="product__name">{el.title}</p>
-                            <div className={`product__price-wraper ${el.id}`}>
+                            <div className={`flex-x-between-y-center product__price-wraper ${el.id}`}>
                               <Counter
                                   count={state.cart.find((elem: { id: number }) => elem.id === el.id) ? state.cart.find((elem: { id: number }) => elem.id === el.id).count : 0}
                                   elementId={el.id}
@@ -119,16 +119,16 @@ export const Cart = withAuthenticationRequired(({db}: {db: Firestore}) => {
                       <li className="cart__text section__text">
                         Корзина пуста, вы можете сделать заказ в нашем меню
                       </li>
-                      <li className="cart__btn-wrapper">
+                      <li className="cart__btn-wrapper flex-x-around">
                         <Link to="/Home" className="btn cart-btn">На главную</Link>
                         <Link to="/menu" className="btn cart-btn">Order now!</Link>
                       </li>
                     </>
                   }
                 </ul>
-                <div className="cart__total total">
+                <div className="cart__total total flex-y-center flex--column">
                   <h3 className="total__title text-color">Order conditions</h3>
-                  <div className="total__wrapper">
+                  <div className="total__wrapper flex-x-around">
                     <p className="total__count">{state.cart.reduce((acc: number, num: { count: number }) => acc + Number(num.count), 0)} products</p>
                     <p className="total__price">Total <span className="text-color">{sum()} ₽</span></p>
                   </div>

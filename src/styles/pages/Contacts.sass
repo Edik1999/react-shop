@@ -5,10 +5,6 @@
         flex-basis: 50%
 
 .feedback
-    display: flex
-    flex-direction: column
-    align-items: center
-
     &--form-error
         .form
             .form__top
@@ -22,16 +18,10 @@
         width: 100%
         
         &__top
-            display: flex
-            align-items: center
-            justify-content: center
             margin-bottom: $gap
             transition: all .5s
 
         &__left
-            display: flex
-            flex-direction: column
-            align-items: flex-end
             width: 50%
             margin-right: calc( $gap / 2 )
 
@@ -46,13 +36,7 @@
             height: 189px
 
         &__right
-            display: flex
-            justify-content: flex-start
             width: 50%
-
-        &__bottom
-            display: flex
-            justify-content: center
 
         &__check
             width: 100%
@@ -62,11 +46,6 @@
 
             &.error
                 color: $error
-
-        &__wrapper
-            display: flex
-            flex-direction: column
-            align-items: center
 
         &__checkbox
             position: relative
@@ -92,18 +71,12 @@
 @media (max-width: 1023.9px)
     .contacts
         flex-direction: column-reverse
-        align-items: center
-
-        &__left
-            display: flex
-            align-items: center
-            flex-direction: column
-            margin-top: 0
 
         &__right
             margin-bottom: calc( $gap * 3 )
 
         &__link
+            display: block
             margin: 0 auto
 
         &__title, &__text
@@ -127,8 +100,6 @@
                 &__input, &__textarea
                     width: 100%
 
-        &--form-sent
-            height: 110px!important
 
 @media (max-width: 768px)
     .contacts
@@ -142,9 +113,6 @@
         &__title
             margin-bottom: $gap
 
-    .feedback--form-sent
-        height: 90px!important
-        margin-bottom: $gap
 
 @media (max-width: 575px)
     .contacts
@@ -158,24 +126,16 @@
             width: 80%
 
     .feedback
-        &--form-sent
-            height: 80px!important
-
         .form
             &__top
                 flex-direction: column
 
             &__left
                 width: 100%
-                margin: 0 0 10px
+                margin: 0 0 calc( $gap / 3 )
 
             &__right
                 width: 100%
 
             &__textarea
                 height: 104px
-
-
-@media (max-width: 370px)
-    .feedback--form-sent
-        height: 70px!important

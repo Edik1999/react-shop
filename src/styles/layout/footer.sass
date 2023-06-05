@@ -1,21 +1,15 @@
 @import "../variables/index"
 
 .footer
-    padding: calc( ($gap * 3) + 10px ) 0 calc( $gap * 3 )
+    padding: calc( $gap * 3 ) 0
     background-color: #F5FBFC
 
     &__container
-        display: flex
-        justify-content: space-between
-        align-items: center
         margin-bottom: calc( $gap * 2 )
         padding-bottom: calc( $gap * 2 )
         border-bottom: 1px solid $gray
 
     &__aside
-        display: flex
-        align-items: center
-        justify-content: space-between
         width: 37%
 
     &__descr
@@ -24,11 +18,6 @@
 
     .nav
         width: 30%
-
-        &__list
-            display: flex
-            justify-content: space-between
-            width: 100%
 
         &__item
             color: $textColor
@@ -40,13 +29,9 @@
 
             &:hover, &:active
                 background-color: $mainColor
-                color: white
+                color: $bgColor
 
     .social
-        display: flex
-        align-items: center
-        justify-content: space-between
-        
         &__text
             font-size: $baseFZ
             color: $textColor
@@ -56,10 +41,6 @@
 
             &:hover
                 filter: brightness(112%)
-
-        &__list
-            display: flex
-            justify-content: space-between
 
         &__item
             margin-right: $gap
@@ -117,14 +98,13 @@
     .footer
         &__container
             flex-direction: column
-            align-items: center
 
         &__aside
             width: 100%
             margin-bottom: calc( $gap * 2 )
 
         &__descr
-            margin: 0 auto 0 auto
+            margin: 0 auto
 
         .nav
             width: 75%
@@ -132,7 +112,7 @@
 
 @media (max-width: 768px)
     .footer
-        padding: 60px 0 45px
+        padding: calc( $gap * 2 ) 0 calc( $gap * 1.5 )
 
         &__container
             margin-bottom: $gap
@@ -156,13 +136,13 @@
                 font-size: 14px
 
             &__item
-                margin-right: 18px
+                margin-right: calc( $gap / 2 )
 
 
 @media (max-width: 370px)
     .footer
         &__logo
-            margin-right: 10px
+            margin-right: calc( $gap / 3 )
 
         .nav
             padding-top: $gap
@@ -174,6 +154,3 @@
         .social
             &__text
                 font-size: 13px
-
-            &__item
-                margin-right: 12px

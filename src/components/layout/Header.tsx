@@ -52,12 +52,12 @@ function Header() {
     <header className={`header ${isOpen && 'header--active'}`}>
       <div className="header__top top">
         <div className="container container--height-full">
-          <div className="top__wrap">
+          <div className="top__wrap flex-x-center-y-center">
             <p className="top__text">
               We're open and available for takeaway & delivery.
             </p>
             {isAuthenticated &&
-                <div className="top__right">
+                <div className="top__right flex">
                     <Button text="Log Out" modifier="logout-btn" onClick={logout}></Button>
                     <Link to="/profile" className="top__link"><img className='top__photo' src={user?.picture} alt={user?.name}/></Link>
                 </div>
@@ -70,17 +70,17 @@ function Header() {
         </div>
       </div>
       <div className="container">
-        <div className="header__bottom bottom">
+        <div className="header__bottom bottom flex-x-between">
           <div className="header__logo">
             <Link to="/" className="logo"><img className='logo__img' src={logo} alt="Logo" /></Link>
           </div>
           <nav className={`header__nav nav ${!isAuthenticated && 'guest'}`}>
-            <div className="nav__burger burger" onClick={clickHandler}>
+            <div className="nav__burger burger flex-x-between-y-center flex--column" onClick={clickHandler}>
               <span className="burger__line line-1"></span>
               <span className="burger__line line-2"></span>
               <span className="burger__line line-3"></span>
             </div>
-            <ul className="nav__list">
+            <ul className="nav__list flex-x-between-y-center">
               {!isAuthenticated
                 ? <li className="nav__item nav__item--short-list"><Button text="Log In" modifier="login-btn" onClick={loginWithRedirect}></Button></li>
                 : <>
@@ -115,7 +115,7 @@ function Header() {
                       </NavLink>
                     </li>
                     <li className="nav__item nav__item--cart">
-                      <Link to="/cart" className="nav__link nav__link--cart" onClick={closeMenu}>
+                      <Link to="/cart" className="nav__link nav__link--cart flex-x-center-y-center" onClick={closeMenu}>
                         <img className='cart-image' src={cart} alt="Cart" />
                         {state.cart.length > 0 && <div className="cart__badge">{state.cart.reduce((acc: number, num: { count: number }) => acc + Number(num.count), 0)}</div>}
                       </Link>

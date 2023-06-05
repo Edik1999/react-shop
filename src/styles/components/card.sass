@@ -1,9 +1,8 @@
 @import "../variables/index"
 
 .card
-    display: flex
     width: 32.33%
-    padding: 15px
+    padding: calc( $gap / 2 )
     margin-bottom: 1.5%
     background-color: $bgColor
     border-radius: 6px
@@ -15,7 +14,7 @@
         transform: scale(1.03)
 
         .card__name
-            text-shadow: 5px 5px 3px rgb(0 0 0 / 40%)
+            text-shadow: 5px 5px 3px rgba(0, 0, 0, 0.4)
 
         .card__image
             transform: scale(1.05)
@@ -28,16 +27,13 @@
 
     &__image
         height: 180px
-        margin-right: 15px
+        margin-right: calc( $gap / 2 )
         border-radius: 6px
         transition: all .5s
 
     &__content
-        display: flex
-        flex-direction: column
         width: 100%
-        padding-top: 20px
-        justify-content: space-between
+        padding-top: calc( $gap / 2 )
 
     &__name
         text-align: center
@@ -47,15 +43,12 @@
         transition: all 0.3s
 
     &__price
-        padding-left: 10px
+        padding-left: calc( $gap / 3 )
         font-size: calc( $baseFZ + 6px )
         line-height: calc( $baseFZ + 6px )
         font-weight: 500
 
     &__footer
-        display: flex
-        justify-content: space-between
-        align-items: center
         height: 51px
 
 
@@ -80,7 +73,7 @@
     .card
         flex-direction: column
         align-items: center
-        padding: 15px 0
+        padding: calc( $gap / 2 ) 0
 
         &__content
             padding: 0
@@ -89,7 +82,7 @@
             margin-right: 0
 
         &__footer
-            justify-content: space-evenly
+            justify-content: space-around
 
         &__price
             font-size: 20px
@@ -99,7 +92,7 @@
             margin-bottom: 0!important
 
         .card__name
-            margin: 0 0 20px
+            margin-bottom: 20px
 
         &:nth-child(n)
             width: 49.2%
@@ -110,11 +103,11 @@
         flex-direction: row
 
         &__image
-            margin-left: 15px
+            margin-left: calc( $gap / 2 )
 
         &__content
             height: 100%
-            padding-top: 20px
+            padding-top: calc( $gap / 2 )
 
         &:nth-child(even), &:nth-child(odd)
             margin: 0
@@ -135,7 +128,7 @@
         &__image
             height: 180px
             margin-left: 0
-            margin-bottom: 10px
+            margin-bottom: calc( $gap / 3 )
 
         &__footer
             justify-content: space-around
@@ -144,11 +137,8 @@
             font-size: 20px
             padding: 0
 
-        &:last-of-type
-            margin-bottom: 0!important
-
         .card__name
-            margin: 0 0 10px
+            margin-bottom: calc( $gap / 2 )
 
         &:nth-child(n)
             width: 90%

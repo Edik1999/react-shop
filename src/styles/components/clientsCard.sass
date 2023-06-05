@@ -2,7 +2,7 @@
 
 .client-card
   width: 31%
-  padding: calc( ($gap * 2) - 10px ) $gap $gap
+  padding: $gap
   border-radius: 6px
   box-shadow: 0px 0px 5px 1px rgba(34, 60, 80, 0.2)
 
@@ -12,18 +12,10 @@
     padding-bottom: $gap
     border-bottom: 1px solid $gray
 
-  &__info
-    display: flex
-
   &__avatar
     margin-right: $gap
     border: 2px solid $mainColor
     border-radius: 100%
-
-  &__descr
-    display: flex
-    flex-direction: column
-    justify-content: space-around
 
   &__name
     font-size: calc( $textFZ + 2px)
@@ -57,7 +49,7 @@
   .client-card
     display: flex
     flex-direction: column-reverse
-    padding: $gap calc( $gap / 2 ) calc( $gap / 2 )
+    padding: calc( $gap / 2 )
 
     &__avatar
       margin-right: calc( $gap / 2 )

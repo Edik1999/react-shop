@@ -7,26 +7,22 @@
     left: 0
     z-index: 1000
     backdrop-filter: saturate(180%) blur(5px)
-    background: hsla(0,0%,100%,.8)
+    background: hsla(0, 0%, 100%, .8)
     padding-bottom: 20px
     transition: height .25s
 
     .top
         height: 70px
-        padding: 14px 0
+        padding: calc( $gap / 2 )
         background-color: $mainColor
 
         &__wrap
             position: relative
-            display: flex
-            align-items: center
-            justify-content: center
             height: 100%
 
         &__right
             position: absolute
             right: 0
-            display: flex
 
         &__link
             height: 42px
@@ -39,17 +35,12 @@
             margin: 0
 
     .bottom
-        display: flex
         padding: 20px 0 0
-        justify-content: space-between
 
     .nav
         &__burger
             display: none
-            flex-direction: column
-            align-items: center
-            justify-content: space-between
-            padding: 15px 0
+            padding: calc( $gap / 2 ) 0
             margin-left: auto
             width: 55px
             height: 55px
@@ -65,14 +56,8 @@
                     border-radius: inherit
                     transition: .2s ease-in-out            
 
-        &__list
-            display: flex
-            flex-direction: row
-            align-items: center
-            justify-content: space-between
-
         &__item
-            margin-right: 30px
+            margin-right: $gap
 
             &--cart
                 background-color: $mainColor
@@ -88,9 +73,6 @@
             transition: all .2s
 
             &--cart
-                display: flex
-                align-items: center
-                justify-content: center
                 position: relative
                 width: 55px
                 height: 55px
@@ -110,7 +92,7 @@
 
             &:hover, &--active
                 background-color: $mainColor
-                color: white
+                color: $bgColor
 
                 .cart-image
                     animation: 2s ease-in-out infinite forwards cartImage
@@ -140,7 +122,6 @@
             &__list
                 visibility: hidden
                 opacity: 0
-                display: flex
                 flex-direction: column
                 align-items: flex-end
                 height: 0px
@@ -151,7 +132,7 @@
 
             &__item
                 margin-right: 0
-                margin-bottom: 15px
+                margin-bottom: calc( $gap / 2 )
 
                 &--cart
                     margin-bottom: 0
@@ -164,7 +145,7 @@
                 &__list
                     visibility: visible
                     opacity: 1
-                    padding-top: 15px
+                    padding-top: calc( $gap / 2 )
                     height: auto
 
                 &__burger
@@ -202,7 +183,7 @@
             &__burger
                 width: 40px
                 height: 40px
-                padding: 10px 0
+                padding: calc( $gap / 3 ) 0
 
                 .burger    
                     &__line
@@ -242,7 +223,7 @@
                             transform: rotate(-45deg) translate(6px, -4px)
 
     .theme-switcher
-        left: 10px
+        left: -3px
 
 @media (max-height: 500px) and (max-width: 575px)
     .header

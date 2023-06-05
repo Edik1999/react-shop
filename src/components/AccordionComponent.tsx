@@ -43,10 +43,10 @@ function AccordionComponent({items}: { items: DocumentData[] }) {
                 el.date && <AccordionItem key={Math.random()}>
                     <AccordionItemHeading>
                         <AccordionItemButton>
-                            <div className='accordion__wrap'>
+                            <div className='accordion__wrap flex-x-between-y-center'>
                                 <p className='section__text accordion__price'>Сумма заказа: <span
                                     className='text-color'>{el.sum} ₽</span></p>
-                                <div className='accordion__date date'>
+                                <div className='accordion__date date flex'>
                                     <span className='section__text date__text'>Дата заказа: </span>
                                     <Moment className='section__text date__descr'
                                             format="YYYY-MM-DD HH:mm">{new Date(el.date.seconds * 1000)}</Moment>

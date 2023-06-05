@@ -9,27 +9,17 @@
         width: 100%
         margin-bottom: $gap
 
-    &__main
-        display: flex
-        justify-content: space-around
-
     &__list
-        display: flex
-        flex-direction: column
-        justify-content: space-between
         width: 42%
 
     &__item
-        display: flex
         margin-bottom: calc( $gap / 2 )
         border-radius: 6px
-        box-shadow: 0px 0px 10px 7px rgb(50 72 90 / 10%)
+        box-shadow: 0px 0px 10px 7px rgba(50, 72, 90, 0.1)
         transition: all 0.3s
 
     &__product
         position: relative
-        display: flex
-        justify-content: space-between
         width: 100%
         padding: calc( $gap / 6 ) calc( $gap / 3 ) 0 calc( $gap / 6 )
 
@@ -39,10 +29,6 @@
                 margin-right: calc( $gap / 2)
 
             &__wrap
-                display: flex
-                flex-direction: column
-                align-items: center
-                justify-content: space-around
                 width: 100%
 
             &__name, &__price
@@ -50,34 +36,21 @@
                 font-weight: 500
 
             &__price-wraper
-                    display: flex
-                    justify-content: space-between
-                    align-items: center
-                    width: 80%
+                width: 80%
 
             &__delete
                 top: -7px
                 right: -7px
 
-    &__btn-wrapper
-        display: flex
-        justify-content: space-around
-        width: 100%
-
     &__total
-        display: flex
-        flex-direction: column
-        align-items: center
         width: 25%
         height: 40%
         padding: calc( $gap / 2 )
         border-radius: 6px
-        box-shadow: 0px 0px 10px 7px rgb(50 72 90 / 10%)
+        box-shadow: 0px 0px 10px 7px rgba(50, 72, 90, 0.1)
 
         .total
             &__wrapper
-                display: flex
-                justify-content: space-around
                 width: 100%
                 margin-bottom: $gap
 
@@ -131,6 +104,12 @@
                     text-align: center
 
 
+@media (max-width: 991px)
+    .cart__product .product__delete
+        top: -4px
+        right: -4px
+
+
 @media (max-width: 768px)
     .cart
         &__title
@@ -145,7 +124,7 @@
         margin-bottom: calc($gap * 2)
 
         &__title
-            margin-bottom: calc( $gap + 10px )
+            margin-bottom: $gap
 
         &__list
             width: 85%

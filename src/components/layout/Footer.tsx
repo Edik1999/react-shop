@@ -8,13 +8,13 @@ function Footer() {
   return (
     <footer className="footer">
       <div className="container">
-        <div className="footer__container">
-          <div className="footer__aside">
+        <div className="footer__container flex-x-between-y-center">
+          <div className="footer__aside flex-x-between-y-center">
             <Link to="/" className="footer__logo logo"><img className="logo__img" src={logo} alt="Logo" /></Link>
             <p className="footer__descr">Takeaway & Delivery template for small - medium businesses.</p>
           </div>
           <div className="footer__nav nav">
-            <ul className="nav__list">
+            <ul className="nav__list flex-x-between">
               <li className="nav__item">
                 <Link to="/home" className="nav__link">Home</Link>
               </li>
@@ -33,9 +33,9 @@ function Footer() {
             </ul>
           </div>
         </div>
-        <div className="footer__social social">
+        <div className="footer__social social flex-x-between-y-center">
           <p className="social__text">Built by: <a href="https://github.com/Edik1999" target='_blank' rel="noreferrer"><span className="social__dev text-color">Edik1999</span></a> and <a href="https://github.com/BalVan18" target="_blank" rel="noreferrer"><span className="social__dev text-color">BalVan18</span></a></p>
-          <ul className="social__list">
+          <ul className="social__list flex-x-between">
             <li className="social__item">
               <a href="https://www.instagram.com/" target="_blank" rel="noreferrer">
                 <svg className="ico" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">

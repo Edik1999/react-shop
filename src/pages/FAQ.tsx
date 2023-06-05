@@ -29,6 +29,28 @@ export const FAQ = withAuthenticationRequired(() => {
   let parent: HTMLDivElement,
       parent2: HTMLUListElement;
 
+  const items = [
+    {
+      src: hiwdecorate1,
+      alt: "How it work. First step.",
+      subtitle: "Adapt your menu items",
+      text: "Easily adapt your menu using the webflow CMS and allow customers to browse your items.",
+    },
+    {
+      src: hiwdecorate2,
+      alt: "How it work. Second step.",
+      subtitle: "Accept online orders & takeout",
+      text: "Let your customers order and pay via the powerful ecommerce system, or simple let them call your store.",
+    },
+    {
+      src: hiwdecorate3,
+      alt: "How it work. Third step.",
+      subtitle: "Manage delivery or takeout",
+      text: "Manage your own logistics and take orders simply through the ecommerce system.",
+      last: true,
+    },
+  ]
+
   return (
       <>
         {imagesLoading && <Loader></Loader>}
@@ -40,7 +62,7 @@ export const FAQ = withAuthenticationRequired(() => {
             unmountOnExit
             nodeRef={nodeRef}
         >
-          <section className="faq flex-x-space-y-center" ref={nodeRef}>
+          <section className="faq flex-x-between-y-center" ref={nodeRef}>
             <div className="faq__left" ref={elem => parent = elem as HTMLDivElement}>
               <img className="faq__img" src={faqdecorate} alt="online order" onLoad={() => handleImageChange(parent)} onError={() => handleImageChange(parent)}/>
             </div>
@@ -61,28 +83,21 @@ export const FAQ = withAuthenticationRequired(() => {
         >
           <section className="howitworks" ref={secondNodeRef}>
             <h2 className="howitworks__title section__title text-color">How it works.</h2>
-            <ul className="howitworks__list"  ref={elem => parent2 = elem as HTMLUListElement}>
-              <li className="howitworks__item">
-                <img className="howitworks__img" src={hiwdecorate1} alt="How it work. First step." onLoad={() => handleImageChange(parent2)} onError={() => handleImageChange(parent2)}/>
-                <h3 className="howitworks__subtitle">Adapt your menu items</h3>
-                <p className="howitworks__text section__text">Easily adapt your menu using the webflow CMS and allow customers to browse your items.</p>
-              </li>
-              <li className="howitworks__item">
-                <div className="howitworks__line"></div>
-              </li>
-              <li className="howitworks__item">
-                <img className="howitworks__img" src={hiwdecorate2} alt="How it work. Second step." onLoad={() => handleImageChange(parent2)} onError={() => handleImageChange(parent2)}/>
-                <h3 className="howitworks__subtitle">Accept online orders & takeout</h3>
-                <p className="howitworks__text section__text">Let your customers order and pay via the powerful ecommerce system, or simple let them call your store.</p>
-              </li>
-              <li className="howitworks__item">
-                <div className="howitworks__line"></div>
-              </li>
-              <li className="howitworks__item">
-                <img className="howitworks__img" src={hiwdecorate3} alt="How it work. Third step." onLoad={() => handleImageChange(parent2)} onError={() => handleImageChange(parent2)}/>
-                <h3 className="howitworks__subtitle">Manage delivery or takeout</h3>
-                <p className="howitworks__text section__text">Manage your own logistics and take orders simply through the ecommerce system.</p>
-              </li>
+            <ul className="howitworks__list flex"  ref={elem => parent2 = elem as HTMLUListElement}>
+              {items.map(item => (
+                  <>
+                    <li className="howitworks__item flex-y-center flex--column">
+                      <img className="howitworks__img" src={item.src} alt={item.alt} onLoad={() => handleImageChange(parent2)} onError={() => handleImageChange(parent2)}/>
+                      <h3 className="howitworks__subtitle">{item.subtitle}</h3>
+                      <p className="howitworks__text section__text">{item.text}</p>
+                    </li>
+                    {!item.last &&
+                        <li className="howitworks__item flex-y-center flex--column">
+                          <div className="howitworks__line"></div>
+                        </li>
+                    }
+                  </>
+                ))}
             </ul>
             <Link to="/menu" className="btn home-btn">Take Order</Link>
           </section>

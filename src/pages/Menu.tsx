@@ -1,4 +1,4 @@
-import '../styles/pages/Fullmenu.sass';
+import '../styles/pages/Menu.sass';
 
 import {useCallback, useRef, useState} from "react";
 import {withAuthenticationRequired} from '@auth0/auth0-react';
@@ -113,7 +113,7 @@ export const Menu = withAuthenticationRequired(() => {
                   Use our menu to place an order online, or <span className="text-color">phone</span> our store <br className="breakLine"/> to place a
                   pickup order. Fast and fresh food.
                 </p>
-                <div className="menu__filter">
+                <div className="menu__filter flex-x-center-y-center">
                   <Button modifier={`menu-btn ${activeSort !== 'all' && 'menu-btn--disabled'}`} text="Показать все" onClick={() => {setContent(state.goods); setActiveSort('all'); setPriceSort(1)}}></Button>
                   <Button modifier={`menu-btn ${activeSort !== 'Pizza' && 'menu-btn--disabled'}`} text="Пицца" onClick={() => sortingHandler('Pizza')}></Button>
                   <Button modifier={`menu-btn ${activeSort !== 'Burger' && 'menu-btn--disabled'}`} text="Бургеры" onClick={() => sortingHandler('Burger')}></Button>
@@ -121,7 +121,7 @@ export const Menu = withAuthenticationRequired(() => {
                   <Button modifier={`menu-btn sorting-btn ${priceSortButtonClass}`} text="Price" onClick={orderByPrice}></Button>
                   <Search handler={searchHandler}></Search>
                 </div>
-                <ul className="menu__wrap" ref={element => imagesParent = element as HTMLUListElement}>
+                <ul className="menu__wrap flex--wrap" ref={element => imagesParent = element as HTMLUListElement}>
                   {content.length > 0
                       ? content.map((el) =>
                           <Card key={el.id} id={el.id} title={el.title} image={el.image} renderImg={(image) => renderImage(image)} price={el.price} type={el.type} click={(id) => cardClickHandler(id)} />

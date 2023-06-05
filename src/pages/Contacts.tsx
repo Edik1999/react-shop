@@ -132,24 +132,24 @@ export const Contacts = withAuthenticationRequired(({db}: {db: Firestore}) => {
           unmountOnExit
           nodeRef={secondNodeRef}
       >
-        <section className={`feedback ${error && 'feedback--form-error'}`} ref={secondNodeRef}>
+        <section className={`feedback flex-y-center flex--column ${error && 'feedback--form-error'}`} ref={secondNodeRef}>
           {!isFormSent
               ? <>
                   <h2 className="feedback__title section__title text-color">Here you can post your<br/> feedback about us.</h2>
                   <form className={`feedback__form form ${error && 'feedback__form--error'}`}>
-                    <div className="form__top">
-                      <div className="form__left">
+                    <div className="form__top flex-x-center-y-center">
+                      <div className="form__left flex-y-end flex--column">
                         <Input name="name" type="text" placeholder="Name" defaultValue={state.name ? state.name : ''} modifier='form__input' onFocus={e => clickHandler(e)}/>
                         <Input name="email" type="email" placeholder="E-mail" defaultValue={state.email ? state.email : ''} modifier='form__input' onFocus={e => clickHandler(e)}/>
                         <PatternFormat value={state.phone ? state.phone : ''} format="+7 (###) ### ## ##" mask="_" className="form__input input" type="tel" placeholder="Phone" onFocus={e => clickHandler(e)}/>
                       </div>
-                      <div className="form__right">
+                      <div className="form__right flex">
                         <textarea className="form__textarea input input--textarea" name="message" placeholder="Comment" rows={3} onFocus={e => clickHandler(e)}></textarea>
                       </div>
                     </div>
                     {error && <p className="form__error form__text section__text">Все поля должны быть заполнены !</p>}
-                    <div className="form__bottom">
-                      <div className="form__wrapper">
+                    <div className="form__bottom flex-x-center">
+                      <div className="form__wrapper flex-y-center flex--column">
                         <Button text="Post" modifier="form-btn" onClick={e => formSubmitHandler(e)}></Button>
                         <label className="form__check form__text section__text" onClick={e => clickHandler(e)}>
                           <input className="form__checkbox" type="checkbox"/> I agree with the <span className="text-color">user agreement</span>

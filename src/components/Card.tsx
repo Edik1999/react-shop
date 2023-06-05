@@ -37,11 +37,11 @@ function Card({id, title, image, renderImg, price, type, click}: IProps) {
     }
     
     return (
-        <div className={`card ${id} ${type}`} onClick={() => click(id)}>
+        <div className={`card flex ${id} ${type}`} onClick={() => click(id)}>
             {renderImg(image)}
-            <div className="card__content">
+            <div className="card__content flex-x-between flex--column">
                 <p className="card__name">{title}</p>
-                <div className='card__footer'>
+                <div className='card__footer flex-x-between-y-center'>
                     <p className="card__price text-color">{price} &#8381;</p>
                     {!isInCart
                         ?

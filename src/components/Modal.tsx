@@ -61,38 +61,47 @@ function Modal({ isVisible, id, onClose, order, userCart, sum }: IProps) {
       setIsDataConfirmed(true)
   }
 
+  const info = [
+    {
+        text: 'кКал',
+        parameter: content?.calory,
+    },
+    {
+        text: 'Белки',
+        parameter: content?.protein,
+    },
+    {
+        text: 'Жиры',
+        parameter: content?.fat,
+    },
+    {
+        text: 'Углеводы',
+        parameter: content?.carb,
+    }
+  ]
+
   return isVisible === false ? null : (
     <div className={`modal-wrapper ${fadeIn && 'modal-wrapper--active'}`} onClick={close}>
-      <div className="modal__card card" onClick={e => e.stopPropagation()}>
+      <div className={`modal__card card ${id ? 'flex' : 'flex-x-between-y-center flex--column'}`} onClick={e => e.stopPropagation()}>
         {content ? (
           <>
             <img className="card__image" src={content.image} alt={content.title} />
-            <div className="card__wraper">
-              <div className="card__header">
+            <div className="card__wraper flex-x-between flex--column">
+              <div className="card__header flex-x-center-y-end">
                 <p className="card__title">{content.title}</p>
                 <p className="card__weight">вес {content.weight} гр.</p>
               </div>
               <p className="card__descr">{content.text}</p>
               <p className="card__text">Пищевая ценность на 100 гр.</p>
-              <div className="card__info info">
-                <div className="info__wrap">
-                  <p className="info__name">кКал</p>
-                  <p className="info__value">{content.calory}</p>
-                </div>
-                <div className="info__wrap">
-                  <p className="info__name">Белки</p>
-                  <p className="info__value">{content.protein}</p>
-                </div>
-                <div className="info__wrap">
-                  <p className="info__name">Жиры</p>
-                  <p className="info__value">{content.fat}</p>
-                </div>
-                <div className="info__wrap">
-                  <p className="info__name">Углеводы</p>
-                  <p className="info__value">{content.carb}</p>
-                </div>
+              <div className="card__info info flex-x-around">
+                {info.map((el) => (
+                    <div className="info__wrap flex-x-between-y-center flex--column" key={el.text}>
+                        <p className="info__name">{el.text}</p>
+                        <p className="info__value">{el.parameter}</p>
+                    </div>
+                ))}
               </div>
-              <div className="card__footer">
+              <div className="card__footer flex-x-between-y-center">
                 <p className="card__price text-color">
                   {content.price} &#8381;
                 </p>
@@ -120,14 +129,14 @@ function Modal({ isVisible, id, onClose, order, userCart, sum }: IProps) {
 
                     :
                         <>
-                            <ul className='modal__list'>
+                            <ul className='modal__list flex--column'>
                                 {userCart?.map(el =>
-                                    <li className='modal__item item' key={el.id}>
+                                    <li className='modal__item item flex-x-around' key={el.id}>
                                         <img className="item__image" src={el.image} alt={el.title} />
-                                        <div className='item__wrap'>
+                                        <div className='item__wrap flex-x-between-y-center'>
                                           <h4 className='item__title'>{el.title}</h4>
-                                          <p className='item__number'>Количество: <span className='numeric'>{state.cart.find((elem: { id: number }) => elem.id === el.id)?.count}</span></p>
-                                          <p className='item__cost'>Стоимость: <span className='text-color numeric'>{Number(el.price) * state.cart.find((elem: { id: number }) => elem.id === el.id)?.count} ₽</span></p>
+                                          <p className='item__number'>Количество: <span className='text-color number'>{state.cart.find((elem: { id: number }) => elem.id === el.id)?.count}</span></p>
+                                          <p className='item__cost'>Стоимость: <span className='text-color number'>{Number(el.price) * state.cart.find((elem: { id: number }) => elem.id === el.id)?.count} ₽</span></p>
                                         </div>
                                     </li>
                                 )}

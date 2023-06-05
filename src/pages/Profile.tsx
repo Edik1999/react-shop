@@ -110,8 +110,8 @@ export const Profile = withAuthenticationRequired(({db}: { db: Firestore }) => {
                 unmountOnExit
                 nodeRef={nodeRef}
             >
-                <section className='profile' ref={nodeRef}>
-                    <div className='profile__history history'>
+                <section className='profile flex' ref={nodeRef}>
+                    <div className='profile__history history flex-y-center flex--column'>
                         <h2 className='history__title section__title text-color'>История заказов</h2>
                         {orders.length > 0
                             ? <>
@@ -126,10 +126,10 @@ export const Profile = withAuthenticationRequired(({db}: { db: Firestore }) => {
                             </>
                         }
                     </div>
-                    <div className='profile__user user'>
+                    <div className='profile__user user flex-y-center flex--column'>
                         <img className='user__photo' src={state.user.picture} alt={state.user.name} />
                         <h3 className='user__email'>{state.user.email}</h3>
-                        <form className={`user__form form ${isSent && 'form--saved'}`}>
+                        <form className={`user__form form flex-y-center flex--column ${isSent && 'form--saved'}`}>
                             <Input name="userName" type="text" placeholder="Имя" defaultValue={state.user.name} modifier='form__input'/>
                             <PatternFormat value={state.user.phone} format="+7 (###) ### ## ##" mask="_" className="form__input input" name="userPhone" placeholder="Телефон" />
                             <textarea value={userAddress} name="userAddress" className="form__textarea input input--textarea" placeholder="Адрес" rows={3} onChange={e => setUserAddress(e.target.value)} />
