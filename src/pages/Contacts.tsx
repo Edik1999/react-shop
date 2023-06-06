@@ -146,7 +146,7 @@ export const Contacts = withAuthenticationRequired(({db}: {db: Firestore}) => {
                       <div className="form__left flex-y-end flex--column">
                         <Input name="name" type="text" placeholder="Name" defaultValue={state.name ? state.name : ''} modifier='form__input' onFocus={e => clickHandler(e)}/>
                         <Input name="email" type="email" placeholder="E-mail" defaultValue={state.email ? state.email : ''} modifier='form__input' onFocus={e => clickHandler(e)}/>
-                        <PatternFormat value={state.phone ? state.phone : ''} format="+7 (###) ### ## ##" mask="_" className="form__input input" type="tel" placeholder="Phone" onFocus={e => clickHandler(e)}/>
+                        <PatternFormat value={state.phone ? state.phone : ''} format="+7 (###) ### ## ##" mask="_" name="phone" className="form__input input" type="tel" placeholder="Phone" onFocus={e => clickHandler(e)}/>
                       </div>
                       <div className="form__right flex">
                         <textarea className="form__textarea input input--textarea" name="message" placeholder="Comment" rows={3} onFocus={e => clickHandler(e)}></textarea>
