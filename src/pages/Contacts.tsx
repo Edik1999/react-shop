@@ -92,7 +92,12 @@ export const Contacts = withAuthenticationRequired(({db}: {db: Firestore}) => {
   }
 
   const clickHandler = (e: FocusEvent<HTMLInputElement, Element> | FocusEvent<HTMLTextAreaElement, Element> | MouseEvent<HTMLLabelElement, globalThis.MouseEvent>) => {
-    if(e.target instanceof Element) e.target.classList.remove('error');
+    if(e.target instanceof Element) {
+      const target = e.target
+      target.classList.contains('error')
+          ? e.target.classList.remove('error')
+          : e.target.closest('.error')?.classList.remove('error')
+    }
   }
 
   const handleImageChange = (imagesParent: HTMLDivElement) => {

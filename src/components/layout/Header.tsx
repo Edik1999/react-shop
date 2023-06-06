@@ -3,9 +3,10 @@ import '../../styles/layout/header.sass';
 import logo from "../../img/logo.svg";
 import cart from "../../img/cart.svg";
 
-import {useEffect, useState} from "react";
+import {useCallback, useEffect, useState} from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import {useAppSelector} from "../../store";
+import {useEventListener} from "../../hooks/useEventListener";
 
 import Button from "../Button";
 import { NavLink, Link } from 'react-router-dom';
@@ -34,6 +35,12 @@ function Header() {
     setIsOpen(false)
   }
 
+  const cb = useCallback((e: { target: { closest: (arg0: string) => HTMLElement }; }) => {
+    if (!e.target.closest('.header')) closeMenu()
+  }, [])
+
+  useEventListener('click', cb, isOpen)
+
   const switchTheme = () => {
     document.body.classList.remove('themeDark');
     setTheme((prev) => {
@@ -48,6 +55,35 @@ function Header() {
     })
   }
 
+  const burgerLines = [1,2,3]
+
+  const menuItems = [
+    {
+      to: '/',
+      text: 'Home',
+    },
+    {
+      to: '/menu',
+      text: 'Menu',
+    },
+    {
+      to: '/company',
+      text: 'Company',
+    },
+    {
+      to: '/faq',
+      text: 'FAQ',
+    },
+    {
+      to: '/contacts',
+      text: 'Contacts',
+    },
+    {
+      to: '/profile',
+      text: 'Profile',
+    },
+  ]
+
   return (
     <header className={`header ${isOpen && 'header--active'}`}>
       <div className="header__top top">
@@ -59,7 +95,7 @@ function Header() {
             {isAuthenticated &&
                 <div className="top__right flex">
                     <Button text="Log Out" modifier="logout-btn" onClick={logout}></Button>
-                    <Link to="/profile" className="top__link"><img className='top__photo' src={user?.picture} alt={user?.name}/></Link>
+                    <Link to="/profile" className="top__link" onClick={closeMenu}><img className='top__photo' src={user?.picture} alt={user?.name}/></Link>
                 </div>
             }
           </div>
@@ -72,55 +108,28 @@ function Header() {
       <div className="container">
         <div className="header__bottom bottom flex-x-between">
           <div className="header__logo">
-            <Link to="/" className="logo"><img className='logo__img' src={logo} alt="Logo" /></Link>
+            <Link to="/" className="logo" onClick={closeMenu}><img className='logo__img' src={logo} alt="Logo" /></Link>
           </div>
           <nav className={`header__nav nav ${!isAuthenticated && 'guest'}`}>
             <div className="nav__burger burger flex-x-between-y-center flex--column" onClick={clickHandler}>
-              <span className="burger__line line-1"></span>
-              <span className="burger__line line-2"></span>
-              <span className="burger__line line-3"></span>
+              {burgerLines.map(line => <span className={`burger__line line-${line}`} key={line}></span>)}
             </div>
             <ul className="nav__list flex-x-between-y-center">
               {!isAuthenticated
                 ? <li className="nav__item nav__item--short-list"><Button text="Log In" modifier="login-btn" onClick={loginWithRedirect}></Button></li>
                 : <>
-                    <li className="nav__item">
-                      <NavLink to="/" className={({ isActive }) => isActive ? "nav__link nav__link--active" : "nav__link"} onClick={closeMenu}>
-                          Home
-                      </NavLink>
-                    </li>
-                    <li className="nav__item">
-                      <NavLink to="/menu" className={({ isActive }) => isActive ? "nav__link nav__link--active" : "nav__link"} onClick={closeMenu}>
-                        Menu
-                      </NavLink>
-                    </li>
-                    <li className="nav__item">
-                      <NavLink to="/company" className={({ isActive }) => isActive ? "nav__link nav__link--active" : "nav__link"} onClick={closeMenu}>
-                        Company
-                      </NavLink>
-                    </li>
-                    <li className="nav__item">
-                      <NavLink to="/faq" className={({ isActive }) => isActive ? "nav__link nav__link--active" : "nav__link"} onClick={closeMenu}>
-                        FAQ
-                      </NavLink>
-                    </li>
-                    <li className="nav__item">
-                      <NavLink to="/contacts" className={({ isActive }) => isActive ? "nav__link nav__link--active" : "nav__link"} onClick={closeMenu}>
-                        Contacts
-                      </NavLink>
-                    </li>
-                    <li className="nav__item">
-                      <NavLink to="/profile" className={({ isActive }) => isActive ? "nav__link nav__link--active" : "nav__link"} onClick={closeMenu}>
-                        Profile
-                      </NavLink>
-                    </li>
+                    {menuItems.map(item => (
+                        <li className="nav__item" key={item.text}>
+                          <NavLink to={item.to} className={({ isActive }) => isActive ? "nav__link nav__link--active" : "nav__link"} onClick={closeMenu}>{item.text}</NavLink>
+                        </li>
+                    ))}
                     <li className="nav__item nav__item--cart">
                       <Link to="/cart" className="nav__link nav__link--cart flex-x-center-y-center" onClick={closeMenu}>
                         <img className='cart-image' src={cart} alt="Cart" />
                         {state.cart.length > 0 && <div className="cart__badge">{state.cart.reduce((acc: number, num: { count: number }) => acc + Number(num.count), 0)}</div>}
                       </Link>
                     </li>
-                </>
+                  </>
               }
             </ul>
           </nav>

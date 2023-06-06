@@ -1,6 +1,6 @@
 import '../styles/pages/FAQ.sass';
 
-import {useRef, useState} from "react";
+import {Fragment, useRef, useState} from "react";
 import { withAuthenticationRequired } from '@auth0/auth0-react';
 import useAnimationState from "../hooks/useAnimationState";
 import {imagesLoaded} from "../helpers/imagesLoaded";
@@ -85,7 +85,7 @@ export const FAQ = withAuthenticationRequired(() => {
             <h2 className="howitworks__title section__title text-color">How it works.</h2>
             <ul className="howitworks__list flex"  ref={elem => parent2 = elem as HTMLUListElement}>
               {items.map(item => (
-                  <>
+                  <Fragment key={item.src}>
                     <li className="howitworks__item flex-y-center flex--column">
                       <img className="howitworks__img" src={item.src} alt={item.alt} onLoad={() => handleImageChange(parent2)} onError={() => handleImageChange(parent2)}/>
                       <h3 className="howitworks__subtitle">{item.subtitle}</h3>
@@ -96,7 +96,7 @@ export const FAQ = withAuthenticationRequired(() => {
                           <div className="howitworks__line"></div>
                         </li>
                     }
-                  </>
+                  </Fragment>
                 ))}
             </ul>
             <Link to="/menu" className="btn home-btn">Take Order</Link>
