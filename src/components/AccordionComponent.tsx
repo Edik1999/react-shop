@@ -5,29 +5,26 @@ import {useAppSelector} from "../store";
 import {Accordion, AccordionItem, AccordionItemButton, AccordionItemHeading, AccordionItemPanel} from "react-accessible-accordion";
 import Moment from "react-moment";
 import {DocumentData} from "firebase/firestore";
-import {useCallback, useEffect} from "react";
 
 function AccordionComponent({items}: { items: DocumentData[] }) {
-
     const state = useAppSelector(state => state);
 
-    const setHeight = useCallback(() => {
-        const accordion = document.querySelector('.accordion')!
-        const panels = accordion.querySelectorAll('.accordion__panel')
-        console.log(panels)
+    const setHeight = (() => {
+        const accordion = document.querySelector('.accordion')
+        const panels = accordion?.querySelectorAll('.accordion__panel')
+
         if (panels) {
             panels.forEach((panel: any) => {
                 const paragraphs = panel.querySelectorAll('p')
                 let height: number = 0
                 paragraphs.forEach((paragraph: HTMLParagraphElement) => {
-                    let paragraphHeight = getComputedStyle(paragraph).height
-                    paragraphHeight = paragraphHeight.replace(/[^0-9]/g, '');
-                    height += Number(paragraphHeight)
+                    let paragraphHeight = paragraph.offsetHeight
+                    height += paragraphHeight
                 })
                 panel.style.height = `${height + 40}px`
             })
         }
-    }, [])
+    })
 
     const accordionClick = (id: string[]) => {
         const allItems = document.querySelectorAll(".accordion__item");
@@ -38,11 +35,6 @@ function AccordionComponent({items}: { items: DocumentData[] }) {
         const accordionItem = openedPanel?.closest(".accordion__item");
         accordionItem?.classList.add('open');
     }
-
-    useEffect(() => {
-        const timeout = setTimeout(() => setHeight(), 500)
-        return () => clearTimeout(timeout)
-    }, [setHeight])
 
     return (
         <Accordion allowZeroExpanded onChange={(id: string[]) => accordionClick(id)}>
@@ -61,7 +53,7 @@ function AccordionComponent({items}: { items: DocumentData[] }) {
                     </AccordionItemHeading>
                     <AccordionItemPanel>
                         {el.items.map((elem: { id: number; count: number}) => (
-                            <p className='accordion__panelItem panelItem' key={Math.random()}>
+                            <p className='accordion__panelItem panelItem' key={Math.random()} ref={setHeight}>
                                 <span className='section__text panelItem__text'>{state.goods.map(element => element.id === elem.id ? element.title : null)}</span>
                                 <span className='section__text panelItem__text'> x {elem.count}</span>
                             </p>

@@ -11,6 +11,8 @@ import Counter from '../components/Counter';
 import Button from '../components/Button';
 import Modal from "../components/Modal";
 import Delete from "../components/Delete";
+import {imagesLoaded} from "../helpers/imagesLoaded";
+import Loader from "../components/Loader";
 
 export interface IpageContent {
   calory: string,
@@ -31,9 +33,16 @@ export const Cart = withAuthenticationRequired(({db}: {db: Firestore}) => {
   const [pageContent, setPageContent] = useState<IpageContent[] | []>([])
   const [isOrdered, setIsOrdered] = useState(false)
   const [showModal, setShowModal] = useState(false)
+  const [imagesLoading, setImagesLoading] = useState(true)
 
   const state = useAppSelector(state => state);
   const dispatch = useAppDispatch();
+
+  const handleImageChange = (imagesParent: HTMLDivElement | HTMLUListElement) => {
+    setImagesLoading(!imagesLoaded(imagesParent))
+  }
+
+  let parent: HTMLUListElement
 
   const sum = () => {
     let prices = state.cart.map((el: { id: number; count: number; }) => (state.goods.find(elem => elem.id === el.id).price * el.count))
@@ -87,19 +96,20 @@ export const Cart = withAuthenticationRequired(({db}: {db: Firestore}) => {
 
   return (
     <>
+      {imagesLoading && pageContent.length > 0 && <Loader></Loader>}
       <section className="cart">
         <h2 className="cart__title section__title text-color">Cart</h2>
         <div className="cart__main flex-x-around">
           {!isOrdered
             ?
               <>
-                <ul className="cart__list flex--column flex-x-between">
+                <ul className="cart__list flex--column flex-x-between" ref={elem => parent = elem as HTMLUListElement}>
                   {pageContent.length > 0
                     ?
                     pageContent.map(el =>
                       <li className="cart__item flex" key={el.id}>
                         <div className="cart__product product flex-x-between">
-                          <img className="product__img" src={el.image} alt={el.title} />
+                          <img className="product__img" src={el.image} alt={el.title} onLoad={() => handleImageChange(parent)} onError={() => handleImageChange(parent)}/>
                           <div className="product__wrap flex--column flex-x-around-y-center">
                             <p className="product__name">{el.title}</p>
                             <div className={`flex-x-between-y-center product__price-wraper ${el.id}`}>
