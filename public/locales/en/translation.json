@@ -1,0 +1,142 @@
+{
+  "!!! Хедер !!!": "",
+  "headerTopText": "We're open and available for takeaway & delivery.",
+  "logIn": "Log In",
+
+
+  "!!! Футер !!!": "",
+  "footerDescr": "Takeaway & Delivery template for small - medium businesses.",
+  "changelog": "Changelog",
+  "socialText": "Built by: <1>Edik1999</1> and <3>BalVan18</3>",
+
+
+  "!!! Общие ключи !!!": "",
+  "logOut": "Log Out",
+  "logoAlt": "Logo",
+  "home": "Home",
+  "menu": "Menu",
+  "company": "Company",
+  "faq": "FAQ",
+  "contacts": "Contacts",
+  "profile": "Profile",
+  "cart": "Cart",
+  "currency": "$",
+  "AddToCart": "Add to cart",
+  "inputNamePlaceholder": "Name",
+  "inputEmailPlaceholder": "E-mail",
+  "inputPhonePlaceholder": "Phone",
+  "inputAddressPlaceholder": "Address",
+  "inputTextareaPlaceholder": "Comment",
+  "makeOrder": "Make an order",
+  "orderPrice": "Order price",
+
+
+  "!!! Главная !!!": "",
+  "homeTitle": "Beautiful food & takeaway, <1>delivered</1> to your door.",
+  "homeText": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500.",
+  "homeBtn": "To Menu",
+  "rateText": "<0>4.8 out of 5</0> based on 2000+ reviews",
+  "clientsTitle": "Clients",
+  "homeImgAlt": "food order",
+
+
+  "!!! Карточка клиента на главной !!!": "",
+  "clientText": "Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit odio dignissim qui blandit molestie consequat.",
+  "clientAlt": "client avatar",
+  "clientRole": "Customer",
+
+
+  "!!! Меню !!!": "",
+  "productAlt": "product",
+  "menuTitle": "Browse our menu",
+  "menuText": "Use our menu to place an order online, or <1>phone</1> our store <3></3> to place a pickup order. Fast and fresh food.",
+  "sortingBtnAll": "Show All",
+  "sortingBtnPizza": "Pizza",
+  "sortingBtnBurgers": "Burgers",
+  "sortingBtnRolls": "Rolls",
+  "sortingBtnPrice": "Price",
+  "menuErrorText": "Oops, try another search",
+
+
+  "!!! Input[type='search'] placeholder !!!": "",
+  "inputSearchPlaceholder": "Enter the title...",
+
+
+  "!!! Модалка !!!": "",
+  "calories": "Cal",
+  "protein": "Protein",
+  "fat": "Fat",
+  "carbs": "Carbs",
+  "weight": "weight",
+  "gram": "g",
+  "nutritionalValue": "Nutritional value per 100 g.",
+  "modalTitle": "Order data confirmation",
+  "pickOnMap": "Select on the map",
+  "confirm": "Confirm",
+  "amount": "Amount",
+  "cost": "Cost",
+
+
+  "!!! О компании !!!": "",
+  "companyTitle": "The home of fresh products.",
+  "companyText": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500.",
+  "companyText2": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+  "companyImgAlt": "girl eating our food",
+
+
+  "!!! FAQ !!!": "",
+  "faqImgAlt": "online order",
+  "faqTitle": "Order online with our simple checkout.",
+  "faqText1": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+  "faqText2": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500.",
+  "howitworksTitle": "How it works.",
+  "firstStepAlt": "How it work. First step.",
+  "firstStepSubtitle": "Adapt your menu items",
+  "firstStepText": "Easily adapt your menu using the webflow CMS and allow customers to browse your items.",
+  "secondStepAlt": "How it work. Second step.",
+  "secondStepSubtitle": "Accept online orders & takeout",
+  "secondStepText": "Let your customers order and pay via the powerful ecommerce system, or simple let them call your store.",
+  "thirdStepAlt": "How it work. Third step.",
+  "thirdStepSubtitle": "Manage delivery or takeout",
+  "thirdStepText": "Manage your own logistics and take orders simply through the ecommerce system.",
+
+
+  "!!! Контакты !!!": "",
+  "contactsTitle": "Call our store and takeaway when it suits you best.",
+  "contactsText1": "Leo vel orci porta non pulvinar neque laoreet. Quis risus sed vulputate odio ut enim blandit volutpat maecenas. Fringilla phasellus faucibus scelerisque eleifend donec pretium vulputate sapien. Semper auctor neque vitae tempus quam pellentesque nec.",
+  "contactsText2": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+  "contactsImgAlt": "our place",
+  "feedbackTitle": "Here you can post your<1></1> feedback about us.",
+  "feedbackError": "All fields must be filled !",
+  "feedbackBtn": "Send",
+  "feedbackCheckboxText": "I agree with the <1>user agreement</1>",
+  "feedbackSuccessTitle": "Thank you for your feedback",
+
+
+  "!!! Профиль !!!": "",
+  "historyTitle": "Order history",
+  "clearHistoryBtn": "Clear history",
+  "emptyHistoryImgAlt": "Order history is empty",
+  "historyText": "Your order history is empty !",
+  "profileFormSaveBtn": "Save",
+  "profileNotification": "Your data was saved !",
+  "profileLogOut": "Log out",
+
+
+  "!!! Корзина !!!": "",
+  "cartTitle": "Cart",
+  "emptyCartText": "Cart is empty, you can order from our menu",
+  "emptyCartHomeBtn": "To Home",
+  "emptyCartMenuBtn": "Order now!",
+  "totalTitle": "Order details",
+  "totalCount": "products",
+  "totalPrice": "Total",
+  "successCartTitle": "Thank you for Order !",
+
+
+  "!!! Карта яндекс !!!": "",
+  "mapSearchText": "searching...",
+
+  "!!! Аккардеон !!!": "",
+  "orderDate": "Order date"
+}

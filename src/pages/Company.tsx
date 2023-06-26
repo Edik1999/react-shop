@@ -4,6 +4,7 @@ import { withAuthenticationRequired } from '@auth0/auth0-react';
 import useAnimationState from "../hooks/useAnimationState";
 import {useRef, useState} from "react";
 import {imagesLoaded} from "../helpers/imagesLoaded";
+import {useTranslation} from "react-i18next";
 
 import { CSSTransition } from 'react-transition-group';
 import {Link} from 'react-router-dom';
@@ -15,6 +16,7 @@ export const Company = withAuthenticationRequired(() => {
 
     const animationState = useAnimationState();
     const nodeRef = useRef(null);
+    const { t } = useTranslation();
 
     const [imagesLoading, setImagesLoading] = useState(true)
 
@@ -37,13 +39,13 @@ export const Company = withAuthenticationRequired(() => {
             >
                 <section className="company flex-x-around-y-center" ref={nodeRef}>
                     <div className="company__left">
-                        <h2 className="company__title section__title text-color">The home of fresh products.</h2>
-                        <p className="company__text section__text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500.</p>
-                        <p className="company__text section__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                        <Link to="/menu" className="btn home-btn">Menu</Link>
+                        <h2 className="company__title section__title text-color">{t('companyTitle')}</h2>
+                        <p className="company__text section__text">{t('companyText')}</p>
+                        <p className="company__text section__text">{t('companyText2')}</p>
+                        <Link to="/menu" className="btn home-btn">{t('menu')}</Link>
                     </div>
                     <div className="company__right" ref={elem => parent = elem as HTMLDivElement}>
-                        <img className="company__img" src={companydecorate} alt="girl eating our food" onLoad={() => handleImageChange(parent)} onError={() => handleImageChange(parent)}/>
+                        <img className="company__img" src={companydecorate} alt={t('companyImgAlt')} onLoad={() => handleImageChange(parent)} onError={() => handleImageChange(parent)}/>
                     </div>
                 </section>
             </CSSTransition>

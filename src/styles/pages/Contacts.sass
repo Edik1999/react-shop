@@ -44,13 +44,10 @@
             cursor: pointer
             transition: all .5s
 
-            &.error
-                color: $error
-
         &__checkbox
             position: relative
             top: 1px
-            margin-right: 5px
+            margin-right: calc( $gap / 3 )
             cursor: pointer
 
         &__error
@@ -59,7 +56,6 @@
             width: 100%
             margin-bottom: 0
             bottom: 132px
-            color: $error
             animation: opacity .5s
 
 

@@ -4,6 +4,7 @@ import { store } from './store';
 import { initializeApp } from "firebase/app";
 // import { getAnalytics } from "firebase/analytics";
 import {Firestore, getFirestore} from "firebase/firestore";
+import "./i18n"
 
 import App from './App';
 import { Provider } from 'react-redux';

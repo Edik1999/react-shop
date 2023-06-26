@@ -1,27 +1,32 @@
 import '../../styles/layout/footer.sass';
 
 import { Link } from 'react-router-dom';
+import { Trans } from 'react-i18next';
+
+import {useTranslation} from "react-i18next";
 
 import logo from "../../img/logo.svg";
 
 function Footer() {
 
+  const { t } = useTranslation();
+
   const links = [
     {
       to: '/home',
-      text: 'Home',
+      text: t('home'),
     },
     {
       to: '/menu',
-      text: 'Menu',
+      text: t('menu'),
     },
     {
       to: '/faq',
-      text: 'FAQ',
+      text: t('faq'),
     },
     {
       to: '/contacts',
-      text: 'Contacts',
+      text: t('contacts'),
     },
   ]
 
@@ -45,8 +50,8 @@ function Footer() {
       <div className="container">
         <div className="footer__container flex-x-between-y-center">
           <div className="footer__aside flex-x-between-y-center">
-            <Link to="/" className="footer__logo logo"><img className="logo__img" src={logo} alt="Logo" /></Link>
-            <p className="footer__descr">Takeaway & Delivery template for small - medium businesses.</p>
+            <Link to="/" className="footer__logo logo"><img className="logo__img" src={logo} alt={t('logoAlt')} /></Link>
+            <p className="footer__descr">{t('footerDescr')}</p>
           </div>
           <div className="footer__nav nav">
             <ul className="nav__list flex-x-between">
@@ -56,13 +61,17 @@ function Footer() {
                   </li>
               ))}
               <li className="nav__item">
-                <a href="https://github.com/Edik1999/react-shop" target="_blank" rel="noreferrer" className="nav__link">Changelog</a>
+                <a href="https://github.com/Edik1999/react-shop" target="_blank" rel="noreferrer" className="nav__link">{t('changelog')}</a>
               </li>
             </ul>
           </div>
         </div>
         <div className="footer__social social flex-x-between-y-center">
-          <p className="social__text">Built by: <a href="https://github.com/Edik1999" target='_blank' rel="noreferrer"><span className="social__dev text-color">Edik1999</span></a> and <a href="https://github.com/BalVan18" target="_blank" rel="noreferrer"><span className="social__dev text-color">BalVan18</span></a></p>
+          <p className="social__text">
+            <Trans i18nKey="socialText">
+              Built by: <a className="social__dev text-color" href="https://github.com/Edik1999" target='_blank' rel="noreferrer">Edik1999</a> and <a className="social__dev text-color" href="https://github.com/BalVan18" target="_blank" rel="noreferrer">BalVan18</a>
+            </Trans>
+          </p>
           <ul className="social__list flex-x-between">
             {socials.map( social => (
                 <li className="social__item" key={social.href}>

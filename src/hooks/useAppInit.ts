@@ -5,6 +5,7 @@ import {goods} from "../store/slice/goodsSlice";
 import {useAuth0} from "@auth0/auth0-react";
 import {useAppDispatch} from "../store";
 import {getDataFromDB} from "../helpers/getDataFromDB";
+import i18n from "i18next";
 
 function useAppInit(db: Firestore, setLoading: { (value: SetStateAction<boolean>): void; (arg0: boolean): void; }){
     const {user} = useAuth0();
@@ -52,6 +53,9 @@ function useAppInit(db: Firestore, setLoading: { (value: SetStateAction<boolean>
             dispatch(goods(res))
             setLoading(false)
         });
+
+        const localLang = localStorage.getItem('lang')
+        if(localLang) i18n.changeLanguage(localLang)
 
     }, [db, dispatch, user, setLoading]);
 }

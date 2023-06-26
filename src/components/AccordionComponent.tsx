@@ -1,13 +1,16 @@
 import '../styles/components/accordion.sass';
 
 import {useAppSelector} from "../store";
+import {DocumentData} from "firebase/firestore";
+import {useTranslation} from "react-i18next";
 
 import {Accordion, AccordionItem, AccordionItemButton, AccordionItemHeading, AccordionItemPanel} from "react-accessible-accordion";
 import Moment from "react-moment";
-import {DocumentData} from "firebase/firestore";
 
 function AccordionComponent({items}: { items: DocumentData[] }) {
+
     const state = useAppSelector(state => state);
+    const { t } = useTranslation()
 
     const setHeight = (() => {
         const accordion = document.querySelector('.accordion')
@@ -43,9 +46,9 @@ function AccordionComponent({items}: { items: DocumentData[] }) {
                     <AccordionItemHeading>
                         <AccordionItemButton>
                             <div className='accordion__wrap flex-x-between-y-center'>
-                                <p className='section__text accordion__price'>Сумма заказа: <span className='text-color'>{el.sum} ₽</span></p>
+                                <p className='section__text accordion__price'>{t('orderPrice')}: <span className='text-color'>{el.sum} {t('currency')}</span></p>
                                 <div className='accordion__date date flex'>
-                                    <span className='section__text date__text'>Дата заказа: </span>
+                                    <span className='section__text date__text'>{t('orderDate')}: </span>
                                     <Moment className='section__text date__descr' format="YYYY-MM-DD HH:mm">{new Date(el.date.seconds * 1000)}</Moment>
                                 </div>
                             </div>
@@ -54,7 +57,12 @@ function AccordionComponent({items}: { items: DocumentData[] }) {
                     <AccordionItemPanel>
                         {el.items.map((elem: { id: number; count: number}) => (
                             <p className='accordion__panelItem panelItem' key={Math.random()} ref={setHeight}>
-                                <span className='section__text panelItem__text'>{state.goods.map(element => element.id === elem.id ? element.title : null)}</span>
+                                <span className='section__text panelItem__text'>
+                                    {state.goods.map(element => element.id === elem.id
+                                            ? state.lang === 'ru' ? element.title : element.title_en
+                                            : null
+                                    )}
+                                </span>
                                 <span className='section__text panelItem__text'> x {elem.count}</span>
                             </p>
                         ))}

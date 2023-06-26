@@ -8,6 +8,7 @@ import {useAppSelector} from "../store";
 
 import Button from './Button';
 import Counter from './Counter';
+import {useTranslation} from "react-i18next";
 
 interface IProps {
     id: number,
@@ -23,8 +24,9 @@ function Card({id, title, image, renderImg, price, type, click}: IProps) {
 
     const [isInCart, setIsInCart] = useState(false);
 
-    const state = useAppSelector(state => state);
+    const state = useAppSelector(state => state)
     const dispatch = useAppDispatch()
+    const { t } = useTranslation()
 
     useEffect(() => {
         state.cart.find((elem: { id: number; }) => elem.id === id) ? setIsInCart(true) : setIsInCart(false)
@@ -42,10 +44,10 @@ function Card({id, title, image, renderImg, price, type, click}: IProps) {
             <div className="card__content flex-x-between flex--column">
                 <p className="card__name">{title}</p>
                 <div className='card__footer flex-x-between-y-center'>
-                    <p className="card__price text-color">{price} &#8381;</p>
+                    <p className="card__price text-color">{price} {t('currency')}</p>
                     {!isInCart
                         ?
-                            <Button modifier="card-btn" text="Add to cart" onClick={e => addToCartClick(e)}></Button>
+                            <Button modifier="card-btn" text={t('AddToCart')} onClick={e => addToCartClick(e)}></Button>
                         :
                             <Counter count={state.cart.find((elem: { id: number; }) => elem.id === id) ? state.cart.find((elem: { id: number; }) => elem.id === id).count : 0} elementId={id}></Counter>
                     }   

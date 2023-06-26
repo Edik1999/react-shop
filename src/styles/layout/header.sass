@@ -97,11 +97,10 @@
                 .cart-image
                     animation: 2s ease-in-out infinite forwards cartImage
 
-.theme-switcher
+.theme-switcher, .lang-switcher
     box-sizing: content-box
     position: absolute
-    top: 3px
-    left: 0
+    top: 1px
     cursor: pointer
     border-radius: 50%
     padding: 7px
@@ -111,6 +110,13 @@
     &:hover
         filter: brightness(112%)
         transform: scale(1.03)
+
+.theme-switcher
+    left: 0
+
+.lang-switcher
+    left: 45px
+    width: 24px
 
 @media (max-width: 768px)
     .header

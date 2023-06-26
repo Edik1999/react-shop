@@ -17,6 +17,7 @@ import {
 import {useAppDispatch, useAppSelector} from "../store";
 import {getDataFromDB} from "../helpers/getDataFromDB";
 import {updateUserData} from "../store/slice/userSlice";
+import {useTranslation} from "react-i18next";
 
 import Button from "../components/Button";
 import Input from "../components/Input";
@@ -36,6 +37,7 @@ export const Profile = withAuthenticationRequired(({db}: { db: Firestore }) => {
     const nodeRef = useRef(null);
     const state = useAppSelector(state => state);
     const dispatch = useAppDispatch();
+    const { t } = useTranslation();
 
     const [orders, setOrders] = useState<DocumentData[]>([]);
     const [userAddress, setUserAddress] = useState('');
@@ -76,7 +78,7 @@ export const Profile = withAuthenticationRequired(({db}: { db: Firestore }) => {
             address: address,
         }))
 
-        console.log('form sended');
+        console.log('form sent');
     }
 
     const formSubmitHandler = (e: { preventDefault: () => void; target: { closest: (arg0: string) => HTMLFormElement }; }) => {
@@ -112,17 +114,17 @@ export const Profile = withAuthenticationRequired(({db}: { db: Firestore }) => {
             >
                 <section className='profile flex' ref={nodeRef}>
                     <div className='profile__history history flex-y-center flex--column'>
-                        <h2 className='history__title section__title text-color'>История заказов</h2>
+                        <h2 className='history__title section__title text-color'>{t('historyTitle')}</h2>
                         {orders.length > 0
                             ? <>
                                 <AccordionComponent items={orders}></AccordionComponent>
-                                <Button modifier="cart-btn" text="Clear history" onClick={clearHistory}></Button>
+                                <Button modifier="cart-btn" text={t('clearHistoryBtn')} onClick={clearHistory}></Button>
                             </>
 
                             : <>
-                                <img className="history__img" src={emptycart} alt="Cart is empty" />
-                                <p className="history__text section__text">Ваша история заказов пуста !</p>
-                                <Link to="/menu" className="btn">Сделать заказ</Link>
+                                <img className="history__img" src={emptycart} alt={t('emptyHistoryImgAlt')} />
+                                <p className="history__text section__text">{t('historyText')}</p>
+                                <Link to="/menu" className="btn">{t('makeOrder')}</Link>
                             </>
                         }
                     </div>
@@ -130,13 +132,13 @@ export const Profile = withAuthenticationRequired(({db}: { db: Firestore }) => {
                         <img className='user__photo' src={state.user.picture} alt={state.user.name} />
                         <h3 className='user__email'>{state.user.email}</h3>
                         <form className={`user__form form flex-y-center flex--column ${isSent && 'form--saved'}`}>
-                            <Input name="userName" type="text" placeholder="Имя" defaultValue={state.user.name} modifier='form__input'/>
-                            <PatternFormat value={state.user.phone} format="+7 (###) ### ## ##" mask="_" className="form__input input" name="userPhone" placeholder="Телефон" />
-                            <textarea value={userAddress} name="userAddress" className="form__textarea input input--textarea" placeholder="Адрес" rows={3} onChange={e => setUserAddress(e.target.value)} />
+                            <Input name="userName" type="text" placeholder={t('inputNamePlaceholder')} defaultValue={state.user.name} modifier='form__input'/>
+                            <PatternFormat value={state.user.phone} format="+7 (###) ### ## ##" mask="_" className="form__input input" name="userPhone" placeholder={t('inputPhonePlaceholder')} />
+                            <textarea value={userAddress} name="userAddress" className="form__textarea input input--textarea" placeholder={t('inputAddressPlaceholder')} rows={3} onChange={e => setUserAddress(e.target.value)} />
                             <MapComponent setAddress={setUserAddress}></MapComponent>
-                            <Button modifier="edit-btn" disabled={isSent ? true : false} text="Save" onClick={e => formSubmitHandler(e)}></Button>
-                            {isSent && <p className="form__text section__text">✅ Your data was saved !</p>}
-                            <Button modifier="cart-btn profile-btn" text="Log Out" onClick={logout}></Button>
+                            <Button modifier="edit-btn" disabled={isSent ? true : false} text={t('profileFormSaveBtn')} onClick={e => formSubmitHandler(e)}></Button>
+                            {isSent && <p className="form__text section__text">✅ {t('profileNotification')}</p>}
+                            <Button modifier="cart-btn profile-btn" text={t('profileLogOut')} onClick={logout}></Button>
                         </form>
                     </div>
                 </section>

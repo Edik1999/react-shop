@@ -5,6 +5,7 @@ import { useAppDispatch } from "../store";
 import {cart} from '../store/slice/cartSlice';
 import {saveProductLocal} from "../helpers/saveProductLocal";
 import {useAppSelector} from "../store";
+import {useTranslation} from "react-i18next";
 
 import Button from "./Button";
 import Delete from "./Delete";
@@ -26,6 +27,8 @@ function Modal({ isVisible, id, onClose, order, userCart, sum }: IProps) {
 
   const state = useAppSelector(state => state);
   const content = state.goods.find((el) => el.id === id);
+  const dispatch = useAppDispatch();
+  const { t } = useTranslation();
 
   const [isInCart, setIsInCart] = useState(false);
   const [fadeIn, setFadeIn] = useState(false);
@@ -34,7 +37,6 @@ function Modal({ isVisible, id, onClose, order, userCart, sum }: IProps) {
   const [isMapVisible, setIsMapVisible] = useState(false);
   const [isDataConfirmed, setIsDataConfirmed] = useState(false);
 
-  const dispatch = useAppDispatch();
 
   useEffect(() => {
       setFadeIn(true)
@@ -63,19 +65,19 @@ function Modal({ isVisible, id, onClose, order, userCart, sum }: IProps) {
 
   const info = [
     {
-        text: 'кКал',
+        text: t('calories'),
         parameter: content?.calory,
     },
     {
-        text: 'Белки',
+        text: t('protein'),
         parameter: content?.protein,
     },
     {
-        text: 'Жиры',
+        text: t('fat'),
         parameter: content?.fat,
     },
     {
-        text: 'Углеводы',
+        text: t('carbs'),
         parameter: content?.carb,
     }
   ]
@@ -85,14 +87,14 @@ function Modal({ isVisible, id, onClose, order, userCart, sum }: IProps) {
       <div className={`modal__card card ${id ? 'flex' : 'flex-x-between-y-center flex--column'}`} onClick={e => e.stopPropagation()}>
         {content ? (
           <>
-            <img className="card__image" src={content.image} alt={content.title} />
+            <img className="card__image" src={content.image} alt={state.lang === 'ru' ? content.title : content.title_en} />
             <div className="card__wraper flex-x-between flex--column">
               <div className="card__header flex-x-center-y-end">
-                <p className="card__title">{content.title}</p>
-                <p className="card__weight">вес {content.weight} гр.</p>
+                <p className="card__title">{state.lang === 'ru' ? content.title : content.title_en}</p>
+                <p className="card__weight">{t('weight')} {content.weight} {t('gram')}.</p>
               </div>
-              <p className="card__descr">{content.text}</p>
-              <p className="card__text">Пищевая ценность на 100 гр.</p>
+              <p className="card__descr">{state.lang === 'ru' ? content.text : content.text_en}</p>
+              <p className="card__text">{t('nutritionalValue')}</p>
               <div className="card__info info flex-x-around">
                 {info.map((el) => (
                     <div className="info__wrap flex-x-between-y-center flex--column" key={el.text}>
@@ -103,10 +105,10 @@ function Modal({ isVisible, id, onClose, order, userCart, sum }: IProps) {
               </div>
               <div className="card__footer flex-x-between-y-center">
                 <p className="card__price text-color">
-                  {content.price} &#8381;
+                  {content.price} {t('currency')}
                 </p>
                 {!isInCart
-                  ? <Button modifier="card-btn" text="Add to cart" onClick={addToCartClick}></Button>
+                  ? <Button modifier="card-btn" text={t('AddToCart')} onClick={addToCartClick}></Button>
                   : <Counter count={state.cart.find((elem: { id: number }) => elem.id === id) ? state.cart.find((elem: { id: number }) => elem.id === id).count : 0} elementId={id}></Counter>
                 }
               </div>
@@ -117,14 +119,14 @@ function Modal({ isVisible, id, onClose, order, userCart, sum }: IProps) {
                 {!isDataConfirmed
                     ?
                         <>
-                            <h3 className='modal__title'>Подтверждение данных для заказа</h3>
+                            <h3 className='modal__title'>{t('modalTitle')}</h3>
                             <form className="modal__form form">
-                                <PatternFormat value={userPhone} format="+7 (###) ### ## ##" mask="_" className="form__input input" name="userPhone" placeholder="Телефон*" onChange={e => setUserPhone(e.target.value)}/>
-                                <textarea value={userAddress} name="userAddress" className="form__textarea input input--textarea" placeholder="Адрес*" rows={3} onChange={e => setUserAddress(e.target.value)}/>
+                                <PatternFormat value={userPhone} format="+7 (###) ### ## ##" mask="_" className="form__input input" name="userPhone" placeholder={t('inputPhonePlaceholder')} onChange={e => setUserPhone(e.target.value)}/>
+                                <textarea value={userAddress} name="userAddress" className="form__textarea input input--textarea" placeholder={t('inputAddressPlaceholder')} rows={3} onChange={e => setUserAddress(e.target.value)}/>
                             </form>
-                            {!isMapVisible && <Button modifier='modal-btn' text="Выбрать на карте" onClick={showMap}></Button>}
+                            {!isMapVisible && <Button modifier='modal-btn' text={t('pickOnMap')} onClick={showMap}></Button>}
                             {isMapVisible && <MapComponent setAddress={setUserAddress}></MapComponent>}
-                            <Button text="Подтвердить" onClick={dataConfirmation} disabled={userPhone && userAddress ? false : true}></Button>
+                            <Button text={t('confirm')} onClick={dataConfirmation} disabled={userPhone && userAddress ? false : true}></Button>
                         </>
 
                     :
@@ -132,17 +134,17 @@ function Modal({ isVisible, id, onClose, order, userCart, sum }: IProps) {
                             <ul className='modal__list flex--column'>
                                 {userCart?.map(el =>
                                     <li className='modal__item item flex-x-around' key={el.id}>
-                                        <img className="item__image" src={el.image} alt={el.title} />
+                                        <img className="item__image" src={el.image} alt={state.lang === 'ru' ? el.title : el.title_en} />
                                         <div className='item__wrap flex-x-between-y-center'>
-                                          <h4 className='item__title'>{el.title}</h4>
-                                          <p className='item__number'>Количество: <span className='text-color number'>{state.cart.find((elem: { id: number }) => elem.id === el.id)?.count}</span></p>
-                                          <p className='item__cost'>Стоимость: <span className='text-color number'>{Number(el.price) * state.cart.find((elem: { id: number }) => elem.id === el.id)?.count} ₽</span></p>
+                                          <h4 className='item__title'>{state.lang === 'ru' ? el.title : el.title_en}</h4>
+                                          <p className='item__number'>{t('amount')} : <span className='text-color number'>{state.cart.find((elem: { id: number }) => elem.id === el.id)?.count}</span></p>
+                                          <p className='item__cost'>{t('cost')} : <span className='text-color number'>{Number(el.price) * state.cart.find((elem: { id: number }) => elem.id === el.id)?.count} {t('currency')}</span></p>
                                         </div>
                                     </li>
                                 )}
                             </ul>
-                            <p className="modal__total">Сумма заказа: <span className="text-color">{sum} ₽</span></p>
-                            <Button text="Сделать заказ" onClick={order}></Button>
+                            <p className="modal__total">{t('orderPrice')} : <span className="text-color">{sum} {t('currency')}</span></p>
+                            <Button text={t('makeOrder')} onClick={order}></Button>
                         </>
                 }
             </>

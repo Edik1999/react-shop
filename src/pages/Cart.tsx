@@ -5,6 +5,7 @@ import {deleteFromCart, clearCart} from '../store/slice/cartSlice';
 import {useAppDispatch, useAppSelector} from "../store";
 import {withAuthenticationRequired} from '@auth0/auth0-react';
 import {addDoc, collection, Firestore} from "firebase/firestore";
+import {useTranslation} from "react-i18next";
 
 import { Link } from 'react-router-dom';
 import Counter from '../components/Counter';
@@ -24,6 +25,8 @@ export interface IpageContent {
   protein: string,
   text: string,
   title: string,
+  text_en: string,
+  title_en: string,
   type: string,
   weight: string,
 }
@@ -37,6 +40,7 @@ export const Cart = withAuthenticationRequired(({db}: {db: Firestore}) => {
 
   const state = useAppSelector(state => state);
   const dispatch = useAppDispatch();
+  const { t } = useTranslation();
 
   const handleImageChange = (imagesParent: HTMLDivElement | HTMLUListElement) => {
     setImagesLoading(!imagesLoaded(imagesParent))
@@ -98,7 +102,7 @@ export const Cart = withAuthenticationRequired(({db}: {db: Firestore}) => {
     <>
       {imagesLoading && pageContent.length > 0 && <Loader></Loader>}
       <section className="cart">
-        <h2 className="cart__title section__title text-color">Cart</h2>
+        <h2 className="cart__title section__title text-color">{t('cartTitle')}</h2>
         <div className="cart__main flex-x-around">
           {!isOrdered
             ?
@@ -109,15 +113,15 @@ export const Cart = withAuthenticationRequired(({db}: {db: Firestore}) => {
                     pageContent.map(el =>
                       <li className="cart__item flex" key={el.id}>
                         <div className="cart__product product flex-x-between">
-                          <img className="product__img" src={el.image} alt={el.title} onLoad={() => handleImageChange(parent)} onError={() => handleImageChange(parent)}/>
+                          <img className="product__img" src={el.image} alt={state.lang === 'ru' ? el.title : el.title_en} onLoad={() => handleImageChange(parent)} onError={() => handleImageChange(parent)}/>
                           <div className="product__wrap flex--column flex-x-around-y-center">
-                            <p className="product__name">{el.title}</p>
+                            <p className="product__name">{state.lang === 'ru' ? el.title : el.title_en}</p>
                             <div className={`flex-x-between-y-center product__price-wraper ${el.id}`}>
                               <Counter
                                   count={state.cart.find((elem: { id: number }) => elem.id === el.id) ? state.cart.find((elem: { id: number }) => elem.id === el.id).count : 0}
                                   elementId={el.id}
                                   deleteHandler={(e, id) => deleteFromCartHandler(e, id)}></Counter>
-                              <p className="product__price text-color">{el.price * (state.cart.find((elem: { id: number }) => elem.id === el.id) ? state.cart.find((elem: { id: number }) => elem.id === el.id).count : 0)} ₽</p>
+                              <p className="product__price text-color">{el.price * (state.cart.find((elem: { id: number }) => elem.id === el.id) ? state.cart.find((elem: { id: number }) => elem.id === el.id).count : 0)} {t('currency')}</p>
                             </div>
                             <Delete parentClass="product__delete" onClick={e => deleteFromCartHandler(e, el.id)}/>
                           </div>
@@ -126,27 +130,25 @@ export const Cart = withAuthenticationRequired(({db}: {db: Firestore}) => {
                     )
                     :
                     <>
-                      <li className="cart__text section__text">
-                        Корзина пуста, вы можете сделать заказ в нашем меню
-                      </li>
+                      <li className="cart__text section__text">{t('emptyCartText')}</li>
                       <li className="cart__btn-wrapper flex-x-around">
-                        <Link to="/Home" className="btn cart-btn">На главную</Link>
-                        <Link to="/menu" className="btn cart-btn">Order now!</Link>
+                        <Link to="/Home" className="btn cart-btn">{t('emptyCartHomeBtn')}</Link>
+                        <Link to="/menu" className="btn cart-btn">{t('emptyCartMenuBtn')}</Link>
                       </li>
                     </>
                   }
                 </ul>
                 <div className="cart__total total flex-y-center flex--column">
-                  <h3 className="total__title text-color">Order conditions</h3>
+                  <h3 className="total__title text-color">{t('totalTitle')}</h3>
                   <div className="total__wrapper flex-x-around">
-                    <p className="total__count">{state.cart.reduce((acc: number, num: { count: number }) => acc + Number(num.count), 0)} products</p>
-                    <p className="total__price">Total <span className="text-color">{sum()} ₽</span></p>
+                    <p className="total__count">{state.cart.reduce((acc: number, num: { count: number }) => acc + Number(num.count), 0)} {t('totalCount')}</p>
+                    <p className="total__price">{t('totalPrice')} <span className="text-color">{sum()} {t('currency')}</span></p>
                   </div>
-                  <Button text="Place order" disabled={pageContent.length > 0 ? false : true} onClick={openModal}></Button>
+                  <Button text={t('makeOrder')} disabled={pageContent.length > 0 ? false : true} onClick={openModal}></Button>
                 </div>
               </>
             :
-              <h2 className="cart__title section__title section__title--success">Thank you for Order !</h2>
+              <h2 className="cart__title section__title section__title--success">{t('successCartTitle')}</h2>
           }
         </div>
         <Modal isVisible={showModal} onClose={closeModal} order={order} userCart={pageContent} sum={sum()}></Modal>

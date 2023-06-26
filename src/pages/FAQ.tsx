@@ -4,6 +4,7 @@ import {Fragment, useRef, useState} from "react";
 import { withAuthenticationRequired } from '@auth0/auth0-react';
 import useAnimationState from "../hooks/useAnimationState";
 import {imagesLoaded} from "../helpers/imagesLoaded";
+import {useTranslation} from "react-i18next";
 
 import {Link} from 'react-router-dom';
 import Loader from "../components/Loader";
@@ -19,6 +20,7 @@ export const FAQ = withAuthenticationRequired(() => {
   const animationState = useAnimationState();
   const nodeRef = useRef(null);
   const secondNodeRef = useRef(null);
+  const { t } = useTranslation();
 
   const [imagesLoading, setImagesLoading] = useState(true)
 
@@ -32,21 +34,21 @@ export const FAQ = withAuthenticationRequired(() => {
   const items = [
     {
       src: hiwdecorate1,
-      alt: "How it work. First step.",
-      subtitle: "Adapt your menu items",
-      text: "Easily adapt your menu using the webflow CMS and allow customers to browse your items.",
+      alt: t('firstStepAlt'),
+      subtitle: t('firstStepSubtitle'),
+      text: t('firstStepText'),
     },
     {
       src: hiwdecorate2,
-      alt: "How it work. Second step.",
-      subtitle: "Accept online orders & takeout",
-      text: "Let your customers order and pay via the powerful ecommerce system, or simple let them call your store.",
+      alt: t('secondStepAlt'),
+      subtitle: t('secondStepSubtitle'),
+      text: t('secondStepText'),
     },
     {
       src: hiwdecorate3,
-      alt: "How it work. Third step.",
-      subtitle: "Manage delivery or takeout",
-      text: "Manage your own logistics and take orders simply through the ecommerce system.",
+      alt: t('thirdStepAlt'),
+      subtitle: t('thirdStepSubtitle'),
+      text: t('thirdStepText'),
       last: true,
     },
   ]
@@ -64,12 +66,12 @@ export const FAQ = withAuthenticationRequired(() => {
         >
           <section className="faq flex-x-between-y-center" ref={nodeRef}>
             <div className="faq__left" ref={elem => parent = elem as HTMLDivElement}>
-              <img className="faq__img" src={faqdecorate} alt="online order" onLoad={() => handleImageChange(parent)} onError={() => handleImageChange(parent)}/>
+              <img className="faq__img" src={faqdecorate} alt={t('faqImgAlt')} onLoad={() => handleImageChange(parent)} onError={() => handleImageChange(parent)}/>
             </div>
             <div className="faq__right">
-              <h2 className="faq__title section__title text-color">Order online with our simple checkout.</h2>
-              <p className="faq__text section__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-              <p className="faq__text section__text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500.</p>
+              <h2 className="faq__title section__title text-color">{t('faqTitle')}</h2>
+              <p className="faq__text section__text">{t('faqText1')}</p>
+              <p className="faq__text section__text">{t('faqText2')}</p>
             </div>
           </section>
         </CSSTransition>
@@ -82,7 +84,7 @@ export const FAQ = withAuthenticationRequired(() => {
             nodeRef={secondNodeRef}
         >
           <section className="howitworks" ref={secondNodeRef}>
-            <h2 className="howitworks__title section__title text-color">How it works.</h2>
+            <h2 className="howitworks__title section__title text-color">{t('howitworksTitle')}</h2>
             <ul className="howitworks__list flex"  ref={elem => parent2 = elem as HTMLUListElement}>
               {items.map(item => (
                   <Fragment key={item.src}>
@@ -99,7 +101,7 @@ export const FAQ = withAuthenticationRequired(() => {
                   </Fragment>
                 ))}
             </ul>
-            <Link to="/menu" className="btn home-btn">Take Order</Link>
+            <Link to="/menu" className="btn home-btn">{t('makeOrder')}</Link>
           </section>
         </CSSTransition>
       </>

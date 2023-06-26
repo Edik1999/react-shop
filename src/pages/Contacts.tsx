@@ -6,12 +6,14 @@ import {useState, MouseEvent, useRef, FocusEvent} from "react";
 import {imagesLoaded} from "../helpers/imagesLoaded";
 import {addDoc, collection, Firestore} from "firebase/firestore";
 import {useAppSelector} from "../store";
+import {useTranslation} from "react-i18next";
 
 import { CSSTransition } from 'react-transition-group';
 import { PatternFormat } from 'react-number-format';
 import Button from '../components/Button';
 import Input from '../components/Input';
 import Loader from "../components/Loader";
+import { Trans } from 'react-i18next';
 
 import contactsdecorate from "../img/contacts-decorate.webp";
 
@@ -21,6 +23,7 @@ export const Contacts = withAuthenticationRequired(({db}: {db: Firestore}) => {
   const nodeRef = useRef(null);
   const secondNodeRef = useRef(null);
   const state = useAppSelector(state => state.user);
+  const { t } = useTranslation();
 
   const [imagesLoading, setImagesLoading] = useState(true);
   const [error, setError] = useState(false);
@@ -66,7 +69,7 @@ export const Contacts = withAuthenticationRequired(({db}: {db: Firestore}) => {
     if (!checkbox.checked) {
       allGood = false
       setError(true)
-      checkboxLabel?.classList.add('error')
+      checkboxLabel?.classList.add('text-error')
       setTimeout(() => {
         setError(false)
       }, 5000)
@@ -119,13 +122,13 @@ export const Contacts = withAuthenticationRequired(({db}: {db: Firestore}) => {
       >
         <section className="contacts flex-x-around-y-center" ref={nodeRef}>
           <div className="contacts__left">
-            <h2 className="contacts__title section__title text-color">Call our store and takeaway when it suits you best.</h2>
-            <p className="contacts__text section__text">Leo vel orci porta non pulvinar neque laoreet. Quis risus sed vulputate odio ut enim blandit volutpat maecenas. Fringilla phasellus faucibus scelerisque eleifend donec pretium vulputate sapien. Semper auctor neque vitae tempus quam pellentesque nec.</p>
-            <p className="contacts__text section__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            <h2 className="contacts__title section__title text-color">{t('contactsTitle')}</h2>
+            <p className="contacts__text section__text">{t('contactsText1')}</p>
+            <p className="contacts__text section__text">{t('contactsText2')}</p>
             <a className="contacts__link contacts-btn btn" href="tel:+79876543210">+7 (987) 654 32-10</a>
           </div>
           <div className="contacts__right" ref={elem => parent = elem as HTMLDivElement}>
-            <img className="contacts__img" src={contactsdecorate} alt="our place" onLoad={() => handleImageChange(parent)} onError={() => handleImageChange(parent)}/>
+            <img className="contacts__img" src={contactsdecorate} alt={t('contactsImgAlt')} onLoad={() => handleImageChange(parent)} onError={() => handleImageChange(parent)}/>
           </div>
         </section>
       </CSSTransition>
@@ -140,31 +143,38 @@ export const Contacts = withAuthenticationRequired(({db}: {db: Firestore}) => {
         <section className={`feedback flex-y-center flex--column ${error && 'feedback--form-error'}`} ref={secondNodeRef}>
           {!isFormSent
               ? <>
-                  <h2 className="feedback__title section__title text-color">Here you can post your<br/> feedback about us.</h2>
+                  <h2 className="feedback__title section__title text-color">
+                    <Trans i18nKey="feedbackTitle">
+                      Here you can post your<br/> feedback about us.
+                    </Trans>
+                  </h2>
                   <form className={`feedback__form form ${error && 'feedback__form--error'}`}>
                     <div className="form__top flex-x-center-y-center">
                       <div className="form__left flex-y-end flex--column">
-                        <Input name="name" type="text" placeholder="Name" defaultValue={state.name ? state.name : ''} modifier='form__input' onFocus={e => clickHandler(e)}/>
-                        <Input name="email" type="email" placeholder="E-mail" defaultValue={state.email ? state.email : ''} modifier='form__input' onFocus={e => clickHandler(e)}/>
-                        <PatternFormat value={state.phone ? state.phone : ''} format="+7 (###) ### ## ##" mask="_" name="phone" className="form__input input" type="tel" placeholder="Phone" onFocus={e => clickHandler(e)}/>
+                        <Input name="name" type="text" placeholder={t('inputNamePlaceholder')} defaultValue={state.name ? state.name : ''} modifier='form__input' onFocus={e => clickHandler(e)}/>
+                        <Input name="email" type="email" placeholder={t('inputEmailPlaceholder')} defaultValue={state.email ? state.email : ''} modifier='form__input' onFocus={e => clickHandler(e)}/>
+                        <PatternFormat value={state.phone ? state.phone : ''} format="+7 (###) ### ## ##" mask="_" name="phone" className="form__input input" type="tel" placeholder={t('inputPhonePlaceholder')} onFocus={e => clickHandler(e)}/>
                       </div>
                       <div className="form__right flex">
-                        <textarea className="form__textarea input input--textarea" name="message" placeholder="Comment" rows={3} onFocus={e => clickHandler(e)}></textarea>
+                        <textarea className="form__textarea input input--textarea" name="message" placeholder={t('inputTextareaPlaceholder')} rows={3} onFocus={e => clickHandler(e)}></textarea>
                       </div>
                     </div>
-                    {error && <p className="form__error form__text section__text">Все поля должны быть заполнены !</p>}
+                    {error && <p className="form__error form__text section__text text-error">{t('feedbackError')}</p>}
                     <div className="form__bottom flex-x-center">
                       <div className="form__wrapper flex-y-center flex--column">
-                        <Button text="Post" modifier="form-btn" onClick={e => formSubmitHandler(e)}></Button>
+                        <Button text={t('feedbackBtn')} modifier="form-btn" onClick={e => formSubmitHandler(e)}></Button>
                         <label className="form__check form__text section__text" onClick={e => clickHandler(e)}>
-                          <input className="form__checkbox" type="checkbox"/> I agree with the <span className="text-color">user agreement</span>
+                          <input className="form__checkbox" type="checkbox"/>
+                          <Trans i18nKey="feedbackCheckboxText">
+                            I agree with the <span className="text-color">user agreement</span>
+                          </Trans>
                         </label>
                       </div>
                     </div>
                   </form>
                 </>
 
-              : <h1 className="feedback__title section__title section__title--success">Thank you for your feedback</h1>
+              : <h1 className="feedback__title section__title section__title--success">{t('feedbackSuccessTitle')}</h1>
           }
         </section>
       </CSSTransition>

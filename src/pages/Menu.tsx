@@ -12,6 +12,7 @@ import Search from "../components/Search";
 import Button from '../components/Button';
 import Modal from '../components/Modal';
 import Loader from "../components/Loader";
+import {Trans, useTranslation} from "react-i18next";
 
 export const Menu = withAuthenticationRequired(() => {
 
@@ -27,6 +28,7 @@ export const Menu = withAuthenticationRequired(() => {
 
     const animationState = useAnimationState();
     const nodeRef = useRef(null);
+    const { t } = useTranslation();
 
     const searchHandler = useCallback((filterString: string) => {
         const filterContent = (filterString: string) => state.goods.filter((el: {title: string}) => el.title.toLowerCase().indexOf(filterString.toLowerCase()) > -1)
@@ -92,7 +94,7 @@ export const Menu = withAuthenticationRequired(() => {
 
     const renderImage = (imageUrl: string) => {
         return (
-            <img className="card__image" src={imageUrl} alt="product" onLoad={() => handleImageChange()} onError={() => handleImageChange()}/>
+            <img className="card__image" src={imageUrl} alt={t('productAlt')} onLoad={() => handleImageChange()} onError={() => handleImageChange()}/>
         );
     }
 
@@ -108,25 +110,26 @@ export const Menu = withAuthenticationRequired(() => {
               nodeRef={nodeRef}
           >
               <section className="menu" ref={nodeRef}>
-                <h2 className="menu__title section__title text-color">Browse our menu</h2>
+                <h2 className="menu__title section__title text-color">{t('menuTitle')}</h2>
                 <p className="menu__text section__text">
-                  Use our menu to place an order online, or <span className="text-color">phone</span> our store <br className="breakLine"/> to place a
-                  pickup order. Fast and fresh food.
+                    <Trans i18nKey="menuText">
+                        Use our menu to place an order online, or <span className="text-color">phone</span> our store <br className="breakLine" /> to place a pickup order. Fast and fresh food.
+                    </Trans>
                 </p>
                 <div className="menu__filter flex-x-center-y-center">
-                  <Button modifier={`menu-btn ${activeSort !== 'all' && 'menu-btn--disabled'}`} text="Показать все" onClick={() => {setContent(state.goods); setActiveSort('all'); setPriceSort(1)}}></Button>
-                  <Button modifier={`menu-btn ${activeSort !== 'Pizza' && 'menu-btn--disabled'}`} text="Пицца" onClick={() => sortingHandler('Pizza')}></Button>
-                  <Button modifier={`menu-btn ${activeSort !== 'Burger' && 'menu-btn--disabled'}`} text="Бургеры" onClick={() => sortingHandler('Burger')}></Button>
-                  <Button modifier={`menu-btn ${activeSort !== 'Roll' && 'menu-btn--disabled'}`} text="Роллы" onClick={() => sortingHandler('Roll')}></Button>
-                  <Button modifier={`menu-btn sorting-btn ${priceSortButtonClass}`} text="Price" onClick={orderByPrice}></Button>
+                  <Button modifier={`menu-btn ${activeSort !== 'all' && 'menu-btn--disabled'}`} text={t('sortingBtnAll')} onClick={() => {setContent(state.goods); setActiveSort('all'); setPriceSort(1)}}></Button>
+                  <Button modifier={`menu-btn ${activeSort !== 'Pizza' && 'menu-btn--disabled'}`} text={t('sortingBtnPizza')} onClick={() => sortingHandler('Pizza')}></Button>
+                  <Button modifier={`menu-btn ${activeSort !== 'Burger' && 'menu-btn--disabled'}`} text={t('sortingBtnBurgers')} onClick={() => sortingHandler('Burger')}></Button>
+                  <Button modifier={`menu-btn ${activeSort !== 'Roll' && 'menu-btn--disabled'}`} text={t('sortingBtnRolls')} onClick={() => sortingHandler('Roll')}></Button>
+                  <Button modifier={`menu-btn sorting-btn ${priceSortButtonClass}`} text={t('sortingBtnPrice')} onClick={orderByPrice}></Button>
                   <Search handler={searchHandler}></Search>
                 </div>
                 <ul className="menu__wrap flex--wrap" ref={element => imagesParent = element as HTMLUListElement}>
                   {content.length > 0
                       ? content.map((el) =>
-                          <Card key={el.id} id={el.id} title={el.title} image={el.image} renderImg={(image) => renderImage(image)} price={el.price} type={el.type} click={(id) => cardClickHandler(id)} />
+                          <Card key={el.id} id={el.id} title={state.lang === 'ru' ? el.title : el.title_en} image={el.image} renderImg={(image) => renderImage(image)} price={el.price} type={el.type} click={(id) => cardClickHandler(id)} />
                         )
-                      : <p className="menu__text section__text">Oops, try another search</p>
+                      : <p className="menu__text section__text text-error">{t('menuErrorText')}</p>
                   }
                 </ul>
                 {clickedCard && <Modal isVisible={modalState} id={clickedCard} onClose={closeModal}></Modal>}

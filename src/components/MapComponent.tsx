@@ -4,10 +4,12 @@ import {FullscreenControl, GeolocationControl, Map, Placemark, SearchControl, YM
 
 import {Dispatch, SetStateAction, useEffect, useState} from "react";
 import {useAppSelector} from "../store";
+import {useTranslation} from "react-i18next";
 
 function MapComponent({setAddress}: {setAddress: Dispatch<SetStateAction<string>>}) {
 
     const state = useAppSelector(state => state);
+    const { t } = useTranslation();
 
     const [mapInstance, setMapInstance] = useState<any>(null);
     const [placemark, setPlacemark] = useState<any>(null);
@@ -32,7 +34,7 @@ function MapComponent({setAddress}: {setAddress: Dispatch<SetStateAction<string>
     }
 
     const getAddress = (coords: number[]) => {
-        placemark.properties.set('iconCaption', 'поиск...');
+        placemark.properties.set('iconCaption', t('mapSearchText'));
 
         mapInstance.geocode(coords).then(function (res: { geoObjects: { get: (arg0: number) => any; }; }) {
 
