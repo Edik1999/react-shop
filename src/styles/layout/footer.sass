@@ -82,16 +82,28 @@
 @media (max-width: 1400px)
     .footer
         &__aside
-            width: 45%
-
-
-@media (max-width: 1360px)
-    .footer
-        &__aside
-            width: 53%
+            width: 47%
 
         .nav
-            width: 35%
+            width: 41%
+
+
+@media (max-width: 1199px)
+    .footer
+        &__aside
+            width: 52%
+
+    html[lang="ru"]
+        .footer
+            &__container
+                flex-direction: column
+
+            &__aside
+                width: 55%
+                margin-bottom: calc( $gap * 1.5)
+
+            .nav
+                width: 75%
 
 
 @media (max-width: 1023.9px)
@@ -100,13 +112,27 @@
             flex-direction: column
 
         &__aside
-            width: 100%
-            margin-bottom: calc( $gap * 2 )
+            width: 55%
+            margin-bottom: calc( $gap * 1.5 )
 
         &__descr
-            margin: 0 auto
+            margin-left: auto
 
         .nav
+            width: 75%
+
+
+@media (max-width: 991px)
+    html[lang="ru"]
+        .footer
+            &__aside
+                width: 75%
+
+            .nav
+                width: 85%
+
+    .footer
+        &__aside
             width: 75%
 
 
@@ -120,12 +146,26 @@
 
         &__aside
             margin-bottom: $gap
+            width: 100%
+
+        .nav
+            width: 100%
+
+    html[lang="ru"]
+        .footer
+            &__aside
+                width: 100%
+                margin-bottom: $gap
+
+            .nav
+                width: 100%
 
 
 @media (max-width: 575px)
     .footer
         &__descr
-            width: 75%
+            width: 80%
+            text-align: center
 
         .nav
             width: 100%
@@ -139,10 +179,26 @@
                 margin-right: calc( $gap / 2 )
 
 
+@media (max-width: 470px)
+    html[lang="ru"]
+        .footer
+            .nav
+                &__list
+                    flex-wrap: wrap
+
+                &__item
+                    margin-right: 7px
+
+                    &:first-of-type
+                        margin-bottom: 25px
+
+                    &:last-of-type
+                        margin: 0 auto
+
+
 @media (max-width: 370px)
     .footer
-        &__logo
-            margin-right: calc( $gap / 3 )
+        padding: calc( $gap * 1.5 ) 0
 
         .nav
             padding-top: $gap
@@ -154,3 +210,10 @@
         .social
             &__text
                 font-size: 13px
+
+
+@media (max-width: 340px)
+    .footer
+        &__descr
+            font-size: 15px
+            width: 85%

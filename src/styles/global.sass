@@ -46,6 +46,9 @@ section
     @media (max-width: 768px)
         padding-bottom: calc( $gap * 3 )
 
+    @media (max-width: 370px)
+        padding-bottom: calc( $gap * 2 )
+
 .container
     max-width: 1440px
     width: 100%
@@ -97,9 +100,12 @@ section
         transform: scale(1.03)
 
     @media (max-width: 575px)
-        .logo
-            &__img
-                height: 40px
+        .logo__img
+            height: 40px
+
+    @media (max-height: 440px)
+        .logo__img
+            height: 40px
 
 .section
     &__title
@@ -142,9 +148,6 @@ section
         @media (max-width: 575px)
             font-size: 16px
             line-height: 24px
-
-        @media (max-width: 370px)
-            font-size: $baseFZ
 
 .text
     &-color

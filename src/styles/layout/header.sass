@@ -35,7 +35,7 @@
             margin: 0
 
     .bottom
-        padding: 20px 0 0
+        padding-top: 20px
 
     .nav
         &__burger
@@ -117,6 +117,16 @@
 .lang-switcher
     left: 45px
     width: 24px
+
+
+@media (max-width: 991px)
+    .header
+        .nav__item
+            margin-right: calc( $gap / 2 )
+
+            &--cart
+                margin-right: 0
+
 
 @media (max-width: 768px)
     .header
@@ -206,45 +216,77 @@
                         max-width: 85%
 
         &--active
-            .nav
-                &__burger
-                    width: 40px
-                    height: 40px
+            .nav__burger
+                .line
+                    &-1
+                        position: relative
+                        width: 30px
+                        right: 1px
+                        transform: rotate(45deg) translate(6px, 4px)
 
-                    .line
+                    &-2
+                        transform: scaleY(0)
 
-                        &-1
-                            position: relative
-                            width: 30px
-                            right: 1px
-                            transform: rotate(45deg) translate(6px, 4px)
-
-                        &-2
-                            transform: scaleY(0)
-
-                        &-3
-                            position: relative
-                            width: 30px
-                            left: -1px
-                            transform: rotate(-45deg) translate(6px, -4px)
+                    &-3
+                        position: relative
+                        width: 30px
+                        left: -1px
+                        transform: rotate(-45deg) translate(6px, -4px)
 
     .theme-switcher
         left: -3px
 
-@media (max-height: 500px) and (max-width: 575px)
-    .header
-        .nav
-            &__list
-                position: relative
-                right: calc( 50vw - 15px )
-                transform: translateX(50%)
-                align-items: center
 
-    .guest
+@media (max-height: 440px)
+    .header
+        .bottom
+            padding-top: calc( $gap / 2 )
+
         .nav
             &__list
-                right: 0
-                transform: translateX(0)
+                align-items: center
+                flex-direction: row
+                width: 100%
+
+            &__item
+                margin-bottom: 0
+                margin-right: 7px
+
+                &--cart
+                    margin-right: 0
+
+            &__link
+                font-size: 14px
+
+                &--cart
+                    width: 40px
+                    height: 40px
+
+            &__burger
+                width: 40px
+                height: 40px
+                padding: calc( $gap / 3 ) 0
+
+                .burger
+                    &__line
+                        width: 22px
+        &--active
+            .nav__burger
+                .line
+                    &-1
+                        position: relative
+                        width: 30px
+                        right: 1px
+                        transform: rotate(45deg) translate(6px, 4px)
+
+                    &-2
+                        transform: scaleY(0)
+
+                    &-3
+                        position: relative
+                        width: 30px
+                        left: -1px
+                        transform: rotate(-45deg) translate(6px, -4px)
 
 
 // animation //

@@ -68,12 +68,8 @@
 
 
 @media (max-width: 1600px)
-    .cart
-        &__list
-            width: 35%
-
-        &__total
-            width: 30%
+    .cart__total
+        width: 30%
 
 
 @media (max-width: 1360px)
@@ -130,10 +126,11 @@
             margin-bottom: $gap
 
         &__list
-            width: 85%
+            //width: 80%
+            margin-bottom: calc($gap * 2)
 
         &__btn-wrapper
-            justify-content: space-between
+            justify-content: space-around
 
         &__total
             width: 85%
@@ -161,7 +158,7 @@
                     width: 180px
 
                 &__name
-                    margin-bottom: calc( $gap / 2 )
+                    margin-bottom: 25px
                     font-size: 18px
 
                 &__price-wraper
@@ -169,13 +166,23 @@
                     width: 90%
 
 
+@media (max-width: 450px)
+    .cart__btn-wrapper
+        flex-wrap: wrap
+        justify-content: center
+
+        .cart-btn:first-of-type
+            margin-bottom: calc( $gap / 2 )
+
+    .cart
+        &__list
+            width: 100%
+
 @media (max-width: 370px)
     .cart
-        &__btn-wrapper
-            flex-direction: column
-            align-items: center
-
         &__total
+            width: 90%
+
             .total
                 &__title
                     text-align: center

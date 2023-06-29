@@ -207,9 +207,15 @@
     .profile-btn
         width: 160px
 
+
+@media (max-width: 450px)
+    .cart-btn
+        width: 55%
+
+
 @media (max-width: 370px)
     .cart-btn
-        width: 160px
+        min-width: 180px
 
     .menu-btn
         &:nth-child(-n+4)
@@ -221,3 +227,11 @@
         &:nth-last-child(-n+2)
             width: 100%
             margin: 0
+
+
+@media (max-height: 440px)
+    .login-btn
+        padding: calc( $gap / 2 ) 0
+
+    .modal-btn
+        display: none

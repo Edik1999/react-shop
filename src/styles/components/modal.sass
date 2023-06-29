@@ -199,7 +199,7 @@
                 &__wraper
                     padding: 0
 
-                &__header, &__text
+                &__weight, &__text, &__title
                     margin-bottom: calc( $gap / 2 )
 
                 &__footer
@@ -270,7 +270,7 @@
                 .modal
                     &__title
                         text-align: center
-                        margin-bottom: calc( $gap / 2 )
+                        margin-bottom: 20px
 
                     &__form
                         width: 90%
@@ -309,7 +309,10 @@
     .modal-wrapper
         .modal__card.card
             .card__image
-                    width: 160px
+                width: 160px
+
+            .modal__title
+                font-size: 16px
 
 
 @media (max-width: 370px)
@@ -322,11 +325,8 @@
                 &__text
                     font-size: 15px
 
-    .cart
-        .modal-wrapper
-            .modal__card.card
-                .modal__title
-                        font-size: $baseFZ
+            .modal__title
+                font-size: 15px
 
 
 @media (max-width: 320px)
@@ -339,3 +339,34 @@
                 &__descr
                     font-size: 14px
                     line-height: 15px
+
+            .modal__title
+                font-size: 14px
+
+
+@media (max-height: 440px)
+    .modal-wrapper .modal__card.card
+        min-height: unset
+        max-height: 93vh
+        padding: calc( $gap / 2 )
+
+        .card
+            &__image
+                display: none
+
+            &__descr
+                margin-bottom: calc( $gap / 2 )
+
+            &__info
+                margin-bottom: 20px
+
+    .cart .modal-wrapper .modal__card.card
+        padding-bottom: 20px
+
+        .modal
+            &__title
+                padding-top: 20px
+                margin-bottom: 20px
+
+            &__form .form__input
+                margin-bottom: 10px

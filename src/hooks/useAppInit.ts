@@ -55,7 +55,10 @@ function useAppInit(db: Firestore, setLoading: { (value: SetStateAction<boolean>
         });
 
         const localLang = localStorage.getItem('lang')
-        if(localLang) i18n.changeLanguage(localLang)
+        if(localLang) {
+            i18n.changeLanguage(localLang)
+            document.documentElement.setAttribute('lang', localLang)
+        }
 
     }, [db, dispatch, user, setLoading]);
 }
