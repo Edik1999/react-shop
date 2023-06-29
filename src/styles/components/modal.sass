@@ -237,9 +237,6 @@
                 &__text
                     font-size: $baseFZ
 
-                &__footer
-                    justify-content: space-between
-
                 &__price
                     font-size: $headerFZ
 
@@ -370,3 +367,10 @@
 
             &__form .form__input
                 margin-bottom: 10px
+
+
+@media (max-height: 440px) and (min-width: 768px)
+    .modal__card.card
+        .card
+            &__header, &__text
+                margin-bottom: calc( $gap / 2 )
