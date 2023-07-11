@@ -14,363 +14,324 @@
     &--active
         opacity: 1
 
-.modal__card
-    &.card
-        position: relative
-        top: 50%
-        left: 50%
-        padding: $gap
-        transform: translate( -50%, -50% )
-        transition: none
-        width: 40%
-        min-height: 400px
-        max-height: 85vh
-        overflow-y: auto
-        margin: 0
-        border-radius: 17px
-        box-shadow: 0px 0px 80px 70px rgba(0, 0, 0, 0.1)
-        cursor: default
+.modal
+    position: relative
+    top: 50%
+    left: 50%
+    padding: $gap
+    transform: translate( -50%, -50% )
+    background-color: $bgColor
+    width: 40%
+    min-height: 400px
+    max-height: 85vh
+    overflow-y: auto
+    border-radius: 17px
+    box-shadow: 0px 0px 80px 70px rgba(0, 0, 0, 0.1)
 
-        &:hover
-            transform: translate( -50%, -50% )
+    &__image
+        align-self: center
+        width: 260px
+        height: 100%
+        margin-right: $gap
 
-            .card__image
-                transform: none
+    &__title
+        margin-right: calc( $gap / 3 )
+        text-align: center
+        font-size: 18px
+        font-weight: 500
+        line-height: 20px
 
-            .card__title
-                text-shadow: none
+    &__weight
+        color: $textColor
+        font-size: calc( $baseFZ - 2px )
+        line-height: $baseFZ
 
-        .card
-            &__image
-                align-self: center
-                width: 260px
-                height: 100%
-                margin-right: $gap
+    &__wraper
+        width: 100%
 
-            &__title
-                margin-right: calc( $gap / 3 )
-                text-align: center
-                font-size: 18px
-                font-weight: 500
-                line-height: 20px
+    &__descr
+        text-align: center
+        color: $textColor
+        font-size: $baseFZ
+        line-height: $textFZ
 
-            &__weight
-                color: $textColor
-                font-size: calc( $baseFZ - 2px )
-                line-height: $baseFZ
+    &__text
+        text-align: center
+        font-size: $textFZ
+        font-weight: 500
+        line-height: calc( $textFZ + 2px )
 
-            &__wraper
-                width: 100%
+    &__price
+        font-size: calc( $baseFZ + 6px )
+        line-height: calc( $baseFZ + 6px )
+        font-weight: 500
 
-            &__descr
-                text-align: center
+    &__delete
+        top: 0
+        right: 0
+
+    &__info
+        min-height: calc( $gap * 1.5 )
+
+        .info
+            &__name
                 color: $textColor
                 font-size: $baseFZ
                 line-height: $textFZ
 
-            &__text
+            &__value
+                color: $mainColor
+                font-size: calc( $baseFZ - 2px )
+                line-height: calc( $baseFZ - 2px )
+
+.cart .modal
+    padding: 0 0 $gap
+    min-height: 300px
+
+    &__title
+        padding-top: calc( $gap * 1.5 )
+        margin-bottom: $gap
+
+    &__form
+        width: 55%
+        margin-bottom: calc( $gap / 2 )
+
+        .form
+            &__input, &__textarea
                 text-align: center
-                font-size: $textFZ
-                font-weight: 500
-                line-height: calc( $textFZ + 2px )
+                width: 100%
 
-            &__price
-                font-size: calc( $baseFZ + 6px )
-                line-height: calc( $baseFZ + 6px )
-                font-weight: 500
+            &__input
+                margin-bottom: calc( $gap / 2 )
 
-            &__delete
-                top: 0
-                right: 0
+    &__total
+        margin-bottom: $gap
 
-            &__info
-                min-height: calc( $gap * 1.5 )
+    &__list
+        width: 100%
+        margin-bottom: $gap
 
-                .info
-                    &__name
-                        color: $textColor
-                        font-size: $baseFZ
-                        line-height: $textFZ
+    &__item
+        padding: calc( $gap / 2 )
+        border-bottom: 2px solid $mainColor
+        border-bottom-right-radius: 8px
+        border-bottom-left-radius: 8px
 
-                    &__value
-                        color: $mainColor
-                        font-size: calc( $baseFZ - 2px )
-                        line-height: calc( $baseFZ - 2px )
+        &:last-child
+            margin-bottom: 0
 
-.cart
-    .modal-wrapper
-        .modal__card.card
-            padding: 0 0 $gap 0
-            min-height: 300px
+        .item
+            &__image
+                width: 75px
 
-            .modal
-                &__title
-                    padding-top: calc( $gap * 1.5 )
-                    margin-bottom: $gap
+            &__wrap
+                width: 75%
 
-                &__form
-                    width: 55%
-                    margin-bottom: calc( $gap / 2 )
-
-                    .form
-                        &__input, &__textarea
-                            text-align: center
-                            width: 100%
-
-                        &__input
-                            margin-bottom: calc( $gap / 2 )
-                        
-                &__total
-                    margin-bottom: $gap
-
-                &__list
-                    width: 100%
-                    margin-bottom: $gap
-
-                &__item
-                    padding: calc( $gap / 2 )
-                    border-bottom: 2px solid $mainColor
-                    border-bottom-right-radius: 8px
-                    border-bottom-left-radius: 8px
-
-                    &:last-child
-                        margin-bottom: 0
-
-                    .item
-                        &__image
-                            width: 75px
-
-                        &__wrap
-                            width: 75%
-
-                        &__title
-                            text-align: center
-                            width: 45%
+            &__title
+                text-align: center
+                width: 45%
 
 
 @media (max-width: 1800px)
-    .modal-wrapper
-        .modal__card.card
-            width: 44%
+    .modal
+        width: 44%
 
 
 @media (max-width: 1600px)
-    .modal-wrapper
-        .modal__card.card
-            width: 52%
+    .modal
+        width: 52%
 
 
 @media (max-width: 1360px)
-    .modal-wrapper
-        .modal__card.card
-            width: 70%
+    .modal
+        width: 70%
 
 
 @media (max-width: 1023.9px)
-    .modal-wrapper
-        .modal__card.card
-            width: 94%
+    .modal
+        width: 94%
 
 
 @media (max-width: 991px)
-    .modal-wrapper .modal__card.card
+    .modal
         width: 94%
         flex-direction: row
         align-items: unset
 
-    .cart .modal-wrapper .modal__card.card
+    .cart .modal
         flex-direction: column
         align-items: center
 
 
 @media (max-width: 768px)
-    .modal-wrapper
-        .modal__card.card
-            width: 90%
-            flex-direction: column
-            padding: 20px
+    .modal
+        width: 90%
+        flex-direction: column
+        padding: 20px
 
-            .card
-                &__image
-                    width: 230px
-                    margin-right: 0
-                    margin-left: 0
+        &__image
+            width: 230px
+            margin-right: 0
+            margin-left: 0
 
-                &__wraper
-                    padding: 0
+        &__wraper
+            padding: 0
 
-                &__weight, &__text, &__title
-                    margin-bottom: calc( $gap / 2 )
+        &__weight, &__text, &__title
+            margin-bottom: calc( $gap / 2 )
 
-                &__footer
-                    justify-content: space-around
+        &__footer
+            justify-content: space-around
 
-                &__descr, &__info
-                    margin-bottom: $gap
+        &__descr, &__info
+            margin-bottom: $gap
 
-    .cart
-        .modal-wrapper
-            .modal__card.card
-                .modal
-                    &__form
-                        width: 65%
+    .cart .modal
+        &__form
+            width: 65%
 
-                    &__item
-                        .item
-                            &__wrap
-                                padding-left: 7px
-                                width: 100%
-                            
-                            &__title
-                                width: 35%
+        &__item
+            .item
+                &__wrap
+                    padding-left: 7px
+                    width: 100%
+
+                &__title
+                    width: 35%
 
 
 @media (max-width: 575px)
     .modal-wrapper
         overflow-y: scroll
 
-        .modal__card.card
-            .card
-                &__image
-                    width: 200px
+    .modal
+        &__image
+            width: 200px
 
-                &__text
-                    font-size: $baseFZ
+        &__text
+            font-size: $baseFZ
 
-                &__price
-                    font-size: $headerFZ
+        &__price
+            font-size: $headerFZ
 
-                &__header
-                    flex-wrap: wrap
-                    align-items: center
+        &__header
+            flex-wrap: wrap
+            align-items: center
 
-                &__title
-                    font-size: $baseFZ
+        &__title
+            font-size: $baseFZ
 
-                &__weight
+        &__weight
+            font-size: 13px
+
+        &__descr
+            font-size: 15px
+
+        &__info
+            .info
+                &__value
                     font-size: 13px
 
-                &__descr
+                &__name
                     font-size: 15px
-
-                &__info
-                    .info            
-                        &__value
-                            font-size: 13px
-
-                        &__name
-                            font-size: 15px
             
-    .cart
-        .modal-wrapper
-            .modal__card.card
-                .modal
-                    &__title
-                        text-align: center
-                        margin-bottom: 20px
+    .cart .modal
+        &__title
+            text-align: center
+            margin-bottom: 20px
 
-                    &__form
-                        width: 90%
+        &__form
+            width: 90%
 
-                        .form
-                            &__input
-                                margin-bottom: calc( $gap / 2 )
-                            
-                    &__item
-                        .item
-                            &__wrap
-                                flex-direction: column
-                                align-items: flex-start
-                                width: 100%
+            .form
+                &__input
+                    margin-bottom: calc( $gap / 2 )
 
-                            &__image
-                                display: none
+        &__item
+            .item
+                &__wrap
+                    flex-direction: column
+                    align-items: flex-start
+                    width: 100%
 
-                            &__title
-                                text-align: start
-                                width: 100%
-                                margin-bottom: calc( $gap / 6 )
-                            
-                            &__number
-                                margin-bottom: calc( $gap / 6 )
+                &__image
+                    display: none
+
+                &__title
+                    text-align: start
+                    width: 100%
+                    margin-bottom: calc( $gap / 6 )
+
+                &__number
+                    margin-bottom: calc( $gap / 6 )
 
 
 @media (max-width: 486px)
-    .modal-wrapper
-        .modal__card.card
-            .card__image
-                    width: 180px
+    .modal__image
+        width: 180px
 
 
 @media (max-width: 400px)
-    .modal-wrapper
-        .modal__card.card
-            .card__image
-                width: 160px
+    .modal
+        &__image
+            width: 160px
 
-            .modal__title
-                font-size: 16px
+        &__title
+            font-size: 16px
 
 
 @media (max-width: 370px)
-    .modal-wrapper
-        .modal__card.card
-            .card
-                &__image
-                    width: 150px
+    .modal
+        &__image
+            width: 150px
 
-                &__text
-                    font-size: 15px
+        &__text
+            font-size: 15px
 
-            .modal__title
-                font-size: 15px
+        &__title
+            font-size: 15px
 
 
 @media (max-width: 320px)
-    .modal-wrapper
-        .modal__card.card
-            .card
-                &__image
-                    width: 120px
+    .modal
+        &__image
+            width: 120px
 
-                &__descr
-                    font-size: 14px
-                    line-height: 15px
+        &__descr
+            font-size: 14px
+            line-height: 15px
 
-            .modal__title
-                font-size: 14px
+        &__title
+            font-size: 14px
 
 
 @media (max-height: 440px)
-    .modal-wrapper .modal__card.card
+    .modal
         min-height: unset
         max-height: 93vh
         padding: calc( $gap / 2 )
 
-        .card
-            &__image
-                display: none
+        &__image
+            display: none
 
-            &__descr
-                margin-bottom: calc( $gap / 2 )
+        &__descr
+            margin-bottom: calc( $gap / 2 )
 
-            &__info
-                margin-bottom: 20px
+        &__info
+            margin-bottom: 20px
 
-    .cart .modal-wrapper .modal__card.card
+    .cart .modal
         padding-bottom: 20px
 
-        .modal
-            &__title
-                padding-top: 20px
-                margin-bottom: 20px
+        &__title
+            padding-top: 20px
+            margin-bottom: 20px
 
-            &__form .form__input
-                margin-bottom: 10px
+        &__form .form__input
+            margin-bottom: 10px
 
 
 @media (max-height: 440px) and (min-width: 768px)
-    .modal__card.card
-        .card
-            &__header, &__text
-                margin-bottom: calc( $gap / 2 )
+    .modal
+        &__header, &__text
+            margin-bottom: calc( $gap / 2 )

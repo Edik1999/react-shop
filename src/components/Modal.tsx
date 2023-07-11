@@ -84,18 +84,18 @@ function Modal({ isVisible, id, onClose, order, userCart, sum }: IProps) {
 
   return isVisible === false ? null : (
     <div className={`modal-wrapper ${fadeIn && 'modal-wrapper--active'}`} onClick={close}>
-      <div className={`modal__card card ${id ? 'flex' : 'flex-x-between-y-center flex--column'}`} onClick={e => e.stopPropagation()}>
+      <div className={`modal ${id ? 'flex' : 'flex-x-between-y-center flex--column'}`} onClick={e => e.stopPropagation()}>
         {content ? (
           <>
-            <img className="card__image" src={content.image} alt={state.lang === 'ru' ? content.title : content.title_en} />
-            <div className="card__wraper flex-x-between flex--column">
-              <div className="card__header flex-x-center-y-end">
-                <p className="card__title">{state.lang === 'ru' ? content.title : content.title_en}</p>
-                <p className="card__weight">{t('weight')} {content.weight} {t('gram')}.</p>
+            <img className="modal__image" src={content.image} alt={state.lang === 'ru' ? content.title : content.title_en} />
+            <div className="modal__wraper flex-x-between flex--column">
+              <div className="modal__header flex-x-center-y-end">
+                <p className="modal__title">{state.lang === 'ru' ? content.title : content.title_en}</p>
+                <p className="modal__weight">{t('weight')} {content.weight} {t('gram')}.</p>
               </div>
-              <p className="card__descr">{state.lang === 'ru' ? content.text : content.text_en}</p>
-              <p className="card__text">{t('nutritionalValue')}</p>
-              <div className="card__info info flex-x-around">
+              <p className="modal__descr">{state.lang === 'ru' ? content.text : content.text_en}</p>
+              <p className="modal__text">{t('nutritionalValue')}</p>
+              <div className="modal__info info flex-x-around">
                 {info.map((el) => (
                     <div className="info__wrap flex-x-between-y-center flex--column" key={el.text}>
                         <p className="info__name">{el.text}</p>
@@ -103,8 +103,8 @@ function Modal({ isVisible, id, onClose, order, userCart, sum }: IProps) {
                     </div>
                 ))}
               </div>
-              <div className="card__footer flex-x-between-y-center">
-                <p className="card__price text-color">
+              <div className="modal__footer flex-x-between-y-center">
+                <p className="modal__price text-color">
                   {content.price} {t('currency')}
                 </p>
                 {!isInCart
@@ -149,7 +149,7 @@ function Modal({ isVisible, id, onClose, order, userCart, sum }: IProps) {
                 }
             </>
         )}
-        <Delete parentClass="card__delete" onClick={close}/>
+        <Delete parentClass="modal__delete" onClick={close}/>
       </div>
     </div>
   );
