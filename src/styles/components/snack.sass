@@ -1,0 +1,73 @@
+@import "../variables/index"
+
+.snack
+  position: fixed
+  width: 95%
+  bottom: 20px
+  left: 50%
+  transform: translateX(-50%)
+  color: $textColor
+  background: $bgColor
+  border: 1px solid $mainColor
+  border-radius: 30px
+  box-shadow: 0 0 24px 0 rgba(0, 0, 0, 0.2)
+  z-index: 3147483646
+  padding: 20px
+  gap: $gap
+
+  &__close
+    position: absolute
+    right: -14px
+    top: -14px
+
+.snack-content
+  &__text
+    max-width: 70%
+
+  &__btn
+    font-size: 18px
+
+.snack-content-text
+  text-align: center
+  color: $textColor
+
+.snack-close
+  background: $bgColor
+  border-right: 1px solid $mainColor
+  border-top: 1px solid $mainColor
+  border-radius: 50%
+  padding: 12px
+
+@media (max-width: 1600px)
+  .snack-content
+    &__text
+      font-size: 14px
+
+@media (max-width: 1023.9px)
+  .snack
+    width: 90%
+
+  .snack-content
+    flex-direction: column
+    justify-content: center
+    gap: calc( $gap / 2 )
+
+    &__text
+      max-width: 100%
+
+    &__btn
+      width: 80%
+      padding: calc( $gap / 2 )
+
+@media (max-width: 767px)
+  .snack
+    gap: calc( $gap / 2 )
+
+  .snack-content
+    &__btn
+      width: 100%
+
+@media (max-width: 510px)
+  .snack
+    &__img
+      display: none

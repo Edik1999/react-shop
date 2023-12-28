@@ -3,6 +3,18 @@
   "name": "React shoppp",
   "icons": [
     {
+      "src": "ico/maskable_icon_x48.png",
+      "sizes": "48x48",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "ico/maskable_icon_x48.png",
+      "sizes": "48x48",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
       "src": "ico/windows11/SmallTile.scale-100.png",
       "sizes": "71x71"
     },

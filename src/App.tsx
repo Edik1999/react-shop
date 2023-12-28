@@ -15,10 +15,12 @@ import {Cart} from './pages/Cart';
 import {Menu} from './pages/Menu';
 import {Profile} from "./pages/Profile";
 import {Firestore} from "firebase/firestore";
+import Snack from "./components/Snack";
 
 function App({db}: { db: Firestore }) {
 
     const [loading, setLoading] = useState(true)
+    const [snackState, setSnackState] = useState(true)
 
     const location = useLocation();
 
@@ -27,6 +29,8 @@ function App({db}: { db: Firestore }) {
     }, [location.pathname])
 
     useAppInit(db, setLoading);
+
+    const snackClose = () => setSnackState(false)
 
     return (
         <>
@@ -44,6 +48,7 @@ function App({db}: { db: Firestore }) {
               <Route path="*" element={<Navigate to="/" replace />}/>
             </Routes>
           </div>
+          {snackState && <Snack closeFunc={snackClose}></Snack>}
           <Footer></Footer>
         </>
     );

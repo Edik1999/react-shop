@@ -27,6 +27,27 @@
   <script>
     if (typeof navigator.serviceWorker !== 'undefined') {
       navigator.serviceWorker.register('./js/pwabuilder-sw.js')
+
+      window.addEventListener('beforeinstallprompt', (e) => {
+        e.preventDefault();
+
+        const deferredPrompt = e;
+
+        const installButton = document.querySelector('.snack-content-btn');
+
+        installButton.addEventListener('click', () => {
+          console.log('clicked');
+          deferredPrompt.prompt();
+
+          deferredPrompt.userChoice.then(choiceResult => {
+            if (choiceResult.outcome === 'accepted') {
+              console.log('App installed');
+            } else {
+              console.log('App installation declined');
+            }
+          });
+        });
+      });
     }
   </script>
   <script src="//code.jivo.ru/widget/RFDacq7KK4" async></script>
