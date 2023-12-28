@@ -24,6 +24,11 @@
     Learn how to configure a non-root public URL by running `npm run build`.
   -->
   <title>React Shop</title>
+  <script>
+    if (typeof navigator.serviceWorker !== 'undefined') {
+      navigator.serviceWorker.register('./js/pwabuilder-sw.js')
+    }
+  </script>
   <script src="//code.jivo.ru/widget/RFDacq7KK4" async></script>
 </head>
 <body>
